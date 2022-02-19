@@ -1,0 +1,68 @@
+$pathIcon: "";
+
+.select {
+    position: relative;
+
+    &__item {
+        position: relative;
+    }
+    &__title {
+        color: $light-color;
+        cursor: pointer;
+    }
+    &__value {
+        display: flex;
+        font-size: 16px;
+        height: 30px;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+
+        span {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+        &::before {
+            content: "";
+            display: inline-block;
+            transition: all 0.3s ease 0s;
+            margin-left: 5px;
+            width: 20px;
+            height: 20px;
+            background: url($pathIcon) center / 100% no-repeat;
+            transform: rotate(0deg);
+            
+            @include breakpoint(sm) {
+                margin-left: 3px;
+            }
+        }
+    }
+    &__options {
+        display: none;
+        position: absolute;
+        top: 30px;
+        min-width: 100%;
+        left: 0;
+        color: $light-color;
+        font-size: 16px;
+        background-color: $light-color;
+    }
+    &__option {
+        text-align: center;
+        cursor: pointer;
+        padding: 3px 12px;
+        border-top: 1px solid $primary-accent-color;
+        margin: 0px 0px 0px 0px;
+    }
+    &._active {
+        z-index: 5;
+    }
+    &._active .select__value::before {
+        transform: rotate(-180deg);
+    }
+    &._active.select__options {
+        display: block;
+    }
+}

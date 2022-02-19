@@ -1,0 +1,40 @@
+// * DEFAULT FONT
+$font-family: "Raleway";
+$font-size: 16;
+
+// * VARS
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 2560px,
+);
+
+$container-max-widths: (
+    sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 1140px,
+    xxl: 1320px,
+);
+
+$columns-count: 12;
+$grid-gap: 15px;
+$grid-gap-side: calc($grid-gap / 2);
+
+// * COLORS
+$dark-color: #252525;
+$light-color: #FFFFFF;
+$primary-accent-color: #E0BEA2;
+$secondary-accent-color: #CCA88A;
+$success-green: #007560;
+$error-red: #C35354;
+
+// * EFFECTS
+$normalTransition: .6s all;
+$fastTransition: .4s all;
+$border: 1px solid $dark-color;
+
+// * OTHER

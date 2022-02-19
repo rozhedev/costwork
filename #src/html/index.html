@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+@@include('_head.html',{
+"title":"Главная"
+})
+
+<body>
+    @@include('components/_preloader.html',{})
+
+    <div class="wrapper">
+        <main class="main page" id="main">
+            <section class="home" id="home">
+                <!-- * HEADER -->
+                @@include('components/_header.html',{})
+
+                <div class="home__container container">
+                    <div class="content">
+                        <h1>Start template by @select_dev</h1>
+                        <p>Удачного кодинга!</p>
+                    </div>
+
+                    <div class="news">
+                        <span>Контент, который я вывожу через JSON</span>
+                        @@loop("items/_news-item.html", "../json/language.json")
+
+                        <span>Проверка на норм. вывод картинок <a href="about.html">About</a></span>
+                        <img class="news__img" src="../img/photos/first.webp" alt="first">
+                        <img class="news__img" src="../img/photos/illustration.webp" alt="illustration">
+
+                        <span>Проверка на норм. вывод иконок</span>
+
+                        <div class="icons">
+                            <div class="icons__item">
+                                <svg>
+                                    <use href="img/icons/sprite.svg#facebook"></use>
+                                </svg>
+                            </div>
+                            <div class="icons__item">
+                                <svg>
+                                    <use href="img/icons/sprite.svg#instagram"></use>
+                                </svg>
+                            </div>
+                            <div class="icons__item">
+                                <svg>
+                                    <use href="img/icons/sprite.svg#twitter"></use>
+                                </svg>
+                            </div>
+                            <div class="icons__item">
+                                <svg>
+                                    <use href="img/icons/sprite.svg#youtube"></use>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <span>Подключил Swiper</span>
+
+                        <div class="swiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="https://picsum.photos/300/100?random=1" alt="slide1" class="swiper-slide__img">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="https://picsum.photos/300/100?random=2" alt="slide2" class="swiper-slide__img">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="https://picsum.photos/300/100?random=3" alt="slide3" class="swiper-slide__img">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="https://picsum.photos/300/100?random=4" alt="slide4" class="swiper-slide__img">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="https://picsum.photos/300/100?random=5" alt="slide5" class="swiper-slide__img">
+                                </div>
+                            </div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- * ABOUT -->
+
+        </main>
+
+        <!-- * FOOTER -->
+        @@include('components/_footer.html',{})
+    </div>
+
+    <!-- * POPUP -->
+    <!-- @@include('_popup.html',{}) -->
+    <!-- * JS -->
+    @@include('_js.html',{})
+</body>
+
+</html>

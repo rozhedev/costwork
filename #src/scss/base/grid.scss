@@ -1,0 +1,117 @@
+.wrapper {
+	width: 100%;
+	min-height: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+// * MIXINS
+// Макс. ширина контейнера с учетом padding, чтобы контент не прилипал к краям при адаптиве
+// 1140 + 15*4 или 959.98 + 15*4
+
+@mixin container {
+    margin: 0 auto;
+    max-width: map-get($container-max-widths, xl) + ($grid-gap * 4);
+    padding: 0 $grid-gap * 2;
+    
+    @include breakpoint(lg) {
+    }
+    @include breakpoint(md) {
+    }
+}
+
+@mixin row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -$grid-gap-side;
+
+    & > * {
+        margin: 0 $grid-gap-side;
+    }
+}
+
+@mixin col($size) {
+    flex: 0 0 auto;
+    width: calc(#{percentage($size / $columns-count)} - #{$grid-gap});
+}
+
+@mixin media($width) {
+    @media (max-width: $width) {
+        @content;
+    }
+}
+
+@mixin breakpoint($name) {
+    $width: map-get($grid-breakpoints, $name);
+    @include media($width) {
+        @content;
+    }
+}
+
+// * CLASSES
+
+.container {
+    @include container;
+}
+
+.row {
+    @include row;
+}
+
+.col {
+    flex: 1 0 0%;
+}
+
+// * USAGE
+
+// @include col(4);
+// @include breakpoint(lg) {
+//     background-color: $accent;
+// }
+
+// *____________________________________
+
+// // BOOTSTRAP GRID
+
+// $grid-breakpoints: (
+//     xs: 0,
+//     sm: 576px,
+//     md: 768px,
+//     lg: 992px,
+//     xl: 1200px,
+//     xxl: 2560px,
+// );
+
+// $container-max-widths: (
+//     sm: 540px,
+//     md: 720px,
+//     lg: 960px,
+//     xl: 1140px,
+//     xxl: 1320px,
+// );
+
+// // * Columns classes generation
+
+// @each $breakpoint, $width in $grid-breakpoints {
+//     @include media($width) {
+//         @for $i from 1 through $columns-count {
+//             .col-#{$breakpoint}-#{$i} {
+//                 @include col($i);
+//             }
+//         }
+//     }
+// }
+
+// // * GAP REALISATION
+
+// $grid-gap: 30px !default;
+// $grid-gap-side: calc($grid-gap / 2);
+
+// .row {
+//     display: flex;
+//     flex-wrap: wrap;
+//     gap: $grid-gap-side;
+//     margin-right: -$grid-gap-side;
+//     margin-bottom: 30px;
+// }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+@@include('_head.html',{
+"title":"Главная"
+})
+
+<body>
+    @@include('components/_preloader.html',{})   
+
+    <div class="wrapper">
+        <main class="about page" id="about">
+            <section class="about-info" id="about-info">
+                <!-- * HEADER -->
+                @@include('components/_header.html',{})
+
+                <div class="about__container _container">
+                    <div class="content">
+                        <h2 class="title h2">О компании</h2>
+                        <p>Hello <a href="index.html">На главную</a></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- * FOOTER -->
+        @@include('components/_footer.html',{})
+    </div>
+
+    <!-- * POPUP -->
+    <!-- @@include('_popup.html',{}) -->
+    <!-- * JS -->
+    @@include('_js.html',{})
+</body>
+
+</html>

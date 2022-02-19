@@ -1,0 +1,113 @@
+// * <UI CLASSES>==========================================
+// Все hover эффекты пиши с классом .no-touch
+
+.section {
+    @include breakpoint(md) {
+    }
+}
+
+.section-page {
+    @include breakpoint(md) {
+    }
+}
+
+.h1 {
+    font-size: 40px;
+    @include breakpoint(md) {
+    }
+}
+
+.h2 {
+    font-size: 32px;
+    @include breakpoint(md) {
+    }
+}
+
+.h3 {
+    @include breakpoint(md) {
+    }
+}
+
+.h4 {
+    @include breakpoint(md) {
+    }
+}
+
+.text {
+    @include breakpoint(md) {
+    }
+}
+
+.price {
+    @include breakpoint(md) {
+    }
+}
+
+.descr {
+    @include breakpoint(md) {
+    }
+}
+
+.navlink {
+    .no-touch &:hover {
+    }
+    @include breakpoint(md) {
+    }
+}
+
+.label {
+    @include breakpoint(md) {
+    }
+}
+
+.btn {
+    .no-touch &:hover {
+    }
+    &:active {
+    }
+
+    @include breakpoint(md) {
+    }
+}
+
+.inp {
+    @include breakpoint(md) {
+    }
+}
+
+.radio {
+    position: relative;
+
+    &__input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        appearance: none;
+        position: absolute;
+        transition: $normalTransition;
+
+        &:checked + .radio__label::after {
+            opacity: 1;
+        }
+    }
+
+    &__label {
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 1;
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            z-index: 2;
+
+            opacity: 0;
+            display: block;
+        }
+    }
+}
