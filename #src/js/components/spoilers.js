@@ -1,3 +1,5 @@
+"use strict";
+
 // const spoilerItems = document.querySelectorAll(".spoiler");
 // const spoilerTriggers = document.querySelectorAll(".spoiler__trigger");
 

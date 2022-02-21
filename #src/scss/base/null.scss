@@ -34,16 +34,22 @@ body {
     min-width: map-get($grid-breakpoints, sm);
 }
 body {
-    line-height: 1;
     font-family: $font-family, sans-serif;
+    font-size: $font-size;
+    font-weight: 400;
+    color: $dark-color;
+    line-height: 1;
+
     // text-rendering: optimizeLegibility;
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
-    font-weight: 400;
 
     body._lock {
         overflow: hidden;
+    }
+    @media screen and (max-width: map-get($grid-breakpoints, md)) {
+        font-size: $font-size-mobile;
     }
 }
 input,

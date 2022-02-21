@@ -15,9 +15,22 @@
     max-width: map-get($container-max-widths, xl) + ($grid-gap * 4);
     padding: 0 $grid-gap * 2;
     
-    @include breakpoint(lg) {
+    @include breakpoint(xl) {
+        max-width: map-get($container-max-widths, xl) + ($grid-gap * 4);
+    }
+    @include breakpoint(ld) {
+        max-width: map-get($container-max-widths, ld) + ($grid-gap * 4);
     }
     @include breakpoint(md) {
+        max-width: map-get($container-max-widths, md) + ($grid-gap * 2);
+        padding: 0 $grid-gap;
+    }
+    @include breakpoint(sm) {
+        max-width: map-get($container-max-widths, sm) + ($grid-gap * 2);
+    }
+    @include breakpoint(xs) {
+        max-width: map-get($container-max-widths, xs) + ($grid-gap * 1.3333333);
+        padding: 0 calc($grid-gap / 1.5);
     }
 }
 

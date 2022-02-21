@@ -13,42 +13,44 @@
 
 .h1 {
     font-size: 40px;
+    // @include font-theme();
     @include breakpoint(md) {
     }
 }
 
 .h2 {
     font-size: 32px;
+    // @include font-theme();
     @include breakpoint(md) {
     }
 }
 
 .h3 {
+    // @include font-theme();
     @include breakpoint(md) {
     }
 }
 
 .h4 {
-    @include breakpoint(md) {
-    }
-}
-
-.text {
+    // @include font-theme();
     @include breakpoint(md) {
     }
 }
 
 .price {
+    // @include font-theme();
     @include breakpoint(md) {
     }
 }
 
 .descr {
+    // @include font-theme();
     @include breakpoint(md) {
     }
 }
 
 .navlink {
+    // @include font-theme();
     .no-touch &:hover {
     }
     @include breakpoint(md) {
@@ -56,11 +58,13 @@
 }
 
 .label {
+    // @include font-theme();
     @include breakpoint(md) {
     }
 }
 
 .btn {
+    // @include font-theme();
     .no-touch &:hover {
     }
     &:active {
@@ -71,6 +75,7 @@
 }
 
 .inp {
+    // @include font-theme();
     @include breakpoint(md) {
     }
 }

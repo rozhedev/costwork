@@ -1,3 +1,5 @@
+"use strict";
+
 // * HOVER RESET
 
 if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {

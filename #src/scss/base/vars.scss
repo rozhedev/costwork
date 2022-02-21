@@ -1,10 +1,11 @@
 // * DEFAULT FONT
 $font-family: "Raleway";
-$font-size: 16;
+$font-size: 16px;
+$font-size-mobile: 15px;
 
-// * VARS
+// * GRID
 $grid-breakpoints: (
-    xs: 0,
+    xs: 440px,
     sm: 576px,
     md: 768px,
     lg: 992px,
@@ -13,6 +14,7 @@ $grid-breakpoints: (
 );
 
 $container-max-widths: (
+    xs: 340px,
     sm: 540px,
     md: 720px,
     lg: 960px,
@@ -23,6 +25,14 @@ $container-max-widths: (
 $columns-count: 12;
 $grid-gap: 15px;
 $grid-gap-side: calc($grid-gap / 2);
+
+// * INDENTS
+$margins: (
+    m15: 15px,
+    m30: 30px,
+    m60: 60px,
+    m120: 120px,
+);
 
 // * COLORS
 $dark-color: #252525;
