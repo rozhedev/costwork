@@ -1,53 +1,83 @@
 .wrapper {
-	width: 100%;
-	min-height: 100%;
-	overflow: hidden;
-	display: flex;
-	flex-direction: column;
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 // * MIXINS
 // Макс. ширина контейнера с учетом padding, чтобы контент не прилипал к краям при адаптиве
-// 1140 + 15*4 или 959.98 + 15*4
+// 1312 + 32 * 1.5 или 696 + 16
 
 @mixin container {
     margin: 0 auto;
-    max-width: map-get($container-max-widths, xl) + ($grid-gap * 4);
-    padding: 0 $grid-gap * 2;
-    
+    max-width: map-get($container-max-widths, xxl) + ($grid-gap * 1.5);
+    padding: 0 calc($grid-gap * 0.75);
+
     @include breakpoint(xl) {
-        max-width: map-get($container-max-widths, xl) + ($grid-gap * 4);
+        max-width: map-get($container-max-widths, xl) + ($grid-gap * 1.5);
     }
-    @include breakpoint(ld) {
-        max-width: map-get($container-max-widths, ld) + ($grid-gap * 4);
+    @include breakpoint(lg) {
+        max-width: map-get($container-max-widths, lg) + $grid-gap;
+        padding: 0 $grid-gap-side;
     }
     @include breakpoint(md) {
-        max-width: map-get($container-max-widths, md) + ($grid-gap * 2);
-        padding: 0 $grid-gap;
+        max-width: map-get($container-max-widths, md) + $grid-gap;
     }
     @include breakpoint(sm) {
-        max-width: map-get($container-max-widths, sm) + ($grid-gap * 2);
+        max-width: map-get($container-max-widths, sm) + ($grid-gap-side * 0.75);
+        padding: 0 calc($grid-gap-side * 0.75);
     }
     @include breakpoint(xs) {
-        max-width: map-get($container-max-widths, xs) + ($grid-gap * 1.3333333);
-        padding: 0 calc($grid-gap / 1.5);
+        max-width: map-get($container-max-widths, xs) + ($grid-gap-side * 0.75);
     }
 }
+
+// * ADAPTIVE ROW, COL
 
 @mixin row {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 -$grid-gap-side;
-
+    margin-left: calc(-0.75 * $grid-gap);
+    margin-right: calc(-0.75 * $grid-gap);
     & > * {
         margin: 0 $grid-gap-side;
+    }
+
+    @include breakpoint(lg) {
+        margin-left: calc(-1 * $grid-gap-side);
+        margin-right: calc(-1 * $grid-gap-side);
+        & > * {
+            margin: 0 calc($grid-gap-side * 0.75);
+        }
+    }
+
+    @include breakpoint(sm) {
+        margin-left: calc(-0.75 * $grid-gap-side);
+        margin-right: calc(-0.75 * $grid-gap-side);
+        & > * {
+            margin: 0 calc($grid-gap-side / 2);
+        }
     }
 }
 
 @mixin col($size) {
     flex: 0 0 auto;
-    width: calc(#{percentage($size / $columns-count)} - #{$grid-gap});
+    width: calc(#{percentage(calc($size / $columns-count))} - #{$grid-gap});
+
+    @include breakpoint(lg) {
+        width: calc(#{percentage(calc($size / $columns-count))} - #{calc($grid-gap-side * 1.5)});
+    }
+    @include breakpoint(sm) {
+        width: calc(#{percentage(calc($size / $columns-count-sm))} - #{$grid-gap-side});
+    }
+    @include breakpoint(xs) {
+        width: calc(#{percentage(calc($size / $columns-count-xs))} - #{$grid-gap-side});
+    }
 }
+
+// * MEDIA, BREAKPOINTS, CLASSES
 
 @mixin media($width) {
     @media (max-width: $width) {
@@ -61,8 +91,6 @@
         @content;
     }
 }
-
-// * CLASSES
 
 .container {
     @include container;
@@ -78,9 +106,14 @@
 
 // * USAGE
 
-// @include col(4);
-// @include breakpoint(lg) {
-//     background-color: $accent;
+// selector {
+//     @include col(4);
+//     @include breakpoint(lg) {
+//         background-color: $accent;
+//     }
+//     @include media(map-get($grid-breakpoints, md)) {
+//         width: 600px;
+//     }
 // }
 
 // *____________________________________

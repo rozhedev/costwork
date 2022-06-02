@@ -1,75 +1,9 @@
 .home {
-    min-height: 100vh;
-    padding: 40px 0;
-    background: url("../../img/photos/planet.webp") center / cover no-repeat;
-
-    .content {
-        margin: 0 auto;
-        text-align: center;
-        color: #fff;
-
-        h1 {
-            font-size: 40px;
-            font-weight: 700;
-            letter-spacing: 0.04em;
-        }
-        p {
-            display: block;
-            margin-top: 20px;
-            font-size: 20px;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-        }
+    &__container {
+        margin-top: 84px;
     }
-    .news {
-        margin: 40px auto 0;
-        width: 600px;
-        padding: 16px;
-        backdrop-filter: blur(4px);
-        background-color: rgba(250, 247, 255, 0.48);
-        border-radius: 16px;
-        text-align: center;
-        font-weight: 500;
-        color: #030303;
-
-        span {
-            display: block;
-            margin-top: 8px;
-            font-weight: 700;
-        }
-        article {
-            padding: 12px 0;
-
-            h2 {
-                font-size: 24px;
-            }
-            p {
-                margin-top: 8px;
-            }
-        }
-        &__img {
-            display: block;
-            width: 300px;
-            height: 100px;
-            margin: 0 auto;
-            padding: 12px 0;
-        }
-    }
-    .icons {
-        display: flex;
-        justify-content: space-between;
-        width: 400px;
-        margin: 20px auto 0;
-
-        &__item {
-            svg {
-                width: 48px;
-                height: 48px;
-                fill: #fff;
-            }
-        }
-    }
-
+    // background: url("../../img/bg/main-header-wave.svg") center / cover no-repeat;
+    
     @include breakpoint(lg) {
     }
     @include breakpoint(md) {

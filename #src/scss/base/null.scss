@@ -26,31 +26,32 @@ section {
     display: block;
 }
 html {
-    font-size: $font-size + px;
+    font-size: $font-size;
+    font-family: $font-family, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+
+    @media screen and (max-width: map-get($grid-breakpoints, lg)) {
+        font-size: $font-size-mobile;
+    }
 }
 html,
 body {
     height: 100%;
-    min-width: map-get($grid-breakpoints, sm);
 }
 body {
-    font-family: $font-family, sans-serif;
-    font-size: $font-size;
-    font-weight: 400;
-    color: $dark-color;
-    line-height: 1;
+    max-width: $max-width;
+    min-width: $min-width;
+    margin: 0 auto;
 
     // text-rendering: optimizeLegibility;
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
-
-    body._lock {
-        overflow: hidden;
-    }
-    @media screen and (max-width: map-get($grid-breakpoints, md)) {
-        font-size: $font-size-mobile;
-    }
+}
+body._lock {
+    overflow: hidden !important;
 }
 input,
 button,

@@ -1,4 +1,4 @@
-$pathIcon: "";
+// * SELECT
 
 .select {
     position: relative;
@@ -7,13 +7,17 @@ $pathIcon: "";
         position: relative;
     }
     &__title {
-        color: $light-color;
         cursor: pointer;
+    }
+    &__value,
+    &__options {
+        font-size: calc($font-size-mobile * 1.2);
+        font-weight: 600;
+        line-height: 1.6;
+        letter-spacing: 0.02em;
     }
     &__value {
         display: flex;
-        font-size: 16px;
-        height: 30px;
         align-items: center;
         justify-content: space-between;
         flex-direction: row-reverse;
@@ -27,42 +31,101 @@ $pathIcon: "";
         &::before {
             content: "";
             display: inline-block;
-            transition: all 0.3s ease 0s;
-            margin-left: 5px;
-            width: 20px;
-            height: 20px;
-            background: url($pathIcon) center / 100% no-repeat;
-            transform: rotate(0deg);
-            
-            @include breakpoint(sm) {
-                margin-left: 3px;
-            }
+            margin-left: 4px;
+            width: 24px;
+            height: 24px;
+            background: url($chevron-icon) center / 100% no-repeat;
+            transition: $transition;
         }
     }
     &__options {
         display: none;
         position: absolute;
         top: 30px;
-        min-width: 100%;
         left: 0;
-        color: $light-color;
-        font-size: 16px;
-        background-color: $light-color;
+        background-color: $light-color; // * Чтобы не был виден текст под select'ом
     }
     &__option {
+        padding: 0px 12px;
         text-align: center;
+        border-top: 1px solid $dark-color;
         cursor: pointer;
-        padding: 3px 12px;
-        border-top: 1px solid $primary-accent-color;
-        margin: 0px 0px 0px 0px;
     }
     &._active {
         z-index: 5;
+
+        & .select__value::before {
+            transform: rotate(-180deg);
+        }
+        & .select__options {
+            display: block;
+        }
     }
-    &._active .select__value::before {
-        transform: rotate(-180deg);
+
+    ._dark & {
+        &__value {
+            &::before {
+                background: url($dark-chevron-icon) center / 100% no-repeat;
+            }
+        }
+        &__options {
+            background-color: $dark-color; // * Чтобы не был виден текст под select'ом
+        }
+        &__option {
+            border-top: 1px solid $light-color;
+        }
     }
-    &._active.select__options {
-        display: block;
+}
+
+.select_form-select {
+    width: 304px;
+    height: 56px;
+    padding: 10px 16px;
+    border: 3px solid $inactive-blue-color;
+    border-radius: 8px;
+
+    .select__options {
+        margin-top: 6px;
+        margin-left: -19px;
+        opacity: 0;
+        transition: $transition;
+    }
+    .select__option {
+        width: 298px;
+        padding: 4px 16px;
+        text-align: left;
+        border-top: none;
+    }
+    &._active {
+        border-radius: 8px 8px 0 0;
+        border-top: 3px solid $active-blue-color;
+        border-left: 3px solid $active-blue-color;
+        border-right: 3px solid $active-blue-color;
+        border-bottom: none;
+
+        .select__options {
+            opacity: 1;
+            border-radius: 0 0 8px 8px;
+            border-left: 3px solid $active-blue-color;
+            border-right: 3px solid $active-blue-color;
+            border-bottom: 3px solid $active-blue-color;
+            border-top: none;
+        }
+    }
+
+    ._dark & {
+        border: 3px solid $dark-inactive-blue-color;
+
+        &._active {
+            border-top: 3px solid $dark-active-blue-color;
+            border-left: 3px solid $dark-active-blue-color;
+            border-right: 3px solid $dark-active-blue-color;
+
+            .select__options {
+                border-left: 3px solid $dark-active-blue-color;
+                border-right: 3px solid $dark-active-blue-color;
+                border-bottom: 3px solid $dark-active-blue-color;
+            }
+        }
     }
 }

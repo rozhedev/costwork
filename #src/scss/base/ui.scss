@@ -1,87 +1,207 @@
 // * <UI CLASSES>==========================================
-// Все hover эффекты пиши с классом .no-touch
 
-.section {
-    @include breakpoint(md) {
-    }
+body {
+    background: $light-color;
+    color: $dark-color;
+    transition: $transition;
 }
 
-.section-page {
-    @include breakpoint(md) {
+body._dark {
+    background: $dark-color;
+    color: $light-color;
+}
+
+.number-item {
+    font-size: 4.3rem;
+    font-weight: 900;
+    line-height: 1.3;
+    letter-spacing: 0.08em;
+
+    @include breakpoint(lg) {
+        font-size: 3.6rem;
+    }
+
+    @include breakpoint(xs) {
+        font-size: 5rem;
     }
 }
 
 .h1 {
-    font-size: 40px;
-    // @include font-theme();
-    @include breakpoint(md) {
-    }
-}
+    font-size: 2.488rem;
+    font-weight: 600;
+    line-height: 1.6;
+    letter-spacing: 0.04em;
 
-.h2 {
-    font-size: 32px;
-    // @include font-theme();
-    @include breakpoint(md) {
+    @include breakpoint(xs) {
+        font-size: 2.074rem;
     }
 }
 
 .h3 {
-    // @include font-theme();
-    @include breakpoint(md) {
-    }
-}
+    font-size: 1.728rem;
+    font-weight: 600;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
 
-.h4 {
-    // @include font-theme();
-    @include breakpoint(md) {
-    }
-}
-
-.price {
-    // @include font-theme();
-    @include breakpoint(md) {
-    }
-}
-
-.descr {
-    // @include font-theme();
-    @include breakpoint(md) {
-    }
-}
-
-.navlink {
-    // @include font-theme();
-    .no-touch &:hover {
-    }
-    @include breakpoint(md) {
-    }
-}
-
-.label {
-    // @include font-theme();
-    @include breakpoint(md) {
+    @include breakpoint(xs) {
+        font-size: 1.44rem;
     }
 }
 
 .btn {
-    // @include font-theme();
-    .no-touch &:hover {
+    font-size: 1.28rem;
+    font-weight: 700;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    border-radius: 8px;
+
+    @include breakpoint(lg) {
+        font-size: 1.44rem;
+    }
+    &-word,
+    &-excel {
+        padding: 12px 20px;
+        border-width: 3px;
+        border-style: solid;
+        span {
+            margin-left: 8px;
+        }
+    }
+    &-word {
+        color: $active-blue-color;
+        border-color: $active-blue-color;
+    }
+    &-excel {
+        color: $accent-color;
+        border-color: $accent-color;
+    }
+    ._dark &-word {
+        color: $dark-active-blue-color;
+        border-color: $dark-active-blue-color;
+    }
+    ._dark &-excel {
+        color: $dark-accent-color;
+        border-color: $dark-accent-color;
+    }
+}
+
+.navlink {
+    position: relative;
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+
+    color: $dark-color;
+    transition: $transition;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+
+        display: block;
+        width: 0%;
+        height: 3px;
+        background-color: $accent-color;
+        border-radius: 2px;
+        transition: $transition;
+    }
+    @include hover {
+        width: 100%;
+        color: $accent-color;
+
+        &::after {
+            left: 0;
+            width: 100%;
+        }
     }
     &:active {
+        color: $accent-color;
     }
-
-    @include breakpoint(md) {
+    ._dark & {
+        color: $light-color;
+        &::after {
+            background-color: $dark-accent-color;
+        }
+        &:active {
+            color: $accent-color;
+        }
+        @include hover {
+            color: $dark-accent-color;
+        }
     }
 }
+
+.link {
+    color: $active-blue-color;
+    text-decoration: underline;
+
+    ._dark & {
+        color: $dark-active-blue-color;
+    }
+    @include hover {
+        text-decoration: none;
+    }
+}
+
+.label {
+    font-size: 1.115rem;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+}
+
+.error-text {
+    font-size: 0.6666rem;
+    font-weight: 400;
+    line-height: 1.25;
+
+    @include breakpoint(lg) {
+        font-size: 0.75rem;
+    }
+}
+
+// * INPUT ELEMENTS
 
 .inp {
-    // @include font-theme();
-    @include breakpoint(md) {
+    @include col(3);
+    height: 56px;
+    padding: 14px 16px;
+    color: $dark-color;
+    background-color: $light-color;
+    border: 3px solid $inactive-blue-color;
+    border-radius: 8px;
+    transition: $transition;
+
+    &.error {
+        border-color: $error-red;
+        box-shadow: $inp-error-shadow;
+    }
+    &:focus {
+        border-color: $active-blue-color;
+        box-shadow: $inp-focus-shadow;
+    }
+    ._dark & {
+        color: $light-color;
+        background-color: $dark-color;
+        border: 3px solid $dark-inactive-blue-color;
+
+        &.error {
+            border-color: $dark-error-red;
+            box-shadow: $inp-error-shadow;
+        }
+        &:focus {
+            border-color: $dark-active-blue-color;
+            box-shadow: $dark-inp-focus-shadow;
+        }
     }
 }
 
-.radio {
+.checkbox {
     position: relative;
+    line-height: 1.4;
 
     &__input {
         -webkit-appearance: none;
@@ -89,30 +209,59 @@
         -ms-appearance: none;
         appearance: none;
         position: absolute;
-        transition: $normalTransition;
 
-        &:checked + .radio__label::after {
+        &:checked + .checkbox__label::before {
+            border-color: $active-blue-color;
+        }
+        &:checked + .checkbox__label::after {
             opacity: 1;
         }
     }
-
     &__label {
+        padding-left: 2rem;
+        cursor: pointer;
+
         &::before {
             content: "";
             position: absolute;
             top: 0px;
             left: 0px;
             z-index: 1;
+
+            display: block;
+            width: 24px;
+            height: 24px;
+            border: 2px solid $inactive-blue-color;
+            border-radius: 6px;
         }
         &::after {
             content: "";
             position: absolute;
-            top: 5px;
-            left: 5px;
+            left: 4px;
+            top: 4px;
             z-index: 2;
 
             opacity: 0;
-            display: block;
+            width: 16px;
+            height: 16px;
+            background: url("../img/icons/check.svg");
+            background-size: 16px 16px;
+            transition: $transition;
+        }
+    }
+    ._dark & {
+        &__input {
+            &:checked + .checkbox__label::before {
+                border-color: $dark-active-blue-color;
+            }
+        }
+        .checkbox__label {
+            &::before {
+                border: 2px solid $dark-inactive-blue-color;
+            }
+            &::after {
+                background: url("../img/icons/check-dark.svg");
+            }
         }
     }
 }

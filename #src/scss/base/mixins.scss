@@ -1,3 +1,11 @@
+@mixin hover {
+    @media (any-hover:hover) {
+        &:hover {
+            @content;
+        }
+    }
+}
+
 @mixin centering {
     display: flex;
     justify-content: center;
@@ -41,21 +49,14 @@
     border-color: transparent transparent $border-color transparent;
 }
 
-@mixin font-theme($size, $weight, $spacing, $line-height, $color) {
-    font-size: $size;
-    font-weight: $weight;
-    letter-spacing: $spacing;
-    line-height: $line-height;
-    color: $color;
-}
-
-@mixin margin-without-last($mt, $mr, $mb, $ml) {
-    &:not(:last-of-type) {
+@mixin margin-without-first($mt, $mr, $mb, $ml) {
+    &:not(:first-of-type) {
         margin: $mt $mr $mb $ml;
     }
 }
 
-@mixin border-padding($border-width, $border-type, $border-color, $padding-x, $padding-y) {
-    border: $border-width, $border-type, $border-color;
+@mixin border-padding($padding-x, $padding-y, $border-width, $border-type, $border-color) {
     padding: $padding-x $padding-y;
+    border: $border-width, $border-type, $border-color;
+    text-align: center;
 }

@@ -1,9 +1,16 @@
 .about {
+
+    // * 1024
+
     @include breakpoint(lg) {
     }
 
+    // * 768
+
     @include breakpoint(md) {
     }
+
+    // * 420
 
     @include breakpoint(sm) {
     }

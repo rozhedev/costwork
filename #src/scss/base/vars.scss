@@ -1,50 +1,75 @@
 // * DEFAULT FONT
-$font-family: "Raleway";
-$font-size: 16px;
-$font-size-mobile: 15px;
+$font-family: "Commissioner";
+$font-size: 18px;
+$font-size-mobile: 16px;
 
-// * GRID
-$grid-breakpoints: (
-    xs: 440px,
-    sm: 576px,
-    md: 768px,
-    lg: 992px,
-    xl: 1200px,
-    xxl: 2560px,
-);
-
-$container-max-widths: (
-    xs: 340px,
-    sm: 540px,
-    md: 720px,
-    lg: 960px,
-    xl: 1140px,
-    xxl: 1320px,
-);
+// * GRID (MY DEFAULT GRID)
+$max-width: 1920px;
+$min-width: 360px;
 
 $columns-count: 12;
-$grid-gap: 15px;
+$columns-count-sm: 6;
+$columns-count-xs: 2;
+$grid-gap: 32px !default;
 $grid-gap-side: calc($grid-gap / 2);
 
-// * INDENTS
-$margins: (
-    m15: 15px,
-    m30: 30px,
-    m60: 60px,
-    m120: 120px,
+$container-max-widths: (
+    xs: 336px,
+    sm: 512px,
+    md: 696px,
+    lg: 936px,
+    xl: 1072px,
+    xxl: 1312px,
+);
+
+$grid-breakpoints: (
+    // * 536
+    xs: calc(map-get($container-max-widths, xs) + calc($grid-gap * 6.25)),
+
+    // * 728
+    sm: calc(map-get($container-max-widths, sm) + calc($grid-gap * 6.75)),
+
+    // * 968
+    md: calc(map-get($container-max-widths, md) + calc($grid-gap * 8.5)),
+
+    // * 1120
+    lg: calc(map-get($container-max-widths, lg) + calc($grid-gap * 5.75)),
+    
+    // * 1360
+    xl: calc(map-get($container-max-widths, xl) + calc($grid-gap * 9)),
 );
 
 // * COLORS
-$dark-color: #252525;
-$light-color: #FFFFFF;
-$primary-accent-color: #E0BEA2;
-$secondary-accent-color: #CCA88A;
-$success-green: #007560;
-$error-red: #C35354;
+
+$dark-color: #0d090a;
+$light-color: #fffcff;
+$footer-grey: #f5f5f5;
+$text-color-60: lighten($dark-color, 60%);
+$text-color-80: lighten($dark-color, 80%);
+
+$accent-color: #1b998b;
+$error-red: #cf5c36;
+$active-blue-color: #0075c4;
+$inactive-blue-color: #247ba0;
+
+$dark-footer-grey: #141414;
+$dark-text-color-60: darken($dark-color, 60%);
+$dark-text-color-80: lighten($dark-color, 80%);
+
+$dark-accent-color: lighten(#1b998b, 16%);
+$dark-error-red: lighten(#cf5c36, 16%);
+$dark-active-blue-color: lighten(#0075c4, 16%);
+$dark-inactive-blue-color: lighten(#247ba0, 16%);
 
 // * EFFECTS
-$normalTransition: .6s all;
-$fastTransition: .4s all;
-$border: 1px solid $dark-color;
+$transition: 0.4s all;
+
+$inp-focus-shadow: 0 0 4px 2px rgba($active-blue-color, 0.32);
+$dark-inp-focus-shadow: 0 0 4px 2px rgba($dark-active-blue-color, 0.32);
+$inp-error-shadow: 0 0 4px 2px rgba($error-red, 0.32);
+$dark-inp-error-shadow: 0 0 4px 2px rgba($dark-error-red, 0.32);
 
 // * OTHER
+
+$chevron-icon: "../../img/icons/chevron.svg";
+$dark-chevron-icon: "../../img/icons/chevron-dark.svg";

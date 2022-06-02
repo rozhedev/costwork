@@ -1,16 +1,52 @@
 <header class="header">
-    <div class="header__container _container">
-        <a href="" class="header__logo"></a>
+    <div class="header__container container">
+        <a href="#" class="logo">
+            <img src="img/vector_img/logo.svg" alt="CostWork">
+        </a>
 
-        <div class="header__menu menu">
+        <div class="menu">
             <div class="menu__icon">
                 <span></span>
             </div>
             <nav class="menu__body">
                 <ul class="menu__list">
-                    <li><a data-goto="" href="#" class="menu__link"></a></li>
-                    <li><a data-goto="" href="#" class="menu__link"></a></li>
-                    <li><a data-goto="" href="#" class="menu__link"></a></li>
+                    <li><a href="#" class="menu__link navlink">Про сервіс</a></li>
+                    <li><a href="#" class="menu__link navlink">Довідка</a></li>
+                    <li><a href="#" class="menu__link navlink">Про автора</a></li>
+                    
+                    <li>
+                        <a class="menu__sublist-title navlink menu__link">
+                            Усі сервіси
+                        </a>
+                        <ul class="menu__sublist">
+                            <li>
+                                <a href="#" class="menu__sublink navlink">Розрах. вартості вебсайту</a>
+                            </li>
+                            <li>
+                                <a href="#" class="menu__sublink navlink">Розрах. прибутку від депозиту</a>
+                            </li>
+                            <li>
+                                <a href="#" class="menu__sublink navlink">Розрах. кредитної переплати</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <div class="select-container">
+                        <form action="" method="get">
+                            <select name="header-select" id="header-select" class="header-select">
+                                <option value="" selected>UAH</option>
+                                <option value="UAH">UAH</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                            </select>
+                        </form>
+                    </div>
+
+                    <button class="theme-switcher">
+                        <svg>
+                            <use href="img/icons/icons.svg#lune"></use>
+                        </svg>
+                    </button>
                 </ul>
             </nav>
         </div>

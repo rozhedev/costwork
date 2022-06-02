@@ -1,14 +1,3 @@
-"use strict";
-
-// * HOVER RESET
-
-if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
-    console.log('this is a touch device');
-} else {
-    console.log('this is not a touch device');
-    document.body.classList.add('no-touch');
-}
-
 // * PRELOADER
 
 window.onload = function () {
@@ -20,3 +9,12 @@ window.onload = function () {
         document.body.style.overflow = 'auto';
     }, 500);
 }
+
+// // * HOVER RESET FOR ALL BROWSERS
+
+// if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+//     console.log('this is a touch device');
+// } else {
+//     console.log('this is not a touch device');
+//     document.body.classList.add('no-touch');
+// }
