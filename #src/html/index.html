@@ -16,18 +16,30 @@
                 <!-- * HEADER -->
                 @@include('components/_header.html',{})
 
-                <div class="home__container container">
-                    <h1 class="h1">Обрахунок без зайвих клопотів</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ab iusto sint cum, nostrum, quam perferendis iste placeat delectus corporis omnis sit quidem obcaecati molestias cupiditate excepturi, expedita sunt. Sed.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ab iusto sint cum, nostrum, quam perferendis iste placeat delectus corporis omnis sit quidem obcaecati molestias cupiditate excepturi, expedita sunt. Sed.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ab iusto sint cum, nostrum, quam perferendis iste placeat delectus corporis omnis sit quidem obcaecati molestias cupiditate excepturi, expedita sunt. Sed.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ab iusto sint cum, nostrum, quam perferendis iste placeat delectus corporis omnis sit quidem obcaecati molestias cupiditate excepturi, expedita sunt. Sed.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ab iusto sint cum, nostrum, quam perferendis iste placeat delectus corporis omnis sit quidem obcaecati molestias cupiditate excepturi, expedita sunt. Sed.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ab iusto sint cum, nostrum, quam perferendis iste placeat delectus corporis omnis sit quidem obcaecati molestias cupiditate excepturi, expedita sunt. Sed.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ab iusto sint cum, nostrum, quam perferendis iste placeat delectus corporis omnis sit quidem obcaecati molestias cupiditate excepturi, expedita sunt. Sed.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ab iusto sint cum, nostrum, quam perferendis iste placeat delectus corporis omnis sit quidem obcaecati molestias cupiditate excepturi, expedita sunt. Sed.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ab iusto sint cum, nostrum, quam perferendis iste placeat delectus corporis omnis sit quidem obcaecati molestias cupiditate excepturi, expedita sunt. Sed.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci ab iusto sint cum, nostrum, quam perferendis iste placeat delectus corporis omnis sit quidem obcaecati molestias cupiditate excepturi, expedita sunt. Sed.</p>
+                <div class="container">
+                    <div class="home__container row">
+                        <div class="home__content">
+                            <h1 class="h1">Обрахунок без зайвих клопотів</h1>
+                            <p>Сервіс CostWork дає можливість обрахувати витрати по таким напрямкам як:</p>
+                            <ul class="unordered-list">
+                                <li>веброзробка (вартість створення вебсайту);</li>
+                                <li>розрахунок кредитної ставки;</li>
+                                <li>розрахунок прибутку від депозиту;</li>
+                            </ul>
+                            <p>Та ще більше сервісів в майбутньому...</p>
+                        </div>
+                        <div class="main__img">
+                            <img src="../img/vector_img/main-img.svg" alt="main-img">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="service-list" id="service-list">
+                <div class="service-list__wrapper container">
+                    <div class="service-list__content row">
+                        @@loop("components/_service-card.html", "../json/cards/service-cards.json")
+                    </div>
                 </div>
             </section>
 
@@ -64,6 +76,7 @@
                         </form>
                     </div>
                 </div> -->
+        </main>
     </div>
 
     <!-- * ABOUT -->
@@ -81,13 +94,3 @@
 </body>
 
 </html>
-
-<!-- 
-<svg>
-    <use href="img/icons/sprite.svg#facebook"></use>
-</svg>
-
-<img class="news__img" src="../img/photos/first.webp" alt="first">
-
-@@loop("items/_news-item.html", "../json/language.json")
- -->

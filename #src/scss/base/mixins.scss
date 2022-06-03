@@ -18,9 +18,9 @@
     align-items: center;
 }
 
-@mixin standart-grid($row-width, $row-count, $column-width, $column-count, $gap-x, $gap-y) {
-    grid-template-rows: repeat($row-width, $row-count);
-    grid-template-columns: repeat($column-width, $column-count);
+@mixin standart-grid($row-count, $row-width, $column-count, $column-width, $gap-x, $gap-y) {
+    grid-template-rows: repeat($row-count, $row-width);
+    grid-template-columns: repeat($column-count, $column-width);
     grid-gap: $gap-x $gap-y;
 }
 

@@ -1,13 +1,127 @@
+.main {
+    max-width: $max-width;
+    transition: $transition;
+    background: url("../../img/bg/desktop/main-header-wave.svg") center top / contain no-repeat,
+        url("../../img/bg/pattern-main.svg") center 128px / contain no-repeat;
+
+    ._dark & {
+        background: url("../../img/bg/desktop/dark-main-header-wave.svg") center top / contain no-repeat,
+            url("../../img/bg/dark-pattern-main.svg") center 128px / contain no-repeat;
+    }
+
+    @include media(map-get($grid-breakpoints, lg)) {
+        background: url("../../img/bg/bp1024/main-header-wave.svg") center top / contain no-repeat,
+            url("../../img/bg/pattern-main.svg") center 176px / contain no-repeat;
+
+        ._dark & {
+            background: url("../../img/bg/bp1024/dark-main-header-wave.svg") center top / contain no-repeat,
+                url("../../img/bg/dark-pattern-main.svg") center 176px / contain no-repeat;
+        }
+    }
+    @include media(map-get($grid-breakpoints, md)) {
+        background: url("../../img/bg/bp768/main-header-wave.svg") center top / contain no-repeat,
+            url("../../img/bg/pattern-main.svg") center 448px / contain repeat-y;
+
+        ._dark & {
+            background: url("../../img/bg/bp768/dark-main-header-wave.svg") center top / contain no-repeat,
+                url("../../img/bg/dark-pattern-main.svg") center 448px / contain repeat-y;
+        }
+    }
+    @include media(map-get($grid-breakpoints, sm)) {
+        background: url("../../img/bg/bp428/main-header-wave.svg") center top / contain no-repeat,
+            url("../../img/bg/pattern-main.svg") center 800px / contain repeat-y;
+
+        ._dark & {
+            background: url("../../img/bg/bp428/dark-main-header-wave.svg") center top / contain no-repeat,
+                url("../../img/bg/dark-pattern-main.svg") center 800px / contain repeat-y  ;
+        }
+    }
+}
+
+.home,
+.service-list {
+    transition: $transition;
+}
+
 .home {
     &__container {
-        margin-top: 84px;
+        margin-top: 64px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @include media(map-get($grid-breakpoints, md)) {
+            margin-top: 56px;
+        }
+        @include media(map-get($grid-breakpoints, sm)) {
+            margin-top: 48px;
+            flex-direction: column;
+        }
     }
-    // background: url("../../img/bg/main-header-wave.svg") center / cover no-repeat;
-    
-    @include breakpoint(lg) {
+
+    &__content {
+        @include col(6);
+        padding-bottom: 32px;
+
+        h1 {
+            margin-bottom: 24px;
+        }
+        @include media(map-get($grid-breakpoints, md)) {
+            p,
+            ul li {
+                letter-spacing: 0.008em;
+            }
+        }
+        @include media(map-get($grid-breakpoints, sm)) {
+            @include col(2);
+        }
     }
-    @include breakpoint(md) {
+    .main__img {
+        @include col(6);
+        img[alt="main-img"] {
+            width: 100%;
+        }
+        @include media(map-get($grid-breakpoints, sm)) {
+            @include col(2);
+            margin-top: 32px;
+        }
     }
-    @include breakpoint(sm) {
+}
+
+.service-list {
+    margin-top: 164px;
+    &__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    &__content {
+        @include col(9);
+        display: grid;
+        grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+        grid-gap: 32px 0;
+
+        @include media(map-get($grid-breakpoints, lg)) {
+            @include col(12);
+        }
+        @include media(map-get($grid-breakpoints, md)) {
+            grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+            justify-content: center;
+        }
+        @include media(map-get($grid-breakpoints, sm)) {
+            @include col(2);
+            grid-template: repeat(3, 1fr) / repeat(1, 1fr);
+        }
+    }
+    @include media(map-get($grid-breakpoints, lg)) {
+        margin-top: 176px;
+    }
+    @include media(map-get($grid-breakpoints, md)) {
+        margin-top: 64px;
+        grid-gap: 24px 0;
+        padding: 56px 0px;
+    }
+    @include media(map-get($grid-breakpoints, sm)) {
+        grid-gap: 28px 0;
     }
 }

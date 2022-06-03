@@ -1,5 +1,6 @@
 //Select
 let selects = document.getElementsByTagName('select');
+let slideUpDuration = 400;
 if (selects.length > 0) {
 	selects_init();
 }
@@ -158,7 +159,7 @@ function selects_update_all() {
 }
 
 
-let _slideUp = (target, duration = 600) => {
+let _slideUp = (target, duration = slideUpDuration) => {
 	target.style.transitionProperty = 'height, margin, padding';
 	target.style.transitionDuration = duration + 'ms';
 	target.style.height = target.offsetHeight + 'px';
@@ -182,7 +183,7 @@ let _slideUp = (target, duration = 600) => {
 		target.classList.remove('_slide');
 	}, duration);
 }
-let _slideDown = (target, duration = 600) => {
+let _slideDown = (target, duration = slideUpDuration) => {
 	target.style.removeProperty('display');
 	let display = window.getComputedStyle(target).display;
 	if (display === 'none')
@@ -212,7 +213,7 @@ let _slideDown = (target, duration = 600) => {
 		target.classList.remove('_slide');
 	}, duration);
 }
-let _slideToggle = (target, duration = 600) => {
+let _slideToggle = (target, duration = slideUpDuration) => {
 	if (!target.classList.contains('_slide')) {
 		target.classList.add('_slide');
 		if (window.getComputedStyle(target).display === 'none') {

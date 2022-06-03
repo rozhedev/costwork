@@ -1,16 +1,19 @@
 .unordered-list {
-    &__item {
-        &:not(:first-child) {
-            margin-top: 5px;
-        }
+    li {
+        margin: 6px 0;
+
         &::before {
             content: "";
             display: inline-block;
-            // width: 3px;
-            // height: 3px;
-            // border-radius: 999px;
-            // background-color: $dark-color;
-            // margin: 0 5px 2px 0;
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background-color: $accent-color;
+            margin: 0px 8px 1px 16px;
+
+            ._dark & {
+                background-color: $dark-accent-color;
+            }
         }
     }
 }

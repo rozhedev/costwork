@@ -1,0 +1,93 @@
+.service-card {
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 36px 16px;
+
+    border-radius: 8px;
+    border: 2px solid $footer-grey;
+    backdrop-filter: blur(8px);
+    transition: $transition;
+
+    @include media(map-get($grid-breakpoints, md)) {
+        @include col(12);
+        padding: 32px 24px;
+    }
+    @include media(map-get($grid-breakpoints, xs)) {
+        @include col(2);
+    }
+
+    &:hover {
+        background-color: $light-color;
+    }
+    ._dark & {
+        border: 2px solid $dark-footer-grey;
+        &:hover {
+            background-color: $dark-color;
+        }
+    }
+    ._lock & {
+        opacity: 0;
+    }
+
+    .navlink {
+        position: static;
+        cursor: pointer;
+        &:hover {
+            width: initial;
+            color: initial;
+            &::after {
+                display: none;
+            }
+        }
+    }
+    &__img {
+        width: 128px;
+    }
+    &__title.navlink {
+        padding: 16px 0px;
+        text-align: center;
+        cursor: text;
+        ._dark & {
+            &:hover {
+                color: $light-color;
+            }
+        }
+    }
+    &__btn {
+        display: flex;
+        align-items: center;
+        padding: 8px 16px;
+        border-radius: 8px;
+        background-color: $accent-color;
+
+        span {
+            color: $light-color;
+        }
+        svg {
+            margin-left: 8px;
+            width: 22px;
+            height: 22px;
+            fill: $light-color;
+        }
+        &:hover {
+            span {
+                color: $light-color;
+            }
+            box-shadow: 0 0 6px 3px rgba($accent-color, 0.48);
+        }
+        ._dark & {
+            background-color: lighten($accent-color, 8);
+            span {
+                color: $dark-color;
+            }
+            svg {
+                fill: $dark-color;
+            }
+            &:hover {
+                box-shadow: 0 0 6px 3px rgba(lighten($accent-color, 6), 0.48);
+            }
+        }
+    }
+}
