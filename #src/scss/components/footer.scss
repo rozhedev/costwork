@@ -9,9 +9,7 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        @include media(map-get($grid-breakpoints, md)) {
-            justify-content: space-around
-        }
+        
         @include media(map-get($grid-breakpoints, sm)) {
             flex-direction: column-reverse;
         }
@@ -87,7 +85,6 @@
             &:nth-child(3) {
                 @include col(5);
                 margin-top: 32px;
-                text-align: center;
             }
         }
         @include media(map-get($grid-breakpoints, sm)) {

@@ -6,6 +6,11 @@
     flex-direction: column;
 }
 
+.page {
+    max-width: $max-width;
+    transition: $transition;
+}
+
 // * MIXINS
 // Макс. ширина контейнера с учетом padding, чтобы контент не прилипал к краям при адаптиве
 // 1312 + 32 * 1.5 или 696 + 16

@@ -2,29 +2,55 @@
 <html lang="ua">
 
 @@include('_head.html',{
-"title":"Главная"
+"title":"Про сервіс"
 })
 
+<!-- class="_dark" -->
+
 <body>
-    @@include('components/_preloader.html',{})   
+    <body>
+    @@include('components/_preloader.html',{})
 
     <div class="wrapper">
-        <main class="about page" id="about">
-            <section class="about-info" id="about-info">
+        <div class="about page" id="about">
+            <section class="home about-sect" id="about-sect">
                 <!-- * HEADER -->
                 @@include('components/_header.html',{})
 
-                <div class="about__container container">
-                    <div class="content">
-                        <h2 class="title h2">О компании</h2>
-                        <p>Hello <a href="index.html">На главную</a></p>
+                <div class="container">
+                    <h1 class="h1">Про сервіс</h1>
+                    <div class="home__container row">
+                        <div class="home__content">
+                            <p>
+                                Сервіс було створено студентом групи Е-30, Рожевським Богданом. В першу чергу, він призначений для студентів, які бажають зекономити свій час при виконанні задач, пов’язаних з обчисленнями.
+                            </p>
+                            <p>
+                                В додатку передбачені такі функії як темна тема, підтримка декількох валют, віджет з їх курсом, невелика база знань з теоретичними знаннями, які пов’язані з економікою, веб розробкою та банківською справою.
+                            </p>
+                            
+                            <p>
+                                Інтерфейс програми корректно відображається на всіх популярних пристроях, так як має по три адаптивних версії для кожної  сторінки.
+                            </p>
+                        </div>
+                        <div class="main__img about__img">
+                            <img src="../img/photos/light-mockup.png" alt="light-mockup">
+                        </div>
                     </div>
                 </div>
             </section>
-        </main>
 
-        <!-- * FOOTER -->
-        @@include('components/_footer.html',{})
+            <section class="service-list" id="service-list">
+                <h2 class="h1">Переваги сервісу</h2>
+                <div class="service-list__wrapper container">
+                    <div class="service-list__content row">
+                        @@loop("components/_service-card.html", "../json/cards/advantages-cards.json")
+                    </div>
+                </div>
+            </section>
+
+            <!-- * FOOTER -->
+            @@include('components/_footer.html',{})
+        </ф>
     </div>
 
     <!-- * POPUP -->

@@ -1,10 +1,7 @@
 .main {
-    max-width: $max-width;
-    transition: $transition;
     background: url("../../img/bg/desktop/main-header-wave.svg") center top / contain no-repeat,
         url("../../img/bg/desktop/main-footer-wave.svg") center 1272px / contain no-repeat,
         url("../../img/bg/pattern-main.svg") center 128px / contain no-repeat;
-
     ._dark & {
         background: url("../../img/bg/desktop/dark-main-header-wave.svg") center top / contain no-repeat,
             url("../../img/bg/desktop/dark-main-footer-wave.svg") center 1272px / contain no-repeat,
@@ -15,40 +12,39 @@
         background: url("../../img/bg/bp1024/main-header-wave.svg") center top / contain no-repeat,
             url("../../img/bg/bp1024/main-footer-wave.svg") center 1104px / contain no-repeat,
             url("../../img/bg/pattern-main.svg") center 176px / contain no-repeat;
-
         ._dark & {
             background: url("../../img/bg/bp1024/dark-main-header-wave.svg") center top / contain no-repeat,
                 url("../../img/bg/bp1024/dark-main-footer-wave.svg") center 1104px / contain no-repeat,
                 url("../../img/bg/dark-pattern-main.svg") center 176px / contain no-repeat;
         }
     }
+    
     @include media(map-get($grid-breakpoints, md)) {
         background: url("../../img/bg/bp768/main-header-wave.svg") center top / contain no-repeat,
             url("../../img/bg/bp768/main-footer-wave.svg") center 1364px / contain no-repeat,
             url("../../img/bg/pattern-main.svg") center 448px / contain repeat-y;
-
         ._dark & {
             background: url("../../img/bg/bp768/dark-main-header-wave.svg") center top / contain no-repeat,
                 url("../../img/bg/bp428/dark-main-footer-wave.svg") center 1364px / contain no-repeat,
                 url("../../img/bg/dark-pattern-main.svg") center 448px / contain repeat-y;
         }
     }
+    
     @include media(map-get($grid-breakpoints, sm)) {
         background: url("../../img/bg/bp428/main-header-wave.svg") center top / contain no-repeat,
             url("../../img/bg/bp768/main-footer-wave.svg") center 2120px / contain no-repeat,
             url("../../img/bg/pattern-main.svg") center 800px / contain repeat-y;
-
         ._dark & {
             background: url("../../img/bg/bp428/dark-main-header-wave.svg") center top / contain no-repeat,
                 url("../../img/bg/bp428/dark-main-footer-wave.svg") center 2120px / contain no-repeat,
                 url("../../img/bg/dark-pattern-main.svg") center 800px / contain repeat-y;
         }
     }
+    
     @media screen and (min-width: 336px) and (max-width: 385px) {
         background: url("../../img/bg/bp428/main-header-wave.svg") center top / contain no-repeat,
             url("../../img/bg/bp768/main-footer-wave.svg") center 2080px / contain no-repeat,
             url("../../img/bg/pattern-main.svg") center 800px / contain repeat-y;
-
         ._dark & {
             background: url("../../img/bg/bp428/dark-main-header-wave.svg") center top / contain no-repeat,
                 url("../../img/bg/bp428/dark-main-footer-wave.svg") center 2080px / contain no-repeat,
@@ -64,6 +60,8 @@
         }
     }
 }
+
+// * SECTION
 
 .home,
 .service-list {
@@ -85,7 +83,6 @@
             flex-direction: column;
         }
     }
-
     &__content {
         @include col(6);
         padding-bottom: 32px;
@@ -103,10 +100,9 @@
             @include col(2);
         }
     }
-
     .main__img {
         @include col(6);
-        img[alt="main-img"] {
+        img {
             width: 100%;
         }
         @include media(map-get($grid-breakpoints, sm)) {
@@ -117,7 +113,6 @@
 }
 
 .service-list {
-    margin-top: 164px;
     &__wrapper {
         display: flex;
         flex-wrap: wrap;
@@ -141,19 +136,27 @@
             grid-template: repeat(3, 1fr) / repeat(1, 1fr);
         }
     }
-
-    @include media(map-get($grid-breakpoints, lg)) {
-        margin-top: 176px;
-    }
     @include media(map-get($grid-breakpoints, md)) {
-        margin-top: 64px;
         grid-gap: 24px 0;
         padding: 56px 0px;
     }
     @include media(map-get($grid-breakpoints, sm)) {
         grid-gap: 28px 0;
     }
-    @media screen and (min-width: 380px) and (max-width: 428px) {
-        margin-top: 136px;
+}
+
+.main {
+    .service-list {
+        margin-top: 164px;
+
+        @include media(map-get($grid-breakpoints, lg)) {
+            margin-top: 176px;
+        }
+        @include media(map-get($grid-breakpoints, md)) {
+            margin-top: 64px;
+        }
+        @media screen and (min-width: 380px) and (max-width: 428px) {
+            margin-top: 136px;
+        }
     }
 }
