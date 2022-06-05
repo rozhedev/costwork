@@ -1,3 +1,12 @@
+.logo {
+    z-index: 4;
+    img {
+        @include breakpoint(lg) {
+            height: 64px;
+        }
+    }
+}
+
 .header {
     // position: fixed;
     .header__container {
@@ -10,15 +19,6 @@
 
         @include breakpoint(lg) {
             height: 64px;
-        }
-    }
-
-    .logo {
-        z-index: 4;
-        img {
-            @include breakpoint(lg) {
-                height: 64px;
-            }
         }
     }
 

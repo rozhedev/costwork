@@ -1,4 +1,110 @@
 .footer {
-    @include breakpoint(md) {
+    padding: 40px 0px;
+    background-color: $footer-grey;
+    ._dark & {
+        background-color: $dark-footer-grey;
+    }
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        @include media(map-get($grid-breakpoints, md)) {
+            justify-content: space-around
+        }
+        @include media(map-get($grid-breakpoints, sm)) {
+            flex-direction: column-reverse;
+        }
+    }
+    
+    &__info {
+        @include col(3);
+        &-copyright {
+            margin-top: 32px;
+            font-weight: 500;
+            &:hover {
+                width: initial;
+                color: initial;
+                &::after {
+                    display: none;
+                }
+            }
+            @include media(map-get($grid-breakpoints, lg)) {
+                margin-top: 28px;
+                letter-spacing: -0.012em;
+            }
+            @include media(map-get($grid-breakpoints, md)) {
+                letter-spacing: 0.02em;
+            }
+        }
+        @include media(map-get($grid-breakpoints, md)) {
+            @include col(6);
+        }
+        @include media(map-get($grid-breakpoints, sm)) {
+            @include col(2);
+            @include centering;
+            margin-top: 36px;
+            text-align: center;
+        }
+    }
+
+    .nav-section {
+        @include col(4);
+        &__title {
+            padding-bottom: 4px;
+            border-bottom: 1px solid $dark-color-60;
+        }
+        &__link {
+            display: block;
+            margin-top: 16px;
+            color: $active-blue-color;
+            &:hover {
+                width: initial;
+                color: $dark-color;
+                ._dark & {
+                    color: $light-color;
+                }
+                &::after {
+                    display: none;
+                }
+
+            }
+        }
+
+        @include media(map-get($grid-breakpoints, lg)) {
+            &:nth-child(2) {
+                @include col(5);
+            }
+            &:nth-child(3) {
+                @include col(3);
+            }
+        }
+        @include media(map-get($grid-breakpoints, md)) {
+            &:nth-child(2) {
+                @include col(6);
+                text-align: right;
+            }
+            &:nth-child(3) {
+                @include col(5);
+                margin-top: 32px;
+                text-align: center;
+            }
+        }
+        @include media(map-get($grid-breakpoints, sm)) {
+            &:nth-child(2), &:nth-child(3) {
+                @include col(2);
+                margin-top: 28px;
+                text-align: center;
+            }
+        }
     }
 }
+
+// @include media(map-get($grid-breakpoints, lg)) {
+//     .footer:nth-child(1) {
+//         @include col(5);
+//     }
+//     .footer:nth-child(2) {
+//         @include col(3);
+//     }
+// }

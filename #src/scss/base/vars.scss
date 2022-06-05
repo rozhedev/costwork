@@ -44,8 +44,8 @@ $grid-breakpoints: (
 $dark-color: #0d090a;
 $light-color: #fffcff;
 $footer-grey: #f5f5f5;
-$text-color-60: lighten($dark-color, 60%);
-$text-color-80: lighten($dark-color, 80%);
+$dark-color-60: lighten($dark-color, 60%);
+$dark-color-80: lighten($dark-color, 80%);
 
 $accent-color: #1b998b;
 $error-red: #cf5c36;
@@ -53,8 +53,8 @@ $active-blue-color: #0075c4;
 $inactive-blue-color: #247ba0;
 
 $dark-footer-grey: #141414;
-$dark-text-color-60: darken($dark-color, 60%);
-$dark-text-color-80: lighten($dark-color, 80%);
+$light-color-60: darken($light-color, 60%);
+$light-color-80: darken($light-color, 80%);
 
 $dark-accent-color: lighten(#1b998b, 16%);
 $dark-error-red: lighten(#cf5c36, 16%);
