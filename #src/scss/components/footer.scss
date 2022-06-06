@@ -1,6 +1,7 @@
 .footer {
     padding: 40px 0px;
     background-color: $footer-grey;
+    transition: $transition;
     ._dark & {
         background-color: $dark-footer-grey;
     }

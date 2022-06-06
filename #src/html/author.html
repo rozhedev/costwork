@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+@@include('_head.html',{
+"title":"Про автора"
+})
+
+<body>
+    @@include('components/_preloader.html',{})
+
+    <div class="wrapper">
+        <main class="about author page" id="author">
+            <section class="home about-sect">
+                <!-- * HEADER -->
+                @@include('components/_header.html',{})
+
+                <div class="container">
+                    <div class="home__container row">
+                        <div class="home__content">
+                            <div class="author__article">
+                                <h1 class="h1">Про автора</h1>
+                                <p>
+                                    Привіт, мене звати Рожевський Богдан. Мені 19 років і на даному етапі свого життя я закінчую 4 курсі Сумського фахового коледжу Національного університету харчових технологій, за спеціальністю “Комп'ютерна інженерія”.
+                                </p>
+                                <p>
+                                    Я спеціаліст-початківець у сфері веб-дизайну розробки сайтів. Займаюся дизайном та frontend розробкою невеликих проектів різної направленості.
+                                <p>
+                                <p>
+                                    Маю певний досвід роботи з базами даних, адміністрування веб-серверів, обробки растрової та векторної графіки у популярних редакторах. Також маю базові знання PHP.
+
+                                </p>
+                                <p>
+                                    У майбутньому хотів би присвятити себе розробці нейронних мереж, а саме “Machine learning”.
+                                </p>
+                            </div>
+                            <div class="social">
+                                <button class="social-btn">
+                                    <use href="img/icons/icons.svg#telegram"></use>
+                                    <span></span>
+                                </button>
+                                <button class="social-btn">
+                                    <use href="img/icons/icons.svg#viber"></use>
+                                    <span></span>
+                                </button>
+                                <button class="social-btn">
+                                    <use href="img/icons/icons.svg#facebook"></use>
+                                    <span></span>
+                                </button>
+                                <button class="social-btn">
+                                    <use href="img/icons/icons.svg#instagram"></use>
+                                    <span></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="main__img">
+                            <img src="../img/photos/author.jpg" alt="author">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- * FOOTER -->
+            @@include('components/_footer.html',{})
+        </main>
+    </div>
+
+    <!-- * POPUP -->
+    <!-- @@include('_popup.html',{}) -->
+    <!-- * JS -->
+    @@include('_js.html',{})
+</body>
+
+</html>
