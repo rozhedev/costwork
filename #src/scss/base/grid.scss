@@ -11,9 +11,22 @@
     transition: $transition;
 }
 
-// * MIXINS
+// * MEDIA, BREAKPOINT, CONTAINER
 // Макс. ширина контейнера с учетом padding, чтобы контент не прилипал к краям при адаптиве
 // 1312 + 32 * 1.5 или 696 + 16
+
+@mixin media($width) {
+    @media (max-width: $width) {
+        @content;
+    }
+}
+
+@mixin breakpoint($name) {
+    $width: map-get($grid-breakpoints, $name);
+    @include media($width) {
+        @content;
+    }
+}
 
 @mixin container {
     margin: 0 auto;
@@ -66,6 +79,8 @@
 
 }
 
+// * COL MIXIN
+
 @mixin col($size) {
     flex: 0 0 auto;
     width: calc(#{percentage(calc($size / $columns-count))} - #{$grid-gap});
@@ -74,30 +89,17 @@
         width: calc(#{percentage(calc($size / $columns-count))} - #{calc($grid-gap-side * 1.5)});
     }
     @include breakpoint(md) {
-        width: calc(#{percentage(calc($size / $columns-count))} - #{calc($grid-gap-side * 1.5)});
+        width: calc(#{percentage(calc($size / $columns-count) )} - #{calc($grid-gap-side * 1.5)});
     }
     @include breakpoint(sm) {
-        width: calc(#{percentage(calc($size / $columns-count-sm))} - #{$grid-gap-side});
+        width: calc(#{percentage(calc($size / $columns-count-sm) )} - #{$grid-gap-side});
     }
     @include breakpoint(xs) {
-        width: calc(#{percentage(calc($size / $columns-count-xs))} - #{$grid-gap-side});
+        width: calc(#{percentage(calc($size / $columns-count-xs) )} - #{$grid-gap-side});
     }
 }
 
-// * MEDIA, BREAKPOINTS, CLASSES
-
-@mixin media($width) {
-    @media (max-width: $width) {
-        @content;
-    }
-}
-
-@mixin breakpoint($name) {
-    $width: map-get($grid-breakpoints, $name);
-    @include media($width) {
-        @content;
-    }
-}
+// * CLASSES
 
 .container {
     @include container;
@@ -122,6 +124,24 @@
 //         width: 600px;
 //     }
 // }
+
+// *____________________________________
+
+// * COL VARIABLE
+
+// @mixin width-in-cols($col-type, $count) {
+//     flex: 0 0 auto;
+//     width: calc($col-type * $count);
+// }
+
+// @include width-in-cols(map-get($col, xxl), 4.3);
+
+// @mixin height-in-cols($col-type, $count) {
+//     flex: 0 0 auto;
+//     height: calc($col-type * $count);
+// }
+
+// @include height-in-cols(map-get($col, xxl), 6);
 
 // *____________________________________
 

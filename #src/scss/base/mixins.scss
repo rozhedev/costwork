@@ -6,6 +6,27 @@
     }
 }
 
+@mixin title-gap {
+    margin: 64px 0px 40px 0px;
+    @include media(map-get($grid-breakpoints, lg)) {
+        margin: 56px 0px 32px 0px;
+    }
+    @include media(map-get($grid-breakpoints, sm)) {
+        margin: 48px 0px 28px 0px;
+    }
+}
+
+
+@mixin footer-gap {
+    margin-top: 80px;
+    @include media(map-get($grid-breakpoints, lg)) {
+        margin-top: 60px;
+    }
+    @include media(map-get($grid-breakpoints, md)) {
+        margin-top: 68px;
+    }
+}
+
 @mixin centering {
     display: flex;
     flex-direction: column;
@@ -54,10 +75,4 @@
     &:not(:first-of-type) {
         margin: $mt $mr $mb $ml;
     }
-}
-
-@mixin border-padding($padding-x, $padding-y, $border-width, $border-type, $border-color) {
-    padding: $padding-x $padding-y;
-    border: $border-width, $border-type, $border-color;
-    text-align: center;
 }

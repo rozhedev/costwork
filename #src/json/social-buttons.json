@@ -1,0 +1,26 @@
+[
+    {
+        "class": "telegram",
+        "url": "https://t.me/lucoon",
+        "iconPath": "../../img/icons/social-icons.svg#telegram",
+        "label": "Telegram"
+    },
+    {
+        "class": "viber",
+        "url": "https://viber.click/7380636453644",
+        "iconPath": "../../img/icons/social-icons.svg#viber",
+        "label": "Viber"
+    },
+    {
+        "class": "facebook",
+        "url": "https://www.facebook.com/bohdan34",
+        "iconPath": "../../img/icons/social-icons.svg#facebook",
+        "label": "Facebook"
+    },
+    {
+        "class": "instagram",
+        "url": "https://www.instagram.com/invites/contact/?i=1vpzhjoxc36y2&utm_content=n1k3giv",
+        "iconPath": "../../img/icons/social-icons.svg#instagram",
+        "label": "Instagram"
+    }
+]

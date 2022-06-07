@@ -1,0 +1,55 @@
+.social-btn {
+    @include centering;
+    width: 112px;
+    flex-direction: row;
+    padding: 8px;
+    border-radius: 8px;
+    transition: $transition;
+
+    span {
+        margin-left: 2px;
+        font-size: 0.8rem;
+        letter-spacing: 0.02em;
+        font-weight: 600;
+        line-height: 1.5em;
+        color: $light-color;
+    }
+    svg {
+        width: 24px;
+        height: 24px;
+        fill: $light-color;
+    }
+    @include media(map-get($grid-breakpoints, lg)) {
+        font-size: 1rem;
+    }
+    &.telegram {
+        background-color: #419fd9;
+        &:hover {
+            box-shadow: 0 0 8px 4px rgba(#419fd9, 0.48);
+        }
+    }
+    &.viber {
+        background-color: #675da9;
+        &:hover {
+            box-shadow: 0 0 8px 4px rgba(#675da9, 0.48);
+        }
+    }
+    &.facebook {
+        background-color: #4267b2;
+        &:hover {
+            box-shadow: 0 0 8px 4px rgba(#4267b2, 0.48);
+        }
+    }
+    &.instagram {
+        background-color: #262626;
+        &:hover {
+            box-shadow: 0 0 8px 4px rgba(#262626, 0.48);
+        }
+    }
+}
+
+@include media(map-get($grid-breakpoints, sm)) {
+    .social-btn-container:nth-of-type(n + 3) {
+        margin-top: 24px;
+    }
+}

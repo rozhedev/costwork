@@ -1,0 +1,74 @@
+.author {
+    background: none;
+    ._dark & {
+        background: none;
+    }
+
+    .home__container {
+        @include media(map-get($grid-breakpoints, lg)) {
+            margin: 0 auto;
+            flex-direction: column-reverse;
+        }
+    }
+    .home__content {
+        @include media(map-get($grid-breakpoints, lg)) {
+            @include col(10);
+            margin-top: 1.5rem;
+        }
+        @include media(map-get($grid-breakpoints, md)) {
+            @include col(12);
+        }
+        @include media(map-get($grid-breakpoints, sm)) {
+            @include col(2);
+        }
+    }
+    .author__img {
+        @include centering;
+        height: 472px;
+        background: url("../../img/bg/author-blob.svg") center / cover no-repeat;
+
+        img[alt="author"] {
+            width: 336px;
+            border-radius: 32px;
+
+            @include media(map-get($grid-breakpoints, lg)) {
+                width: 320px;
+            }
+            @include media(map-get($grid-breakpoints, md)) {
+                width: 304px;
+            }
+            @include media(map-get($grid-breakpoints, sm)) {
+                width: 176px;
+            }
+        }
+        @include media(map-get($grid-breakpoints, lg)) {
+            @include col(8.4);
+        }
+        @include media(map-get($grid-breakpoints, md)) {
+            @include col(11.3);
+        }
+        @include media(map-get($grid-breakpoints, sm)) {
+            @include col(2);
+            height: 230px;
+        }
+    }
+    .footer {
+        @include footer-gap;
+    }
+}
+
+.social {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 32px;
+
+    @include media(map-get($grid-breakpoints, lg)) {
+        @include col(10);
+        margin: 1.5rem auto 0;
+    }
+    @include media(map-get($grid-breakpoints, sm)) {
+        @include col(2);
+        margin: 1.5rem auto 0;
+    }
+}
