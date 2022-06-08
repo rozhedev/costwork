@@ -11,6 +11,20 @@ body._dark {
     color: $light-color;
 }
 
+// body, body *, body *::before, body *::after {
+//     transition: $transition
+// }
+
+.faq, .site-calc, .deposit-calc, .credit-calc {
+    .h1 {
+        @include title-gap;
+        text-align: center;
+    }  
+    .footer {
+        @include footer-gap;
+    }
+}
+
 .number-item {
     font-size: 4.3rem;
     font-weight: 900;

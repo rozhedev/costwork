@@ -1,0 +1,63 @@
+.accordion {
+    transition: $transition;
+    &:nth-of-type(-n + 2) {
+        margin-top: 2.5rem;
+    }
+
+    &__trigger {
+        overflow: visible;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 0.5rem 1.33rem;
+
+        font-size: 1.44rem;
+        font-weight: 500;
+        line-height: 1.6;
+        text-align: left;
+        color: $light-color;
+        background-color: $inactive-blue-color;
+        border-radius: 16px 16px 0 0;
+        cursor: pointer;
+        transition: $transition;
+
+        svg {
+            width: 2rem;
+            height: 2rem;
+            fill: $light-color;
+            cursor: pointer;
+            transition: $transition;
+        }
+    }
+    &__content {
+        height: 0px;
+        opacity: 0;
+        overflow: hidden;
+        display: block;
+        padding: 0 1.1rem;
+
+        text-align: justify;
+        border-radius: 0 0 16px 16px;
+        border-bottom: 4px solid $active-blue-color;
+        border-left: 4px solid $active-blue-color;
+        border-right: 4px solid $active-blue-color;
+        transition: $transition;
+    }
+    &-active &__trigger {
+        background-color: $active-blue-color;
+        cursor: default;
+        svg {
+            transform: rotate(45deg);
+        }
+    }
+    &-active &__content {
+        opacity: 1;
+        overflow: visible;
+        height: auto;
+        padding: 1.1rem;
+        border-bottom: 4px solid $active-blue-color;
+        border-left: 4px solid $active-blue-color;
+        border-right: 4px solid $active-blue-color;
+    }
+}

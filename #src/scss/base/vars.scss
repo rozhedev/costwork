@@ -60,19 +60,17 @@ $light-color-80: darken($light-color, 80%);
 
 $dark-accent-color: lighten(#1b998b, 16%);
 $dark-error-red: lighten(#cf5c36, 16%);
-$dark-active-blue-color: lighten(#0075c4, 16%);
-$dark-inactive-blue-color: lighten(#247ba0, 16%);
+$dark-active-blue-color: lighten(#0075c4, 12%);
+$dark-inactive-blue-color: lighten(#247ba0, 12%);
 
 // * EFFECTS
 $transition: 0.4s all;
-
 $inp-focus-shadow: 0 0 4px 2px rgba($active-blue-color, 0.32);
 $dark-inp-focus-shadow: 0 0 4px 2px rgba($dark-active-blue-color, 0.32);
 $inp-error-shadow: 0 0 4px 2px rgba($error-red, 0.32);
 $dark-inp-error-shadow: 0 0 4px 2px rgba($dark-error-red, 0.32);
 
 // * OTHER
-
 $chevron-icon: "../../img/icons/chevron.svg";
 $dark-chevron-icon: "../../img/icons/chevron-dark.svg";
 

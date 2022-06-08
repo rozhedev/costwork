@@ -1,0 +1,84 @@
+.tabs {
+    width: 100%;
+
+    &__nav {
+        @include col(8);
+        position: relative;
+        display: flex;
+        margin: 0 auto;
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            border-radius: 0 0 8px 8px;
+            background-color: $active-blue-color;
+
+            // ._dark & {
+            //     background-color: $dark-active-blue-color;   
+            // }
+        }
+
+        &-item {
+            padding: 0.5rem 1.25rem;
+            background-color: $footer-grey;
+            border-top: 4px solid $footer-grey;
+            border-left: 4px solid $footer-grey;
+            border-right: 4px solid $footer-grey;
+            border-radius: 8px 8px 0px 0px;
+            transition: $transition;
+
+            &:not(:first-of-type) {
+                margin-left: 2rem;
+            }
+            ._dark & {
+                background-color: $dark-footer-grey;
+                border-top: 4px solid $dark-footer-grey;
+                border-left: 4px solid $dark-footer-grey;
+                border-right: 4px solid $dark-footer-grey;
+            }
+            &:hover {
+                background-color: $light-color;
+                border-top: 4px solid $active-blue-color;
+                border-left: 4px solid $active-blue-color;
+                border-right: 4px solid $active-blue-color;
+                width: initial;
+                color: initial;
+                &::after {
+                    display: none;
+                }
+                ._dark & {
+                    color: $light-color;
+                    background-color: $dark-color;
+                }
+            }
+            &.active {
+                background-color: $light-color;
+                border-top: 4px solid $active-blue-color;
+                border-left: 4px solid $active-blue-color;
+                border-right: 4px solid $active-blue-color;
+                cursor: default;
+
+                ._dark & {
+                    background-color: $dark-color;
+                }
+            }
+        }
+    }
+    &__content {
+        &-item {
+            width: 100%;
+            display: none;
+            grid-template: repeat(3, minmax(3rem, auto)) / repeat(2, 1fr);
+            grid-auto-rows: repeat(2, 1fr);
+            grid-auto-columns: repeat(3, 1fr);
+            grid-gap: $grid-gap;
+
+            &.active {
+                display: grid;
+            }
+        }
+    }
+}

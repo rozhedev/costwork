@@ -26,12 +26,14 @@
 @import "components/select.scss";
 @import 'components/header.scss';
 @import "components/service-card.scss";
-@import "components/spoiler.scss";
 @import "components/unordered-list.scss";
 @import "components/social-btn.scss";
+@import "components/tabs.scss";
+@import "components/accordion.scss";
 @import "components/footer.scss";
 
 // * PAGES
 @import "pages/main.scss";
 @import "pages/about.scss";
 @import "pages/author.scss";
+@import "pages/faq.scss";

@@ -53,6 +53,7 @@
         }
         & > li {
             padding: 10px 0;
+            transition: $transition;
         }
     }
 
@@ -131,6 +132,7 @@
         height: 35px;
         background-color: $dark-color;
         border-radius: 8px;
+        transition: $transition;
 
         svg {
             width: 24px;
