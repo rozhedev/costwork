@@ -27,10 +27,6 @@
             background-color: $dark-color;
         }
     }
-    ._lock & {
-        opacity: 0;
-        pointer-events: none;
-    }
 
     .navlink {
         position: static;

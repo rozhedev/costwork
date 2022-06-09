@@ -6,6 +6,16 @@
     }
 }
 
+@mixin hoverReset {
+    &:hover {
+        width: initial;
+        color: initial;
+        &::after {
+            display: none;
+        }
+    }  
+}
+
 @mixin title-gap {
     margin: 64px 0px 40px 0px;
     @include media(map-get($grid-breakpoints, lg)) {

@@ -1,0 +1,31 @@
+.form-controller {
+    position: relative;
+    &__label {
+        font-weight: 500;
+    }
+    &__inp {
+        width: 100%;
+        margin-top: 16px;
+    }
+    &__inp.disabled ~ &__measure {
+        color: $dark-color-60;
+        ._dark & {
+            color: $light-color-60;
+        }
+    }
+    .measure {
+        z-index: 2;
+        position: absolute;
+        top: 58px;
+        right: 16px;
+        text-align: left;
+        font-size: 1.1rem;
+        font-weight: 500;
+        background-color: $light-color;
+        transition: $transition;
+        ._dark & {
+            background-color: $dark-color;
+        }
+    }
+
+}

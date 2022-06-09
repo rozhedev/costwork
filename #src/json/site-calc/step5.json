@@ -1,0 +1,38 @@
+[
+    {
+        "label": "Витрати на утрим. обладнання:",
+        "type": "number",
+        "id": "equipment-costs",
+        "class": "",
+        "measure": "UAH",
+        "isRequired": "",
+        "isDisabled": ""
+    },
+    {
+        "label": "Загальновиробничі витрати:",
+        "type": "number",
+        "id": "production-costs",
+        "class": "",
+        "measure": "UAH",
+        "isRequired": "",
+        "isDisabled": ""
+    },
+    {
+        "label": "Виробнича собівартість:",
+        "type": "number",
+        "id": "production-costs-sales",
+        "class": "",
+        "measure": "UAH",
+        "isRequired": "",
+        "isDisabled": ""
+    },
+    {
+        "label": "Позавиробничі витрати:",
+        "type": "number",
+        "id": "non-production-costs",
+        "class": "",
+        "measure": "UAH",
+        "isRequired": "",
+        "isDisabled": ""
+    }
+]

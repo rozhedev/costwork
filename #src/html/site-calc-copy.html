@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+@@include('_head.html',{
+"title":"Розрахунок вартості вебсайту"
+})
+
+<body>
+    @@include('components/_preloader.html',{})
+
+    <div class="wrapper">
+        <div class="site-calc page" id="site-calc">
+            <!-- * HEADER -->
+            @@include('components/_header.html',{})
+
+            <section class="calc-steps container">
+                <h1 class="h1">Розрахунок вартості вебсайту</h1>
+
+                <div class="calc-steps__item">
+                    @@include('components/_step-title.html', {
+                    "number": "01",
+                    "title": "Розрахунок матеріальних витрат на створення вебсайту"
+                    })
+                    <div class="calc-steps__wrapper">
+                        @@loop('components/_form-controller.html', '../json/site-calc/step1.json')
+                    </div>
+                </div>
+
+                <div class="calc-steps__item">
+                    @@include('components/_step-title.html', {
+                    "number": "02",
+                    "title": "Розрахунок витрат на електороенергію"
+                    })
+                    <div class="calc-steps__wrapper">
+                        @@loop('components/_form-controller.html', '../json/site-calc/step2.json')
+                    </div>
+                </div>
+
+                <div class="calc-steps__item">
+                    @@include('components/_step-title.html', {
+                    "number": "03",
+                    "title": "Розрахунок витрат на оплату праці"
+                    })
+                    <div class="calc-steps__wrapper">
+                        @@loop('components/_form-controller.html', '../json/site-calc/step3.json')
+                    </div>
+                </div>
+
+                <div class="calc-steps__item">
+                    @@include('components/_step-title.html', {
+                    "number": "04",
+                    "title": "Розрахунок суми єдиного соціального внеску"
+                    })
+                    <div class="calc-steps__wrapper">
+                        @@loop('components/_form-controller.html', '../json/site-calc/step4.json')
+                    </div>
+                </div>
+
+                <div class="calc-steps__item">
+                    @@include('components/_step-title.html', {
+                    "number": "05",
+                    "title": "Розрахунок витрат по непрямим статтям калькуляції"
+                    })
+                    <div class="calc-steps__wrapper">
+                        @@loop('components/_form-controller.html', '../json/site-calc/step5.json')
+                    </div>
+                </div>
+    
+            </section>
+
+            <!-- * FOOTER -->
+            @@include('components/_footer.html',{})
+        </div>
+    </div>
+
+    <!-- * POPUP -->
+    <!-- @@include('_popup.html',{}) -->
+    <!-- * JS -->
+    @@include('_js.html',{})
+</body>
+
+</html>

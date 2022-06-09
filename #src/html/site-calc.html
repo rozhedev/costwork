@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+@@include('_head.html',{
+"title":"Розрахунок вартості вебсайту"
+})
+
+<body>
+    @@include('components/_preloader.html',{})
+
+    <div class="wrapper">
+        <div class="site-calc page" id="site-calc">
+            <!-- * HEADER -->
+            @@include('components/_header.html',{})
+
+            <section class="calc-steps container">
+                <h1 class="h1">Розрахунок вартості вебсайту</h1>
+
+                <div class="calc-steps__item">
+                    @@include('components/_step-title.html', {
+                    "number": "01",
+                    "title": "Розрахунок матеріальних витрат на створення вебсайту"
+                    })
+                    <div class="calc-steps__wrapper">
+                        @@loop('components/_form-controller.html', '../json/site-calc/step1.json')
+                    </div>
+                </div>
+
+                <div class="calc-steps__item">
+                    @@include('components/_step-title.html', {
+                    "number": "02",
+                    "title": "Розрахунок витрат на електороенергію"
+                    })
+                    <div class="calc-steps__wrapper">
+                        @@loop('components/_form-controller.html', '../json/site-calc/step2.json')
+                    </div>
+                </div>
+
+                <div class="calc-steps__item">
+                    @@include('components/_step-title.html', {
+                    "number": "03",
+                    "title": "Розрахунок витрат на оплату праці"
+                    })
+                    <div class="calc-steps__wrapper">
+                        @@loop('components/_form-controller.html', '../json/site-calc/step3.json')
+                    </div>
+                </div>
+
+                <div class="calc-steps__item">
+                    @@include('components/_step-title.html', {
+                    "number": "04",
+                    "title": "Розрахунок суми єдиного соціального внеску"
+                    })
+                    <div class="calc-steps__wrapper">
+                        @@loop('components/_form-controller.html', '../json/site-calc/step4.json')
+                    </div>
+                </div>
+
+                <div class="calc-steps__item">
+                    @@include('components/_step-title.html', {
+                    "number": "05",
+                    "title": "Розрахунок витрат по непрямим статтям калькуляції"
+                    })
+                    <div class="calc-steps__wrapper">
+                        @@loop('components/_form-controller.html', '../json/site-calc/step5.json')
+                    </div>
+                </div>
+
+                <div class="calc-steps__result">
+                    <div class="calc-steps__result-col">
+                        <h3 class="step-title step-title--result h3">
+                            <svg class="expenses">
+                                <use href="img/icons/icons.svg#stat-down"></use>
+                            </svg>
+                            <span>Витрати на створення вебсайту</span>
+                        </h3>
+                        <div class="result-item">
+                            <span class="result-item__label h3">Матеріальні витрати:</span>
+                            <span class="result-item__num h3">0000.00</span>
+                            <span class="measure h3">UAH</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-item__label h3">Витрати на електроенергію:</span>
+                            <span class="result-item__num h3">0000.00</span>
+                            <span class="measure h3">UAH</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-item__label h3">Єдиний соціальний внесок:</span>
+                            <span class="result-item__num h3">0000.00</span>
+                            <span class="measure h3">UAH</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-item__label h3">Витрати на утрим. обладнання:</span>
+                            <span class="result-item__num h3">0000.00</span>
+                            <span class="measure h3">UAH</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-item__label h3">Загальновиробничі витрати:</span>
+                            <span class="result-item__num h3">0000.00</span>
+                            <span class="measure h3">UAH</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-item__label h3">Позавиробничі витрати:</span>
+                            <span class="result-item__num h3">0000.00</span>
+                            <span class="measure h3">UAH</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-item__label h3">Повна собівартість:</span>
+                            <span class="result-item__num h3">0000.00</span>
+                            <span class="measure h3">UAH</span>
+                        </div>
+                    </div>
+
+                    <div class="calc-steps__result-col">
+                        <h3 class="step-title step-title--result h3">
+                            <svg class="profit">
+                                <use href="img/icons/icons.svg#stat-up"></use>
+                            </svg>
+                            <span>Дохід від створення вебсайту</span>
+                        </h3>
+                        <div class="result-item">
+                            <span class="result-item__label h3">ПДВ:</span>
+                            <span class="result-item__num h3">0000.00</span>
+                            <span class="result-item__currency h3">UAH</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-item__label h3">Прибуток:</span>
+                            <span class="result-item__num h3">0000.00</span>
+                            <span class="result-item__currency h3">UAH</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-item__label h3">Оптова ціна:</span>
+                            <span class="result-item__num h3">0000.00</span>
+                            <span class="result-item__currency h3">UAH</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-item__label h3">Відпускна ціна:</span>
+                            <span class="result-item__num h3">0000.00</span>
+                            <span class="result-item__currency h3">UAH</span>
+                        </div>
+                        <div class="download-btns">
+                            <button class="btn-word">
+                                <svg>
+                                    <use href="img/icons/colored-icons.svg#word"></use>
+                                </svg>
+                                <span class="navlink">Завантажити у Word</span>
+                            </button>
+                            <button class="btn-excel">
+                                <svg>
+                                    <use href="img/icons/colored-icons.svg#excel"></use>
+                                </svg>
+                                <span class="navlink">Завантажити в Excel</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="popular-questions container">
+                <h2 class="h1">Популярні питання</h1>
+                <div class="tabs__content-item _active">
+                    @@loop("components/_accordion.html", "../json/faq/economy.json")
+                </div>
+            </section>
+
+            <!-- * FOOTER -->
+            @@include('components/_footer.html',{})
+        </div>
+    </div>
+
+    <!-- * POPUP -->
+    <!-- @@include('_popup.html',{}) -->
+    <!-- * JS -->
+    @@include('_js.html',{})
+</body>
+
+</html>

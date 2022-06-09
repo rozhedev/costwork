@@ -1,0 +1,29 @@
+[
+    {
+        "label": "Сума осн. і додат. зарплати:",
+        "type": "number",
+        "id": "salary-sum",
+        "class": "",
+        "measure": "UAH",
+        "isRequired": "",
+        "isDisabled": "disabled readonly"
+    },
+    {
+        "label": "Єдиний соціальний внесок:",
+        "type": "number",
+        "id": "single-social-payment-percent",
+        "class": "",
+        "measure": "%",
+        "isRequired": "",
+        "isDisabled": ""
+    },
+    {
+        "label": "Єдиний соціальний внесок:",
+        "type": "number",
+        "id": "single-social-payment-currency",
+        "class": "",
+        "measure": "UAH",
+        "isRequired": "",
+        "isDisabled": ""
+    }
+]

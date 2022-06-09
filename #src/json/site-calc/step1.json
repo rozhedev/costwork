@@ -1,0 +1,65 @@
+[
+    {
+        "label": "Кількість аркушів паперу:",
+        "type": "number",
+        "id": "paper-count",
+        "class": "",
+        "measure": "шт.",
+        "isRequired": "",
+        "isDisabled": ""
+    },
+    {
+        "label": "Ціна одного аркушу паперу:",
+        "type": "number",
+        "id": "price-per-one-paper",
+        "class": "",
+        "measure": "UAH",
+        "isRequired": "",
+        "isDisabled": ""
+    },
+    {
+        "label": "Вартість аркушів:",
+        "type": "number",
+        "id": "paper-price",
+        "class": "",
+        "measure": "UAH",
+        "isRequired": "",
+        "isDisabled": ""
+    },
+    {
+        "label": "К-сть місяців розташ. на хостингу:",
+        "type": "number",
+        "id": "hosting-mounth-count",
+        "class": "",
+        "measure": "міс.",
+        "isRequired": "",
+        "isDisabled": ""
+    },
+    {
+        "label": "Вартість 1 місяця хостингу:",
+        "type": "number",
+        "id": "price-per-one-hosting-mounth",
+        "class": "",
+        "measure": "UAH",
+        "isRequired": "",
+        "isDisabled": ""
+    },
+    {
+        "label": "Вартість розміщення на хостингу:",
+        "type": "number",
+        "id": "hosting-placement-fee",
+        "class": "",
+        "measure": "UAH",
+        "isRequired": "",
+        "isDisabled": ""
+    },
+    {
+        "label": "Матеріальні витрати:",
+        "type": "number",
+        "id": "step1-sum",
+        "class": "disabled",
+        "measure": "UAH",
+        "isRequired": "",
+        "isDisabled": "disabled readonly"
+    }
+]

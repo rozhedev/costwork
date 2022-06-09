@@ -1,0 +1,56 @@
+[
+    {
+        "label": "Загальні трудовитрати:",
+        "type": "number",
+        "id": "total-labour-costs",
+        "class": "",
+        "measure": "люд/год",
+        "isRequired": "",
+        "isDisabled": ""
+    },
+    {
+        "label": "Фонд оплати праці:",
+        "type": "number",
+        "id": "payroll-fond",
+        "class": "",
+        "measure": "UAH",
+        "isRequired": "",
+        "isDisabled": ""
+    },
+    {
+        "label": "Фонд робочого часу:",
+        "type": "number",
+        "id": "working-time-fund",
+        "class": "",
+        "measure": "днів",
+        "isRequired": "",
+        "isDisabled": ""
+    },
+    {
+        "label": "Основна заробітна плата:",
+        "type": "number",
+        "id": "basic-salary",
+        "class": "",
+        "measure": "UAH",
+        "isRequired": "",
+        "isDisabled": ""
+    },
+    {
+        "label": "Додаткова заробітна плата:",
+        "type": "number",
+        "id": "additional-salary",
+        "class": "",
+        "measure": "UAH",
+        "isRequired": "",
+        "isDisabled": ""
+    },
+    {
+        "label": "Сума витрат:",
+        "type": "number",
+        "id": "step2-sum",
+        "class": "disabled",
+        "measure": "UAH",
+        "isRequired": "",
+        "isDisabled": "disabled readonly"
+    }
+]

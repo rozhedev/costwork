@@ -15,11 +15,15 @@ body._dark {
 //     transition: $transition
 // }
 
-.faq, .site-calc, .deposit-calc, .credit-calc {
+.faq,
+.site-calc,
+.deposit-calc,
+.credit-calc,
+.calc-steps {
     .h1 {
         @include title-gap;
         text-align: center;
-    }  
+    }
     .footer {
         @include footer-gap;
     }
@@ -74,20 +78,32 @@ body._dark {
     }
     &-word,
     &-excel {
+        display: flex;
+        align-items: center;
         padding: 12px 20px;
-        border-width: 3px;
-        border-style: solid;
+        border-radius: 8px;
         span {
             margin-left: 8px;
+        }
+        svg {
+            width: 32px;
+            height: 32px;
+        }
+        &:hover {
+            width: 304px;
+            color: initial;
+            &::after {
+                display: none;
+            }
         }
     }
     &-word {
         color: $active-blue-color;
-        border-color: $active-blue-color;
+        border: 3px solid $active-blue-color;
     }
     &-excel {
         color: $accent-color;
-        border-color: $accent-color;
+        border: 3px solid $accent-color;
     }
     ._dark &-word {
         color: $dark-active-blue-color;
@@ -198,6 +214,15 @@ body._dark {
         border-color: $active-blue-color;
         box-shadow: $inp-focus-shadow;
     }
+    &.disabled {
+        border-color: $light-color-60;
+        color: $light-color-60;
+        ._dark & {
+            border-color: $dark-color-60;
+            color: $dark-color-60;
+        }
+    }
+
     ._dark & {
         color: $light-color;
         background-color: $dark-color;

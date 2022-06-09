@@ -1,0 +1,28 @@
+.step-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    text-align: left;
+    transition: $transition;
+
+    .number-item {
+        color: rgba($accent-color, 0.32);
+        ._dark & {
+            color: rgba($dark-accent-color, 0.32);
+        }
+    }
+    .h3 {
+        margin-left: -60px;
+    }
+    &--result {
+        svg {
+            width: 96px;
+            height: 96px;
+            fill: rgba($dark-color, 0.16);
+            transition: $transition;
+        }
+        span {
+            margin-left: -48px;
+        }
+    }
+}

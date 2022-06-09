@@ -1,0 +1,62 @@
+.site-calc {
+    .calc-steps {
+        &__wrapper {
+            display: grid;
+            grid-template: repeat(1, 1fr) / repeat(4, 1fr);
+            grid-auto-rows: 1fr;
+            grid-auto-columns: 1fr;
+            grid-gap: $grid-gap;
+        }
+        &__item:not(:first-of-type) {
+            margin-top: 32px;
+        }
+        &__result {
+            margin-top: 48px;
+            display: flex;
+            justify-content: space-between;
+            &-col {
+                @include col(6);
+                &:hover .step-title svg.expenses {
+                    fill: rgba($error-red, 0.32);
+                }
+                &:hover .step-title svg.profit {
+                    fill: rgba($accent-color, 0.32);
+                }
+            }
+        }
+        .download-btns {
+            margin-top: 36px;
+            button:last-child {
+                margin-top: 24px;
+            }
+            button, button span {
+                &:hover {
+                    width: 308px;
+                    color: initial;
+                    &::after {
+                        display: none;
+                    }
+                } 
+            }
+        }
+    }
+
+    // * POPULAR QUESTIONS
+}
+
+.result-item {
+    margin-top: 20px;
+    &:first-of-type {
+        margin-top: 28px;
+    }
+    &__label, &__num, &__currency {
+        font-size: 1.44rem;
+    }
+    &__label {
+        font-weight: 500;
+    }
+    &__num {
+    }
+    &__currency {
+    }
+}

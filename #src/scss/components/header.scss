@@ -216,6 +216,7 @@
             }
         }
         .menu__body {
+            z-index: 3;
             position: fixed;
             top: 0;
             left: -100%;
@@ -243,7 +244,6 @@
             }
         }
         .menu__list {
-            z-index: 4;
             flex-direction: column;
             min-height: 100%;
             padding: 144px 32px 32px 32px;

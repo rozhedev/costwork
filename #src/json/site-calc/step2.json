@@ -1,0 +1,29 @@
+[
+    {
+        "label": "Час роботи ЕОМ:",
+        "type": "number",
+        "id": "work-duration",
+        "class": "",
+        "measure": "год",
+        "isRequired": "",
+        "isDisabled": ""
+    },
+    {
+        "label": "Потужність ЕОМ:",
+        "type": "number",
+        "id": "pc-power",
+        "class": "",
+        "measure": "UAH",
+        "isRequired": "",
+        "isDisabled": ""
+    },
+    {
+        "label": "Ціна 1 кВт/год електроенергії:",
+        "type": "number",
+        "id": "price-per-one-watt",
+        "class": "",
+        "measure": "UAH",
+        "isRequired": "",
+        "isDisabled": ""
+    }
+]

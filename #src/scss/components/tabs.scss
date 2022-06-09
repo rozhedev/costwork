@@ -1,10 +1,6 @@
 .tabs {
     width: 100%; 
     transition: $transition;
-    ._lock & {
-        opacity: 0;
-        pointer-events: none;
-    }  
 
     &__nav {
         @include col(8);
@@ -91,21 +87,20 @@
     
         }
     }
-    &__content {
-        &-item {
-            width: 100%;
-            display: none;
-            grid-template: repeat(3, minmax(3rem, auto)) / repeat(2, 1fr);
-            grid-auto-rows: minmax(3rem, auto);
-            grid-auto-columns: 1fr;
-            grid-gap: $grid-gap;
-            &._active {
-                display: grid;
-            }
+}
 
-            @include media(map-get($grid-breakpoints, md)) {
-                grid-template: repeat(5, minmax(3rem, auto)) / repeat(1, 1fr);
-            }
-        }
+.tabs__content-item {
+    width: 100%;
+    display: none;
+    grid-template: repeat(3, minmax(3rem, auto)) / repeat(2, 1fr);
+    grid-auto-rows: minmax(3rem, auto);
+    grid-auto-columns: 1fr;
+    grid-gap: $grid-gap;
+    &._active {
+        display: grid;
+    }
+
+    @include media(map-get($grid-breakpoints, md)) {
+        grid-template: repeat(5, minmax(3rem, auto)) / repeat(1, 1fr);
     }
 }
