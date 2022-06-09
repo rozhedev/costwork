@@ -92,7 +92,7 @@
         width: calc(#{percentage(calc($size / $columns-count) )} - #{calc($grid-gap-side * 1.5)});
     }
     @include breakpoint(sm) {
-        width: calc(#{percentage(calc($size / $columns-count-sm) )} - #{$grid-gap-side});
+        width: calc(#{percentage(calc($size / $columns-count-xs) )} - #{$grid-gap-side});
     }
     @include breakpoint(xs) {
         width: calc(#{percentage(calc($size / $columns-count-xs) )} - #{$grid-gap-side});
@@ -187,4 +187,28 @@
 //     gap: $grid-gap-side;
 //     margin-right: -$grid-gap-side;
 //     margin-bottom: 30px;
+// }
+
+// @mixin container {
+//     margin: 0 auto;
+//     max-width: map-get($container-max-widths, xxl) + ($grid-gap * 1.5);
+//     padding: 0 calc($grid-gap * 0.75);
+
+//     @include breakpoint(xl) {
+//         max-width: map-get($container-max-widths, xl) + ($grid-gap * 1.5);
+//     }
+//     @include breakpoint(lg) {
+//         max-width: map-get($container-max-widths, lg) + $grid-gap;
+//         padding: 0 $grid-gap-side;
+//     }
+//     @include breakpoint(md) {
+//         max-width: map-get($container-max-widths, md) + ($grid-gap * 0.75);
+//         padding: 0 calc($grid-gap-side * 0.75);
+//     }
+//     @include breakpoint(sm) {
+//         max-width: map-get($container-max-widths, sm) + ($grid-gap * 0.75);
+//     }
+//     @include breakpoint(xs) {
+//         max-width: map-get($container-max-widths, xs) + ($grid-gap * 0.75);
+//     }
 // }

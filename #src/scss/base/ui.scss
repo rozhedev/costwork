@@ -35,7 +35,7 @@ body._dark {
         font-size: 3.6rem;
     }
 
-    @include media(map-get($grid-breakpoints, xs)) {
+    @include media(map-get($grid-breakpoints, sm)) {
         font-size: 5rem;
     }
 }
@@ -57,7 +57,7 @@ body._dark {
     line-height: 1.6;
     letter-spacing: 0.02em;
 
-    @include media(map-get($grid-breakpoints, xs)) {
+    @include media(map-get($grid-breakpoints, sm)) {
         font-size: 1.44rem;
     }
 }

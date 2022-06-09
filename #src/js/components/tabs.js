@@ -1,27 +1,17 @@
+const tabsWrappers = document.querySelectorAll(".tabs-wrapper");
 
+tabsWrappers.forEach((e) => {
+    const tabsNavItems = e.querySelectorAll(".tabs__nav-item");
+    const tabsContentItems = e.querySelectorAll(".tabs__content-item");
 
-const tabsNav = document.querySelectorAll(".tabs__nav-item");
-const tabsContent = document.querySelectorAll(".tabs__content-item");
+    for (let i = 0; i < tabsNavItems.length; i++) {
+        tabsNavItems[0].click();
+        tabsNavItems[i].onclick = () => {
+            tabsNavItems.forEach((e) => { e.classList.remove("_active") });
+            tabsContentItems.forEach((e) => { e.classList.remove("_active") });
 
-function setActiveItem(e, navItems, tabs) {
-    e.preventDefault();
-    let activeTabAttr = e.target.getAttribute("data-tab");
-
-    for (let j = 0; j < navItems.length; j++) {
-        let contentAttr = tabs[j].getAttribute("data-tab-content");
-
-        if (activeTabAttr === contentAttr) {
-            navItems[j].classList.add("active");
-            tabs[j].classList.add("active");
-        } else {
-            navItems[j].classList.remove("active");
-            tabs[j].classList.remove("active");
+            tabsNavItems[i].classList.add("_active");
+            tabsContentItems[i].classList.add("_active");
         }
     }
-}
-
-for (let i = 0; i < tabsNav.length; i++) {
-    tabsNav[i].addEventListener("click", function (e) {
-        setActiveItem(e, tabsNav, tabsContent);
-    });
-}
+});

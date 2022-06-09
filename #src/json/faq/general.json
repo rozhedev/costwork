@@ -5,7 +5,7 @@
     },
     {
         "question": "Знайшов баг, до кого звернутись?",
-        "answer": "Нічого ідеального не буває, тому якщо ви знайшли помилку в тексті, або частина контенту вебдодатку некоректно відображається на вашому пристрої, звертайтесь до автора за наступними контактами: <ul class='unordered-list'> <li><a href='https://t.melucoon' class='link'> Telegram; </a></li> <li><a href='https://viber.click/7380636453644' class='link'> Viber; </a></li> <li><a href='https://www.facebook.com/bohdan34' class='link'> Instagram; </a></li> <li><a href='https:/www.instagram.com/invites/contact/?i=1vpzhjoxc36y2&utm_content=n1k3giv' class='link'> Facebook; </a></li> </ul>"
+        "answer": "Нічого ідеального не буває, тому якщо ви знайшли помилку в тексті, або частина контенту вебдодатку некоректно відображається на вашому пристрої, звертайтесь до автора за наступними контактами: <ul class='unordered-list'> <li><a href='https://t.me/lucoon' class='link'>Telegram;</a></li> <li><a href='https://viber.click/7380636453644' class='link'>Viber;</a></li> <li><a href='https://www.facebook.com/bohdan34' class='link'>Instagram;</a></li> <li><a href='https:/www.instagram.com/invites/contact/?i=1vpzhjoxc36y2&utm_content=n1k3giv' class='link'>Facebook;</a></li> </ul>"
     },
     {
         "question": "Чому не відкриваються деякі посилання?",
@@ -13,10 +13,10 @@
     },
     {
         "question": "У автора можна замовити роботу?",
-        "answer": "<b>ПДВ (Податок на додану вартість)</b> — це непрямий податок, який входить в ціну товару, послуги та сплачується покупцем, але до бюджету його перераховує продавець. ПДВ складається з двох частин: податкового кредиту і податкового зобов’язання. До бюджету платник перераховує різницю цих двох платежів. У чеках його можна побачити у вигляді графи “З урахуванням ПДВ”."
+        "answer": "Так, для цього напишіть мені в <a href='https://t.me/lucoon' class='link'>Telegram</a>. У повідомленні вкажіть який тип вебсайту вам потрібен (лендінг, корпоративний або інтернет-магазин або може щось інше) і його тематику. Чи є у вас прототип або готовий макет, логотип та інша символіка компанії і текст для опису товарів чи послуг. Ціна є договірною та залежить від кількості сторінок і наявного функціоналу, але не менше 40$, <b>всі правки безкоштовні</b>."
     },
     {
         "question": "Чи є приклади подібних робіт?",
-        "answer": "Звичайно, приклади подібних робіт існують. При створенні проєкту, я старався об’єднати найкраще із тих робіт,  що бачив.  Їх перелік: <ul class='unordered-list'> <li><a href='https://www.universalbank.com.ua/ru/calculator' class='link'> https://www.universalbank.com.ua/ru/calculator </a></li> <li><a href='https://minfin.com.ua/deposits/calculator/' class='link'> https://minfin.com.ua/deposits/calculator/ </a></li> <li><a href='https://fincult.info/calc/deposit/' class='link'> https://fincult.info/calc/deposit/ </a></li> <li><a href='https://deposits.privatbank.ua/static/app/calc.htm' class='link'> https://deposits.privatbank.ua/static/app/calc.htm </a></li> </ul>"
+        "answer": "Звичайно, приклади подібних робіт існують. При створенні проєкту, я старався об’єднати найкраще із тих робіт,  що бачив.  Їх перелік: <ul class='unordered-list'> <li><a href='https://www.universalbank.com.ua/ru/calculator' class='link'>https://www.universalbank.com.ua/ru/calculator</a></li> <li><a href='https://minfin.com.ua/deposits/calculator/' class='link'>https://minfin.com.ua/deposits/calculator/</a></li> <li><a href='https://fincult.info/calc/deposit/' class='link'>https://fincult.info/calc/deposit/</a></li> <li><a href='https://deposits.privatbank.ua/static/app/calc.htm' class='link'>https://deposits.privatbank.ua/static/app/calc.htm</a></li> </ul>"
     }
 ]

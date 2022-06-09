@@ -1,11 +1,16 @@
 .tabs {
-    width: 100%;
+    width: 100%; 
+    transition: $transition;
+    ._lock & {
+        opacity: 0;
+        pointer-events: none;
+    }  
 
     &__nav {
         @include col(8);
         position: relative;
         display: flex;
-        margin: 0 auto;
+        margin: 0 auto 40px;
         &::after {
             content: "";
             position: absolute;
@@ -15,10 +20,23 @@
             height: 6px;
             border-radius: 0 0 8px 8px;
             background-color: $active-blue-color;
-
-            // ._dark & {
-            //     background-color: $dark-active-blue-color;   
-            // }
+      
+            ._dark & {
+                background-color: $dark-active-blue-color;
+            }
+            @include media(map-get($grid-breakpoints, sm)) {
+                display: none;
+            }
+        }
+        @include media(map-get($grid-breakpoints, lg)) {
+            @include col(10);
+        }
+        @include media(map-get($grid-breakpoints, md)) {
+            @include col(12);
+        }
+        @include media(map-get($grid-breakpoints, sm)) {
+            width: 100%;
+            flex-direction: column;
         }
 
         &-item {
@@ -39,7 +57,7 @@
                 border-left: 4px solid $dark-footer-grey;
                 border-right: 4px solid $dark-footer-grey;
             }
-            &:hover {
+            &:hover, &._active {
                 background-color: $light-color;
                 border-top: 4px solid $active-blue-color;
                 border-left: 4px solid $active-blue-color;
@@ -52,19 +70,25 @@
                 ._dark & {
                     color: $light-color;
                     background-color: $dark-color;
+                    border-top: 4px solid $dark-active-blue-color;
+                    border-left: 4px solid $dark-active-blue-color;
+                    border-right: 4px solid $dark-active-blue-color;
                 }
             }
-            &.active {
-                background-color: $light-color;
-                border-top: 4px solid $active-blue-color;
-                border-left: 4px solid $active-blue-color;
-                border-right: 4px solid $active-blue-color;
+            &._active {
                 cursor: default;
-
-                ._dark & {
-                    background-color: $dark-color;
+            }
+            @include media(map-get($grid-breakpoints, sm)) {
+                &:not(:first-of-type) {
+                    margin-left: 0;
+                    margin-top: 2rem;
+                }
+                &:hover, &._active {
+                    border: 4px solid $active-blue-color;
+                    border-radius: 8px;
                 }
             }
+    
         }
     }
     &__content {
@@ -72,12 +96,15 @@
             width: 100%;
             display: none;
             grid-template: repeat(3, minmax(3rem, auto)) / repeat(2, 1fr);
-            grid-auto-rows: repeat(2, 1fr);
-            grid-auto-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(3rem, auto);
+            grid-auto-columns: 1fr;
             grid-gap: $grid-gap;
-
-            &.active {
+            &._active {
                 display: grid;
+            }
+
+            @include media(map-get($grid-breakpoints, md)) {
+                grid-template: repeat(5, minmax(3rem, auto)) / repeat(1, 1fr);
             }
         }
     }

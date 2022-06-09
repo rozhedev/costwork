@@ -14,7 +14,7 @@
         @include col(12);
         padding: 32px 24px;
     }
-    @include media(map-get($grid-breakpoints, xs)) {
+    @include media(map-get($grid-breakpoints, sm)) {
         @include col(2);
     }
 
@@ -29,6 +29,7 @@
     }
     ._lock & {
         opacity: 0;
+        pointer-events: none;
     }
 
     .navlink {

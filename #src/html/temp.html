@@ -1,25 +1,56 @@
-<!-- <div class="container">
-                <input type="text" name="" id="" class="inp" placeholder="Soooooome text">
-                <a href="#" class="navlink">some text</a>
+<!DOCTYPE html>
+<html lang="ua">
 
-                <h1 class="h1">Some text</h1>
-                <div class="checkbox">
-                    <input class="checkbox__input" type="checkbox" name="checkbox1" id="checkbox1">
-                    <label class="checkbox__label" for="checkbox1">Согласен с <a href="#">политикой конфиденциальности</a></label>
+@@include('_head.html',{
+"title":"Головна"
+})
+
+<body>
+    @@include('components/_preloader.html',{})
+
+    <div class="wrapper">
+        <main class="main page" id="main">
+            <section class="home" id="home">
+                <div class="container">
+                    <!-- <input type="text" name="" id="" class="inp" placeholder="Soooooome text">
+                    <a href="#" class="navlink">some text</a>
+                
+                    <h1 class="h1">Some text</h1>
+                    <div class="checkbox">
+                        <input class="checkbox__input" type="checkbox" name="checkbox1" id="checkbox1">
+                        <label class="checkbox__label" for="checkbox1">Согласен с <a href="#">политикой конфиденциальности</a></label>
+                    </div>
+                
+                    <div class="select-container">
+                        <form action="" method="get">
+                            <select name="form-select" id="form-select" class="form-select">
+                                <option value="" selected>UAH</option>
+                                <option value="UAH">UAH</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                            </select>
+                        </form>
+                    </div> 
+                
+                    <svg>
+                        <use href="@@iconPath"></use>
+                    </svg> -->
+
+                    <ul class='ordered-list'>
+                        <li><a href='https://t.me/lucoon' class='link'> Telegram; </a></li>
+                        <li><a href='https://viber.click/7380636453644' class='link'> Viber; </a></li>
+                        <li><a href='https://www.facebook.com/bohdan34' class='link'> Instagram; </a></li>
+                        <li><a href='https:/www.instagram.com/invites/contact/?i=1vpzhjoxc36y2&utm_content=n1k3giv' class='link'> Facebook; </a></li>
+                    </ul>
                 </div>
+            </section>
+        </main>
+    </div>
 
-                <div class="select-container">
-                    <form action="" method="get">
-                        <select name="form-select" id="form-select" class="form-select">
-                            <option value="" selected>UAH</option>
-                            <option value="UAH">UAH</option>
-                            <option value="USD">USD</option>
-                            <option value="EUR">EUR</option>
-                        </select>
-                    </form>
-                </div>
-            </div> 
+    <!-- * POPUP -->
+    <!-- @@include('_popup.html',{}) -->
+    <!-- * JS -->
+    @@include('_js.html',{})
+</body>
 
-            <svg>
-                <use href="@@iconPath"></use>
-            </svg>
+</html>

@@ -1,7 +1,7 @@
 .accordion {
     transition: $transition;
-    &:nth-of-type(-n + 2) {
-        margin-top: 2.5rem;
+    @include media(map-get($grid-breakpoints, sm)) {
+        width: 328px;       // * Относительные величины не срабатывают
     }
 
     &__trigger {
@@ -10,7 +10,7 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        padding: 0.5rem 1.33rem;
+        padding: 0.75rem 1.33rem;
 
         font-size: 1.44rem;
         font-weight: 500;
@@ -25,9 +25,17 @@
         svg {
             width: 2rem;
             height: 2rem;
+            margin-left: 0.5rem;
             fill: $light-color;
             cursor: pointer;
             transition: $transition;
+        }
+        @include media(map-get($grid-breakpoints, lg)) {
+            padding: 0.75rem 1rem;
+            font-size: 1.33rem;
+        }
+        @include media(map-get($grid-breakpoints, sm)) {
+            font-size: 1.25rem;
         }
     }
     &__content {
