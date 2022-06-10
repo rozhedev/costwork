@@ -8,7 +8,6 @@
 }
 
 .header {
-    // position: fixed;
     .header__container {
         @include col(12);
         padding-top: 40px;
@@ -56,6 +55,11 @@
             transition: $transition;
         }
     }
+    .menu__link {
+        @include navlink-animation;
+    }
+
+    // * MENU SUBLIST
 
     .menu__sublist {
         opacity: 0;
@@ -70,7 +74,7 @@
 
         text-align: center;
         background-color: $light-color;
-        border: 2px solid lighten($color: $dark-color, $amount: 24);
+        border: 2px solid $dark-color-60;
         border-radius: 8px;
         transform: translate(0px, 20%); // * Для создания ефекта сдвига вверх
         transition: all 0.3s ease 0s;
@@ -81,7 +85,7 @@
 
         ._dark & {
             background-color: $dark-color;
-            border: 2px solid darken($color: $light-color, $amount: 4);
+            border: 2px solid $light-color-60;
         }
     }
 
@@ -97,9 +101,6 @@
         &::after {
             display: none;
         }
-        &:hover {
-            color: initial;
-        }
         &::before {
             content: "";
             display: inline-block;
@@ -109,10 +110,10 @@
             background: url($chevron-icon) center / 100% no-repeat;
             transition: $transition;
         }
+        &:hover {
+            color: initial;
+        }
         ._dark & {
-            &:hover {
-                color: $light-color;
-            }
             &::before {
                 background: url($dark-chevron-icon) center / 100% no-repeat;
             }
@@ -121,8 +122,14 @@
 
     .menu__sublink {
         font-size: 1rem;
-        &:hover::after {
-            display: none;
+        &:hover {
+            color: $accent-color;
+        }
+        ._dark & {
+            color: $light-color;
+            &:hover {
+                color: $dark-accent-color;
+            }
         }
     }
 
@@ -190,7 +197,7 @@
             }
 
             ._dark & {
-                background-color: lighten($accent-color, 8);
+                background-color: $dark-accent-color;
                 span,
                 &::before,
                 &::after {
@@ -261,43 +268,45 @@
                 &:last-child {
                     margin-bottom: 0;
                 }
-                .menu__sublist {
-                    display: block;
-                    opacity: 1;
-                    visibility: visible;
-                    pointer-events: auto;
-
-                    position: static;
-                    min-width: 300px;
-                    padding: 0;
-                    text-align: center;
-                    background-color: inherit;
-                    border: none;
-                }
-                .menu__sublink {
-                    display: block;
-                    margin: -16px 0px 20px 0px;
-                    font-size: 1.33rem;
-                    color: $dark-color;
-
-                    ._dark & {
-                        color: $light-color;
-                    }
-                }
-            }
-
-            .menu__sublist-title {
-                justify-content: center;
-                opacity: 0.5;
-                &::before {
-                    display: none;
-                }
-                ._dark & {
-                    color: $light-color;
-                }
             }
             .menu__link {
                 font-size: 1.5rem;
+            }
+        }
+
+        // * MENU SUBLIST 768
+        .menu__sublist {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+
+            position: static;
+            min-width: 300px;
+            padding: 0;
+            text-align: center;
+            background-color: inherit;
+            border: none;
+            transform: translate(0px, 0%);
+        }
+        .menu__sublink {
+            display: block;
+            margin-bottom: 16px;
+            font-size: 1.33rem;
+            color: $dark-color;
+
+            ._dark & {
+                color: $light-color;
+            }
+        }
+        .menu__sublist-title {
+            opacity: 0.5;
+            margin-bottom: 16px;
+            &::before {
+                display: none;
+            }
+            ._dark & {
+                color: $light-color;
             }
         }
         .theme-switcher {

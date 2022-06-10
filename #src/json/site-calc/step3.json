@@ -6,7 +6,8 @@
         "class": "",
         "measure": "люд/год",
         "isRequired": "",
-        "isDisabled": ""
+        "isDisabled": "",
+        "isCurrency": ""
     },
     {
         "label": "Фонд оплати праці:",
@@ -15,7 +16,8 @@
         "class": "",
         "measure": "UAH",
         "isRequired": "",
-        "isDisabled": ""
+        "isDisabled": "",
+        "isCurrency": "currency"
     },
     {
         "label": "Фонд робочого часу:",
@@ -24,7 +26,8 @@
         "class": "",
         "measure": "днів",
         "isRequired": "",
-        "isDisabled": ""
+        "isDisabled": "",
+        "isCurrency": ""
     },
     {
         "label": "Основна заробітна плата:",
@@ -33,7 +36,8 @@
         "class": "",
         "measure": "UAH",
         "isRequired": "",
-        "isDisabled": ""
+        "isDisabled": "",
+        "isCurrency": "currency"
     },
     {
         "label": "Додаткова заробітна плата:",
@@ -42,7 +46,8 @@
         "class": "",
         "measure": "UAH",
         "isRequired": "",
-        "isDisabled": ""
+        "isDisabled": "",
+        "isCurrency": "currency"
     },
     {
         "label": "Сума витрат:",
@@ -51,6 +56,7 @@
         "class": "disabled",
         "measure": "UAH",
         "isRequired": "",
-        "isDisabled": "disabled readonly"
+        "isDisabled": "disabled readonly",
+        "isCurrency": "currency"
     }
 ]

@@ -21,13 +21,7 @@
         &-copyright {
             margin-top: 32px;
             font-weight: 500;
-            &:hover {
-                width: initial;
-                color: initial;
-                &::after {
-                    display: none;
-                }
-            }
+           
             @include media(map-get($grid-breakpoints, lg)) {
                 margin-top: 28px;
                 letter-spacing: -0.012em;
@@ -58,15 +52,10 @@
             margin-top: 16px;
             color: $active-blue-color;
             &:hover {
-                width: initial;
                 color: $dark-color;
                 ._dark & {
                     color: $light-color;
                 }
-                &::after {
-                    display: none;
-                }
-
             }
         }
 
@@ -97,12 +86,3 @@
         }
     }
 }
-
-// @include media(map-get($grid-breakpoints, lg)) {
-//     .footer:nth-child(1) {
-//         @include col(5);
-//     }
-//     .footer:nth-child(2) {
-//         @include col(3);
-//     }
-// }

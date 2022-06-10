@@ -6,7 +6,8 @@
         "class": "",
         "measure": "год",
         "isRequired": "",
-        "isDisabled": ""
+        "isDisabled": "",
+        "isCurrency": "currency"
     },
     {
         "label": "Потужність ЕОМ:",
@@ -15,7 +16,8 @@
         "class": "",
         "measure": "UAH",
         "isRequired": "",
-        "isDisabled": ""
+        "isDisabled": "",
+        "isCurrency": "currency"
     },
     {
         "label": "Ціна 1 кВт/год електроенергії:",
@@ -24,6 +26,7 @@
         "class": "",
         "measure": "UAH",
         "isRequired": "",
-        "isDisabled": ""
+        "isDisabled": "",
+        "isCurrency": "currency"
     }
 ]

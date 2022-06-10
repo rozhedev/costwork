@@ -1,0 +1,30 @@
+[
+    {
+        "title": "Матеріальні витрати:",
+        "id": "material-expenses-output"
+    },
+    {
+        "title": "Витрати на електроенергію:",
+        "id": "profit-output"
+    },
+    {
+        "title": "Єдиний соціальний внесок:",
+        "id": "wholesale-price-output"
+    },
+    {
+        "title": "Витрати на утрим. обладнання:",
+        "id": "equipment-costs-output"
+    },
+    {
+        "title": "Загальновиробничі витрати:",
+        "id": "production-costs-output"
+    },
+    {
+        "title": "Позавиробничі витрати:",
+        "id": "non-production-costs-output"
+    },
+    {
+        "title": "Повна собівартість:",
+        "id": "total-cost-output"
+    }
+]

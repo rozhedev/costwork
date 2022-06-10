@@ -6,7 +6,8 @@
         "class": "",
         "measure": "UAH",
         "isRequired": "",
-        "isDisabled": "disabled readonly"
+        "isDisabled": "disabled readonly",
+        "isCurrency": "currency"
     },
     {
         "label": "Єдиний соціальний внесок:",
@@ -15,7 +16,8 @@
         "class": "",
         "measure": "%",
         "isRequired": "",
-        "isDisabled": ""
+        "isDisabled": "",
+        "isCurrency": ""
     },
     {
         "label": "Єдиний соціальний внесок:",
@@ -24,6 +26,7 @@
         "class": "",
         "measure": "UAH",
         "isRequired": "",
-        "isDisabled": ""
+        "isDisabled": "",
+        "isCurrency": "currency"
     }
 ]

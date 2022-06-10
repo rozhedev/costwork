@@ -30,14 +30,7 @@
 
     .navlink {
         position: static;
-        cursor: pointer;
-        &:hover {
-            width: initial;
-            color: initial;
-            &::after {
-                display: none;
-            }
-        }
+        cursor: pointer;    
     }
     &__img {
         width: 128px;

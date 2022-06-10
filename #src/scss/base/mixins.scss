@@ -6,16 +6,6 @@
     }
 }
 
-@mixin hoverReset {
-    &:hover {
-        width: initial;
-        color: initial;
-        &::after {
-            display: none;
-        }
-    }  
-}
-
 @mixin title-gap {
     margin: 64px 0px 40px 0px;
     @include media(map-get($grid-breakpoints, lg)) {
@@ -26,6 +16,45 @@
     }
 }
 
+@mixin navlink-animation {
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+
+        display: block;
+        width: 0%;
+        height: 3px;
+        background-color: $accent-color;
+        border-radius: 2px;
+        transition: $transition;
+    }
+    @include hover {
+        width: 100%;
+        color: $accent-color;
+
+        &::after {
+            left: 0;
+            width: 100%;
+        }
+    }
+    &:active {
+        color: $accent-color;
+    }
+    ._dark & {
+        color: $light-color;
+        &::after {
+            background-color: $dark-accent-color;
+        }
+        &:active {
+            color: $accent-color;
+        }
+        @include hover {
+            color: $dark-accent-color;
+        }
+    } 
+}
 
 @mixin footer-gap {
     margin-top: 80px;

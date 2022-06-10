@@ -60,7 +60,7 @@
                     @@include('components/_step-title.html', {
                     "number": "05",
                     "title": "Розрахунок витрат по непрямим статтям калькуляції"
-                    })
+                    })              
                     <div class="calc-steps__wrapper">
                         @@loop('components/_form-controller.html', '../json/site-calc/step5.json')
                     </div>
@@ -74,41 +74,9 @@
                             </svg>
                             <span>Витрати на створення вебсайту</span>
                         </h3>
-                        <div class="result-item">
-                            <span class="result-item__label h3">Матеріальні витрати:</span>
-                            <span class="result-item__num h3">0000.00</span>
-                            <span class="measure h3">UAH</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-item__label h3">Витрати на електроенергію:</span>
-                            <span class="result-item__num h3">0000.00</span>
-                            <span class="measure h3">UAH</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-item__label h3">Єдиний соціальний внесок:</span>
-                            <span class="result-item__num h3">0000.00</span>
-                            <span class="measure h3">UAH</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-item__label h3">Витрати на утрим. обладнання:</span>
-                            <span class="result-item__num h3">0000.00</span>
-                            <span class="measure h3">UAH</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-item__label h3">Загальновиробничі витрати:</span>
-                            <span class="result-item__num h3">0000.00</span>
-                            <span class="measure h3">UAH</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-item__label h3">Позавиробничі витрати:</span>
-                            <span class="result-item__num h3">0000.00</span>
-                            <span class="measure h3">UAH</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-item__label h3">Повна собівартість:</span>
-                            <span class="result-item__num h3">0000.00</span>
-                            <span class="measure h3">UAH</span>
-                        </div>
+
+                        @@loop('components/_result-item.html', '../json/result-calc/site-calc-expences.json')
+
                     </div>
 
                     <div class="calc-steps__result-col">
@@ -118,39 +86,26 @@
                             </svg>
                             <span>Дохід від створення вебсайту</span>
                         </h3>
-                        <div class="result-item">
-                            <span class="result-item__label h3">ПДВ:</span>
-                            <span class="result-item__num h3">0000.00</span>
-                            <span class="result-item__currency h3">UAH</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-item__label h3">Прибуток:</span>
-                            <span class="result-item__num h3">0000.00</span>
-                            <span class="result-item__currency h3">UAH</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-item__label h3">Оптова ціна:</span>
-                            <span class="result-item__num h3">0000.00</span>
-                            <span class="result-item__currency h3">UAH</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-item__label h3">Відпускна ціна:</span>
-                            <span class="result-item__num h3">0000.00</span>
-                            <span class="result-item__currency h3">UAH</span>
-                        </div>
+
+                        @@loop('components/_result-item.html', '../json/result-calc/site-calc-profit.json')
+
                         <div class="download-btns">
-                            <button class="btn-word">
-                                <svg>
-                                    <use href="img/icons/colored-icons.svg#word"></use>
-                                </svg>
-                                <span class="navlink">Завантажити у Word</span>
-                            </button>
-                            <button class="btn-excel">
-                                <svg>
-                                    <use href="img/icons/colored-icons.svg#excel"></use>
-                                </svg>
-                                <span class="navlink">Завантажити в Excel</span>
-                            </button>
+                            <form action="#">
+                                <button class="btn-word">
+                                    <svg>
+                                        <use href="img/icons/colored-icons.svg#word"></use>
+                                    </svg>
+                                    <span class="navlink">Завантажити у Word</span>
+                                </button>
+                            </form>
+                            <form action="#">
+                                <button class="btn-excel">
+                                    <svg>
+                                        <use href="img/icons/colored-icons.svg#excel"></use>
+                                    </svg>
+                                    <span class="navlink">Завантажити в Excel</span>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -158,7 +113,7 @@
 
             <section class="popular-questions container">
                 <h2 class="h1">Популярні питання</h1>
-                <div class="tabs__content-item _active">
+                <div class="tabs__content-item">
                     @@loop("components/_accordion.html", "../json/faq/economy.json")
                 </div>
             </section>

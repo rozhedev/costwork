@@ -2,16 +2,19 @@
     {
         "iconPath": "../img/card_img/website.png",
         "iconName": "website",
-        "title": "Розрахунок вартості вебсайту"
+        "title": "Розрахунок вартості вебсайту",
+        "link": "site-calc.html"
     },
     {
         "iconPath": "../img/card_img/deposit.png",
         "iconName": "deposit",
-        "title": "Розрахунок прибутку від депозиту"
+        "title": "Розрахунок прибутку від депозиту",
+        "link": "site-calc.html"
     },
     {
         "iconPath": "../img/card_img/credit.png",
         "iconName": "credit",
-        "title": "Розрахунок кредитної переплати"
+        "title": "Розрахунок кредитної переплати",
+        "link": "site-calc.html"
     }
 ]

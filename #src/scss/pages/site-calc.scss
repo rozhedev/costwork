@@ -2,10 +2,20 @@
     .calc-steps {
         &__wrapper {
             display: grid;
-            grid-template: repeat(1, 1fr) / repeat(4, 1fr);
+            grid-template: 1fr / repeat(4, 1fr);
             grid-auto-rows: 1fr;
             grid-auto-columns: 1fr;
             grid-gap: $grid-gap;
+
+            @include media(map-get($grid-breakpoints, lg)) {
+                grid-template: 1fr / repeat(3, 1fr);
+            }
+            @include media(map-get($grid-breakpoints, md)) {
+                grid-template: 1fr / repeat(2, 1fr);
+            }
+            @include media(map-get($grid-breakpoints, sm)) {
+                grid-template: 1fr / 1fr;
+            }
         }
         &__item:not(:first-of-type) {
             margin-top: 32px;
@@ -14,6 +24,11 @@
             margin-top: 48px;
             display: flex;
             justify-content: space-between;
+
+            @include media(map-get($grid-breakpoints, md)) {
+                flex-direction: column;
+            }
+
             &-col {
                 @include col(6);
                 &:hover .step-title svg.expenses {
@@ -22,41 +37,112 @@
                 &:hover .step-title svg.profit {
                     fill: rgba($accent-color, 0.32);
                 }
+                @include media(map-get($grid-breakpoints, md)) {
+                    width: 100%;
+                    margin-top: 40px;
+                }
             }
         }
+
+        // * DOWNLOAD BUTTONS
         .download-btns {
-            margin-top: 36px;
-            button:last-child {
-                margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+
+            @include media(map-get($grid-breakpoints, md)) {
+                flex-direction: row;
+                justify-content: space-between;
             }
-            button, button span {
-                &:hover {
-                    width: 308px;
-                    color: initial;
-                    &::after {
-                        display: none;
-                    }
-                } 
+            @include media(map-get($grid-breakpoints, sm)) {
+                flex-direction: column;
+            }
+        }
+        .btn-word,
+        .btn-excel {
+            display: flex;
+            align-items: center;
+            margin-top: 24px;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            transition: $transition;
+
+            @include media(map-get($grid-breakpoints, md)) {
+                padding: 0.66rem 1rem;
+            }
+            span {
+                margin-left: 8px;
+            }
+            svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        .btn-word {
+            border: 3px solid $active-blue-color;
+            span {
+                color: $active-blue-color;
+            }
+            &:hover {
+                box-shadow: 0 0 4px 2px rgba($active-blue-color, 0.32);
+            }
+            ._dark & span {
+                color: $dark-active-blue-color;
+                border-color: $dark-active-blue-color;
+            }
+        }
+        .btn-excel {
+            border: 3px solid $accent-color;
+            span {
+                color: $accent-color;
+            }
+            &:hover {
+                box-shadow: 0 0 4px 2px rgba($active-blue-color, 0.32);
+            }
+            ._dark & span {
+                color: $dark-accent-color;
+                border-color: $dark-accent-color;
             }
         }
     }
 
-    // * POPULAR QUESTIONS
+    .tabs__content-item {
+        display: grid;
+    }
 }
 
 .result-item {
     margin-top: 20px;
+    @include media(map-get($grid-breakpoints, lg)) {
+        display: flex;
+        flex-direction: column;
+    }
+    @include media(map-get($grid-breakpoints, md)) {
+        flex-direction: row;
+    }
+    @include media(map-get($grid-breakpoints, sm)) {
+        flex-direction: column;
+    }
+
     &:first-of-type {
         margin-top: 28px;
     }
-    &__label, &__num, &__currency {
-        font-size: 1.44rem;
+    &__label,
+    &__num,
+    &__currency {
+        font-size: 1.33rem;
+        @include media(map-get($grid-breakpoints, lg)) {
+            font-size: 1.5rem;
+        }
+        @include media(map-get($grid-breakpoints, sm)) {
+            font-size: 1.2rem;
+        }
     }
     &__label {
         font-weight: 500;
     }
-    &__num {
-    }
-    &__currency {
+    @include media(map-get($grid-breakpoints, lg)) {
+        &__num {
+            margin-top: 0.5rem;
+        }
     }
 }

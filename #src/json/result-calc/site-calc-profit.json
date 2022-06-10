@@ -1,0 +1,18 @@
+[
+    {
+        "title": "ПДВ:",
+        "id": "pdv-output"
+    },
+    {
+        "title": "Прибуток:",
+        "id": "profit-output"
+    },
+    {
+        "title": "Оптова ціна:",
+        "id": "wholesale-price-output"
+    },
+    {
+        "title": "Відпускна ціна:",
+        "id": "sale-price-output"
+    }
+]

@@ -6,7 +6,8 @@
         "class": "",
         "measure": "шт.",
         "isRequired": "",
-        "isDisabled": ""
+        "isDisabled": "",
+        "isCurrency": "" 
     },
     {
         "label": "Ціна одного аркушу паперу:",
@@ -15,7 +16,8 @@
         "class": "",
         "measure": "UAH",
         "isRequired": "",
-        "isDisabled": ""
+        "isDisabled": "",
+        "isCurrency": "currency"
     },
     {
         "label": "Вартість аркушів:",
@@ -24,7 +26,8 @@
         "class": "",
         "measure": "UAH",
         "isRequired": "",
-        "isDisabled": ""
+        "isDisabled": "",
+        "isCurrency": "currency"
     },
     {
         "label": "К-сть місяців розташ. на хостингу:",
@@ -42,7 +45,8 @@
         "class": "",
         "measure": "UAH",
         "isRequired": "",
-        "isDisabled": ""
+        "isDisabled": "",
+        "isCurrency": "currency"
     },
     {
         "label": "Вартість розміщення на хостингу:",
@@ -51,7 +55,8 @@
         "class": "",
         "measure": "UAH",
         "isRequired": "",
-        "isDisabled": ""
+        "isDisabled": "",
+        "isCurrency": "currency"
     },
     {
         "label": "Матеріальні витрати:",
@@ -60,6 +65,7 @@
         "class": "disabled",
         "measure": "UAH",
         "isRequired": "",
-        "isDisabled": "disabled readonly"
+        "isDisabled": "disabled readonly",
+        "isCurrency": "currency" 
     }
 ]
