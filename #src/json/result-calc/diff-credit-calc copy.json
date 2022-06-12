@@ -1,0 +1,10 @@
+[
+    {
+        "title": "Переплата:",
+        "id": "diff-overpayment-output"
+    },
+    {
+        "title": "Всього виплат на суму:",
+        "id": "diff-total-payment-output"
+    }
+]

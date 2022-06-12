@@ -8,43 +8,41 @@
 <body>
     @@include('components/_preloader.html',{})
 
-    <div class="wrapper">
-        <main class="main page" id="main">
-            <section class="home" id="home">
-                <!-- * HEADER -->
-                @@include('components/_header.html',{})
+    <main class="main wrapper" id="main">
+        <section class="home" id="home">
+            <!-- * HEADER -->
+            @@include('components/_header.html',{})
 
-                <div class="container">
-                    <div class="home__container row">
-                        <div class="home__content">
-                            <h1 class="h1">Обрахунок без зайвих клопотів</h1>
-                            <p>Сервіс CostWork дає можливість обрахувати витрати по таким напрямкам як:</p>
-                            <ul class="unordered-list">
-                                <li>веброзробка (вартість створення вебсайту);</li>
-                                <li>розрахунок кредитної ставки;</li>
-                                <li>розрахунок прибутку від депозиту;</li>
-                            </ul>
-                            <p>Та ще більше сервісів в майбутньому...</p>
-                        </div>
-                        <div class="main__img">
-                            <img src="../img/vector_img/main-img.svg" alt="main-img">
-                        </div>
+            <div class="container">
+                <div class="home__container row">
+                    <div class="home__content">
+                        <h1 class="h1">Обрахунок без зайвих клопотів</h1>
+                        <p>Сервіс CostWork дає можливість обрахувати витрати по таким напрямкам як:</p>
+                        <ul class="unordered-list">
+                            <li>веброзробка (вартість створення вебсайту);</li>
+                            <li>розрахунок кредитної ставки;</li>
+                            <li>розрахунок прибутку від депозиту;</li>
+                        </ul>
+                        <p>Та ще більше сервісів в майбутньому...</p>
+                    </div>
+                    <div class="main__img">
+                        <img src="../img/vector_img/main-img.svg" alt="main-img">
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section class="service-list" id="service-list">
-                <div class="service-list__wrapper container">
-                    <div class="service-list__content row">
-                        @@loop("components/_service-card.html", "../json/cards/service-cards.json")
-                    </div>
+        <section class="service-list" id="service-list">
+            <div class="service-list__wrapper container">
+                <div class="service-list__content row">
+                    @@loop("components/_service-card.html", "../json/cards/service-cards.json")
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- * FOOTER -->
-            @@include('components/_footer.html',{})
-        </main>
-    </div>
+        <!-- * FOOTER -->
+        @@include('components/_footer.html',{})
+    </main>
 
     <!-- * POPUP -->
     <!-- @@include('_popup.html',{}) -->

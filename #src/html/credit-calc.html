@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+@@include('_head.html',{
+"title":"Кредитний калькулятор"
+})
+
+<body>
+    @@include('components/_preloader.html',{})
+
+    <div class="site-calc credit-calc wrapper" id="credit-calc">
+        <!-- * HEADER -->
+        @@include('components/_header.html',{})
+
+        <section class="calc-steps container">
+            <!-- Розрахунок кредитної переплати -->
+            <h1 class="h1">Кредитний калькулятор</h1>
+            <div class="tabs-wrapper">
+                <div class="tabs">
+                    <div class="tabs__nav">
+                        <button class="tabs__nav-item navlink">Аннуїтетний</button>
+                        <button class="tabs__nav-item navlink">Диференційований</button>
+                    </div>
+
+                    <div class="tabs__content">
+                        <div class="tabs__content-item">
+                            <div class="calc-steps__item">
+                                <div class="calc-steps__wrapper">
+                                    @@loop('components/_form-controller.html', '../json/finance-calc/annuity-credit.json')
+                                </div>
+                            </div>
+
+                            <div class="calc-steps__result">
+                                @@loop('components/_result-item.html', '../json/result-calc/ann-credit-calc.json')
+                            </div>
+                            <div id="ann-message-output" class="navlink message-output"></div>
+                        </div>
+
+                        <div class="tabs__content-item">
+                            <div class="calc-steps__item">
+                                <div class="calc-steps__wrapper">
+                                    @@loop('components/_form-controller.html', '../json/finance-calc/differential-credit.json')
+                                </div>
+                            </div>
+
+                            <div class="calc-steps__result">
+                                @@loop('components/_result-item.html', '../json/result-calc/site-calc-profit.json')
+                            </div>
+                            <table class="payment-table" id="diff-payment-table">1</table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="finance-widget"></div>
+
+        <!-- * FOOTER -->
+        @@include('components/_footer.html',{})
+    </div>
+
+
+    <!-- * POPUP -->
+    <!-- @@include('_popup.html',{}) -->
+    <!-- * JS -->
+    @@include('_js.html',{})
+</body>
+
+</html>

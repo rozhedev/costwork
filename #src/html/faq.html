@@ -8,66 +8,65 @@
 <body>
     @@include('components/_preloader.html',{})
 
-    <div class="wrapper">
-        <div class="faq page" id="faq">
-            <!-- * HEADER -->
-            @@include('components/_header.html',{})
+    <div class="faq wrapper" id="faq">
+        <!-- * HEADER -->
+        @@include('components/_header.html',{})
 
-            <section class="theory-question container">
-                <h1 class="h1">Довідкова інфомація</h1>
+        <section class="theory-question container">
+            <h1 class="h1">Довідкова інфомація</h1>
 
-                <div class="tabs-wrapper">
-                    <div class="tabs">
-                        <div class="tabs__nav">
-                            <button class="tabs__nav-item navlink">Економіка</button>
-                            <button class="tabs__nav-item navlink">Банківська справа</button>
-                            <button class="tabs__nav-item navlink">Веброзробка та ІТ</button>
+            <div class="tabs-wrapper">
+                <div class="tabs">
+                    <div class="tabs__nav">
+                        <button class="tabs__nav-item navlink">Економіка</button>
+                        <button class="tabs__nav-item navlink">Банківська справа</button>
+                        <button class="tabs__nav-item navlink">Веброзробка та ІТ</button>
+                    </div>
+                    <div class="tabs__content">
+                        <div class="tabs__content-item">
+                            @@loop("components/_accordion.html", "../json/faq/economy.json")
                         </div>
-                        <div class="tabs__content">
-                            <div class="tabs__content-item">
-                                @@loop("components/_accordion.html", "../json/faq/economy.json")
-                            </div>
 
-                            <div class="tabs__content-item">
-                                @@loop("components/_accordion.html", "../json/faq/banking.json")
-                            </div>
+                        <div class="tabs__content-item">
+                            @@loop("components/_accordion.html", "../json/faq/banking.json")
+                        </div>
 
-                            <div class="tabs__content-item">
-                                @@loop("components/_accordion.html", "../json/faq/webdev.json")
-                            </div>
+                        <div class="tabs__content-item">
+                            @@loop("components/_accordion.html", "../json/faq/webdev.json")
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- * GENERAL QUESTION -->
+        <!-- * GENERAL QUESTION -->
 
-            <section class="general-question container">
-                <h2 class="h1">Популярні питання</h2>
+        <section class="general-question container">
+            <h2 class="h1">Популярні питання</h2>
 
-                <div class="tabs-wrapper">
-                    <div class="tabs">
-                        <div class="tabs__nav">
-                            <button class="tabs__nav-item navlink">Загальні питання</button>
-                            <button class="tabs__nav-item navlink">Як користуватись?</button>
+            <div class="tabs-wrapper">
+                <div class="tabs">
+                    <div class="tabs__nav">
+                        <button class="tabs__nav-item navlink">Загальні питання</button>
+                        <button class="tabs__nav-item navlink">Як користуватись?</button>
+                    </div>
+                    <div class="tabs__content">
+                        <div class="tabs__content-item">
+                            @@loop("components/_accordion.html", "../json/faq/general.json")
                         </div>
-                        <div class="tabs__content">
-                            <div class="tabs__content-item">
-                                @@loop("components/_accordion.html", "../json/faq/general.json")
-                            </div>
 
-                            <div class="tabs__content-item">
-                                @@loop("components/_accordion.html", "../json/faq/how-to-use.json")
-                            </div>
+                        <div class="tabs__content-item">
+                            @@loop("components/_accordion.html", "../json/faq/how-to-use.json")
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- * FOOTER -->
-            @@include('components/_footer.html',{})
-        </div>
+        <!-- * FOOTER -->
+        @@include('components/_footer.html',{})
     </div>
+
 
     <!-- * POPUP -->
     <!-- @@include('_popup.html',{}) -->

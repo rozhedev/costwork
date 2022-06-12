@@ -104,16 +104,15 @@
             }
         }
     }
-
-    .tabs__content-item {
-        display: grid;
-    }
 }
 
+// * RESULT ITEM
+
 .result-item {
+    display: flex;
+    flex-wrap: wrap;
     margin-top: 20px;
     @include media(map-get($grid-breakpoints, lg)) {
-        display: flex;
         flex-direction: column;
     }
     @include media(map-get($grid-breakpoints, md)) {
@@ -140,9 +139,33 @@
     &__label {
         font-weight: 500;
     }
-    @include media(map-get($grid-breakpoints, lg)) {
-        &__num {
+    &__num {
+        margin-left: 0.6rem;
+        @include media(map-get($grid-breakpoints, lg)) {
+            margin-left: 0;
             margin-top: 0.5rem;
         }
+        @include media(map-get($grid-breakpoints, md)) {
+            margin-left: 0.5rem;
+            margin-top: 0;
+        }
+        @include media(map-get($grid-breakpoints, sm)) {
+            margin-left: 0;
+            margin-top: 0.5rem;
+        }
+    }
+}
+
+.credit-calc,
+.deposit-calc {
+    .tabs__content-item._active {
+        display: block;
+    }
+    .result-item:first-of-type {
+        margin-top: 20px;
+    }
+    .message-output {
+        margin-top: 24px;
+        text-align: justify;
     }
 }

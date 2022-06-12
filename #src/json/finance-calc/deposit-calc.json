@@ -1,0 +1,62 @@
+[
+    {
+        "label": "Сума вкладу:",
+        "type": "number",
+        "id": "credit-amount",
+        "class": "",
+        "measure": "UAH",
+        "isRequired": "required",
+        "isDisabled": "",
+        "isCurrency": "currency",
+        "max": "999999999",
+        "min": "10000"
+    },
+    {
+        "label": "Термін вкладу:",
+        "type": "number",
+        "id": "credit-term",
+        "class": "",
+        "measure": "міс.",
+        "isRequired": "required",
+        "isDisabled": "",
+        "isCurrency": "currency",
+        "max": "999999999",
+        "min": "1"
+    },
+    {
+        "label": "Процентна ставка, % річних:",
+        "type": "number",
+        "id": "percent-rate",
+        "class": "",
+        "measure": "%",
+        "isRequired": "required",
+        "isDisabled": "",
+        "isCurrency": "",
+        "max": "999999999",
+        "min": "1"
+    },
+    {
+        "label": "Нарахування відсотків з урахуванням капіталізації:",
+        "type": "checkbox",
+        "id": "repayment-procedure",
+        "class": "checkbpx",
+        "measure": "",
+        "isRequired": "",
+        "isDisabled": "",
+        "isCurrency": "",
+        "max": "",
+        "min": ""
+    },
+    {
+        "label": "Періодичність капіталізації:",
+        "type": "select",
+        "id": "repayment-frequency",
+        "class": "form-select",
+        "measure": "міс.",
+        "isRequired": "required",
+        "isDisabled": "",
+        "isCurrency": "",
+        "max": "",
+        "min": ""
+    }
+]

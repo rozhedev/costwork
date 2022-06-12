@@ -33,8 +33,8 @@ $grid-breakpoints: (
     // * 968
     md: calc(map-get($container-max-widths, md) + calc($grid-gap * 8.5)),
 
-    // * 1120
-    lg: calc(map-get($container-max-widths, lg) + calc($grid-gap * 5.75)),
+    // * 1160
+    lg: calc(map-get($container-max-widths, lg) + calc($grid-gap * 7)),
     
     // * 1360
     xl: calc(map-get($container-max-widths, xl) + calc($grid-gap * 9)),

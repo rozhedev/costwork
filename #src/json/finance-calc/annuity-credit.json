@@ -1,0 +1,62 @@
+[
+    {
+        "label": "Сума кредиту:",
+        "type": "number",
+        "id": "ann-credit-amount",
+        "class": "",
+        "measure": "UAH",
+        "isRequired": "required",
+        "isDisabled": "",
+        "isCurrency": "currency",
+        "max": "999999999",
+        "min": "10000"
+    },
+    {
+        "label": "Термін кредиту:",
+        "type": "number",
+        "id": "ann-credit-period",
+        "class": "",
+        "measure": "міс.",
+        "isRequired": "required",
+        "isDisabled": "",
+        "isCurrency": "currency",
+        "max": "999999999",
+        "min": "1"
+    },
+    {
+        "label": "Процентна ставка, % річних:",
+        "type": "number",
+        "id": "ann-percent-rate",
+        "class": "",
+        "measure": "%",
+        "isRequired": "required",
+        "isDisabled": "",
+        "isCurrency": "",
+        "max": "999999999",
+        "min": "1"
+    },
+    {
+        "label": "Одноразова комісія:",
+        "type": "number",
+        "id": "ann-one-time-fee",
+        "class": "",
+        "measure": "UAH",
+        "isRequired": "",
+        "isDisabled": "",
+        "isCurrency": "currency",
+        "max": "999999999",
+        "min": "0"
+    },
+    {
+        "label": "Щомісячна комісія:",
+        "type": "number",
+        "id": "ann-monthly-fee",
+        "class": "",
+        "measure": "UAH",
+        "isRequired": "",
+        "isDisabled": "",
+        "isCurrency": "currency",
+        "max": "999999999",
+        "min": "0"
+    }
+]

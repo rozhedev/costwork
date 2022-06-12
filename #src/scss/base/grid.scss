@@ -1,14 +1,12 @@
 .wrapper {
-    width: 100%;
+    max-width: $max-width;
+    transition: $transition;
+    flex: 1 1 auto;
     min-height: 100%;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-}
-
-.page {
-    max-width: $max-width;
-    transition: $transition;
+    justify-content: space-between;
 }
 
 // * MEDIA, BREAKPOINT, CONTAINER

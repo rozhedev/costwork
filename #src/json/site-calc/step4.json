@@ -7,7 +7,9 @@
         "measure": "UAH",
         "isRequired": "",
         "isDisabled": "disabled readonly",
-        "isCurrency": "currency"
+        "isCurrency": "currency",
+        "max": "999999",
+        "min": "0"
     },
     {
         "label": "Єдиний соціальний внесок:",
@@ -17,7 +19,9 @@
         "measure": "%",
         "isRequired": "",
         "isDisabled": "",
-        "isCurrency": ""
+        "isCurrency": "",
+        "max": "999999",
+        "min": "0"
     },
     {
         "label": "Єдиний соціальний внесок:",
@@ -27,6 +31,8 @@
         "measure": "UAH",
         "isRequired": "",
         "isDisabled": "",
-        "isCurrency": "currency"
+        "isCurrency": "currency",
+        "max": "999999",
+        "min": "0"
     }
 ]

@@ -3,7 +3,7 @@
 // * LIBS
 
 // * MODULES
-import "./modules/example";
+import "./modules/credit";
 import "./modules/validation";
 
 // * COMPONENTS

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+@@include('_head.html',{
+"title":"Депозитний калькулятор"
+})
+
+<body>
+    @@include('components/_preloader.html',{})
+
+    <div class="site-calc wrapper" id="site-calc">
+        <!-- * HEADER -->
+        @@include('components/_header.html',{})
+
+        <section class="calc-steps container">
+            <h1 class="h1">Розрахунок прибутку від депозиту</h1>
+
+            <div class="calc-steps__item">
+                <div class="calc-steps__wrapper">
+                    @@loop('components/_form-controller.html', '../json/finance-calc/annuity-credit.json')
+                </div>
+            </div>
+
+            <div class="calc-steps__result">
+                @@loop('components/_result-item.html', '../json/result-calc/site-calc-profit.json')
+            </div>
+        </section>
+
+        <section class="finance-widget-wrapper">
+            @@include('components/_finance-widget.html',{})
+        </section>
+
+        <!-- * FOOTER -->
+        @@include('components/_footer.html',{})
+    </div>
+
+    <!-- * POPUP -->
+    <!-- @@include('_popup.html',{}) -->
+    <!-- * JS -->
+    @@include('_js.html',{})
+</body>
+
+</html>

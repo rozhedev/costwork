@@ -7,7 +7,9 @@
         "measure": "UAH",
         "isRequired": "",
         "isDisabled": "",
-        "isCurrency": "currency"
+        "isCurrency": "currency",
+        "max": "999999",
+        "min": "0"
     },
     {
         "label": "Загальновиробничі витрати:",
@@ -17,7 +19,9 @@
         "measure": "UAH",
         "isRequired": "",
         "isDisabled": "",
-        "isCurrency": "currency"
+        "isCurrency": "currency",
+        "max": "999999",
+        "min": "0"
     },
     {
         "label": "Виробнича собівартість:",
@@ -27,7 +31,9 @@
         "measure": "UAH",
         "isRequired": "",
         "isDisabled": "",
-        "isCurrency": "currency"
+        "isCurrency": "currency",
+        "max": "999999",
+        "min": "0"
     },
     {
         "label": "Позавиробничі витрати:",
@@ -37,6 +43,8 @@
         "measure": "UAH",
         "isRequired": "",
         "isDisabled": "",
-        "isCurrency": "currency"
+        "isCurrency": "currency",
+        "max": "999999",
+        "min": "0"
     }
 ]
