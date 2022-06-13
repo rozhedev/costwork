@@ -22,6 +22,9 @@
             margin-top: 32px;
             font-weight: 500;
            
+            ._dark & {
+                color: $light-color;
+            }
             @include media(map-get($grid-breakpoints, lg)) {
                 margin-top: 28px;
                 letter-spacing: -0.012em;

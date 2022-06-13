@@ -32,38 +32,41 @@ function calcAnnOverpayment(amount, period, rate) {
 
 if (annCreditAmount && annYearRate && annCreditPeriod) {
     for (inpItem of allFormInp) {
-        inpItem.addEventListener("input", function () {
 
-            if (annCreditAmount.value != "" && annYearRate.value != "" && annCreditPeriod.value != "") {
-                let annCreditAmountValue = +document.querySelector("#ann-credit-amount").value;
-                let annYearRateValue = +document.querySelector("#ann-percent-rate").value;
-                let annCreditPeriodValue = +document.querySelector("#ann-credit-period").value;
-                let annOneTimeFeeValue = +document.querySelector("#ann-one-time-fee").value;
-                let annMonthlyFeeValue = +document.querySelector("#ann-monthly-fee").value;
+        // if (inpItem.classList.contains("_success")) {
+            inpItem.addEventListener("input", function () {
 
-                setTimeout(function () {
-                    let annMonthlyPayment = (calcAnnMonthlyPayment(annCreditAmountValue, annCreditPeriodValue, annYearRateValue) + annMonthlyFeeValue).toFixed(2);
-                    annMonthlyPaymentOutput.textContent = annMonthlyPayment;
+                if (annCreditAmount.value != "" && annYearRate.value != "" && annCreditPeriod.value != "") {
+                    let annCreditAmountValue = +document.querySelector("#ann-credit-amount").value;
+                    let annYearRateValue = +document.querySelector("#ann-percent-rate").value;
+                    let annCreditPeriodValue = +document.querySelector("#ann-credit-period").value;
+                    let annOneTimeFeeValue = +document.querySelector("#ann-one-time-fee").value;
+                    let annMonthlyFeeValue = +document.querySelector("#ann-monthly-fee").value;
 
-                    let annTotalPayment = (annMonthlyPayment * annCreditPeriodValue + annOneTimeFeeValue).toFixed(2);
-                    annTotalPaymentOutput.textContent = annTotalPayment;
+                    setTimeout(function () {
+                        let annMonthlyPayment = (calcAnnMonthlyPayment(annCreditAmountValue, annCreditPeriodValue, annYearRateValue) + annMonthlyFeeValue).toFixed(2);
+                        annMonthlyPaymentOutput.textContent = annMonthlyPayment;
 
-                    let annOverpayment = (calcAnnOverpayment(annCreditAmountValue, annCreditPeriodValue, annYearRateValue) + annOneTimeFeeValue).toFixed(2);
+                        let annTotalPayment = (annMonthlyPayment * annCreditPeriodValue + annOneTimeFeeValue).toFixed(2);
+                        annTotalPaymentOutput.textContent = annTotalPayment;
 
-                    if (annOverpayment > 0) {
-                        annOverpaymentOutput.textContent = Math.abs(annOverpayment);
-                        annOverpaymentOutput.style.color = darkColor;
-                        annMessageOutput.textContent = "";
+                        let annOverpayment = (calcAnnOverpayment(annCreditAmountValue, annCreditPeriodValue, annYearRateValue) + annOneTimeFeeValue).toFixed(2);
 
-                    } else {
-                        annOverpaymentOutput.textContent = annOverpayment;
-                        annOverpaymentOutput.style.color = errorRedColor;
-                        annMessageOutput.textContent = "Умови кредиту невигідні для банку, так як позичальник віддає менше чим позичає. Таку пропозицію неможливо знайти.";
-                    }
-                }, delay);
-            }
-        });
-    }
+                        if (annOverpayment > 0) {
+                            annOverpaymentOutput.textContent = Math.abs(annOverpayment);
+                            annOverpaymentOutput.style.color = darkColor;
+                            annMessageOutput.textContent = "";
+
+                        } else {
+                            annOverpaymentOutput.textContent = annOverpayment;
+                            annOverpaymentOutput.style.color = errorRedColor;
+                            annMessageOutput.textContent = "Умови кредиту невигідні для банку, так як позичальник віддає менше чим позичає. Таку пропозицію неможливо знайти.";
+                        }
+                    }, delay);
+                }
+            });
+        }
+    // }
 }
 
 
@@ -163,23 +166,26 @@ function createPaymentTable(table, arr1, arr2, totalSum1, totalSum2) {
 
 if (diffCreditAmount && diffYearRate && diffCreditPeriod) {
     for (inpItem of allFormInp) {
-        inpItem.addEventListener("input", function () {
 
-            if (diffCreditAmount.value != "" && diffYearRate.value != "" && diffCreditPeriod.value != "") {
-                let diffCreditAmountValue = +document.querySelector("#diff-credit-amount").value;
-                let diffYearRateValue = +document.querySelector("#diff-percent-rate").value;
-                let diffCreditPeriodValue = +document.querySelector("#diff-credit-period").value;
-                let diffOneTimeFeeValue = +document.querySelector("#diff-one-time-fee").value;
-                let diffMonthlyFeeValue = +document.querySelector("#diff-monthly-fee").value;
+        // if (inpItem.classList.contains("_success")) {
+            inpItem.addEventListener("input", function () {
 
-                setTimeout(function () {
-                    let paymentObj = calcDiffPayment(diffCreditAmountValue, diffYearRateValue, diffCreditPeriodValue, diffMonthlyFeeValue);
-                    let totalSumObj = calcDiffTotalSum(paymentObj.monthlyPayment, paymentObj.monthlyOverpayment, diffOneTimeFeeValue);
-                    diffTableOutput.innerHTML = "";
+                if (diffCreditAmount.value != "" && diffYearRate.value != "" && diffCreditPeriod.value != "") {
+                    let diffCreditAmountValue = +document.querySelector("#diff-credit-amount").value;
+                    let diffYearRateValue = +document.querySelector("#diff-percent-rate").value;
+                    let diffCreditPeriodValue = +document.querySelector("#diff-credit-period").value;
+                    let diffOneTimeFeeValue = +document.querySelector("#diff-one-time-fee").value;
+                    let diffMonthlyFeeValue = +document.querySelector("#diff-monthly-fee").value;
 
-                    createPaymentTable(diffTableOutput, paymentObj.monthlyPayment, paymentObj.monthlyOverpayment, totalSumObj.monthlyPaymentSum, totalSumObj.monthlyOverpaymentSum);
-                }, delay);
-            }
-        });
+                    setTimeout(function () {
+                        let paymentObj = calcDiffPayment(diffCreditAmountValue, diffYearRateValue, diffCreditPeriodValue, diffMonthlyFeeValue);
+                        let totalSumObj = calcDiffTotalSum(paymentObj.monthlyPayment, paymentObj.monthlyOverpayment, diffOneTimeFeeValue);
+                        diffTableOutput.innerHTML = "";
+
+                        createPaymentTable(diffTableOutput, paymentObj.monthlyPayment, paymentObj.monthlyOverpayment, totalSumObj.monthlyPaymentSum, totalSumObj.monthlyOverpaymentSum);
+                    }, delay);
+                }
+            });
+        // }
     }
 }

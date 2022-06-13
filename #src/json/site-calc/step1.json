@@ -3,84 +3,54 @@
         "label": "Кількість аркушів паперу:",
         "type": "number",
         "id": "paper-count",
-        "class": "",
+        "class": "site-calc-inp",
         "measure": "шт.",
-        "isRequired": "",
         "isDisabled": "",
-        "isCurrency": "",
-        "max": "999999",
-        "min": "0"
+        "isCurrency": ""   
     },
     {
         "label": "Ціна одного аркушу паперу:",
         "type": "number",
         "id": "price-per-one-paper",
-        "class": "",
+        "class": "site-calc-inp",
         "measure": "UAH",
-        "isRequired": "",
         "isDisabled": "",
-        "isCurrency": "currency",
-        "max": "999999",
-        "min": "0"
+        "isCurrency": "currency"
     },
     {
         "label": "Вартість аркушів:",
         "type": "number",
         "id": "paper-price",
-        "class": "",
+        "class": "site-calc-inp",
         "measure": "UAH",
-        "isRequired": "",
         "isDisabled": "",
-        "isCurrency": "currency",
-        "max": "999999",
-        "min": "0"
+        "isCurrency": "currency"  
     },
     {
         "label": "К-сть місяців розташ. на хостингу:",
         "type": "number",
         "id": "hosting-mounth-count",
-        "class": "",
+        "class": "site-calc-inp",
         "measure": "міс.",
-        "isRequired": "",
         "isDisabled": "",
-        "isCurrency": "",
-        "max": "999999",
-        "min": "0"
+        "isCurrency": ""  
     },
     {
         "label": "Вартість 1 місяця хостингу:",
         "type": "number",
-        "id": "price-per-one-hosting-mounth",
-        "class": "",
+        "id": "price-per-hosting-mounth",
+        "class": "site-calc-inp",
         "measure": "UAH",
-        "isRequired": "",
         "isDisabled": "",
-        "isCurrency": "currency",
-        "max": "999999",
-        "min": "0"
+        "isCurrency": "currency"     
     },
     {
-        "label": "Вартість розміщення на хостингу:",
-        "type": "number",
-        "id": "hosting-placement-fee",
-        "class": "",
-        "measure": "UAH",
-        "isRequired": "",
-        "isDisabled": "",
-        "isCurrency": "currency",
-        "max": "999999",
-        "min": "0"
-    },
-    {
-        "label": "Матеріальні витрати:",
+        "label": "Сумма матеріальних витрат:",
         "type": "number",
         "id": "step1-sum",
-        "class": "disabled",
+        "class": "site-calc-inp disabled",
         "measure": "UAH",
-        "isRequired": "",
         "isDisabled": "disabled readonly",
-        "isCurrency": "currency",
-        "max": "999999",
-        "min": "0"
+        "isCurrency": "currency"   
     }
 ]

@@ -3,60 +3,45 @@
         "label": "Сума вкладу:",
         "type": "number",
         "id": "credit-amount",
-        "class": "",
+        "class": "deposit-inp",
         "measure": "UAH",
-        "isRequired": "required",
         "isDisabled": "",
-        "isCurrency": "currency",
-        "max": "999999999",
-        "min": "10000"
+        "isCurrency": "currency"
     },
     {
         "label": "Термін вкладу:",
         "type": "number",
         "id": "credit-term",
-        "class": "",
+        "class": "deposit-inp",
         "measure": "міс.",
-        "isRequired": "required",
         "isDisabled": "",
-        "isCurrency": "currency",
-        "max": "999999999",
-        "min": "1"
+        "isCurrency": "currency"
     },
     {
         "label": "Процентна ставка, % річних:",
         "type": "number",
         "id": "percent-rate",
-        "class": "",
+        "class": "deposit-inp",
         "measure": "%",
-        "isRequired": "required",
         "isDisabled": "",
-        "isCurrency": "",
-        "max": "999999999",
-        "min": "1"
+        "isCurrency": ""
     },
     {
         "label": "Нарахування відсотків з урахуванням капіталізації:",
         "type": "checkbox",
         "id": "repayment-procedure",
-        "class": "checkbpx",
+        "class": "checkbox deposit-inp",
         "measure": "",
-        "isRequired": "",
         "isDisabled": "",
-        "isCurrency": "",
-        "max": "",
-        "min": ""
+        "isCurrency": ""
     },
     {
         "label": "Періодичність капіталізації:",
         "type": "select",
         "id": "repayment-frequency",
-        "class": "form-select",
+        "class": "form-select deposit-inp",
         "measure": "міс.",
-        "isRequired": "required",
         "isDisabled": "",
-        "isCurrency": "",
-        "max": "",
-        "min": ""
+        "isCurrency": ""
     }
 ]

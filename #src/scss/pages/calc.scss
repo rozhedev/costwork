@@ -133,6 +133,9 @@
     th,
     td {
         line-height: 2.8;
+        ._dark & {
+            color: $light-color;
+        } 
     }
     th {
         border-bottom: 2px solid $dark-color-80;
@@ -158,10 +161,11 @@
 
     &-label {
         font-weight: 500;
-        cursor: text;
     }
     &-value span {
         text-align: right;
-        cursor: text;
+        ._dark & {
+            color: $light-color;
+        }
     }
 }

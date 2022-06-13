@@ -1,20 +1,37 @@
-// const subscribeEmail = document.querySelector('.subscribe__form-inp');
-// const subscribeForm = document.getElementById('subscribe-form');
+// TODO: Add interval for credit term & percent rate inputs
 
-let shortInterval = 4000;
-let longInterval = 6000;
+const siteCalcInputs = document.querySelectorAll(".site-calc-inp");
+const depositInputs = document.querySelectorAll(".deposit-inp");
+const creditInputs = document.querySelectorAll(".credit-inp");
 
-// * Email
+let errorRedColor = "#cf5c36";
+let darkColor = "#0d090a";
+let delay = 3000;
 
-function checkEmail(email) {
-    const emailValue = email.value.trim();
+const siteCalcInterval = {
+    min: 0.01,
+    max: 9999999,
+};
+const depositInterval = {
+    min: 1000,
+    max: 9999999999
+};
+const creditInterval = {
+    min: 10000,
+    max: 9999999999,
+};
 
-    if (emailValue === '') {
-        setErrorFor(email, 'Поле не может быть пустым');
-    } else if (!isEmail(emailValue)) {
-        setErrorFor(email, 'Почта введена некорректно');
+function checkInp(inp, intervalMin, intervalMax) {
+    let inpValue = +inp.value;
+    if (inpValue == "" || inpValue == 0) {
+        setErrorFor(inp, "Поле не може бути пустим");
+    } else if (inpValue < intervalMin) {
+        setErrorFor(inp, `Значення не повинно бути менше ${intervalMin}`);
+        console.log(1);
+    } else if (inpValue > intervalMax) {
+        setErrorFor(inp, `Значення не повинно бути більше ${intervalMax}`);
     } else {
-        setSuccessFor(email);
+        setSuccessFor(inp);
     }
 }
 
@@ -22,45 +39,45 @@ function checkEmail(email) {
 
 function setErrorFor(input, message) {
     const formControl = input.parentElement;
-    const small = formControl.querySelector('small');
+    const small = formControl.querySelector("small");
 
-    formControl.classList.add('_error')
-    formControl.classList.remove('_success');
+    formControl.classList.add("_error")
+    formControl.classList.remove("_success");
+    small.style.opacity = "1";
     small.textContent = message;
 }
 
 function setSuccessFor(input) {
     const formControl = input.parentElement;
+    const small = formControl.querySelector("small");
 
-    formControl.classList.remove('_error')
-    formControl.classList.add('_success');
-}
-
-// * RegEx
-
-function isFullname(fullname) {
-    return /\b([A-Z]{1}[a-z]{1,30}[- ]{0,1}|[A-Z]{1}[- \']{1}[A-Z]{0,1}[a-z]{1,30}[- ]{0,1}|[a-z]{1,2}[ -\']{1}[A-Z]{1}[a-z]{1,30}){2,5}/.test(fullname);
-}
-
-function isEmail(email) {
-    return /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+    formControl.classList.remove("_error")
+    formControl.classList.add("_success");
+    small.style.opacity = "0";
 }
 
 // * Call functions
 
-// if (subscribeForm) {
-//     subscribeEmail.addEventListener('input', function (e) {
-//         e.preventDefault();
-//         e = event.currentTarget;
-//         if (subscribeEmail && e == subscribeEmail) {
-//             setTimeout(function () {
-//                 checkEmail(subscribeEmail);
-//             }, shortInterval);
-//         }
-//     });
+for (let i = 0; i < siteCalcInputs.length; i++) {
+    siteCalcInputs[i].addEventListener("input", function () {
+        setTimeout(function () {
+            checkInp(siteCalcInputs[i], siteCalcInterval.min, siteCalcInterval.max);
+        }, delay);
+    });
+}
 
-//     subscribeForm.addEventListener('submit', function (e) {
-//         e.preventDefault();
-//         checkEmail(subscribeEmail);
-//     });
-// }
+for (let i = 0; i < depositInputs.length; i++) {
+    depositInputs[i].addEventListener("input", function () {
+        setTimeout(function () {
+            checkInp(depositInputs[i], depositInterval.min, depositInterval.max);
+        }, delay);
+    });
+}
+
+for (let i = 0; i < creditInputs.length; i++) {
+    creditInputs[i].addEventListener("input", function () {
+        setTimeout(function () {
+            checkInp(creditInputs[i], creditInterval.min, creditInterval.max);
+        }, delay);
+    });
+}

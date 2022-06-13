@@ -3,48 +3,36 @@
         "label": "Витрати на утрим. обладнання:",
         "type": "number",
         "id": "equipment-costs",
-        "class": "",
+        "class": "site-calc-inp",
         "measure": "UAH",
-        "isRequired": "",
         "isDisabled": "",
-        "isCurrency": "currency",
-        "max": "999999",
-        "min": "0"
+        "isCurrency": "currency"
     },
     {
         "label": "Загальновиробничі витрати:",
         "type": "number",
         "id": "production-costs",
-        "class": "",
+        "class": "site-calc-inp",
         "measure": "UAH",
-        "isRequired": "",
         "isDisabled": "",
-        "isCurrency": "currency",
-        "max": "999999",
-        "min": "0"
+        "isCurrency": "currency"
     },
     {
         "label": "Виробнича собівартість:",
         "type": "number",
         "id": "production-costs-sales",
-        "class": "",
+        "class": "site-calc-inp",
         "measure": "UAH",
-        "isRequired": "",
         "isDisabled": "",
-        "isCurrency": "currency",
-        "max": "999999",
-        "min": "0"
+        "isCurrency": "currency"
     },
     {
         "label": "Позавиробничі витрати:",
         "type": "number",
         "id": "non-production-costs",
-        "class": "",
+        "class": "site-calc-inp",
         "measure": "UAH",
-        "isRequired": "",
         "isDisabled": "",
-        "isCurrency": "currency",
-        "max": "999999",
-        "min": "0"
+        "isCurrency": "currency"
     }
 ]

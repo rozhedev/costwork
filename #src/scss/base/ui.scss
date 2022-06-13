@@ -83,10 +83,8 @@ body._dark {
     font-weight: 600;
     line-height: 1.6;
     letter-spacing: 0.02em;
-
     color: $dark-color;
     transition: $transition;
-    cursor: pointer;
 }
 
 .link {
@@ -110,7 +108,7 @@ body._dark {
 
 .error-text {
     font-size: 0.6666rem;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.25;
     color: $error-red;
 

@@ -3,60 +3,45 @@
         "label": "Сума кредиту:",
         "type": "number",
         "id": "diff-credit-amount",
-        "class": "",
+        "class": "credit-inp",
         "measure": "UAH",
-        "isRequired": "required",
         "isDisabled": "",
-        "isCurrency": "currency",
-        "max": "999999999",
-        "min": "10000"
+        "isCurrency": "currency"
     },
     {
         "label": "Термін кредиту:",
         "type": "number",
         "id": "diff-credit-period",
-        "class": "",
+        "class": "credit-inp",
         "measure": "міс.",
-        "isRequired": "required",
         "isDisabled": "",
-        "isCurrency": "currency",
-        "max": "999999999",
-        "min": "1"
+        "isCurrency": "currency"   
     },
     {
         "label": "Процентна ставка, % річних:",
         "type": "number",
         "id": "diff-percent-rate",
-        "class": "",
+        "class": "credit-inp",
         "measure": "%",
-        "isRequired": "required",
         "isDisabled": "",
-        "isCurrency": "",
-        "max": "999999999",
-        "min": "1"
+        "isCurrency": ""
     },
     {
         "label": "Одноразова комісія:",
         "type": "number",
         "id": "diff-one-time-fee",
-        "class": "",
+        "class": "credit-inp",
         "measure": "UAH",
-        "isRequired": "",
         "isDisabled": "",
-        "isCurrency": "currency",
-        "max": "999999999",
-        "min": "0"
+        "isCurrency": "currency"
     },
     {
         "label": "Щомісячна комісія:",
         "type": "number",
         "id": "diff-monthly-fee",
-        "class": "",
+        "class": "credit-inp",
         "measure": "UAH",
-        "isRequired": "",
         "isDisabled": "",
-        "isCurrency": "currency",
-        "max": "999999999",
-        "min": "0"
+        "isCurrency": "currency"
     }
 ]

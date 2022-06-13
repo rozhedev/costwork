@@ -30,7 +30,9 @@
 
     .navlink {
         position: static;
-        cursor: pointer;    
+        ._dark & {
+            color: $light-color;
+        } 
     }
     &__img {
         width: 128px;
@@ -38,12 +40,6 @@
     &__title.navlink {
         padding: 16px 0px;
         text-align: center;
-        cursor: text;
-        ._dark & {
-            &:hover {
-                color: $light-color;
-            }
-        }
     }
     &__btn {
         display: flex;
@@ -51,6 +47,7 @@
         padding: 8px 16px;
         border-radius: 8px;
         background-color: $accent-color;
+        cursor: pointer;
 
         span {
             color: $light-color;
