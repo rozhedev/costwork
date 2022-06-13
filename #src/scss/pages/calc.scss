@@ -106,56 +106,6 @@
     }
 }
 
-// * RESULT ITEM
-
-.result-item {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    @include media(map-get($grid-breakpoints, lg)) {
-        flex-direction: column;
-    }
-    @include media(map-get($grid-breakpoints, md)) {
-        flex-direction: row;
-    }
-    @include media(map-get($grid-breakpoints, sm)) {
-        flex-direction: column;
-    }
-
-    &:first-of-type {
-        margin-top: 28px;
-    }
-    &__label,
-    &__num,
-    &__currency {
-        font-size: 1.33rem;
-        @include media(map-get($grid-breakpoints, lg)) {
-            font-size: 1.5rem;
-        }
-        @include media(map-get($grid-breakpoints, sm)) {
-            font-size: 1.2rem;
-        }
-    }
-    &__label {
-        font-weight: 500;
-    }
-    &__num {
-        margin-left: 0.6rem;
-        @include media(map-get($grid-breakpoints, lg)) {
-            margin-left: 0;
-            margin-top: 0.5rem;
-        }
-        @include media(map-get($grid-breakpoints, md)) {
-            margin-left: 0.5rem;
-            margin-top: 0;
-        }
-        @include media(map-get($grid-breakpoints, sm)) {
-            margin-left: 0;
-            margin-top: 0.5rem;
-        }
-    }
-}
-
 .credit-calc,
 .deposit-calc {
     .tabs__content-item._active {
@@ -167,5 +117,51 @@
     .message-output {
         margin-top: 24px;
         text-align: justify;
+    }
+}
+
+.payment-table {
+    @include col(9);
+    margin: 2.5rem auto 0;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    border: 2px solid $dark-color-60;
+
+    &:first-child td {
+        display: none;
+    }
+    th,
+    td {
+        line-height: 2.8;
+    }
+    th {
+        border-bottom: 2px solid $dark-color-80;
+    }
+    tbody td {
+        border-bottom: 2px solid $dark-color-80;
+    }
+
+    @include media(map-get($grid-breakpoints, md)) {
+        @include col(12);
+        margin: 2.5rem 0 0 0;
+    }
+    @include media(map-get($grid-breakpoints, sm)) {
+        width: 328px;
+        padding: 0.5rem 1rem;
+        .navlink {
+            font-size: 1.16rem;
+        }
+    }
+}
+.payment-table__item {
+    text-align: center;
+
+    &-label {
+        font-weight: 500;
+        cursor: text;
+    }
+    &-value span {
+        text-align: right;
+        cursor: text;
     }
 }

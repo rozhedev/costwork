@@ -1,0 +1,48 @@
+.result-item {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+
+    @include media(map-get($grid-breakpoints, lg)) {
+        flex-direction: column;
+    }
+    @include media(map-get($grid-breakpoints, md)) {
+        flex-direction: row;
+    }
+    @include media(map-get($grid-breakpoints, sm)) {
+        flex-direction: column;
+    }
+
+    &:first-of-type {
+        margin-top: 28px;
+    }
+    &__label,
+    &__value,
+    &__currency {
+        font-size: 1.33rem;
+        @include media(map-get($grid-breakpoints, lg)) {
+            font-size: 1.5rem;
+        }
+        @include media(map-get($grid-breakpoints, sm)) {
+            font-size: 1.2rem;
+        }
+    }
+    &__label {
+        font-weight: 500;
+    }
+    &__value {
+        margin-left: 0.6rem;
+        @include media(map-get($grid-breakpoints, lg)) {
+            margin-left: 0;
+            margin-top: 0.5rem;
+        }
+        @include media(map-get($grid-breakpoints, md)) {
+            margin-left: 0.5rem;
+            margin-top: 0;
+        }
+        @include media(map-get($grid-breakpoints, sm)) {
+            margin-left: 0;
+            margin-top: 0.5rem;
+        }
+    }
+}

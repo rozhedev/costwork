@@ -112,7 +112,11 @@ body._dark {
     font-size: 0.6666rem;
     font-weight: 400;
     line-height: 1.25;
+    color: $error-red;
 
+    ._dark & {
+        color: $dark-error-red;
+    }
     @include media(map-get($grid-breakpoints, lg)) {
         font-size: 0.75rem;
     }
