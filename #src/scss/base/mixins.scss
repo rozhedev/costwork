@@ -1,5 +1,5 @@
 @mixin hover {
-    @media (any-hover:hover) {
+    @media (any-hover: hover) {
         &:hover {
             @content;
         }
@@ -54,7 +54,7 @@
         @include hover {
             color: $dark-accent-color;
         }
-    } 
+    }
 }
 
 @mixin footer-gap {
@@ -64,6 +64,30 @@
     }
     @include media(map-get($grid-breakpoints, md)) {
         margin-top: 68px;
+    }
+}
+
+@mixin message {
+    @include col(6);
+    margin: 2rem auto 0;
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    text-align: justify;
+    background-color: $footer-grey;
+    border-radius: 8px;
+    transition: $transition;
+    border: 2px solid $active-blue-color;
+    ._dark & {
+        background-color: $dark-footer-grey;
+        border: 2px solid $dark-active-blue-color;
+    }
+
+    @include media(map-get($grid-breakpoints, md)) {
+        @include col(9);
+        margin: 2rem 0 0 0;
+    }
+    @include media(map-get($grid-breakpoints, sm)) {
+        width: 100%;
     }
 }
 
@@ -109,10 +133,4 @@
     border-style: solid;
     border-width: 0 calc($width / 2) $height calc($width / 2);
     border-color: transparent transparent $border-color transparent;
-}
-
-@mixin margin-without-first($mt, $mr, $mb, $ml) {
-    &:not(:first-of-type) {
-        margin: $mt $mr $mb $ml;
-    }
 }

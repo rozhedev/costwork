@@ -48,9 +48,9 @@
         "label": "Сума витрат:",
         "type": "number",
         "id": "step2-sum",
-        "class": "site-calc-inp disabled",
+        "class": "site-calc-inp _disabled",
         "measure": "UAH",
-        "isDisabled": "disabled readonly",
+        "isDisabled": "_disabled readonly",
         "isCurrency": "currency" 
     }
 ]

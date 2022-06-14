@@ -5,7 +5,7 @@
             grid-template: 1fr / repeat(4, 1fr);
             grid-auto-rows: 1fr;
             grid-auto-columns: 1fr;
-            grid-gap: $grid-gap;
+            grid-gap: $grid-gap-side $grid-gap;
 
             @include media(map-get($grid-breakpoints, lg)) {
                 grid-template: 1fr / repeat(3, 1fr);
@@ -18,10 +18,10 @@
             }
         }
         &__item:not(:first-of-type) {
-            margin-top: 32px;
+            margin-top: 1.75rem;
         }
         &__result {
-            margin-top: 48px;
+            margin-top: 1.75rem;
             display: flex;
             justify-content: space-between;
 
@@ -114,11 +114,15 @@
     .result-item:first-of-type {
         margin-top: 20px;
     }
-    .message-output {
-        margin-top: 24px;
-        text-align: justify;
+    .message {
+        @include message;
+    }
+    @include media(map-get($grid-breakpoints, sm)) {
+        overflow-x: auto;
     }
 }
+
+// * PAYMENT-TABLE
 
 .payment-table {
     @include col(9);
@@ -149,11 +153,10 @@
         margin: 2.5rem 0 0 0;
     }
     @include media(map-get($grid-breakpoints, sm)) {
-        width: 328px;
+        max-width: 664px;
+        overflow-x: scroll;
         padding: 0.5rem 1rem;
-        .navlink {
-            font-size: 1.16rem;
-        }
+        margin-right: 1.5rem;
     }
 }
 .payment-table__item {

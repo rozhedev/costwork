@@ -1,41 +1,46 @@
-// TODO: Add interval for credit term & percent rate inputs
-
 const siteCalcInputs = document.querySelectorAll(".site-calc-inp");
 const depositInputs = document.querySelectorAll(".deposit-inp");
 const creditInputs = document.querySelectorAll(".credit-inp");
+const periodInputs = document.querySelectorAll(".period-inp");
+const percentInputs = document.querySelectorAll(".percent-inp");
 
-let errorRedColor = "#cf5c36";
-let darkColor = "#0d090a";
-let delay = 3000;
+// * VALIDATION INTERVALS
 
 const siteCalcInterval = {
     min: 0.01,
     max: 9999999,
 };
 const depositInterval = {
-    min: 1000,
-    max: 9999999999
-};
-const creditInterval = {
-    min: 10000,
+    min: 999,
     max: 9999999999,
 };
+const creditInterval = {
+    min: 9999,
+    max: 9999999999,
+};
+const periodInterval = {
+    min: 1,
+    max: 121,
+};
+const percentInterval = {
+    min: 0.0001,
+    max: 41,
+};
+
+// * FUNCTIONS
 
 function checkInp(inp, intervalMin, intervalMax) {
     let inpValue = +inp.value;
-    if (inpValue == "" || inpValue == 0) {
+    if (inpValue == "") {
         setErrorFor(inp, "Поле не може бути пустим");
     } else if (inpValue < intervalMin) {
-        setErrorFor(inp, `Значення не повинно бути менше ${intervalMin}`);
-        console.log(1);
+        setErrorFor(inp, `Мінімальне значення: ${intervalMin}`);
     } else if (inpValue > intervalMax) {
-        setErrorFor(inp, `Значення не повинно бути більше ${intervalMax}`);
+        setErrorFor(inp, `Максимальне значення: ${intervalMax}`);
     } else {
         setSuccessFor(inp);
     }
 }
-
-// * Set functions
 
 function setErrorFor(input, message) {
     const formControl = input.parentElement;
@@ -43,41 +48,44 @@ function setErrorFor(input, message) {
 
     formControl.classList.add("_error")
     formControl.classList.remove("_success");
-    small.style.opacity = "1";
     small.textContent = message;
 }
 
 function setSuccessFor(input) {
     const formControl = input.parentElement;
-    const small = formControl.querySelector("small");
 
     formControl.classList.remove("_error")
     formControl.classList.add("_success");
-    small.style.opacity = "0";
 }
 
-// * Call functions
+// * CALL FUNCTIONS
 
 for (let i = 0; i < siteCalcInputs.length; i++) {
-    siteCalcInputs[i].addEventListener("input", function () {
-        setTimeout(function () {
-            checkInp(siteCalcInputs[i], siteCalcInterval.min, siteCalcInterval.max);
-        }, delay);
+    siteCalcInputs[i].addEventListener("change", function () {
+        checkInp(siteCalcInputs[i], siteCalcInterval.min, siteCalcInterval.max);
     });
 }
 
 for (let i = 0; i < depositInputs.length; i++) {
-    depositInputs[i].addEventListener("input", function () {
-        setTimeout(function () {
-            checkInp(depositInputs[i], depositInterval.min, depositInterval.max);
-        }, delay);
+    depositInputs[i].addEventListener("change", function () {
+        checkInp(depositInputs[i], depositInterval.min, depositInterval.max);
     });
 }
 
 for (let i = 0; i < creditInputs.length; i++) {
-    creditInputs[i].addEventListener("input", function () {
-        setTimeout(function () {
-            checkInp(creditInputs[i], creditInterval.min, creditInterval.max);
-        }, delay);
+    creditInputs[i].addEventListener("change", function () {
+        checkInp(creditInputs[i], creditInterval.min, creditInterval.max);
+    });
+}
+
+for (let i = 0; i < periodInputs.length; i++) {
+    periodInputs[i].addEventListener("change", function () {
+        checkInp(periodInputs[i], periodInterval.min, periodInterval.max);
+    });
+}
+
+for (let i = 0; i < percentInputs.length; i++) {
+    percentInputs[i].addEventListener("change", function () {
+        checkInp(percentInputs[i], percentInterval.min, percentInterval.max);
     });
 }

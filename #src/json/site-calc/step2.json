@@ -30,7 +30,7 @@
         "label": "Вартість електроенергії:",
         "type": "number",
         "id": "price-per-one-watt",
-        "class": "site-calc-inp disabled",
+        "class": "site-calc-inp _disabled",
         "measure": "UAH",
         "isDisabled": "",
         "isCurrency": "currency"

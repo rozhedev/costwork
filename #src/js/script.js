@@ -3,8 +3,8 @@
 // * LIBS
 
 // * MODULES
-import "./modules/credit";
 import "./modules/validation";
+import "./modules/credit";
 
 // * COMPONENTS
 import "./components/preloader";

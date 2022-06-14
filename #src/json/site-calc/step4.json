@@ -5,7 +5,7 @@
         "id": "salary-sum",
         "class": "site-calc-inp",
         "measure": "UAH",
-        "isDisabled": "disabled readonly",
+        "isDisabled": "_disabled readonly",
         "isCurrency": "currency"
     },
     {

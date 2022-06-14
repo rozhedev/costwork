@@ -107,16 +107,28 @@ body._dark {
 }
 
 .error-text {
-    font-size: 0.6666rem;
+    opacity: 0;
+    pointer-events: none;
+    font-size: 0.75rem;
     font-weight: 500;
     line-height: 1.25;
     color: $error-red;
 
+    ._error & {
+        opacity: 1;
+        pointer-events: all;
+    }
     ._dark & {
         color: $dark-error-red;
     }
-    @include media(map-get($grid-breakpoints, lg)) {
-        font-size: 0.75rem;
+}
+
+.message {
+    @include message;
+    display: none;
+
+    &._active {
+        display: block;
     }
 }
 
@@ -132,31 +144,40 @@ body._dark {
     border-radius: 8px;
     transition: $transition;
 
-    &.error {
+    ._error &, ._error &:focus {
         border-color: $error-red;
         box-shadow: $inp-error-shadow;
+    }
+    ._success &, ._success &:focus {
+        border-color: $accent-color;
+        box-shadow: none;
+    }
+    &._disabled {
+        border-color: $light-color-60;
+        color: $light-color-60;
     }
     &:focus {
         border-color: $active-blue-color;
         box-shadow: $inp-focus-shadow;
     }
-    &.disabled {
-        border-color: $light-color-60;
-        color: $light-color-60;
-        ._dark & {
-            border-color: $dark-color-60;
-            color: $dark-color-60;
-        }
-    }
 
+    // * DARK THEME INP
     ._dark & {
         color: $light-color;
         background-color: $dark-color;
         border: 3px solid $dark-inactive-blue-color;
 
-        &.error {
+        &._error, ._error &:focus {
             border-color: $dark-error-red;
-            box-shadow: $inp-error-shadow;
+            box-shadow: $dark-inp-error-shadow;
+        }
+        ._success &, ._success &:focus {
+            border-color: $dark-accent-color;
+            box-shadow: none;
+        }
+        &._disabled {
+            border-color: $dark-color-60;
+            color: $dark-color-60;
         }
         &:focus {
             border-color: $dark-active-blue-color;
