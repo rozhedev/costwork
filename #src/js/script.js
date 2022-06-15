@@ -4,6 +4,7 @@
 
 // * MODULES
 import "./modules/validation";
+import "./modules/deposit";
 import "./modules/credit";
 
 // * COMPONENTS

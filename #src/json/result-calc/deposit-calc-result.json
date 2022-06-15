@@ -1,0 +1,14 @@
+[
+    {
+        "title": "Сума в кінці строку:",
+        "id": "deposit-total-output"
+    },
+    {
+        "title": "Чистий прибуток:",
+        "id": "deposit-profit-output"
+    },
+    {
+        "title": "Середній дохід за місяць:",
+        "id": "deposit-month-profit-output"
+    }
+]

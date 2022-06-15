@@ -8,21 +8,59 @@
 <body>
     @@include('components/_preloader.html',{})
 
-    <div class="site-calc wrapper" id="site-calc">
+    <div class="site-calc credit-calc wrapper" id="deposit-calc">
         <!-- * HEADER -->
         @@include('components/_header.html',{})
 
         <section class="calc-steps container">
-            <h1 class="h1">Розрахунок прибутку від депозиту</h1>
+            <!-- Розрахунок прибутку від депозиту -->
+            <h1 class="h1">Депозитний калькулятор</h1>
 
-            <div class="calc-steps__item">
-                <div class="calc-steps__wrapper">
-                    @@loop('components/_form-controller.html', '../json/finance-calc/annuity-credit.json')
+            <div class="tabs-wrapper">
+                <div class="tabs">
+                    <div class="tabs__nav">
+                        <button class="tabs__nav-item navlink">Без капіталізації</button>
+                        <button class="tabs__nav-item navlink">З капіталізацією</button>
+                    </div>
+
+                    <div class="tabs__content">
+                        <div class="tabs__content-item">
+                            <div class="calc-steps__item">
+                                <div class="calc-steps__wrapper">
+                                    @@loop('components/_form-controller.html', '../json/finance-calc/sim-deposit-calc.json')
+                                </div>
+                            </div>
+
+                            <div class="calc-steps__result">
+                                @@loop('components/_result-item.html', '../json/result-calc/deposit-calc-result.json')
+                            </div>
+                            <div id="deposit-message-output" class="message"></div>
+                        </div>
+
+                        <div class="tabs__content-item">
+                            <div class="calc-steps__item">
+                                <div class="calc-steps__wrapper">
+                                    @@loop('components/_form-controller.html', '../json/finance-calc/cap-deposit-calc.json')
+                                </div>
+                            </div>
+
+                            <div class="message message-tip">
+                                Щоб корректно відобразити таблицю, переверніть Ваш пристрій або проведіть по таблиці справа наліво щоб побачити іншу частину вмісту.
+                            </div>
+                            <table class="payment-table" id="deposit-table-output">
+                                <thead>
+                                    <tr>
+                                        <th class="navlink">№ місяця</th>
+                                        <th class="navlink">Сума на кінець місяця</th>
+                                        <th class="navlink">Місячний прибуток</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="calc-steps__result">
-                @@loop('components/_result-item.html', '../json/result-calc/site-calc-profit.json')
             </div>
         </section>
 

@@ -1,0 +1,29 @@
+[
+    {
+        "label": "Сума вкладу:",
+        "type": "number",
+        "id": "cap-deposit-amount",
+        "class": "deposit-inp",
+        "measure": "UAH",
+        "isDisabled": "",
+        "isCurrency": "currency"
+    },
+    {
+        "label": "Термін вкладу:",
+        "type": "number",
+        "id": "cap-deposit-period",
+        "class": "period-inp",
+        "measure": "днів",
+        "isDisabled": "",
+        "isCurrency": "currency"
+    },
+    {
+        "label": "Процентна ставка, % річних:",
+        "type": "number",
+        "id": "cap-year-rate",
+        "class": "percent-inp",
+        "measure": "%",
+        "isDisabled": "",
+        "isCurrency": ""
+    }
+]
