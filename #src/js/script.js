@@ -3,9 +3,9 @@
 // * LIBS
 
 // * MODULES
-import "./modules/validation";
-import "./modules/deposit";
-import "./modules/credit";
+import "./functions/validation";
+import "./calc/deposit";
+import "./calc/credit";
 
 // * COMPONENTS
 import "./components/preloader";

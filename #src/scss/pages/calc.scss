@@ -23,6 +23,7 @@
         &__result {
             margin-top: 1.75rem;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
 
             @include media(map-get($grid-breakpoints, md)) {

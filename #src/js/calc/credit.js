@@ -1,5 +1,4 @@
-// * ann - Annuity credit
-// * diff - Differential credit 
+// * ann - Annuity credit, diff - Differential credit 
 
 const allFormInp = document.querySelectorAll(".inp");
 const annCreditAmount = document.getElementById("ann-credit-amount");
@@ -42,11 +41,11 @@ if (annCreditAmount && annYearRate && annCreditPeriod) {
 
             if (annCreditAmountController.classList.contains("_success") && annYearRateController.classList.contains("_success") && annCreditPeriodController.classList.contains("_success")) {
 
-                let annCreditAmountValue = +document.querySelector("#ann-credit-amount").value;
-                let annYearRateValue = +document.querySelector("#ann-percent-rate").value;
-                let annCreditPeriodValue = +document.querySelector("#ann-credit-period").value;
-                let annOneTimeFeeValue = +document.querySelector("#ann-one-time-fee").value;
-                let annMonthlyFeeValue = +document.querySelector("#ann-monthly-fee").value;
+                let annCreditAmountValue = +annCreditAmount.value;
+                let annYearRateValue = +annYearRate.value;
+                let annCreditPeriodValue = +annCreditPeriod.value;
+                let annOneTimeFeeValue = +annOneTimeFee.value;
+                let annMonthlyFeeValue = +annMonthlyFee.value;
 
                 setTimeout(function () {
                     let annMonthlyPayment = (calcAnnMonthlyPayment(annCreditAmountValue, annCreditPeriodValue, annYearRateValue) + annMonthlyFeeValue).toFixed(2);
@@ -86,9 +85,6 @@ const diffYearRate = document.getElementById("diff-percent-rate");
 const diffCreditPeriod = document.getElementById("diff-credit-period");
 const diffOneTimeFee = document.getElementById("diff-one-time-fee");
 const diffMonthlyFee = document.getElementById("diff-monthly-fee");
-
-const diffTotalPaymentOutput = document.getElementById("diff-total-payment-output");
-const diffOverpaymentOutput = document.getElementById("diff-overpayment-output");
 const diffTableOutput = document.querySelector("#diff-table-output tbody");
 
 function calcDiffPayment(amount, rate, period, monthlyFee) {
@@ -99,14 +95,12 @@ function calcDiffPayment(amount, rate, period, monthlyFee) {
         monthlyOverpayment: [],
     };
 
-    for (i = 1; i <= period; i++) {
+    for (let i = 1; i <= period; i++) {
         let monthlyPercent = (amount - primaryPayment * i) * monthlyRate;
         monthlyPayobj.monthlyPayment[i] = +(primaryPayment + monthlyPercent + monthlyFee).toFixed(2);
-    }
-    for (i = 1; i <= period; i++) {
-        let monthlyPercent = (amount - primaryPayment * i) * monthlyRate;
         monthlyPayobj.monthlyOverpayment[i] = +(monthlyPercent + monthlyFee).toFixed(2);
     }
+    
     return monthlyPayobj;
 }
 
@@ -131,7 +125,7 @@ function calcDiffTotalSum(arr1, arr2, oneTimeFee) {
 // * OUTPUT FUNCTION
 
 function createPaymentTable(table, arr1, arr2, totalSum1, totalSum2) {
-    for (let i = 1; i < arr1.length; i++) {
+    for (let i = 1; i <= arr1.length; i++) {
         let tableItem = document.createElement("tr");
         tableItem.classList.add("payment-table__item");
 
@@ -188,11 +182,11 @@ if (diffCreditAmount && diffYearRate && diffCreditPeriod) {
 
             if (diffCreditAmountController.classList.contains("_success") && diffYearRateController.classList.contains("_success") && diffCreditPeriodController.classList.contains("_success")) {
 
-                let diffCreditAmountValue = +document.querySelector("#diff-credit-amount").value;
-                let diffYearRateValue = +document.querySelector("#diff-percent-rate").value;
-                let diffCreditPeriodValue = +document.querySelector("#diff-credit-period").value;
-                let diffOneTimeFeeValue = +document.querySelector("#diff-one-time-fee").value;
-                let diffMonthlyFeeValue = +document.querySelector("#diff-monthly-fee").value;
+                let diffCreditAmountValue = +diffCreditAmount.value;
+                let diffYearRateValue = +diffYearRate.value;
+                let diffCreditPeriodValue = +diffCreditPeriod.value;
+                let diffOneTimeFeeValue = +diffOneTimeFee.value;
+                let diffMonthlyFeeValue = +diffMonthlyFee.value;
 
                 setTimeout(function () {
                     let paymentObj = calcDiffPayment(diffCreditAmountValue, diffYearRateValue, diffCreditPeriodValue, diffMonthlyFeeValue);

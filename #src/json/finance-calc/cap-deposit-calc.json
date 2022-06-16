@@ -12,8 +12,8 @@
         "label": "Термін вкладу:",
         "type": "number",
         "id": "cap-deposit-period",
-        "class": "period-inp",
-        "measure": "днів",
+        "class": "period-month-inp",
+        "measure": "міс.",
         "isDisabled": "",
         "isCurrency": "currency"
     },

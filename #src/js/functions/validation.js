@@ -1,7 +1,9 @@
+const allInp = document.querySelectorAll(".inp");
 const siteCalcInputs = document.querySelectorAll(".site-calc-inp");
 const depositInputs = document.querySelectorAll(".deposit-inp");
 const creditInputs = document.querySelectorAll(".credit-inp");
-const periodInputs = document.querySelectorAll(".period-inp");
+const periodMonthInputs = document.querySelectorAll(".period-month-inp");
+const periodDayInputs = document.querySelectorAll(".period-day-inp");
 const percentInputs = document.querySelectorAll(".percent-inp");
 
 // * VALIDATION INTERVALS
@@ -18,7 +20,7 @@ const creditInterval = {
     min: 9999,
     max: 9999999999,
 };
-const periodInterval = {
+const periodMonthInterval = {
     min: 1,
     max: 121,
 };
@@ -42,6 +44,15 @@ function checkInp(inp, intervalMin, intervalMax) {
     }
 }
 
+// * Ограничение количества чисел после комы
+function setDecimalNumber(e) {
+    // цифра устанавливает количество цифр после запятой, т.е. если 3, то максимум 2 цифры после запятой
+    let num = 3;
+    if (e.value.indexOf(".") != '-1') {
+        e.value = e.value.substring(0, e.value.indexOf(".") + num);
+    }
+}
+
 function setErrorFor(input, message) {
     const formControl = input.parentElement;
     const small = formControl.querySelector("small");
@@ -59,6 +70,13 @@ function setSuccessFor(input) {
 }
 
 // * CALL FUNCTIONS
+
+
+for (let i = 0; i < allInp.length; i++) {
+    allInp[i].addEventListener("input", function () {
+        setDecimalNumber(allInp[i]);
+    });
+}
 
 for (let i = 0; i < siteCalcInputs.length; i++) {
     siteCalcInputs[i].addEventListener("change", function () {
@@ -78,9 +96,9 @@ for (let i = 0; i < creditInputs.length; i++) {
     });
 }
 
-for (let i = 0; i < periodInputs.length; i++) {
-    periodInputs[i].addEventListener("change", function () {
-        checkInp(periodInputs[i], periodInterval.min, periodInterval.max);
+for (let i = 0; i < periodMonthInputs.length; i++) {
+    periodMonthInputs[i].addEventListener("change", function () {
+        checkInp(periodMonthInputs[i], periodMonthInterval.min, periodMonthInterval.max);
     });
 }
 
