@@ -1,38 +1,20 @@
 [
     {
-        "label": "Час роботи ЕОМ:",
+        "label": "Фонд оплати праці за місяць:",
         "type": "number",
-        "id": "work-duration",
-        "class": "site-calc-inp",
-        "measure": "год",
-        "isDisabled": "",
-        "isCurrency": "currency"
-    },
-    {
-        "label": "Потужність ЕОМ:",
-        "type": "number",
-        "id": "pc-power",
-        "class": "site-calc-inp",
+        "id": "salary-fund",
+        "class": "site-calc-inp step2",
         "measure": "UAH",
         "isDisabled": "",
         "isCurrency": "currency"
     },
     {
-        "label": "Ціна 1 кВт/год електроенергії:",
+        "label": "Рівень рентабельності:",
         "type": "number",
-        "id": "price-per-one-watt",
-        "class": "site-calc-inp",
-        "measure": "UAH",
+        "id": "profitability-level-percent",
+        "class": "site-calc-inp step2",
+        "measure": "%",
         "isDisabled": "",
-        "isCurrency": "currency"
-    },
-    {
-        "label": "Вартість електроенергії:",
-        "type": "number",
-        "id": "price-per-one-watt",
-        "class": "site-calc-inp _disabled",
-        "measure": "UAH",
-        "isDisabled": "",
-        "isCurrency": "currency"
+        "isCurrency": ""
     }
 ]

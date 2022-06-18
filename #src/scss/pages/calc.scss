@@ -112,9 +112,6 @@
     .tabs__content-item._active {
         display: block;
     }
-    .result-item:first-of-type {
-        margin-top: 20px;
-    }
     .message {
         @include message;
     }

@@ -1,56 +1,65 @@
 [
     {
-        "label": "Загальні трудовитрати:",
+        "label": "Кількість аркушів паперу:",
         "type": "number",
-        "id": "total-labour-costs",
-        "class": "site-calc-inp",
-        "measure": "люд/год",
+        "id": "paper-count",
+        "class": "site-calc-inp step3",
+        "measure": "шт.",
         "isDisabled": "",
-        "isCurrency": ""
+        "isCurrency": ""   
     },
     {
-        "label": "Фонд оплати праці:",
+        "label": "Ціна одного аркушу паперу:",
         "type": "number",
-        "id": "payroll-fond",
-        "class": "site-calc-inp",
+        "id": "one-paper-price",
+        "class": "site-calc-inp step3",
         "measure": "UAH",
         "isDisabled": "",
-        "isCurrency": "currency"      
+        "isCurrency": "currency"
     },
     {
-        "label": "Фонд робочого часу:",
+        "label": "Ціна флеш-накопичувача:",
         "type": "number",
-        "id": "working-time-fund",
-        "class": "site-calc-inp",
-        "measure": "днів",
-        "isDisabled": "",
-        "isCurrency": ""
-    },
-    {
-        "label": "Основна заробітна плата:",
-        "type": "number",
-        "id": "basic-salary",
-        "class": "site-calc-inp",
+        "id": "flash-drive-price",
+        "class": "site-calc-inp step3",
         "measure": "UAH",
         "isDisabled": "",
-        "isCurrency": "currency"     
+        "isCurrency": "currency"
     },
     {
-        "label": "Додаткова заробітна плата:",
+        "label": "Річна варт. оренди домену:",
         "type": "number",
-        "id": "additional-salary",
-        "class": "site-calc-inp",
+        "id": "domain-year-price",
+        "class": "site-calc-inp step3",
         "measure": "UAH",
         "isDisabled": "",
-        "isCurrency": "currency" 
+        "isCurrency": "currency"  
     },
     {
-        "label": "Сума витрат:",
+        "label": "Тривалість оренди домену:",
         "type": "number",
-        "id": "step2-sum",
-        "class": "site-calc-inp _disabled",
+        "id": "domain-year-count",
+        "class": "site-calc-inp step3",
+        "measure": "років",
+        "isDisabled": "",
+        "isCurrency": ""  
+    },
+    {
+        "label": "Місячна варт. оренди хостингу:",
+        "type": "number",
+        "id": "hosting-month-price",
+        "class": "site-calc-inp step3",
         "measure": "UAH",
-        "isDisabled": "_disabled readonly",
-        "isCurrency": "currency" 
+        "isDisabled": "",
+        "isCurrency": "currency"  
+    },
+    {
+        "label": "Тривалість оренди хостингу:",
+        "type": "number",
+        "id": "hosting-mounth-count",
+        "class": "site-calc-inp step3",
+        "measure": "міс.",
+        "isDisabled": "",
+        "isCurrency": ""  
     }
 ]

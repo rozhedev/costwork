@@ -7,10 +7,16 @@
         width: 100%;
         margin-top: 16px;
     }
-    &__inp.disabled ~ &__measure {
-        color: $dark-color-60;
+    &__inp:disabled {
+        border: 3px solid $dark-color-60;
         ._dark & {
+            border: 3px solid $dark-color-60;
+        }
+        & ~ .measure {
             color: $light-color-60;
+            ._dark & {
+                color: $light-color-60;
+            }
         }
     }
     .measure {

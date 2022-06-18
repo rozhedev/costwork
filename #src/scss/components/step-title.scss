@@ -1,7 +1,7 @@
 .step-title {
     display: flex;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 28px;
     text-align: left;
     transition: $transition;
 
@@ -35,6 +35,7 @@
 
     &--result {
         flex-direction: row;
+        align-items: center;
         svg {
             width: 96px;
             height: 96px;

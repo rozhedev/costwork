@@ -18,7 +18,7 @@
             <div class="calc-steps__item">
                 @@include('components/_step-title.html', {
                 "number": "01",
-                "title": "Розрахунок матеріальних витрат на створення вебсайту"
+                "title": "Розрахунок трудовитрат"
                 })
                 <div class="calc-steps__wrapper">
                     @@loop('components/_form-controller.html', '../json/site-calc/step1.json')
@@ -28,7 +28,7 @@
             <div class="calc-steps__item">
                 @@include('components/_step-title.html', {
                 "number": "02",
-                "title": "Розрахунок витрат на електороенергію"
+                "title": "Розрахунок витрат на оплату праці"
                 })
                 <div class="calc-steps__wrapper">
                     @@loop('components/_form-controller.html', '../json/site-calc/step2.json')
@@ -38,7 +38,7 @@
             <div class="calc-steps__item">
                 @@include('components/_step-title.html', {
                 "number": "03",
-                "title": "Розрахунок витрат на оплату праці"
+                "title": "Розрахунок матеріальних витрат"
                 })
                 <div class="calc-steps__wrapper">
                     @@loop('components/_form-controller.html', '../json/site-calc/step3.json')
@@ -48,20 +48,10 @@
             <div class="calc-steps__item">
                 @@include('components/_step-title.html', {
                 "number": "04",
-                "title": "Розрахунок суми єдиного соціального внеску"
+                "title": "Розрахунок витрат на електороенергію"
                 })
                 <div class="calc-steps__wrapper">
                     @@loop('components/_form-controller.html', '../json/site-calc/step4.json')
-                </div>
-            </div>
-
-            <div class="calc-steps__item">
-                @@include('components/_step-title.html', {
-                "number": "05",
-                "title": "Розрахунок витрат по непрямим статтям калькуляції"
-                })
-                <div class="calc-steps__wrapper">
-                    @@loop('components/_form-controller.html', '../json/site-calc/step5.json')
                 </div>
             </div>
 
@@ -71,7 +61,7 @@
                         <svg class="expenses">
                             <use href="img/icons/icons.svg#stat-down"></use>
                         </svg>
-                        <span>Витрати на створення вебсайту</span>
+                        <span>Витрати на створення</span>
                     </h3>
 
                     @@loop('components/_result-item.html', '../json/result-calc/site-calc-expences.json')
@@ -83,12 +73,12 @@
                         <svg class="profit">
                             <use href="img/icons/icons.svg#stat-up"></use>
                         </svg>
-                        <span>Дохід від створення вебсайту</span>
+                        <span>Обчислення відпускної ціни</span>
                     </h3>
 
                     @@loop('components/_result-item.html', '../json/result-calc/site-calc-profit.json')
 
-                    <div class="download-btns">
+                    <!-- <div class="download-btns">
                         <form action="#">
                             <button class="btn-word">
                                 <svg>
@@ -105,7 +95,7 @@
                                 <span class="navlink">Завантажити в Excel</span>
                             </button>
                         </form>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>

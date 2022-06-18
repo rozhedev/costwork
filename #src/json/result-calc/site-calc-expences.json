@@ -1,30 +1,52 @@
 [
     {
         "title": "Матеріальні витрати:",
-        "id": "material-expenses-output"
+        "id": "material-cost-output",
+        "idStructure": "material-cost-struct"
     },
     {
         "title": "Витрати на електроенергію:",
-        "id": "profit-output"
+        "id": "electricity-cost-output",
+        "idStructure": "electricity-cost-struct"
+    },
+    {
+        "title": "Основна зарплата:",
+        "id": "basic-salary-output",
+        "idStructure": "basic-salary-struct"
+    },
+    {
+        "title": "Додаткова зарплата:",
+        "id": "additional-salary-output",
+        "idStructure": "additional-salary-struct"
     },
     {
         "title": "Єдиний соціальний внесок:",
-        "id": "wholesale-price-output"
+        "id": "social-payment-output",
+        "idStructure": "social-payment-struct"
     },
     {
         "title": "Витрати на утрим. обладнання:",
-        "id": "equipment-costs-output"
+        "id": "equipment-cost-output",
+        "idStructure": "equipment-cost-struct"
     },
     {
         "title": "Загальновиробничі витрати:",
-        "id": "production-costs-output"
+        "id": "production-cost-output",
+        "idStructure": "production-cost-struct"
+    },
+    {
+        "title": "Виробнича собівартість:",
+        "id": "production-cost-sale-output",
+        "idStructure": "production-cost-sale-struct"
     },
     {
         "title": "Позавиробничі витрати:",
-        "id": "non-production-costs-output"
+        "id": "non-production-cost-output",
+        "idStructure": "non-production-cost-struct"
     },
     {
         "title": "Повна собівартість:",
-        "id": "total-cost-output"
+        "id": "total-cost-output",
+        "idStructure": "total-cost-struct"
     }
 ]

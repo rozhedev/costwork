@@ -152,10 +152,6 @@ body._dark {
         border-color: $accent-color;
         box-shadow: none;
     }
-    &._disabled {
-        border-color: $light-color-60;
-        color: $light-color-60;
-    }
     &:focus {
         border-color: $active-blue-color;
         box-shadow: $inp-focus-shadow;

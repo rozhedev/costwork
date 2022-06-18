@@ -2,8 +2,9 @@
 
 // * LIBS
 
-// * MODULES
+// * CALC & FUNCTIONS
 import "./functions/validation";
+import "./calc/site-calc";
 import "./calc/deposit";
 import "./calc/credit";
 

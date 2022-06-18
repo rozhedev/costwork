@@ -1,56 +1,74 @@
 [
     {
-        "label": "Кількість аркушів паперу:",
+        "label": "Формування технічного завдання:",
         "type": "number",
-        "id": "paper-count",
-        "class": "site-calc-inp",
-        "measure": "шт.",
-        "isDisabled": "",
-        "isCurrency": ""   
-    },
-    {
-        "label": "Ціна одного аркушу паперу:",
-        "type": "number",
-        "id": "price-per-one-paper",
-        "class": "site-calc-inp",
-        "measure": "UAH",
-        "isDisabled": "",
-        "isCurrency": "currency"
-    },
-    {
-        "label": "Вартість аркушів:",
-        "type": "number",
-        "id": "paper-price",
-        "class": "site-calc-inp",
-        "measure": "UAH",
-        "isDisabled": "",
-        "isCurrency": "currency"  
-    },
-    {
-        "label": "К-сть місяців розташ. на хостингу:",
-        "type": "number",
-        "id": "hosting-mounth-count",
-        "class": "site-calc-inp",
-        "measure": "міс.",
+        "id": "technical-task",
+        "class": "site-calc-inp step1",
+        "measure": "люд/год",
         "isDisabled": "",
         "isCurrency": ""  
     },
     {
-        "label": "Вартість 1 місяця хостингу:",
+        "label": "Створення прототипу:",
         "type": "number",
-        "id": "price-per-hosting-mounth",
-        "class": "site-calc-inp",
-        "measure": "UAH",
+        "id": "prototype-creation",
+        "class": "site-calc-inp step1",
+        "measure": "люд/год",
         "isDisabled": "",
-        "isCurrency": "currency"     
+        "isCurrency": ""  
     },
     {
-        "label": "Сумма матеріальних витрат:",
+        "label": "Розробка макету:",
         "type": "number",
-        "id": "step1-sum",
-        "class": "site-calc-inp _disabled",
-        "measure": "UAH",
-        "isDisabled": "_disabled readonly",
-        "isCurrency": "currency"   
+        "id": "template-creation",
+        "class": "site-calc-inp step1",
+        "measure": "люд/год",
+        "isDisabled": "",
+        "isCurrency": ""  
+    },
+    {
+        "label": "Створення клієнтської частини:",
+        "type": "number",
+        "id": "frontend-creation",
+        "class": "site-calc-inp step1",
+        "measure": "люд/год",
+        "isDisabled": "",
+        "isCurrency": ""  
+    },
+    {
+        "label": "Створення серверної частини:",
+        "type": "number",
+        "id": "backend-creation",
+        "class": "site-calc-inp step1",
+        "measure": "люд/год",
+        "isDisabled": "",
+        "isCurrency": ""  
+    },
+    {
+        "label": "Тестування функціоналу:",
+        "type": "number",
+        "id": "functional-testing",
+        "class": "site-calc-inp step1",
+        "measure": "люд/год",
+        "isDisabled": "",
+        "isCurrency": ""  
+    },
+    {
+        "label": "Написання інструкції:",
+        "type": "number",
+        "id": "instruction-writing",
+        "class": "site-calc-inp step1",
+        "measure": "люд/год",
+        "isDisabled": "",
+        "isCurrency": ""  
+    },
+    {
+        "label": "Публікація на хостингу:",
+        "type": "number",
+        "id": "hosting-publication",
+        "class": "site-calc-inp step1",
+        "measure": "люд/год",
+        "isDisabled": "",
+        "isCurrency": ""  
     }
 ]

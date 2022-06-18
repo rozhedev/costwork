@@ -1,21 +1,20 @@
 .result-item {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
+    &__content {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
 
-    @include media(map-get($grid-breakpoints, lg)) {
-        flex-direction: column;
-    }
-    @include media(map-get($grid-breakpoints, md)) {
-        flex-direction: row;
-    }
-    @include media(map-get($grid-breakpoints, sm)) {
-        flex-direction: column;
+        @include media(map-get($grid-breakpoints, lg)) {
+            flex-direction: column;
+        }
+        @include media(map-get($grid-breakpoints, md)) {
+            flex-direction: row;
+        }
+        @include media(map-get($grid-breakpoints, sm)) {
+            flex-direction: column;
+        }
     }
 
-    &:first-of-type {
-        margin-top: 28px;
-    }
     &__label,
     &__value,
     &__currency {
@@ -45,4 +44,24 @@
             margin-top: 0.5rem;
         }
     }
+
+    &__struct {
+        margin-top: 0;
+        .result-item__label,
+        .result-item__value,
+        .result-item__currency {
+            font-size: 1.16rem;
+        }
+        @include media(map-get($grid-breakpoints, lg)) {
+            flex-direction: row;
+            margin-top: 0.33rem;
+            .result-item__value {
+                margin-left: 0.5rem;
+            }
+        }
+    }
+}
+
+.credit-calc .result-item__struct {
+    display: none;
 }

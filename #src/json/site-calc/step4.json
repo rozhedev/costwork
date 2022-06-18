@@ -1,27 +1,36 @@
 [
     {
-        "label": "Сума осн. і додат. зарплати:",
+        "label": "Кількість ЕОМ:",
         "type": "number",
-        "id": "salary-sum",
-        "class": "site-calc-inp",
-        "measure": "UAH",
-        "isDisabled": "_disabled readonly",
-        "isCurrency": "currency"
-    },
-    {
-        "label": "Єдиний соціальний внесок:",
-        "type": "number",
-        "id": "single-social-payment-percent",
-        "class": "site-calc-inp",
-        "measure": "%",
+        "id": "pc-count",
+        "class": "site-calc-inp step4",
+        "measure": "шт.",
         "isDisabled": "",
         "isCurrency": ""
     },
     {
-        "label": "Єдиний соціальний внесок:",
+        "label": "Тривалість роботи ЕОМ:",
         "type": "number",
-        "id": "single-social-payment-currency",
-        "class": "site-calc-inp",
+        "id": "pc-work-duration",
+        "class": "site-calc-inp step4",
+        "measure": "год",
+        "isDisabled": "",
+        "isCurrency": ""
+    },
+    {
+        "label": "Потужність ЕОМ:",
+        "type": "number",
+        "id": "pc-power",
+        "class": "site-calc-inp step4",
+        "measure": "Вт",
+        "isDisabled": "",
+        "isCurrency": "currency"
+    },
+    {
+        "label": "Ціна 1 кВт/год електроенергії:",
+        "type": "number",
+        "id": "one-watt-price",
+        "class": "site-calc-inp step4",
         "measure": "UAH",
         "isDisabled": "",
         "isCurrency": "currency"
