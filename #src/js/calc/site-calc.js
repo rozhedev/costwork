@@ -331,26 +331,3 @@ for (let i = 0; i < fourtyStepInputs.length; i++) {
         }
     });
 }
-
-
-// for (let i = 0; i < allFormInp.length; i++) {
-//     let inpItem = allFormInp[i];
-
-
-//     inpItem.addEventListener("change", function () {
-//         // let inpClass = ".inp";
-//         if (
-//             allFormInp.every(inpClass => document.querySelector(".inp").classList.contains("_success")
-//             )
-//         ) {
-//             expencesResult.productionCostSale = expencesResult.sumSalary + expencesResult.socialPayment + expencesResult.equipmentCost + expencesResult.productionCost + expencesResult.materialExpences + expencesResult.electricityExpences;
-
-//             expencesResult.nonProductionCost = expencesResult.productionCostSale * (percentValues.nonProductionCost / 100);
-//             expencesResult.totalCost = expencesResult.productionCostSale + expencesResult.nonProductionCost;
-
-//             // * PROFIT
-//             // profitResult.totalProfit = expencesResult.totalCost * (+profitLevelPercent.value / 100);
-//             console.log(expencesResult);
-//         }
-//     });
-// }

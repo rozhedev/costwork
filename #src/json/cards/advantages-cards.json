@@ -1,8 +1,8 @@
 [
     {
-        "iconPath": "../img/card_img/currency-rate.png",
-        "iconName": "currency-rate",
-        "title": "Актуальний курс валют"
+        "iconPath": "../img/card_img/auto-calculation.png",
+        "iconName": "auto-calculation",
+        "title": "Автоматичний обрахунок"
     },
     {
         "iconPath": "../img/card_img/knowledge-base.png",
@@ -15,9 +15,9 @@
         "title": "Підтримка декількох валют"
     },
     {
-        "iconPath": "../img/card_img/document.png",
-        "iconName": "document",
-        "title": "Завантаження результатів у Word та Excel файли"
+        "iconPath": "../img/card_img/data-validation.png",
+        "iconName": "data-validation",
+        "title": "Різна валідація для різних даних"
     },
     {
         "iconPath": "../img/card_img/dark-theme.png",

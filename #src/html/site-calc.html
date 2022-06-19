@@ -77,25 +77,6 @@
                     </h3>
 
                     @@loop('components/_result-item.html', '../json/result-calc/site-calc-profit.json')
-
-                    <!-- <div class="download-btns">
-                        <form action="#">
-                            <button class="btn-word">
-                                <svg>
-                                    <use href="img/icons/colored-icons.svg#word"></use>
-                                </svg>
-                                <span class="navlink">Завантажити у Word</span>
-                            </button>
-                        </form>
-                        <form action="#">
-                            <button class="btn-excel">
-                                <svg>
-                                    <use href="img/icons/colored-icons.svg#excel"></use>
-                                </svg>
-                                <span class="navlink">Завантажити в Excel</span>
-                            </button>
-                        </form>
-                    </div> -->
                 </div>
             </div>
         </section>
@@ -103,7 +84,7 @@
         <section class="popular-questions container">
             <h2 class="h1">Популярні питання</h1>
                 <div class="tabs__content-item _active">
-                    @@loop("components/_accordion.html", "../json/faq/economy.json")
+                    @@loop("components/_accordion.html", "../json/faq/main-faq.json")
                 </div>
         </section>
 

@@ -9,12 +9,12 @@
         "iconPath": "../img/card_img/deposit.png",
         "iconName": "deposit",
         "title": "Розрахунок прибутку від депозиту",
-        "link": "site-calc.html"
+        "link": "deposit-calc.html"
     },
     {
         "iconPath": "../img/card_img/credit.png",
         "iconName": "credit",
         "title": "Розрахунок кредитної переплати",
-        "link": "site-calc.html"
+        "link": "credit-calc.html"
     }
 ]

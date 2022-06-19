@@ -8,10 +8,14 @@ const mainImgWebp = document.querySelector('source[srcset="../img/vector_img/mai
 const aboutImg = document.querySelector(".about__img");
 const aboutImgWebp = document.querySelector('source[srcset="../img/photos/light-mockup.webp"]');
 
+// && document.body.classList.contains("_light")
 if (themeSwitcher) {
     themeSwitcher.addEventListener("click", function (e) {
         this.classList.toggle("_dark");
         document.body.classList.toggle("_dark");
+        document.cookie = "";
+        document.cookie = "theme=dark";
+        console.log(document.cookie);
 
         // * IMAGE REPLACE
         themeSwitcherIcon.setAttribute("href", "img/icons/icons.svg#sun");
