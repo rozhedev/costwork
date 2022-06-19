@@ -40,7 +40,7 @@
         "type": "number",
         "id": "domain-year-count",
         "class": "site-calc-inp step3",
-        "measure": "років",
+        "measure": "рок.",
         "isDisabled": "",
         "isCurrency": ""  
     },

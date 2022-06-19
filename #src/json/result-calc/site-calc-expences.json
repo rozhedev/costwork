@@ -1,15 +1,5 @@
 [
     {
-        "title": "Матеріальні витрати:",
-        "id": "material-cost-output",
-        "idStructure": "material-cost-struct"
-    },
-    {
-        "title": "Витрати на електроенергію:",
-        "id": "electricity-cost-output",
-        "idStructure": "electricity-cost-struct"
-    },
-    {
         "title": "Основна зарплата:",
         "id": "basic-salary-output",
         "idStructure": "basic-salary-struct"
@@ -38,6 +28,16 @@
         "title": "Виробнича собівартість:",
         "id": "production-cost-sale-output",
         "idStructure": "production-cost-sale-struct"
+    },
+    {
+        "title": "Матеріальні витрати:",
+        "id": "material-cost-output",
+        "idStructure": "material-cost-struct"
+    },
+    {
+        "title": "Витрати на електроенергію:",
+        "id": "electricity-cost-output",
+        "idStructure": "electricity-cost-struct"
     },
     {
         "title": "Позавиробничі витрати:",

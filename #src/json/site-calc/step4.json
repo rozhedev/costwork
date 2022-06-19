@@ -22,7 +22,7 @@
         "type": "number",
         "id": "pc-power",
         "class": "site-calc-inp step4",
-        "measure": "Вт",
+        "measure": "кВт",
         "isDisabled": "",
         "isCurrency": "currency"
     },

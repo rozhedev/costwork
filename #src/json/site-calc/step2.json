@@ -11,7 +11,7 @@
     {
         "label": "Рівень рентабельності:",
         "type": "number",
-        "id": "profitability-level-percent",
+        "id": "profit-level-percent",
         "class": "site-calc-inp step2",
         "measure": "%",
         "isDisabled": "",
