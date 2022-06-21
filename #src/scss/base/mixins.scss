@@ -104,12 +104,6 @@
     align-items: center;
 }
 
-@mixin standart-grid($row-count, $row-width, $column-count, $column-width, $gap-x, $gap-y) {
-    grid-template-rows: repeat($row-count, $row-width);
-    grid-template-columns: repeat($column-count, $column-width);
-    grid-gap: $gap-x $gap-y;
-}
-
 @mixin rectangle($width, $height, $bg-color, $border-radius) {
     width: $width;
     height: $height;

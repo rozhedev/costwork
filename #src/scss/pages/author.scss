@@ -30,7 +30,12 @@
         img[alt="author"] {
             width: 336px;
             border-radius: 32px;
+            transition: $transition;
 
+            ._dark & {
+                filter: brightness(0.68);
+                transition: $transition;
+            }
             @include media(map-get($grid-breakpoints, lg)) {
                 width: 320px;
             }
