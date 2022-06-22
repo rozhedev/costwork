@@ -13,7 +13,6 @@ const annMonthlyPaymentOutput = document.getElementById("ann-monthly-payment-out
 const annMessageOutput = document.getElementById("ann-message-output");
 
 let delay = 1000;
-let mobileBreakpoint = 536;
 let warningColor = "#0075c4";
 let darkColor = "#0d090a";
 
@@ -125,7 +124,7 @@ function calcDiffTotalSum(arr1, arr2, oneTimeFee) {
 // * OUTPUT FUNCTION
 
 function createPaymentTable(table, arr1, arr2, totalSum1, totalSum2) {
-    for (let i = 1; i <= arr1.length; i++) {
+    for (let i = 1; i <= arr1.length - 1; i++) {
         let tableItem = document.createElement("tr");
         tableItem.classList.add("payment-table__item");
 

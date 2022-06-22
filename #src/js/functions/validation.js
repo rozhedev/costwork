@@ -33,11 +33,11 @@ const percentInterval = {
 
 function checkInp(inp, intervalMin, intervalMax) {
     let inpValue = +inp.value;
-    if (inpValue == "") {
+    if (inpValue === "") {
         setErrorFor(inp, "Поле не може бути пустим");
-    } else if (inpValue < intervalMin) {
+    } else if (inpValue <= intervalMin) {
         setErrorFor(inp, `Мінімальне значення: ${intervalMin}`);
-    } else if (inpValue > intervalMax) {
+    } else if (inpValue >= intervalMax) {
         setErrorFor(inp, `Максимальне значення: ${intervalMax}`);
     } else {
         setSuccessFor(inp);

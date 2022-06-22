@@ -176,7 +176,7 @@ for (let i = 0; i < secondStepInputs.length; i++) {
             expencesResult.sumSalary = expencesResult.basicSalary + expencesResult.additionalSalary;
             expencesResult.socialPayment = calcPercentValue(expencesResult.sumSalary, percentValues.socialPayment);
             expencesResult.equipmentCost = calcPercentValue(expencesResult.sumSalary, percentValues.equipmentCost);
-            expencesResult.productionCost = +(expencesResult.sumSalary + expencesResult.equipmentCost * (percentValues.equipmentCost / 100)).toFixed(2);
+            expencesResult.productionCost = calcPercentValue((expencesResult.sumSalary + expencesResult.equipmentCost), percentValues.equipmentCost);
         }
     });
 }
@@ -293,8 +293,6 @@ for (let i = 0; i < fourtyStepInputs.length; i++) {
             expencesResult.nonProductionCost = calcPercentValue(expencesResult.productionCostSale, percentValues.nonProductionCost);
             expencesResult.totalCost = +(expencesResult.productionCostSale + expencesResult.nonProductionCost).toFixed(2);
 
-            console.log(expencesResult);
-
             // * STRUCTURE EXPENCES
             expencesStruct.basicSalary = calcStructurePercent(expencesResult.basicSalary, expencesResult.totalCost);
             expencesStruct.additionalSalary = calcStructurePercent(expencesResult.additionalSalary, expencesResult.totalCost);
@@ -314,14 +312,12 @@ for (let i = 0; i < fourtyStepInputs.length; i++) {
             profitResult.wholeSalePrice = +(expencesResult.totalCost + profitResult.totalProfit).toFixed(2);
             profitResult.pdvTaxAmount = calcPercentValue(profitResult.wholeSalePrice, percentValues.pdvTax);
             profitResult.totalSalePrice = +(profitResult.wholeSalePrice + profitResult.pdvTaxAmount).toFixed(2);
-            console.log(profitResult);
 
             // * STRUCTURE PROFIT
             profitStruct.totalProfit = calcStructurePercent(profitResult.totalProfit, profitResult.totalSalePrice);
             profitStruct.wholeSalePrice = calcStructurePercent(profitResult.wholeSalePrice, profitResult.totalSalePrice);
             profitStruct.pdvTaxAmount = calcStructurePercent(profitResult.pdvTaxAmount, profitResult.totalSalePrice);
             profitStruct.totalSalePrice = calcStructurePercent(profitResult.totalSalePrice, profitResult.totalSalePrice);
-            console.log(profitStruct);
             
             // * OUTPUT FUNC
             outputAllExpences();

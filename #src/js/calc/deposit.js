@@ -12,8 +12,6 @@ const depositPdvProfitOutput = document.getElementById("deposit-pdv-profit-outpu
 
 let delay = 1000;
 let pdvTax = 19.5;
-// // * Средний месяц = 365 / 12
-// let averageMonth = 30.416;
 
 // * CALC SIMPLE PERCENT
 
@@ -49,7 +47,7 @@ if (simDepositAmount && simYearRate && simDepositPeriod) {
                     let simMonthProfit = +(simNetProfit / simDepositPeriodValue).toFixed(2);
                     depositMonthProfitOutput.textContent = simMonthProfit;
 
-                    let simPdvProfit = `(ставка ПДВ = ${pdvTax}%) ${+(simNetProfit - (simNetProfit * (pdvTax / 100))).toFixed(2)}`;
+                    let simPdvProfit = `(податок = ${pdvTax}%) ${+(simNetProfit - (simNetProfit * (pdvTax / 100))).toFixed(2)}`;
                     depositPdvProfitOutput.textContent = simPdvProfit;
                 }, delay);
             }
