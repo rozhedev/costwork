@@ -171,12 +171,12 @@ for (let i = 0; i < secondStepInputs.length; i++) {
         if (inpItemController.classList.contains("_success")) {
             tempResult.hourlyPay = +(salaryFundValue / percentValues.workMonthDuration / percentValues.workDayDuration).toFixed(2);
             expencesResult.basicSalary = +(tempResult.labourCost * tempResult.hourlyPay).toFixed(2);
-            expencesResult.additionalSalary = calcPercentValue(expencesResult.basicSalary, percentValues.additionalSalary);
+            expencesResult.additionalSalary = +(calcPercentValue(expencesResult.basicSalary, percentValues.additionalSalary)).toFixed(2);
 
             expencesResult.sumSalary = expencesResult.basicSalary + expencesResult.additionalSalary;
-            expencesResult.socialPayment = calcPercentValue(expencesResult.sumSalary, percentValues.socialPayment);
-            expencesResult.equipmentCost = calcPercentValue(expencesResult.sumSalary, percentValues.equipmentCost);
-            expencesResult.productionCost = calcPercentValue((expencesResult.sumSalary + expencesResult.equipmentCost), percentValues.equipmentCost);
+            expencesResult.socialPayment = +(calcPercentValue(expencesResult.sumSalary, percentValues.socialPayment)).toFixed(2);
+            expencesResult.equipmentCost = +(calcPercentValue(expencesResult.basicSalary, percentValues.equipmentCost)).toFixed(2);
+            expencesResult.productionCost = +(calcPercentValue(expencesResult.basicSalary, percentValues.productionCost)).toFixed(2);
         }
     });
 }
@@ -290,7 +290,7 @@ for (let i = 0; i < fourtyStepInputs.length; i++) {
         if (inpItemController.classList.contains("_success")) {
             expencesResult.productionCostSale = +(expencesResult.sumSalary + expencesResult.socialPayment + expencesResult.equipmentCost + expencesResult.productionCost + expencesResult.materialExpences + expencesResult.electricityExpences).toFixed(2);
 
-            expencesResult.nonProductionCost = calcPercentValue(expencesResult.productionCostSale, percentValues.nonProductionCost);
+            expencesResult.nonProductionCost = +(calcPercentValue(expencesResult.productionCostSale, percentValues.nonProductionCost)).toFixed(2);
             expencesResult.totalCost = +(expencesResult.productionCostSale + expencesResult.nonProductionCost).toFixed(2);
 
             // * STRUCTURE EXPENCES
@@ -308,9 +308,9 @@ for (let i = 0; i < fourtyStepInputs.length; i++) {
             expencesStruct.totalCost = calcStructurePercent(expencesResult.totalCost, expencesResult.totalCost);
 
             // * PROFIT
-            profitResult.totalProfit = calcPercentValue(expencesResult.totalCost, +profitLevelPercent.value);
+            profitResult.totalProfit = +(calcPercentValue(expencesResult.totalCost, +profitLevelPercent.value)).toFixed(2);
             profitResult.wholeSalePrice = +(expencesResult.totalCost + profitResult.totalProfit).toFixed(2);
-            profitResult.pdvTaxAmount = calcPercentValue(profitResult.wholeSalePrice, percentValues.pdvTax);
+            profitResult.pdvTaxAmount = +(calcPercentValue(profitResult.wholeSalePrice, percentValues.pdvTax)).toFixed(2);
             profitResult.totalSalePrice = +(profitResult.wholeSalePrice + profitResult.pdvTaxAmount).toFixed(2);
 
             // * STRUCTURE PROFIT
