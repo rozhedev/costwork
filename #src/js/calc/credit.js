@@ -23,8 +23,8 @@ function calcAnnMonthlyPayment(amount, rate, period) {
     return +(amount * (monthlyRate / (1 - (1 + monthlyRate) ** -period))).toFixed(2);
 }
 
-function calcAnnOverpayment(amount, period, rate) {
-    return +((calcAnnMonthlyPayment(amount, period, rate) * period) - amount).toFixed(2);
+function calcAnnOverpayment(amount, period, rate, monthlyFee) {
+    return +(((calcAnnMonthlyPayment(amount, period, rate) * period) + monthlyFee * period) - amount).toFixed(2);
 }
 
 // * ANNUITY OUTPUT
@@ -53,7 +53,7 @@ if (annCreditAmount && annYearRate && annCreditPeriod) {
                     let annTotalPayment = (annMonthlyPayment * annCreditPeriodValue + annOneTimeFeeValue).toFixed(2);
                     annTotalPaymentOutput.textContent = annTotalPayment;
 
-                    let annOverpayment = (calcAnnOverpayment(annCreditAmountValue, annCreditPeriodValue, annYearRateValue) + annOneTimeFeeValue).toFixed(2);
+                    let annOverpayment = (calcAnnOverpayment(annCreditAmountValue, annCreditPeriodValue, annYearRateValue, annMonthlyFeeValue) + annOneTimeFeeValue).toFixed(2);
 
                     // * OVERPAYMENT CHECK
                     if (annOverpayment > 0) {

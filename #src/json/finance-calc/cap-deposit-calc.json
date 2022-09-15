@@ -15,7 +15,7 @@
         "class": "period-month-inp",
         "measure": "міс.",
         "isDisabled": "",
-        "isCurrency": "currency"
+        "isCurrency": ""
     },
     {
         "label": "Процентна ставка, % річних:",

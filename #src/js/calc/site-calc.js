@@ -188,12 +188,13 @@ function calcMaterialExpences(paperCountValue, onePaperPriceValue, domainYearPri
 
     paperCountValue = +paperCountValue.value;
     onePaperPriceValue = +onePaperPriceValue.value;
+    flashDrivePriceValue = +flashDrivePrice.value;
     domainYearPriceValue = +domainYearPriceValue.value
     domainYearCountValue = +domainYearCountValue.value;
     hostingMonthPriceValue = +hostingMonthPriceValue.value;
     hostingMounthCountValue = +hostingMounthCountValue.value;
 
-    return materialExpences = +((paperCountValue * onePaperPriceValue) + (domainYearPriceValue * domainYearCountValue) + (hostingMonthPriceValue * hostingMounthCountValue)).toFixed(2);
+    return materialExpences = +((paperCountValue * onePaperPriceValue) + (domainYearPriceValue * domainYearCountValue) + (hostingMonthPriceValue * hostingMounthCountValue) + flashDrivePriceValue).toFixed(2);
 }
 
 for (let i = 0; i < thirtyStepInputs.length; i++) {
@@ -216,7 +217,7 @@ function calcElectricityExpences(pcСountValue, pcWorkDurationValue, pcPowerValu
     pcPowerValue = +pcPowerValue.value;
     oneWattPriceValue = +oneWattPriceValue.value;
 
-    return electricityExpences = +(pcWorkDurationValue * pcPowerValue * oneWattPriceValue * oneWattPriceValue).toFixed(2);
+    return electricityExpences = +(pcСountValue * pcWorkDurationValue * pcPowerValue * oneWattPriceValue).toFixed(2);
 }
 
 for (let i = 0; i < fourtyStepInputs.length; i++) {

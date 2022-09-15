@@ -1,6 +1,9 @@
 .accordion {
     transition: $transition;
     @include media(map-get($grid-breakpoints, sm)) {
+        width: 504px;       // * Относительные величины не срабатывают
+    }
+    @include media(map-get($grid-breakpoints, xs)) {
         width: 328px;       // * Относительные величины не срабатывают
     }
 
@@ -45,12 +48,23 @@
         display: block;
         padding: 0 1.1rem;
 
+        
+        overflow-wrap: break-word;
         text-align: justify;
         border-radius: 0 0 16px 16px;
         border-bottom: 4px solid $active-blue-color;
         border-left: 4px solid $active-blue-color;
         border-right: 4px solid $active-blue-color;
         transition: $transition;
+
+        // * Норальный перенос длинных ссылок, но ломаются длинные слова
+        // @include media(map-get($grid-breakpoints, sm)) {
+        //     word-break: break-all;
+        //     @supports (line-break: anywhere) {
+        //         line-break: anywhere;
+        //     }
+        // }
+            
     }
     &-active &__trigger {
         background-color: $active-blue-color;
