@@ -1,6 +1,7 @@
 // * ann - Annuity credit, diff - Differential credit 
 
 const allFormInp = document.querySelectorAll(".inp");
+const annFormInputs = document.querySelectorAll(".ann-credit-inp");
 const annCreditAmount = document.getElementById("ann-credit-amount");
 const annYearRate = document.getElementById("ann-percent-rate");
 const annCreditPeriod = document.getElementById("ann-credit-period");
@@ -29,17 +30,16 @@ function calcAnnOverpayment(amount, period, rate, monthlyFee) {
 
 // * ANNUITY OUTPUT
 
-if (annCreditAmount && annYearRate && annCreditPeriod) {
-    const annCreditAmountController = annCreditAmount.parentElement;
-    const annYearRateController = annYearRate.parentElement;
-    const annCreditPeriodController = annCreditPeriod.parentElement;
+if (annFormInputs && annCreditAmount && annYearRate && annCreditPeriod) {
+    let annFormInputsArr = [...annFormInputs];
 
     // * ADD CHANGE EVENT FOR INPUTS
-    for (inpItem of allFormInp) {
+    for (inpItem of annFormInputsArr) {
         inpItem.addEventListener("change", function () {
+            // * Condition which check _success class in all form controllers
+            let formControllerCond = annFormInputsArr.every((item) => item.parentElement.classList.contains("_success"));
 
-            if (annCreditAmountController.classList.contains("_success") && annYearRateController.classList.contains("_success") && annCreditPeriodController.classList.contains("_success")) {
-
+            if (formControllerCond) {
                 let annCreditAmountValue = +annCreditAmount.value;
                 let annYearRateValue = +annYearRate.value;
                 let annCreditPeriodValue = +annCreditPeriod.value;
@@ -79,6 +79,7 @@ if (annCreditAmount && annYearRate && annCreditPeriod) {
 
 // * DIFFERENTIAL CREDIT
 
+const diffFormInputs = document.querySelectorAll(".diff-credit-inp");
 const diffCreditAmount = document.getElementById("diff-credit-amount");
 const diffYearRate = document.getElementById("diff-percent-rate");
 const diffCreditPeriod = document.getElementById("diff-credit-period");
@@ -99,7 +100,7 @@ function calcDiffPayment(amount, rate, period, monthlyFee) {
         monthlyPayobj.monthlyPayment[i] = +(primaryPayment + monthlyPercent + monthlyFee).toFixed(2);
         monthlyPayobj.monthlyOverpayment[i] = +(monthlyPercent + monthlyFee).toFixed(2);
     }
-    
+
     return monthlyPayobj;
 }
 
@@ -165,22 +166,20 @@ function createPaymentTable(table, arr1, arr2, totalSum1, totalSum2) {
 
 // * DIFFERENTIAL EVENT
 
-if (diffCreditAmount && diffYearRate && diffCreditPeriod) {
-    const diffCreditAmountController = diffCreditAmount.parentElement;
-    const diffYearRateController = diffYearRate.parentElement;
-    const diffCreditPeriodController = diffCreditPeriod.parentElement;
-    const messageTip = document.querySelector(".message-tip");
-
+if (diffFormInputs && diffCreditAmount && diffYearRate && diffCreditPeriod) {
     // * SCREEN WIDTH CHECK
     if (document.documentElement.clientWidth < 536) {
         messageTip.classList.add("_active");
     }
+    let diffFormInputsArr = [...diffFormInputs];
+
     // * ADD CHANGE EVENT FOR INPUTS
-    for (inpItem of allFormInp) {
+    for (inpItem of diffFormInputsArr) {
         inpItem.addEventListener("change", function () {
+            // * Condition which check _success class in all form controllers
+            let formControllerCond = diffFormInputsArr.every((item) => item.parentElement.classList.contains("_success"));
 
-            if (diffCreditAmountController.classList.contains("_success") && diffYearRateController.classList.contains("_success") && diffCreditPeriodController.classList.contains("_success")) {
-
+            if (formControllerCond) {
                 let diffCreditAmountValue = +diffCreditAmount.value;
                 let diffYearRateValue = +diffYearRate.value;
                 let diffCreditPeriodValue = +diffCreditPeriod.value;

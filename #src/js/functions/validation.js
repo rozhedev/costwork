@@ -5,6 +5,7 @@ const creditInputs = document.querySelectorAll(".credit-inp");
 const periodMonthInputs = document.querySelectorAll(".period-month-inp");
 const periodDayInputs = document.querySelectorAll(".period-day-inp");
 const percentInputs = document.querySelectorAll(".percent-inp");
+const feeInputs = document.querySelectorAll(".fee-inp");
 
 // * VALIDATION INTERVALS
 
@@ -22,11 +23,15 @@ const creditInterval = {
 };
 const periodMonthInterval = {
     min: 1,
-    max: 121,
+    max: 120,
 };
 const percentInterval = {
     min: 0.0001,
-    max: 41,
+    max: 40,
+};
+const feeInterval = {
+    min: 0,
+    max: 5000,
 };
 
 // * FUNCTIONS
@@ -35,9 +40,9 @@ function checkInp(inp, intervalMin, intervalMax) {
     let inpValue = +inp.value;
     if (inpValue === "") {
         setErrorFor(inp, "Поле не може бути пустим");
-    } else if (inpValue <= intervalMin) {
+    } else if (inpValue < intervalMin) {
         setErrorFor(inp, `Мінімальне значення: ${intervalMin}`);
-    } else if (inpValue >= intervalMax) {
+    } else if (inpValue > intervalMax) {
         setErrorFor(inp, `Максимальне значення: ${intervalMax}`);
     } else {
         setSuccessFor(inp);
@@ -105,5 +110,11 @@ for (let i = 0; i < periodMonthInputs.length; i++) {
 for (let i = 0; i < percentInputs.length; i++) {
     percentInputs[i].addEventListener("change", function () {
         checkInp(percentInputs[i], percentInterval.min, percentInterval.max);
+    });
+}
+
+for (let i = 0; i < feeInputs.length; i++) {
+    feeInputs[i].addEventListener("change", function () {
+        checkInp(feeInputs[i], feeInterval.min, feeInterval.max);
     });
 }

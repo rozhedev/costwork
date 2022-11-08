@@ -3,7 +3,7 @@
         "label": "Сума кредиту:",
         "type": "number",
         "id": "ann-credit-amount",
-        "class": "credit-inp",
+        "class": "credit-inp ann-credit-inp",
         "measure": "UAH", 
         "isDisabled": "",
         "isCurrency": "currency"
@@ -12,7 +12,7 @@
         "label": "Термін кредиту:",
         "type": "number",
         "id": "ann-credit-period",
-        "class": "period-month-inp",
+        "class": "period-month-inp ann-credit-inp",
         "measure": "міс.",
         "isDisabled": "",
         "isCurrency": ""
@@ -21,7 +21,7 @@
         "label": "Процентна ставка, % річних:",
         "type": "number",
         "id": "ann-percent-rate",
-        "class": "percent-inp",
+        "class": "percent-inp ann-credit-inp",
         "measure": "%",
         "isDisabled": "",
         "isCurrency": ""
@@ -30,7 +30,7 @@
         "label": "Одноразова комісія:",
         "type": "number",
         "id": "ann-one-time-fee",
-        "class": "site-calc-inp",
+        "class": "ann-credit-inp fee-inp",
         "measure": "UAH",
         "isDisabled": "",
         "isCurrency": "currency"
@@ -39,7 +39,7 @@
         "label": "Щомісячна комісія:",
         "type": "number",
         "id": "ann-monthly-fee",
-        "class": "site-calc-inp",
+        "class": "ann-credit-inp fee-inp",
         "measure": "UAH",
         "isDisabled": "",
         "isCurrency": "currency"

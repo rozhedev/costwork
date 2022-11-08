@@ -1,14 +1,14 @@
 // * STEP 1
-const allFormInp = document.querySelectorAll(".inp");
-const firstStepInputs = document.querySelectorAll(".step1");
+let allFormInp = document.querySelectorAll(".inp");
+let firstStepInputs = document.querySelectorAll(".step1");
 
 // * STEP 2
-const secondStepInputs = document.querySelectorAll(".step2");
+let secondStepInputs = document.querySelectorAll(".step2");
 const salaryFund = document.getElementById("salary-fund");
 const profitLevelPercent = document.getElementById("profit-level-percent");
 
 // * STEP 3
-const thirtyStepInputs = document.querySelectorAll(".step3");
+let thirtyStepInputs = document.querySelectorAll(".step3");
 const paperCount = document.getElementById("paper-count");
 const onePaperPrice = document.getElementById("one-paper-price");
 const flashDrivePrice = document.getElementById("flash-drive-price");
@@ -20,7 +20,7 @@ const hostingMounthCount = document.getElementById("hosting-mounth-count");
 
 
 // * STEP 4
-const fourtyStepInputs = document.querySelectorAll(".step4");
+let fourtyStepInputs = document.querySelectorAll(".step4");
 const pcСount = document.getElementById("pc-count");
 const pcWorkDuration = document.getElementById("pc-work-duration");
 const pcPower = document.getElementById("pc-power");
@@ -283,48 +283,53 @@ function outputAllProfitStruct() {
 
 // * CALL FUNCTIONS
 
-for (let i = 0; i < fourtyStepInputs.length; i++) {
-    let inpItem = fourtyStepInputs[i];
-    let inpItemController = inpItem.parentElement;
+if (allFormInp) {
+    let allFormInpArr = [...allFormInp];
 
-    inpItem.addEventListener("change", function () {
-        if (inpItemController.classList.contains("_success")) {
-            expencesResult.productionCostSale = +(expencesResult.sumSalary + expencesResult.socialPayment + expencesResult.equipmentCost + expencesResult.productionCost + expencesResult.materialExpences + expencesResult.electricityExpences).toFixed(2);
+    // * ADD CHANGE EVENT FOR INPUTS
+    for (inpItem of allFormInpArr) {
+        inpItem.addEventListener("change", function () {
+            // * Condition which check _success class in all form controllers
+            let formControllerCond = allFormInpArr.every((item) => item.parentElement.classList.contains("_success"));
 
-            expencesResult.nonProductionCost = +(calcPercentValue(expencesResult.productionCostSale, percentValues.nonProductionCost)).toFixed(2);
-            expencesResult.totalCost = +(expencesResult.productionCostSale + expencesResult.nonProductionCost).toFixed(2);
+            if (formControllerCond) {
+                expencesResult.productionCostSale = +(expencesResult.sumSalary + expencesResult.socialPayment + expencesResult.equipmentCost + expencesResult.productionCost + expencesResult.materialExpences + expencesResult.electricityExpences).toFixed(2);
 
-            // * STRUCTURE EXPENCES
-            expencesStruct.basicSalary = calcStructurePercent(expencesResult.basicSalary, expencesResult.totalCost);
-            expencesStruct.additionalSalary = calcStructurePercent(expencesResult.additionalSalary, expencesResult.totalCost);
-            expencesStruct.socialPayment = calcStructurePercent(expencesResult.socialPayment, expencesResult.totalCost);
+                expencesResult.nonProductionCost = +(calcPercentValue(expencesResult.productionCostSale, percentValues.nonProductionCost)).toFixed(2);
+                expencesResult.totalCost = +(expencesResult.productionCostSale + expencesResult.nonProductionCost).toFixed(2);
 
-            expencesStruct.equipmentCost = calcStructurePercent(expencesResult.equipmentCost, expencesResult.totalCost);
-            expencesStruct.productionCost = calcStructurePercent(expencesResult.productionCost, expencesResult.totalCost);
-            expencesStruct.materialExpences = calcStructurePercent(expencesResult.materialExpences, expencesResult.totalCost);
-            expencesStruct.electricityExpences = calcStructurePercent(expencesResult.electricityExpences, expencesResult.totalCost);
+                // * STRUCTURE EXPENCES
+                expencesStruct.basicSalary = calcStructurePercent(expencesResult.basicSalary, expencesResult.totalCost);
+                expencesStruct.additionalSalary = calcStructurePercent(expencesResult.additionalSalary, expencesResult.totalCost);
+                expencesStruct.socialPayment = calcStructurePercent(expencesResult.socialPayment, expencesResult.totalCost);
 
-            expencesStruct.productionCostSale = calcStructurePercent(expencesResult.productionCostSale, expencesResult.totalCost);
-            expencesStruct.nonProductionCost = calcStructurePercent(expencesResult.nonProductionCost, expencesResult.totalCost);
-            expencesStruct.totalCost = calcStructurePercent(expencesResult.totalCost, expencesResult.totalCost);
+                expencesStruct.equipmentCost = calcStructurePercent(expencesResult.equipmentCost, expencesResult.totalCost);
+                expencesStruct.productionCost = calcStructurePercent(expencesResult.productionCost, expencesResult.totalCost);
+                expencesStruct.materialExpences = calcStructurePercent(expencesResult.materialExpences, expencesResult.totalCost);
+                expencesStruct.electricityExpences = calcStructurePercent(expencesResult.electricityExpences, expencesResult.totalCost);
 
-            // * PROFIT
-            profitResult.totalProfit = +(calcPercentValue(expencesResult.totalCost, +profitLevelPercent.value)).toFixed(2);
-            profitResult.wholeSalePrice = +(expencesResult.totalCost + profitResult.totalProfit).toFixed(2);
-            profitResult.pdvTaxAmount = +(calcPercentValue(profitResult.wholeSalePrice, percentValues.pdvTax)).toFixed(2);
-            profitResult.totalSalePrice = +(profitResult.wholeSalePrice + profitResult.pdvTaxAmount).toFixed(2);
+                expencesStruct.productionCostSale = calcStructurePercent(expencesResult.productionCostSale, expencesResult.totalCost);
+                expencesStruct.nonProductionCost = calcStructurePercent(expencesResult.nonProductionCost, expencesResult.totalCost);
+                expencesStruct.totalCost = calcStructurePercent(expencesResult.totalCost, expencesResult.totalCost);
 
-            // * STRUCTURE PROFIT
-            profitStruct.totalProfit = calcStructurePercent(profitResult.totalProfit, profitResult.totalSalePrice);
-            profitStruct.wholeSalePrice = calcStructurePercent(profitResult.wholeSalePrice, profitResult.totalSalePrice);
-            profitStruct.pdvTaxAmount = calcStructurePercent(profitResult.pdvTaxAmount, profitResult.totalSalePrice);
-            profitStruct.totalSalePrice = calcStructurePercent(profitResult.totalSalePrice, profitResult.totalSalePrice);
-            
-            // * OUTPUT FUNC
-            outputAllExpences();
-            outputAllExpencesStruct();
-            outputAllProfit();
-            outputAllProfitStruct();
-        }
-    });
+                // * PROFIT
+                profitResult.totalProfit = +(calcPercentValue(expencesResult.totalCost, profitLevelPercent.value)).toFixed(2);
+                profitResult.wholeSalePrice = +(expencesResult.totalCost + profitResult.totalProfit).toFixed(2);
+                profitResult.pdvTaxAmount = +(calcPercentValue(profitResult.wholeSalePrice, percentValues.pdvTax)).toFixed(2);
+                profitResult.totalSalePrice = +(profitResult.wholeSalePrice + profitResult.pdvTaxAmount).toFixed(2);
+
+                // * STRUCTURE PROFIT
+                profitStruct.totalProfit = calcStructurePercent(profitResult.totalProfit, profitResult.totalSalePrice);
+                profitStruct.wholeSalePrice = calcStructurePercent(profitResult.wholeSalePrice, profitResult.totalSalePrice);
+                profitStruct.pdvTaxAmount = calcStructurePercent(profitResult.pdvTaxAmount, profitResult.totalSalePrice);
+                profitStruct.totalSalePrice = calcStructurePercent(profitResult.totalSalePrice, profitResult.totalSalePrice);
+
+                // * OUTPUT FUNC
+                outputAllExpences();
+                outputAllExpencesStruct();
+                outputAllProfit();
+                outputAllProfitStruct();
+            }
+        });
+    }
 }

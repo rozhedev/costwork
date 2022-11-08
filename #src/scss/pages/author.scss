@@ -28,6 +28,9 @@
         background: url("../../img/bg/author-blob.svg") center / cover no-repeat;
 
         img[alt="author"] {
+            @supports(aspect-ratio: 1 / 1) {
+                aspect-ratio: 1 / 1;
+            }
             width: 336px;
             border-radius: 32px;
             transition: $transition;

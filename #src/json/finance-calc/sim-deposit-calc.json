@@ -3,7 +3,7 @@
         "label": "Сума вкладу:",
         "type": "number",
         "id": "sim-deposit-amount",
-        "class": "deposit-inp",
+        "class": "deposit-inp sim-deposit-inp",
         "measure": "UAH",
         "isDisabled": "",
         "isCurrency": "currency"
@@ -12,7 +12,7 @@
         "label": "Термін вкладу:",
         "type": "number",
         "id": "sim-deposit-period",
-        "class": "period-month-inp",
+        "class": "period-month-inp sim-deposit-inp",
         "measure": "міс.",
         "isDisabled": "",
         "isCurrency": ""
@@ -21,7 +21,7 @@
         "label": "Процентна ставка, % річних:",
         "type": "number",
         "id": "sim-year-rate",
-        "class": "percent-inp",
+        "class": "percent-inp sim-deposit-inp",
         "measure": "%",
         "isDisabled": "",
         "isCurrency": ""

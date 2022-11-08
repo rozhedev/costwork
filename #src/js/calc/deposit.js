@@ -1,6 +1,6 @@
 // * sim (simple) - Deposit without capitalisation, cap - Deposit with capitalisation
 
-const allFormInp = document.querySelectorAll(".inp");
+const simFormInputs = document.querySelectorAll(".sim-deposit-inp");
 const simDepositAmount = document.getElementById("sim-deposit-amount");
 const simYearRate = document.getElementById("sim-year-rate");
 const simDepositPeriod = document.getElementById("sim-deposit-period");
@@ -22,17 +22,16 @@ function calcSimProfit(amount, rate, period) {
 
 // * SIMPLE PERCENT OUTPUT
 
-if (simDepositAmount && simYearRate && simDepositPeriod) {
-    const simDepositAmountController = simDepositAmount.parentElement;
-    const simYearRateController = simYearRate.parentElement;
-    const simDepositPeriodController = simDepositPeriod.parentElement;
+if (simFormInputs && simDepositAmount && simYearRate && simDepositPeriod) {
+    let simFormInputsArr = [...simFormInputs];
 
     // * ADD CHANGE EVENT FOR INPUTS
-    for (inpItem of allFormInp) {
+    for (inpItem of simFormInputsArr) {
         inpItem.addEventListener("change", function () {
+            // * Condition which check _success class in all form controllers
+            let formControllerCond = simFormInputsArr.every((item) => item.parentElement.classList.contains("_success"));
 
-            if (simDepositAmountController.classList.contains("_success") && simYearRateController.classList.contains("_success") && simDepositPeriodController.classList.contains("_success")) {
-
+            if (formControllerCond) {
                 let simDepositAmountValue = +simDepositAmount.value;
                 let simYearRateValue = +simYearRate.value;
                 let simDepositPeriodValue = +simDepositPeriod.value;
@@ -58,6 +57,7 @@ if (simDepositAmount && simYearRate && simDepositPeriod) {
 
 // * CALC CAPITALISATION PERCENT
 
+const capFormInputs = document.querySelectorAll(".cap-deposit-inp");
 const capDepositAmount = document.getElementById("cap-deposit-amount");
 const capYearRate = document.getElementById("cap-year-rate");
 const capDepositPeriod = document.getElementById("cap-deposit-period");
@@ -177,22 +177,22 @@ function createPaymentTable(table, arr1, arr2, totalSum1, totalSum2, totalSum3, 
 
 // * CAPITALISATION PERCENT OUTPUT
 
-if (capDepositAmount && capYearRate && capDepositPeriod) {
-    const capDepositAmountController = capDepositAmount.parentElement;
-    const capYearRateController = capYearRate.parentElement;
-    const capDepositPeriodController = capDepositPeriod.parentElement;
+if (capFormInputs && capDepositAmount && capYearRate && capDepositPeriod) {
     const messageTip = document.querySelector(".message-tip");
 
     // * SCREEN WIDTH CHECK
     if (document.documentElement.clientWidth < 536) {
         messageTip.classList.add("_active");
     }
+    let capFormInputsArr = [...capFormInputs];
+
     // * ADD CHANGE EVENT FOR INPUTS
-    for (inpItem of allFormInp) {
+    for (inpItem of capFormInputsArr) {
         inpItem.addEventListener("change", function () {
+            // * Condition which check _success class in all form controllers
+            let formControllerCond = capFormInputsArr.every((item) => item.parentElement.classList.contains("_success"));
 
-            if (capDepositAmountController.classList.contains("_success") && capYearRateController.classList.contains("_success") && capDepositPeriodController.classList.contains("_success")) {
-
+            if (formControllerCond) {
                 let capDepositAmountValue = +capDepositAmount.value;
                 let capYearRateValue = +capYearRate.value;
                 let capDepositPeriodValue = +capDepositPeriod.value;
@@ -202,7 +202,7 @@ if (capDepositAmount && capYearRate && capDepositPeriod) {
                     let totalProfitObj = calcCapProfitSum(profitObj.monthlyAmount, profitObj.monthlyProfit, capDepositAmountValue, pdvTax);
 
                     capTableOutput.innerHTML = "";
-                    createPaymentTable(capTableOutput, profitObj.monthlyAmount, profitObj.monthlyProfit, totalProfitObj.monthlyAmountSum, totalProfitObj.monthlyProfitSum, totalProfitObj.monthlyAmountSumPdv, totalProfitObj.monthlyProfitSumPdv ,pdvTax);
+                    createPaymentTable(capTableOutput, profitObj.monthlyAmount, profitObj.monthlyProfit, totalProfitObj.monthlyAmountSum, totalProfitObj.monthlyProfitSum, totalProfitObj.monthlyAmountSumPdv, totalProfitObj.monthlyProfitSumPdv, pdvTax);
 
                 }, delay);
             }
