@@ -1,6 +1,6 @@
 [
     {
-        "label": "Сума кредиту:",
+        "label": "Сума кредиту",
         "type": "number",
         "id": "diff-credit-amount",
         "class": "credit-inp diff-credit-inp",
@@ -9,7 +9,7 @@
         "isCurrency": "currency"
     },
     {
-        "label": "Термін кредиту:",
+        "label": "Термін кредиту",
         "type": "number",
         "id": "diff-credit-period",
         "class": "period-month-inp diff-credit-inp",
@@ -18,7 +18,7 @@
         "isCurrency": ""
     },
     {
-        "label": "Процентна ставка, % річних:",
+        "label": "Процентна ставка, % річних",
         "type": "number",
         "id": "diff-percent-rate",
         "class": "percent-inp diff-credit-inp",
@@ -27,7 +27,7 @@
         "isCurrency": ""
     },
     {
-        "label": "Одноразова комісія:",
+        "label": "Одноразова комісія",
         "type": "number",
         "id": "diff-one-time-fee",
         "class": "diff-credit-inp fee-inp",
@@ -36,7 +36,7 @@
         "isCurrency": "currency"
     },
     {
-        "label": "Щомісячна комісія:",
+        "label": "Щомісячна комісія",
         "type": "number",
         "id": "diff-monthly-fee",
         "class": "diff-credit-inp fee-inp",

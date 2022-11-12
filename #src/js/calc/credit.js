@@ -13,6 +13,7 @@ const annOverpaymentOutput = document.getElementById("ann-overpayment-output");
 const annMonthlyPaymentOutput = document.getElementById("ann-monthly-payment-output");
 const annMessageOutput = document.getElementById("ann-message-output");
 
+let annMessage = "Умови кредиту невигідні для банку, так як позичальник віддає менше чим позичає. Таку пропозицію неможливо знайти.";
 let delay = 1000;
 let warningColor = "#0075c4";
 let darkColor = "#0d090a";
@@ -68,7 +69,7 @@ if (annFormInputs && annCreditAmount && annYearRate && annCreditPeriod) {
                         annTotalPaymentOutput.style.color = warningColor;
                         annOverpaymentOutput.style.color = warningColor;
                         annMessageOutput.classList.add("_active");
-                        annMessageOutput.textContent = "Умови кредиту невигідні для банку, так як позичальник віддає менше чим позичає. Таку пропозицію неможливо знайти.";
+                        annMessageOutput.textContent = annMessage;
                     }
                 }, delay);
             }

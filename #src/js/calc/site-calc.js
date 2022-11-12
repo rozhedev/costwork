@@ -140,7 +140,7 @@ const profitStruct = {
 
 let delay = 1000;
 
-
+// TODO Rewrite in function
 // * CALC STEP 1
 
 for (let i = 0; i < firstStepInputs.length; i++) {
@@ -161,6 +161,7 @@ function calcPercentValue(num, percentValue) {
     return +(num * (percentValue / 100)).toFixed(2);
 }
 
+// TODO Rewrite in function
 for (let i = 0; i < secondStepInputs.length; i++) {
     let inpItem = secondStepInputs[i];
     let inpItemController = inpItem.parentElement;
@@ -197,6 +198,7 @@ function calcMaterialExpences(paperCountValue, onePaperPriceValue, domainYearPri
     return materialExpences = +((paperCountValue * onePaperPriceValue) + (domainYearPriceValue * domainYearCountValue) + (hostingMonthPriceValue * hostingMounthCountValue) + flashDrivePriceValue).toFixed(2);
 }
 
+// TODO Rewrite in function
 for (let i = 0; i < thirtyStepInputs.length; i++) {
     let inpItem = thirtyStepInputs[i];
     let inpItemController = inpItem.parentElement;
@@ -207,7 +209,6 @@ for (let i = 0; i < thirtyStepInputs.length; i++) {
         }
     });
 }
-
 
 // * CALC STEP 4
 
@@ -220,6 +221,7 @@ function calcElectricityExpences(pcСountValue, pcWorkDurationValue, pcPowerValu
     return electricityExpences = +(pcСountValue * pcWorkDurationValue * pcPowerValue * oneWattPriceValue).toFixed(2);
 }
 
+// TODO Rewrite in function
 for (let i = 0; i < fourtyStepInputs.length; i++) {
     let inpItem = fourtyStepInputs[i];
     let inpItemController = inpItem.parentElement;

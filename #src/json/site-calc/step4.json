@@ -1,6 +1,6 @@
 [
     {
-        "label": "Кількість ЕОМ:",
+        "label": "Кількість ЕОМ",
         "type": "number",
         "id": "pc-count",
         "class": "site-calc-inp step4",
@@ -9,7 +9,7 @@
         "isCurrency": ""
     },
     {
-        "label": "Тривалість роботи ЕОМ:",
+        "label": "Тривалість роботи ЕОМ",
         "type": "number",
         "id": "pc-work-duration",
         "class": "site-calc-inp step4",
@@ -18,7 +18,7 @@
         "isCurrency": ""
     },
     {
-        "label": "Потужність ЕОМ:",
+        "label": "Потужність ЕОМ",
         "type": "number",
         "id": "pc-power",
         "class": "site-calc-inp step4",
@@ -27,7 +27,7 @@
         "isCurrency": "currency"
     },
     {
-        "label": "Ціна 1 кВт/год електроенергії:",
+        "label": "Ціна 1 кВт/год електроенергії",
         "type": "number",
         "id": "one-watt-price",
         "class": "site-calc-inp step4",

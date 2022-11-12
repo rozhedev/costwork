@@ -115,6 +115,7 @@ function calcCapProfitSum(arr1, arr2, amount, pdv) {
 
 // * OUTPUT FUNCTION
 // * Спешил, поэтому не успел f(x) в отдельный модуль вынести
+// TODO, напиши условие, которое будет проверять currency-switcher и подставлять нужное значение
 
 function createPaymentTable(table, arr1, arr2, totalSum1, totalSum2, totalSum3, totalSum4, pdv) {
     for (let i = 1; i < arr1.length; i++) {

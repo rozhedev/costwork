@@ -1,6 +1,6 @@
 [
     {
-        "label": "Формування технічного завдання:",
+        "label": "Формування технічного завдання",
         "type": "number",
         "id": "technical-task",
         "class": "site-calc-inp step1",
@@ -9,7 +9,7 @@
         "isCurrency": ""  
     },
     {
-        "label": "Створення прототипу:",
+        "label": "Створення прототипу",
         "type": "number",
         "id": "prototype-creation",
         "class": "site-calc-inp step1",
@@ -18,7 +18,7 @@
         "isCurrency": ""  
     },
     {
-        "label": "Розробка макету:",
+        "label": "Розробка макету",
         "type": "number",
         "id": "template-creation",
         "class": "site-calc-inp step1",
@@ -27,7 +27,7 @@
         "isCurrency": ""  
     },
     {
-        "label": "Створення клієнтської частини:",
+        "label": "Створення клієнтської частини",
         "type": "number",
         "id": "frontend-creation",
         "class": "site-calc-inp step1",
@@ -36,7 +36,7 @@
         "isCurrency": ""  
     },
     {
-        "label": "Створення серверної частини:",
+        "label": "Створення серверної частини",
         "type": "number",
         "id": "backend-creation",
         "class": "site-calc-inp step1",
@@ -45,7 +45,7 @@
         "isCurrency": ""  
     },
     {
-        "label": "Тестування функціоналу:",
+        "label": "Тестування функціоналу",
         "type": "number",
         "id": "functional-testing",
         "class": "site-calc-inp step1",
@@ -54,7 +54,7 @@
         "isCurrency": ""  
     },
     {
-        "label": "Написання інструкції:",
+        "label": "Написання інструкції",
         "type": "number",
         "id": "instruction-writing",
         "class": "site-calc-inp step1",
@@ -63,7 +63,7 @@
         "isCurrency": ""  
     },
     {
-        "label": "Публікація на хостингу:",
+        "label": "Публікація на хостингу",
         "type": "number",
         "id": "hosting-publication",
         "class": "site-calc-inp step1",

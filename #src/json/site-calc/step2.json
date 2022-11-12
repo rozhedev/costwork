@@ -1,6 +1,6 @@
 [
     {
-        "label": "Фонд оплати праці за місяць:",
+        "label": "Фонд оплати праці за місяць",
         "type": "number",
         "id": "salary-fund",
         "class": "site-calc-inp step2",
@@ -9,7 +9,7 @@
         "isCurrency": "currency"
     },
     {
-        "label": "Рівень рентабельності:",
+        "label": "Рівень рентабельності",
         "type": "number",
         "id": "profit-level-percent",
         "class": "site-calc-inp step2",

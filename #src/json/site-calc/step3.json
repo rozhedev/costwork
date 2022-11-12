@@ -1,6 +1,6 @@
 [
     {
-        "label": "Кількість аркушів паперу:",
+        "label": "Кількість аркушів паперу",
         "type": "number",
         "id": "paper-count",
         "class": "site-calc-inp step3",
@@ -9,7 +9,7 @@
         "isCurrency": ""   
     },
     {
-        "label": "Ціна одного аркушу паперу:",
+        "label": "Ціна одного аркушу паперу",
         "type": "number",
         "id": "one-paper-price",
         "class": "site-calc-inp step3",
@@ -18,7 +18,7 @@
         "isCurrency": "currency"
     },
     {
-        "label": "Ціна флеш-накопичувача:",
+        "label": "Ціна флеш-накопичувача",
         "type": "number",
         "id": "flash-drive-price",
         "class": "site-calc-inp step3",
@@ -27,7 +27,7 @@
         "isCurrency": "currency"
     },
     {
-        "label": "Річна варт. оренди домену:",
+        "label": "Річна варт. оренди домену",
         "type": "number",
         "id": "domain-year-price",
         "class": "site-calc-inp step3",
@@ -36,7 +36,7 @@
         "isCurrency": "currency"  
     },
     {
-        "label": "Тривалість оренди домену:",
+        "label": "Тривалість оренди домену",
         "type": "number",
         "id": "domain-year-count",
         "class": "site-calc-inp step3",
@@ -45,7 +45,7 @@
         "isCurrency": ""  
     },
     {
-        "label": "Місячна варт. оренди хостингу:",
+        "label": "Місячна варт. оренди хостингу",
         "type": "number",
         "id": "hosting-month-price",
         "class": "site-calc-inp step3",
@@ -54,7 +54,7 @@
         "isCurrency": "currency"  
     },
     {
-        "label": "Тривалість оренди хостингу:",
+        "label": "Тривалість оренди хостингу",
         "type": "number",
         "id": "hosting-mounth-count",
         "class": "site-calc-inp step3",
