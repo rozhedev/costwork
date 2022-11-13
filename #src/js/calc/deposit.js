@@ -1,17 +1,37 @@
 // * sim (simple) - Deposit without capitalisation, cap - Deposit with capitalisation
 
-const simFormInputs = document.querySelectorAll(".sim-deposit-inp");
-const simDepositAmount = document.getElementById("sim-deposit-amount");
-const simYearRate = document.getElementById("sim-year-rate");
-const simDepositPeriod = document.getElementById("sim-deposit-period");
+const INPUTS = {
+    sim: {
+        all: document.querySelectorAll(".sim-deposit-inp"),
+        amount: document.getElementById("sim-deposit-amount"),
+        yearRate: document.getElementById("sim-year-rate"),
+        period: document.getElementById("sim-deposit-period"),
+    },
+    cap: {
+        all: document.querySelectorAll(".cap-deposit-inp"),
+        amount: document.getElementById("cap-deposit-amount"),
+        yearRate: document.getElementById("cap-year-rate"),
+        period: document.getElementById("cap-deposit-period"),
+    }
+}
 
-const depositTotalOutput = document.getElementById("deposit-total-output");
-const depositProfitOutput = document.getElementById("deposit-profit-output");
-const depositMonthProfitOutput = document.getElementById("deposit-month-profit-output");
-const depositPdvProfitOutput = document.getElementById("deposit-pdv-profit-output");
+const OUTPUTS = {
+    sim: {
+        total: document.getElementById("deposit-total-output"),
+        profit: document.getElementById("deposit-profit-output"),
+        monthProfit: document.getElementById("deposit-month-profit-output"),
+        fee: document.getElementById("deposit-pdv-profit-output"),
+    },
+    cap: {
+        table: document.querySelector("#deposit-table-output tbody"),
+        screenTip: document.querySelector(".message-tip"),
+    }
+}
 
 let delay = 1000;
-let pdvTax = 19.5;
+let pdvFee = 19.5;
+let screenTipNum = 536
+
 
 // * CALC SIMPLE PERCENT
 
@@ -22,32 +42,31 @@ function calcSimProfit(amount, rate, period) {
 
 // * SIMPLE PERCENT OUTPUT
 
-if (simFormInputs && simDepositAmount && simYearRate && simDepositPeriod) {
-    let simFormInputsArr = [...simFormInputs];
+if (INPUTS.sim.all && INPUTS.sim.amount && INPUTS.sim.yearRate && INPUTS.sim.period) {
+    let inpArr = [...INPUTS.sim.all];
 
     // * ADD CHANGE EVENT FOR INPUTS
-    for (inpItem of simFormInputsArr) {
+    for (inpItem of inpArr) {
         inpItem.addEventListener("change", function () {
             // * Condition which check _success class in all form controllers
-            let formControllerCond = simFormInputsArr.every((item) => item.parentElement.classList.contains("_success"));
+            let formControllerCond = inpArr.every((item) => item.parentElement.classList.contains("_success"));
 
             if (formControllerCond) {
-                let simDepositAmountValue = +simDepositAmount.value;
-                let simYearRateValue = +simYearRate.value;
-                let simDepositPeriodValue = +simDepositPeriod.value;
+                let amountValue = +INPUTS.sim.amount.value;
+                let yearRateValue = +INPUTS.sim.yearRate.value;
+                let periodValue = +INPUTS.sim.period.value;
 
                 setTimeout(function () {
-                    let simNetProfit = +(calcSimProfit(simDepositAmountValue, simYearRateValue, simDepositPeriodValue)).toFixed(2);
-                    depositProfitOutput.textContent = simNetProfit;
+                    // * Net profit - чистый доход
+                    let netProfit = +(calcSimProfit(amountValue, yearRateValue, periodValue)).toFixed(2);
+                    let totalProfit = +(netProfit + amountValue).toFixed(2);
+                    let monthProfit = +(netProfit / periodValue).toFixed(2);
+                    let pdvProfit = `(податок = ${pdvFee}%) ${+(netProfit - (netProfit * (pdvFee / 100))).toFixed(2)}`;
 
-                    let simTotalProfit = (simNetProfit + simDepositAmountValue).toFixed(2);
-                    depositTotalOutput.textContent = simTotalProfit;
-
-                    let simMonthProfit = +(simNetProfit / simDepositPeriodValue).toFixed(2);
-                    depositMonthProfitOutput.textContent = simMonthProfit;
-
-                    let simPdvProfit = `(податок = ${pdvTax}%) ${+(simNetProfit - (simNetProfit * (pdvTax / 100))).toFixed(2)}`;
-                    depositPdvProfitOutput.textContent = simPdvProfit;
+                    OUTPUTS.sim.profit.textContent = netProfit;
+                    OUTPUTS.sim.total.textContent = totalProfit;
+                    OUTPUTS.sim.monthProfit.textContent = monthProfit;
+                    OUTPUTS.sim.fee.textContent = pdvProfit;
                 }, delay);
             }
         });
@@ -56,12 +75,6 @@ if (simFormInputs && simDepositAmount && simYearRate && simDepositPeriod) {
 
 
 // * CALC CAPITALISATION PERCENT
-
-const capFormInputs = document.querySelectorAll(".cap-deposit-inp");
-const capDepositAmount = document.getElementById("cap-deposit-amount");
-const capYearRate = document.getElementById("cap-year-rate");
-const capDepositPeriod = document.getElementById("cap-deposit-period");
-const capTableOutput = document.querySelector("#deposit-table-output tbody");
 
 function calcCapProfit(amount, rate, period) {
     let monthlyProfitObj = {
@@ -178,32 +191,35 @@ function createPaymentTable(table, arr1, arr2, totalSum1, totalSum2, totalSum3, 
 
 // * CAPITALISATION PERCENT OUTPUT
 
-if (capFormInputs && capDepositAmount && capYearRate && capDepositPeriod) {
-    const messageTip = document.querySelector(".message-tip");
+if (INPUTS.cap.all && INPUTS.cap.amount && INPUTS.cap.yearRate && INPUTS.cap.period) {
 
     // * SCREEN WIDTH CHECK
-    if (document.documentElement.clientWidth < 536) {
-        messageTip.classList.add("_active");
+    if (
+        OUTPUTS.cap.screenTip &&
+        document.documentElement.clientWidth < screenTipNum
+    ) {
+        OUTPUTS.cap.screenTip.classList.add("_active");
     }
-    let capFormInputsArr = [...capFormInputs];
+
+    let inpArr = [...INPUTS.cap.all];
 
     // * ADD CHANGE EVENT FOR INPUTS
-    for (inpItem of capFormInputsArr) {
+    for (inpItem of inpArr) {
         inpItem.addEventListener("change", function () {
             // * Condition which check _success class in all form controllers
-            let formControllerCond = capFormInputsArr.every((item) => item.parentElement.classList.contains("_success"));
+            let formControllerCond = inpArr.every((item) => item.parentElement.classList.contains("_success"));
 
             if (formControllerCond) {
-                let capDepositAmountValue = +capDepositAmount.value;
-                let capYearRateValue = +capYearRate.value;
-                let capDepositPeriodValue = +capDepositPeriod.value;
+                let amountValue = +INPUTS.cap.amount.value;
+                let yearRateValue = +INPUTS.cap.yearRate.value;
+                let periodValue = +INPUTS.cap.period.value;
 
                 setTimeout(function () {
-                    let profitObj = calcCapProfit(capDepositAmountValue, capYearRateValue, capDepositPeriodValue);
-                    let totalProfitObj = calcCapProfitSum(profitObj.monthlyAmount, profitObj.monthlyProfit, capDepositAmountValue, pdvTax);
+                    let profitObj = calcCapProfit(amountValue, yearRateValue, periodValue);
+                    let totalProfitObj = calcCapProfitSum(profitObj.monthlyAmount, profitObj.monthlyProfit, amountValue, pdvFee);
 
-                    capTableOutput.innerHTML = "";
-                    createPaymentTable(capTableOutput, profitObj.monthlyAmount, profitObj.monthlyProfit, totalProfitObj.monthlyAmountSum, totalProfitObj.monthlyProfitSum, totalProfitObj.monthlyAmountSumPdv, totalProfitObj.monthlyProfitSumPdv, pdvTax);
+                    OUTPUTS.cap.table.innerHTML = "";
+                    createPaymentTable(OUTPUTS.cap.table, profitObj.monthlyAmount, profitObj.monthlyProfit, totalProfitObj.monthlyAmountSum, totalProfitObj.monthlyProfitSum, totalProfitObj.monthlyAmountSumPdv, totalProfitObj.monthlyProfitSumPdv, pdvFee);
 
                 }, delay);
             }

@@ -1,4 +1,4 @@
-const inputs = {
+const INPUTS = {
     all: document.querySelectorAll(".inp"),
     siteCalc: document.querySelectorAll(".site-calc-inp"),
     deposit: document.querySelectorAll(".deposit-inp"),
@@ -8,7 +8,7 @@ const inputs = {
     fee: document.querySelectorAll(".fee-inp"),
 }
 
-const validIntervals = {
+const VALID_INTERVALS = {
     siteCalc: {
         min: 0.01,
         max: 999999,
@@ -35,7 +35,7 @@ const validIntervals = {
     },
 };
 
-const textErrors = {
+const TEXT_ERRORS = {
     emptyInp: function () {
         return "Поле не може бути пустим";
     },
@@ -53,11 +53,11 @@ const textErrors = {
 function checkInp(inp, intervalMin, intervalMax) {
     let inpValue = inp.value;
     if (inpValue === "") {
-        setErrorFor(inp, textErrors.emptyInp());
+        setErrorFor(inp, TEXT_ERRORS.emptyInp());
     } else if (+inpValue < intervalMin) {
-        setErrorFor(inp, textErrors.minValue(intervalMin));
+        setErrorFor(inp, TEXT_ERRORS.minValue(intervalMin));
     } else if (+inpValue > intervalMax) {
-        setErrorFor(inp, textErrors.maxValue(intervalMax));
+        setErrorFor(inp, TEXT_ERRORS.maxValue(intervalMax));
     } else {
         setSuccessFor(inp);
     }
@@ -91,65 +91,38 @@ function setSuccessFor(inp) {
 
 // * CALL FUNCTIONS
 
-for (let item of inputs.all) {
+for (let item of INPUTS.all) {
     item.addEventListener("input", function () {
         setDecimalNumber(item);
     });
 }
-for (let item of inputs.siteCalc) {
+for (let item of INPUTS.siteCalc) {
     item.addEventListener("change", function () {
-        checkInp(item, validIntervals.siteCalc.min, validIntervals.siteCalc.max);
+        checkInp(item, VALID_INTERVALS.siteCalc.min, VALID_INTERVALS.siteCalc.max);
     });
 }
-for (let item of inputs.deposit) {
+for (let item of INPUTS.deposit) {
     item.addEventListener("change", function () {
-        checkInp(item, validIntervals.deposit.min, validIntervals.deposit.max);
+        checkInp(item, VALID_INTERVALS.deposit.min, VALID_INTERVALS.deposit.max);
     });
 }
-for (let item of inputs.credit) {
+for (let item of INPUTS.credit) {
     item.addEventListener("change", function () {
-        checkInp(item, validIntervals.credit.min, validIntervals.credit.max);
+        checkInp(item, VALID_INTERVALS.credit.min, VALID_INTERVALS.credit.max);
     });
 }
-for (let item of inputs.periodMonth) {
+for (let item of INPUTS.periodMonth) {
     item.addEventListener("change", function () {
-        checkInp(item, validIntervals.periodMonth.min, validIntervals.periodMonth.max);
+        checkInp(item, VALID_INTERVALS.periodMonth.min, VALID_INTERVALS.periodMonth.max);
     });
 }
-for (let item of inputs.percent) {
+for (let item of INPUTS.percent) {
     item.addEventListener("change", function () {
-        checkInp(item, validIntervals.percent.min, validIntervals.percent.max);
+        checkInp(item, VALID_INTERVALS.percent.min, VALID_INTERVALS.percent.max);
     });
 }
-for (let item of inputs.fee) {
+for (let item of INPUTS.fee) {
     item.addEventListener("change", function () {
-        checkInp(item, validIntervals.fee.min, validIntervals.fee.max);
+        checkInp(item, VALID_INTERVALS.fee.min, VALID_INTERVALS.fee.max);
     });
 }
-
-
-// Попытка вынести вызов в отдельную f(x)
-
-// function addInpListener(inpList, eventType, ...intervalValues) {
-//     let inpArr = Array.from(inpList);
-
-//     for (let item of inpArr) {
-//         if (intervalValues.length == 0) {
-//             item.addEventListener(eventType, setDecimalNumber(item));
-//             break;
-
-//         } else if (intervalValues.length == 2) {
-//             let [intervalMin, intervalMax] = [intervalValues[1], intervalValues[2]];
-//             item.addEventListener(eventType, checkInp(item, intervalMin, intervalMax));
-//             break;
-
-//         } else {
-//             console.log("Count of arguments (intervalValues :91, validation.js) 0 or 2", intervalValues);
-//         }
-//     }
-// }
-
-//         addInpListener(
-//             inputs.all,
-//             "input",
-//         );
