@@ -36,7 +36,14 @@ const TABLE_ITEM_TITLES = {
     month: "місяць:",
     totalProfit: "Загальний дохід:",
     feeProfit: `З урах. податків (${pdvFee}%):`,
-}
+};
+// const CURRENCY_OBJ = {
+//     dollarUSA: "USD",
+//     euro: "EUR",
+//     ukrainianHryvnya: "UAH",
+// };
+// const selectedCur = document.querySelector(".select__title .select__value span");
+// console.log(selectedCur);
 
 
 // * CALC SIMPLE PERCENT
@@ -44,6 +51,21 @@ const TABLE_ITEM_TITLES = {
 function calcSimProfit(amount, rate, period) {
     let dayPeriod = period * 30;
     return +((amount * rate * dayPeriod / 365) / 100).toFixed(2);
+}
+
+// * OUTPUT FUNCTION
+
+function outputResult(resultObj, outputObj) {
+    let outputArr = Object.values(outputObj);
+    let resultArr = Object.values(resultObj);
+
+    for (let i = 0; i < outputArr.length; i++) {
+        for (let k = 0; k < resultArr.length; k++) {
+            if (i == k) {
+                outputArr[i].textContent = resultArr[i];
+            }
+        }
+    }
 }
 
 // * SIMPLE PERCENT OUTPUT
@@ -58,37 +80,27 @@ if (INPUTS.sim.all && INPUTS.sim.amount && INPUTS.sim.yearRate && INPUTS.sim.per
             let formControllerCond = inpArr.every((item) => item.parentElement.classList.contains("_success"));
 
             if (formControllerCond) {
-                // TODO исправь ошибку this, по итогу вычислений получаем NaN
                 const values = {
                     amount: +INPUTS.sim.amount.value,
                     yearRate: +INPUTS.sim.yearRate.value,
                     period: +INPUTS.sim.period.value,
                 }
+                let resultObj = {
+                    // * Net profit - чистый доход
+                    netProfit: calcSimProfit(values.amount, values.yearRate, values.period),
+                    get totalProfit() {
+                        return +(this.netProfit + values.amount).toFixed(2);
+                    },
+                    get monthProfit() {
+                        return +(this.netProfit / values.period).toFixed(2);
+                    },
+                    get pdvProfit() {
+                        return `(податок = ${pdvFee}%) ${+(this.netProfit - (this.netProfit * (pdvFee / 100))).toFixed(2)}`;
+                    },
+                }
 
                 setTimeout(function () {
-                    // const profitObj = {
-                    //     // * Net profit - чистый доход
-                    //     netProfit: calcSimProfit(values.amount, values.yearRate, values.period),
-                    //     totalProfit: +(this.netProfit + values.amount).toFixed(2),
-                    //     monthProfit: +(this.netProfit / values.period).toFixed(2),
-                    //     pdvProfit: `(податок = ${pdvFee}%) ${+(this.netProfit - (this.netProfit * (pdvFee / 100))).toFixed(2)}`,
-                    // }
-
-                    // for (let resultItem in profitObj) {
-                    //     for (let outputItem in OUTPUTS.sim) {
-                    //         outputItem.textContent = resultItem;
-                    //     }
-                    // }
-
-                    let netProfit = calcSimProfit(values.amount, values.yearRate, values.period);
-                    let totalProfit = +(netProfit + values.amount).toFixed(2);
-                    let monthProfit = +(netProfit / values.period).toFixed(2);
-                    let pdvProfit = `(податок = ${pdvFee}%) ${+(netProfit - (netProfit * (pdvFee / 100))).toFixed(2)}`;
-
-                    OUTPUTS.sim.profit.textContent = netProfit;
-                    OUTPUTS.sim.total.textContent = totalProfit;
-                    OUTPUTS.sim.monthProfit.textContent = monthProfit;
-                    OUTPUTS.sim.fee.textContent = pdvProfit;
+                    outputResult(resultObj, OUTPUTS.sim);
                 }, delay);
             }
         });
@@ -100,8 +112,8 @@ if (INPUTS.sim.all && INPUTS.sim.amount && INPUTS.sim.yearRate && INPUTS.sim.per
 
 function calcCapProfit(amount, rate, period) {
     let monthlyProfitObj = {
-        monthlyAmount: [],
-        monthlyProfit: [],
+        amount: [],
+        profit: [],
     };
     let dayPeriod = period * 30;
     let startAmount = amount;
@@ -111,16 +123,16 @@ function calcCapProfit(amount, rate, period) {
         let monthlyPercent = amount * ((1 + yearRate / 365) ** dayPeriod);
         amount += (monthlyPercent - amount);
 
-        monthlyProfitObj.monthlyProfit[i] = +(monthlyPercent / dayPeriod).toFixed(2);
+        monthlyProfitObj.profit[i] = +(monthlyPercent / dayPeriod).toFixed(2);
     }
 
     for (let i = 1; i <= period; i++) {
-        let temp = monthlyProfitObj.monthlyProfit[i];
+        let temp = monthlyProfitObj.profit[i];
         if (i == 1) {
-            monthlyProfitObj.monthlyAmount[i] = +(temp + startAmount).toFixed(2);
+            monthlyProfitObj.amount[i] = +(temp + startAmount).toFixed(2);
         } else {
-            monthlyProfitObj.monthlyAmount[i] = temp + monthlyProfitObj.monthlyAmount[i - 1];
-            monthlyProfitObj.monthlyAmount[i] = +(monthlyProfitObj.monthlyAmount[i]).toFixed(2);
+            monthlyProfitObj.amount[i] = temp + monthlyProfitObj.amount[i - 1];
+            monthlyProfitObj.amount[i] = +(monthlyProfitObj.amount[i]).toFixed(2);
         }
     }
 
@@ -148,8 +160,18 @@ function calcCapProfitSum(arr1, arr2, amount, pdv) {
     return profitSumObj;
 }
 
+
 // * OUTPUT FUNCTION
-// TODO, напиши условие, которое будет проверять currency-switcher и подставлять нужное значение
+
+function checkCurrency(select, currencyObj, table) {
+    let currencyArr = Object.values(currencyObj);
+    for (let item of currencyArr) {
+        if (select.textContent == item) {
+            table.innerHTML = "";
+            return item;
+        }
+    }
+}
 
 function createPaymentTable(table, title, profitValuesArr, feeValuesArr) {
     let tempTitle = title;
@@ -166,12 +188,20 @@ function createPaymentTable(table, title, profitValuesArr, feeValuesArr) {
             ${title}
         </td>
         <td class="payment-table__item-value">
-            <span class="navlink">${profitValuesArr[i]}</span>
-            <span class="navlink currency">UAH</span>
+            <span class="navlink">
+                ${profitValuesArr[i]}
+            </span>
+            <span class="navlink currency">
+                UAH
+            </span>
         </td>
         <td class="payment-table__item-value">
-            <span class="navlink">${feeValuesArr[i]}</span>
-            <span class="navlink currency">UAH</span>
+            <span class="navlink">
+                ${feeValuesArr[i]}
+            </span>
+            <span class="navlink currency">
+                UAH
+            </span>
         </td>
               `;
 
@@ -205,16 +235,21 @@ if (INPUTS.cap.all && INPUTS.cap.amount && INPUTS.cap.yearRate && INPUTS.cap.per
                     yearRate: +INPUTS.cap.yearRate.value,
                     period: +INPUTS.cap.period.value,
                 }
+                // * RESULT OBJECTS
+                let monthlyProfitObj = calcCapProfit(values.amount, values.yearRate, values.period);
+                let totalProfitObj = calcCapProfitSum(monthlyProfitObj.amount, monthlyProfitObj.profit, values.amount, pdvFee);
+                let totalProfitArr = Object.entries(totalProfitObj);
 
                 setTimeout(function () {
                     OUTPUTS.cap.table.innerHTML = "";
 
-                    let profitObj = calcCapProfit(values.amount, values.yearRate, values.period);
-                    let totalProfitObj = calcCapProfitSum(profitObj.monthlyAmount, profitObj.monthlyProfit, values.amount, pdvFee);
-                    let totalProfitArr = Object.entries(totalProfitObj);
+                    // createPaymentTable(OUTPUTS.cap.table, TABLE_ITEM_TITLES.month, monthlyProfitObj.amount, monthlyProfitObj.profit, checkCurrency(selectedCur, CURRENCY_OBJ));
 
-                    createPaymentTable(OUTPUTS.cap.table, TABLE_ITEM_TITLES.month, profitObj.monthlyAmount, profitObj.monthlyProfit);
+                    createPaymentTable(OUTPUTS.cap.table, TABLE_ITEM_TITLES.month, monthlyProfitObj.amount, monthlyProfitObj.profit);
+
+
                     createPaymentTable(OUTPUTS.cap.table, TABLE_ITEM_TITLES.totalProfit, totalProfitArr[2], totalProfitArr[0]);
+
                     createPaymentTable(OUTPUTS.cap.table, TABLE_ITEM_TITLES.feeProfit, totalProfitArr[3], totalProfitArr[1]);
                 }, delay);
             }
