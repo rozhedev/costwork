@@ -30,7 +30,13 @@ const OUTPUTS = {
 
 let delay = 1000;
 let pdvFee = 19.5;
-let screenTipNum = 536
+let screenTipNum = 536;
+
+const TABLE_ITEM_TITLES = {
+    month: "місяць:",
+    totalProfit: "Загальний дохід:",
+    feeProfit: `З урах. податків (${pdvFee}%):`,
+}
 
 
 // * CALC SIMPLE PERCENT
@@ -52,15 +58,31 @@ if (INPUTS.sim.all && INPUTS.sim.amount && INPUTS.sim.yearRate && INPUTS.sim.per
             let formControllerCond = inpArr.every((item) => item.parentElement.classList.contains("_success"));
 
             if (formControllerCond) {
-                let amountValue = +INPUTS.sim.amount.value;
-                let yearRateValue = +INPUTS.sim.yearRate.value;
-                let periodValue = +INPUTS.sim.period.value;
+                // TODO исправь ошибку this, по итогу вычислений получаем NaN
+                const values = {
+                    amount: +INPUTS.sim.amount.value,
+                    yearRate: +INPUTS.sim.yearRate.value,
+                    period: +INPUTS.sim.period.value,
+                }
 
                 setTimeout(function () {
-                    // * Net profit - чистый доход
-                    let netProfit = +(calcSimProfit(amountValue, yearRateValue, periodValue)).toFixed(2);
-                    let totalProfit = +(netProfit + amountValue).toFixed(2);
-                    let monthProfit = +(netProfit / periodValue).toFixed(2);
+                    // const profitObj = {
+                    //     // * Net profit - чистый доход
+                    //     netProfit: calcSimProfit(values.amount, values.yearRate, values.period),
+                    //     totalProfit: +(this.netProfit + values.amount).toFixed(2),
+                    //     monthProfit: +(this.netProfit / values.period).toFixed(2),
+                    //     pdvProfit: `(податок = ${pdvFee}%) ${+(this.netProfit - (this.netProfit * (pdvFee / 100))).toFixed(2)}`,
+                    // }
+
+                    // for (let resultItem in profitObj) {
+                    //     for (let outputItem in OUTPUTS.sim) {
+                    //         outputItem.textContent = resultItem;
+                    //     }
+                    // }
+
+                    let netProfit = calcSimProfit(values.amount, values.yearRate, values.period);
+                    let totalProfit = +(netProfit + values.amount).toFixed(2);
+                    let monthProfit = +(netProfit / values.period).toFixed(2);
                     let pdvProfit = `(податок = ${pdvFee}%) ${+(netProfit - (netProfit * (pdvFee / 100))).toFixed(2)}`;
 
                     OUTPUTS.sim.profit.textContent = netProfit;
@@ -127,66 +149,34 @@ function calcCapProfitSum(arr1, arr2, amount, pdv) {
 }
 
 // * OUTPUT FUNCTION
-// * Спешил, поэтому не успел f(x) в отдельный модуль вынести
 // TODO, напиши условие, которое будет проверять currency-switcher и подставлять нужное значение
 
-function createPaymentTable(table, arr1, arr2, totalSum1, totalSum2, totalSum3, totalSum4, pdv) {
-    for (let i = 1; i < arr1.length; i++) {
+function createPaymentTable(table, title, profitValuesArr, feeValuesArr) {
+    let tempTitle = title;
+    for (let i = 1; i < profitValuesArr.length; i++) {
         let tableItem = document.createElement("tr");
         tableItem.classList.add("payment-table__item");
 
+        if (typeof profitValuesArr[0] !== "string") {
+            title = ``;
+            title = `${i} ${tempTitle}`;
+        }
         tableItem.innerHTML += `
         <td class="payment-table__item-label navlink">
-            ${i} місяць:
+            ${title}
         </td>
         <td class="payment-table__item-value">
-            <span class="navlink">${arr1[i]}</span>
+            <span class="navlink">${profitValuesArr[i]}</span>
             <span class="navlink currency">UAH</span>
         </td>
         <td class="payment-table__item-value">
-            <span class="navlink">${arr2[i]}</span>
+            <span class="navlink">${feeValuesArr[i]}</span>
             <span class="navlink currency">UAH</span>
         </td>
               `;
 
         table.appendChild(tableItem);
     }
-
-    let tableItemSum = document.createElement("tr");
-    let tableItemSumPdv = document.createElement("tr");
-    tableItemSum.classList.add("payment-table__item");
-    tableItemSumPdv.classList.add("payment-table__item");
-
-    tableItemSum.innerHTML += `
-        <td class="payment-table__item-label navlink">
-            Сумма:
-        </td>
-        <td class="payment-table__item-value">
-            <span class="navlink">${totalSum1}</span>
-            <span class="navlink currency">UAH</span>
-        </td>
-        <td class="payment-table__item-value">
-            <span class="navlink">${totalSum2}</span>
-            <span class="navlink currency">UAH</span>
-        </td>
-          `;
-
-    tableItemSumPdv.innerHTML += `
-        <td class="payment-table__item-label navlink">
-        З урах. податків (${pdv}%):
-        </td>
-        <td class="payment-table__item-value">
-            <span class="navlink">${totalSum3}</span>
-            <span class="navlink currency">UAH</span>
-        </td>
-        <td class="payment-table__item-value">
-            <span class="navlink">${totalSum4}</span>
-            <span class="navlink currency">UAH</span>
-        </td>
-            `;
-
-    table.appendChild(tableItemSum);
-    table.appendChild(tableItemSumPdv);
 }
 
 // * CAPITALISATION PERCENT OUTPUT
@@ -210,17 +200,22 @@ if (INPUTS.cap.all && INPUTS.cap.amount && INPUTS.cap.yearRate && INPUTS.cap.per
             let formControllerCond = inpArr.every((item) => item.parentElement.classList.contains("_success"));
 
             if (formControllerCond) {
-                let amountValue = +INPUTS.cap.amount.value;
-                let yearRateValue = +INPUTS.cap.yearRate.value;
-                let periodValue = +INPUTS.cap.period.value;
+                const values = {
+                    amount: +INPUTS.cap.amount.value,
+                    yearRate: +INPUTS.cap.yearRate.value,
+                    period: +INPUTS.cap.period.value,
+                }
 
                 setTimeout(function () {
-                    let profitObj = calcCapProfit(amountValue, yearRateValue, periodValue);
-                    let totalProfitObj = calcCapProfitSum(profitObj.monthlyAmount, profitObj.monthlyProfit, amountValue, pdvFee);
-
                     OUTPUTS.cap.table.innerHTML = "";
-                    createPaymentTable(OUTPUTS.cap.table, profitObj.monthlyAmount, profitObj.monthlyProfit, totalProfitObj.monthlyAmountSum, totalProfitObj.monthlyProfitSum, totalProfitObj.monthlyAmountSumPdv, totalProfitObj.monthlyProfitSumPdv, pdvFee);
 
+                    let profitObj = calcCapProfit(values.amount, values.yearRate, values.period);
+                    let totalProfitObj = calcCapProfitSum(profitObj.monthlyAmount, profitObj.monthlyProfit, values.amount, pdvFee);
+                    let totalProfitArr = Object.entries(totalProfitObj);
+
+                    createPaymentTable(OUTPUTS.cap.table, TABLE_ITEM_TITLES.month, profitObj.monthlyAmount, profitObj.monthlyProfit);
+                    createPaymentTable(OUTPUTS.cap.table, TABLE_ITEM_TITLES.totalProfit, totalProfitArr[2], totalProfitArr[0]);
+                    createPaymentTable(OUTPUTS.cap.table, TABLE_ITEM_TITLES.feeProfit, totalProfitArr[3], totalProfitArr[1]);
                 }, delay);
             }
         });
