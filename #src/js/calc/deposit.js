@@ -37,13 +37,6 @@ const TABLE_ITEM_TITLES = {
     totalProfit: "Загальний дохід:",
     feeProfit: `З урах. податків (${pdvFee}%):`,
 };
-// const CURRENCY_OBJ = {
-//     dollarUSA: "USD",
-//     euro: "EUR",
-//     ukrainianHryvnya: "UAH",
-// };
-// const selectedCur = document.querySelector(".select__title .select__value span");
-// console.log(selectedCur);
 
 
 // * CALC SIMPLE PERCENT
@@ -154,27 +147,18 @@ function calcCapProfitSum(arr1, arr2, amount, pdv) {
     profitSumObj.monthlyProfitSum = +(profitSumObj.monthlyProfitSum).toFixed(2);
     profitSumObj.monthlyProfitSumPdv = +(profitSumObj.monthlyProfitSum - profitSumObj.monthlyProfitSum * (pdv / 100)).toFixed(2);
 
-    profitSumObj.monthlyAmountSum = arr1[arr1.length - 1];
+    profitSumObj.monthlyAmountSum = arr1.at(-1);
     profitSumObj.monthlyAmountSumPdv = amount + profitSumObj.monthlyProfitSumPdv;
 
     return profitSumObj;
 }
 
-
 // * OUTPUT FUNCTION
 
-function checkCurrency(select, currencyObj, table) {
-    let currencyArr = Object.values(currencyObj);
-    for (let item of currencyArr) {
-        if (select.textContent == item) {
-            table.innerHTML = "";
-            return item;
-        }
-    }
-}
-
 function createPaymentTable(table, title, profitValuesArr, feeValuesArr) {
+    selectedCur = document.querySelector(".select_header-select .select__title span");
     let tempTitle = title;
+
     for (let i = 1; i < profitValuesArr.length; i++) {
         let tableItem = document.createElement("tr");
         tableItem.classList.add("payment-table__item");
@@ -192,7 +176,7 @@ function createPaymentTable(table, title, profitValuesArr, feeValuesArr) {
                 ${profitValuesArr[i]}
             </span>
             <span class="navlink currency">
-                UAH
+                ${selectedCur.textContent}
             </span>
         </td>
         <td class="payment-table__item-value">
@@ -200,7 +184,7 @@ function createPaymentTable(table, title, profitValuesArr, feeValuesArr) {
                 ${feeValuesArr[i]}
             </span>
             <span class="navlink currency">
-                UAH
+                ${selectedCur.textContent}
             </span>
         </td>
               `;
@@ -209,19 +193,17 @@ function createPaymentTable(table, title, profitValuesArr, feeValuesArr) {
     }
 }
 
+function checkScreenWidth(messageBlock, width) {
+    if (messageBlock && document.documentElement.clientWidth < width) {
+        messageBlock.classList.add("_active");
+    }
+}
+
 // * CAPITALISATION PERCENT OUTPUT
 
 if (INPUTS.cap.all && INPUTS.cap.amount && INPUTS.cap.yearRate && INPUTS.cap.period) {
-
-    // * SCREEN WIDTH CHECK
-    if (
-        OUTPUTS.cap.screenTip &&
-        document.documentElement.clientWidth < screenTipNum
-    ) {
-        OUTPUTS.cap.screenTip.classList.add("_active");
-    }
-
     let inpArr = [...INPUTS.cap.all];
+    checkScreenWidth(OUTPUTS.cap.screenTip, screenTipNum);
 
     // * ADD CHANGE EVENT FOR INPUTS
     for (inpItem of inpArr) {
@@ -243,13 +225,8 @@ if (INPUTS.cap.all && INPUTS.cap.amount && INPUTS.cap.yearRate && INPUTS.cap.per
                 setTimeout(function () {
                     OUTPUTS.cap.table.innerHTML = "";
 
-                    // createPaymentTable(OUTPUTS.cap.table, TABLE_ITEM_TITLES.month, monthlyProfitObj.amount, monthlyProfitObj.profit, checkCurrency(selectedCur, CURRENCY_OBJ));
-
                     createPaymentTable(OUTPUTS.cap.table, TABLE_ITEM_TITLES.month, monthlyProfitObj.amount, monthlyProfitObj.profit);
-
-
                     createPaymentTable(OUTPUTS.cap.table, TABLE_ITEM_TITLES.totalProfit, totalProfitArr[2], totalProfitArr[0]);
-
                     createPaymentTable(OUTPUTS.cap.table, TABLE_ITEM_TITLES.feeProfit, totalProfitArr[3], totalProfitArr[1]);
                 }, delay);
             }

@@ -1,3 +1,5 @@
+// TODO Сделай конвертацию резульатов и значений полей у выбранную валюту. Позже динамечкое обновление курса
+
 const CURRENCY_OBJ = {
     dollarUSA: "USD",
     euro: "EUR",
@@ -5,6 +7,17 @@ const CURRENCY_OBJ = {
 }
 const curSelectOptions = document.querySelectorAll(".select_header-select .select__option");
 const curOutputs = document.querySelectorAll(".currency");
+
+// Добавь событие для смені подписей таблицы
+function checkCurrency(currencyObj, select, table) {
+    let currencyArr = Object.values(currencyObj);
+    for (let item of currencyArr) {
+        if (select.textContent == item) {
+            table.innerHTML = "";
+            return item;
+        }
+    }
+}
 
 
 if (curSelectOptions && curOutputs) {
