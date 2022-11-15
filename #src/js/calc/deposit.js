@@ -1,10 +1,10 @@
 
-import {OUTPUT_FUNC} from "../functions/output";
+import {outputResult, checkScreenWidth} from "../functions/output";
 import {createPaymentTable} from "../functions/table-gen";
 
 // * sim (simple) - Deposit without capitalisation, cap - Deposit with capitalisation
 
-const INPUTS = {
+const DEP_INPUTS = {
     sim: {
         all: document.querySelectorAll(".sim-deposit-inp"),
         amount: document.getElementById("sim-deposit-amount"),
@@ -19,7 +19,7 @@ const INPUTS = {
     }
 }
 
-const OUTPUTS = {
+const DEP_OUTPUTS = {
     sim: {
         total: document.getElementById("deposit-total-output"),
         profit: document.getElementById("deposit-profit-output"),
@@ -36,7 +36,7 @@ let delay = 1000;
 let pdvFee = 19.5;
 let screenTipNum = 536;
 
-const TABLE_ITEM_TITLES = {
+const DEP_TABLE_LABELS = {
     month: "місяць:",
     totalProfit: "Загальний дохід:",
     feeProfit: `З урах. податків (${pdvFee}%):`,
@@ -52,20 +52,20 @@ function calcSimProfit(amount, rate, period) {
 
 // * SIMPLE PERCENT OUTPUT
 
-if (INPUTS.sim.all && INPUTS.sim.amount && INPUTS.sim.yearRate && INPUTS.sim.period) {
-    let inpArr = [...INPUTS.sim.all];
+if (DEP_INPUTS.sim.all && DEP_INPUTS.sim.amount && DEP_INPUTS.sim.yearRate && DEP_INPUTS.sim.period) {
+    let inpArr = [...DEP_INPUTS.sim.all];
 
-    // * ADD CHANGE EVENT FOR INPUTS
-    for (inpItem of inpArr) {
+    // * ADD CHANGE EVENT FOR DEP_INPUTS
+    for (const inpItem of inpArr) {
         inpItem.addEventListener("change", function () {
             // * Condition which check _success class in all form controllers
             let formControllerCond = inpArr.every((item) => item.parentElement.classList.contains("_success"));
 
             if (formControllerCond) {
                 const values = {
-                    amount: +INPUTS.sim.amount.value,
-                    yearRate: +INPUTS.sim.yearRate.value,
-                    period: +INPUTS.sim.period.value,
+                    amount: +DEP_INPUTS.sim.amount.value,
+                    yearRate: +DEP_INPUTS.sim.yearRate.value,
+                    period: +DEP_INPUTS.sim.period.value,
                 }
                 let resultObj = {
                     // * Net profit - чистый доход
@@ -82,7 +82,7 @@ if (INPUTS.sim.all && INPUTS.sim.amount && INPUTS.sim.yearRate && INPUTS.sim.per
                 }
 
                 setTimeout(function () {
-                    OUTPUT_FUNC.outputResult(resultObj, OUTPUTS.sim);
+                    outputResult(resultObj, DEP_OUTPUTS.sim);
                 }, delay);
             }
         });
@@ -144,21 +144,21 @@ function calcCapProfitSum(arr1, arr2, amount, pdv) {
 
 // * CAPITALISATION PERCENT OUTPUT
 
-if (INPUTS.cap.all && INPUTS.cap.amount && INPUTS.cap.yearRate && INPUTS.cap.period) {
-    let inpArr = [...INPUTS.cap.all];
-    OUTPUT_FUNC.checkScreenWidth(OUTPUTS.cap.screenTip, screenTipNum);
+if (DEP_INPUTS.cap.all && DEP_INPUTS.cap.amount && DEP_INPUTS.cap.yearRate && DEP_INPUTS.cap.period) {
+    let inpArr = [...DEP_INPUTS.cap.all];
+    checkScreenWidth(DEP_OUTPUTS.cap.screenTip, screenTipNum);
 
-    // * ADD CHANGE EVENT FOR INPUTS
-    for (inpItem of inpArr) {
+    // * ADD CHANGE EVENT FOR DEP_INPUTS
+    for (const inpItem of inpArr) {
         inpItem.addEventListener("change", function () {
             // * Condition which check _success class in all form controllers
             let formControllerCond = inpArr.every((item) => item.parentElement.classList.contains("_success"));
 
             if (formControllerCond) {
                 const values = {
-                    amount: +INPUTS.cap.amount.value,
-                    yearRate: +INPUTS.cap.yearRate.value,
-                    period: +INPUTS.cap.period.value,
+                    amount: +DEP_INPUTS.cap.amount.value,
+                    yearRate: +DEP_INPUTS.cap.yearRate.value,
+                    period: +DEP_INPUTS.cap.period.value,
                 }
                 // * RESULT OBJECTS
                 let monthlyProfitObj = calcCapProfit(values.amount, values.yearRate, values.period);
@@ -166,11 +166,11 @@ if (INPUTS.cap.all && INPUTS.cap.amount && INPUTS.cap.yearRate && INPUTS.cap.per
                 let totalProfitArr = Object.entries(totalProfitObj);
 
                 setTimeout(function () {
-                    OUTPUTS.cap.table.innerHTML = "";
+                    DEP_OUTPUTS.cap.table.innerHTML = "";
 
-                    createPaymentTable(OUTPUTS.cap.table, TABLE_ITEM_TITLES.month, monthlyProfitObj.amount, monthlyProfitObj.profit);
-                    createPaymentTable(OUTPUTS.cap.table, TABLE_ITEM_TITLES.totalProfit, totalProfitArr[2], totalProfitArr[0]);
-                    createPaymentTable(OUTPUTS.cap.table, TABLE_ITEM_TITLES.feeProfit, totalProfitArr[3], totalProfitArr[1]);
+                    createPaymentTable(DEP_OUTPUTS.cap.table, DEP_TABLE_LABELS.month, monthlyProfitObj.amount, monthlyProfitObj.profit);
+                    createPaymentTable(DEP_OUTPUTS.cap.table, DEP_TABLE_LABELS.totalProfit, totalProfitArr[2], totalProfitArr[0]);
+                    createPaymentTable(DEP_OUTPUTS.cap.table, DEP_TABLE_LABELS.feeProfit, totalProfitArr[3], totalProfitArr[1]);
                 }, delay);
             }
         });

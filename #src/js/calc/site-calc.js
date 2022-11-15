@@ -63,7 +63,7 @@ const expencesStructOutput = {
 
 // * PROFIT EXPENCES
 const profitOutput = {
-    totalProfit: document.getElementById("profit-output"),
+    total: document.getElementById("profit-output"),
     wholeSalePrice: document.getElementById("wholesale-price-output"),
     pdvTax: document.getElementById("pdv-tax-output"),
     totalSalePrice: document.getElementById("sale-price-output"),
@@ -72,7 +72,7 @@ const profitOutput = {
 
 // * PROFIT STRUCTURE
 const profitStructOutput = {
-    totalProfit: document.getElementById("profit-struct"),
+    total: document.getElementById("profit-struct"),
     wholeSalePrice: document.getElementById("wholesale-price-struct"),
     pdvTax: document.getElementById("pdv-tax-struct"),
     totalSalePrice: document.getElementById("sale-price-struct"),
@@ -125,14 +125,14 @@ const expencesStruct = {
 };
 
 const profitResult = {
-    totalProfit: 0,
+    total: 0,
     wholeSalePrice: 0,
     pdvTaxAmount: 0,
     totalSalePrice: 0,
 };
 
 const profitStruct = {
-    totalProfit: 0,
+    total: 0,
     wholeSalePrice: 0,
     pdvTaxAmount: 0,
     totalSalePrice: 0,
@@ -270,14 +270,14 @@ function outputAllExpencesStruct() {
 }
 
 function outputAllProfit() {
-    profitOutput.totalProfit.textContent = profitResult.totalProfit;
+    profitOutput.total.textContent = profitResult.total;
     profitOutput.wholeSalePrice.textContent = profitResult.wholeSalePrice;
     profitOutput.pdvTax.textContent = profitResult.pdvTaxAmount;
     profitOutput.totalSalePrice.textContent = profitResult.totalSalePrice;
 }
 
 function outputAllProfitStruct() {
-    profitStructOutput.totalProfit.textContent = profitStruct.totalProfit;
+    profitStructOutput.total.textContent = profitStruct.total;
     profitStructOutput.wholeSalePrice.textContent = profitStruct.wholeSalePrice;
     profitStructOutput.pdvTax.textContent = profitStruct.pdvTaxAmount;
     profitStructOutput.totalSalePrice.textContent = profitStruct.totalSalePrice;
@@ -289,7 +289,7 @@ if (allFormInp) {
     let allFormInpArr = [...allFormInp];
 
     // * ADD CHANGE EVENT FOR INPUTS
-    for (inpItem of allFormInpArr) {
+    for (const inpItem of allFormInpArr) {
         inpItem.addEventListener("change", function () {
             // * Condition which check _success class in all form controllers
             let formControllerCond = allFormInpArr.every((item) => item.parentElement.classList.contains("_success"));
@@ -315,13 +315,13 @@ if (allFormInp) {
                 expencesStruct.totalCost = calcStructurePercent(expencesResult.totalCost, expencesResult.totalCost);
 
                 // * PROFIT
-                profitResult.total= +(calcPercentValue(expencesResult.totalCost, profitLevelPercent.value)).toFixed(2);
-                profitResult.wholeSalePrice = +(expencesResult.totalCost + profitResult.totalProfit).toFixed(2);
+                profitResult.total = +(calcPercentValue(expencesResult.totalCost, profitLevelPercent.value)).toFixed(2);
+                profitResult.wholeSalePrice = +(expencesResult.totalCost + profitResult.total).toFixed(2);
                 profitResult.pdvTaxAmount = +(calcPercentValue(profitResult.wholeSalePrice, percentValues.pdvTax)).toFixed(2);
                 profitResult.totalSalePrice = +(profitResult.wholeSalePrice + profitResult.pdvTaxAmount).toFixed(2);
 
                 // * STRUCTURE PROFIT
-                profitStruct.total= calcStructurePercent(profitResult.totalProfit, profitResult.totalSalePrice);
+                profitStruct.total = calcStructurePercent(profitResult.total, profitResult.totalSalePrice);
                 profitStruct.wholeSalePrice = calcStructurePercent(profitResult.wholeSalePrice, profitResult.totalSalePrice);
                 profitStruct.pdvTaxAmount = calcStructurePercent(profitResult.pdvTaxAmount, profitResult.totalSalePrice);
                 profitStruct.totalSalePrice = calcStructurePercent(profitResult.totalSalePrice, profitResult.totalSalePrice);

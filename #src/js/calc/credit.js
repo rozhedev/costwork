@@ -36,7 +36,7 @@ if (annFormInputs && annCreditAmount && annYearRate && annCreditPeriod) {
     let annFormInputsArr = [...annFormInputs];
 
     // * ADD CHANGE EVENT FOR INPUTS
-    for (inpItem of annFormInputsArr) {
+    for (const inpItem of annFormInputsArr) {
         inpItem.addEventListener("change", function () {
             // * Condition which check _success class in all form controllers
             let formControllerCond = annFormInputsArr.every((item) => item.parentElement.classList.contains("_success"));
@@ -176,7 +176,7 @@ if (diffFormInputs && diffCreditAmount && diffYearRate && diffCreditPeriod) {
     let diffFormInputsArr = [...diffFormInputs];
 
     // * ADD CHANGE EVENT FOR INPUTS
-    for (inpItem of diffFormInputsArr) {
+    for (const inpItem of diffFormInputsArr) {
         inpItem.addEventListener("change", function () {
             // * Condition which check _success class in all form controllers
             let formControllerCond = diffFormInputsArr.every((item) => item.parentElement.classList.contains("_success"));
