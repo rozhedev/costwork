@@ -1,3 +1,7 @@
+
+import {OUTPUT_FUNC} from "../functions/output";
+import {createPaymentTable} from "../functions/table-gen";
+
 // * sim (simple) - Deposit without capitalisation, cap - Deposit with capitalisation
 
 const INPUTS = {
@@ -46,21 +50,6 @@ function calcSimProfit(amount, rate, period) {
     return +((amount * rate * dayPeriod / 365) / 100).toFixed(2);
 }
 
-// * OUTPUT FUNCTION
-
-function outputResult(resultObj, outputObj) {
-    let outputArr = Object.values(outputObj);
-    let resultArr = Object.values(resultObj);
-
-    for (let i = 0; i < outputArr.length; i++) {
-        for (let k = 0; k < resultArr.length; k++) {
-            if (i == k) {
-                outputArr[i].textContent = resultArr[i];
-            }
-        }
-    }
-}
-
 // * SIMPLE PERCENT OUTPUT
 
 if (INPUTS.sim.all && INPUTS.sim.amount && INPUTS.sim.yearRate && INPUTS.sim.period) {
@@ -93,7 +82,7 @@ if (INPUTS.sim.all && INPUTS.sim.amount && INPUTS.sim.yearRate && INPUTS.sim.per
                 }
 
                 setTimeout(function () {
-                    outputResult(resultObj, OUTPUTS.sim);
+                    OUTPUT_FUNC.outputResult(resultObj, OUTPUTS.sim);
                 }, delay);
             }
         });
@@ -136,74 +125,28 @@ function calcCapProfit(amount, rate, period) {
 
 function calcCapProfitSum(arr1, arr2, amount, pdv) {
     let profitSumObj = {
-        monthlyProfitSum: 0,
-        monthlyProfitSumPdv: 0,
-        monthlyAmountSum: 0,
-        monthlyAmountSumPdv: 0,
+        monthlyProfit: 0,
+        monthlyProfitPdv: 0,
+        monthlyAmount: 0,
+        monthlyAmountPdv: 0,
     }
     for (let i = 1; i < arr2.length; i++) {
-        profitSumObj.monthlyProfitSum += arr2[i];
+        profitSumObj.monthlyProfit += arr2[i];
     }
-    profitSumObj.monthlyProfitSum = +(profitSumObj.monthlyProfitSum).toFixed(2);
-    profitSumObj.monthlyProfitSumPdv = +(profitSumObj.monthlyProfitSum - profitSumObj.monthlyProfitSum * (pdv / 100)).toFixed(2);
+    profitSumObj.monthlyProfit = +(profitSumObj.monthlyProfit).toFixed(2);
+    profitSumObj.monthlyProfitPdv = +(profitSumObj.monthlyProfit - profitSumObj.monthlyProfit * (pdv / 100)).toFixed(2);
 
-    profitSumObj.monthlyAmountSum = arr1.at(-1);
-    profitSumObj.monthlyAmountSumPdv = amount + profitSumObj.monthlyProfitSumPdv;
+    profitSumObj.monthlyAmount = arr1.at(-1);
+    profitSumObj.monthlyAmountPdv = amount + profitSumObj.monthlyProfitPdv;
 
     return profitSumObj;
-}
-
-// * OUTPUT FUNCTION
-
-function createPaymentTable(table, title, profitValuesArr, feeValuesArr) {
-    selectedCur = document.querySelector(".select_header-select .select__title span");
-    let tempTitle = title;
-
-    for (let i = 1; i < profitValuesArr.length; i++) {
-        let tableItem = document.createElement("tr");
-        tableItem.classList.add("payment-table__item");
-
-        if (typeof profitValuesArr[0] !== "string") {
-            title = ``;
-            title = `${i} ${tempTitle}`;
-        }
-        tableItem.innerHTML += `
-        <td class="payment-table__item-label navlink">
-            ${title}
-        </td>
-        <td class="payment-table__item-value">
-            <span class="navlink">
-                ${profitValuesArr[i]}
-            </span>
-            <span class="navlink currency">
-                ${selectedCur.textContent}
-            </span>
-        </td>
-        <td class="payment-table__item-value">
-            <span class="navlink">
-                ${feeValuesArr[i]}
-            </span>
-            <span class="navlink currency">
-                ${selectedCur.textContent}
-            </span>
-        </td>
-              `;
-
-        table.appendChild(tableItem);
-    }
-}
-
-function checkScreenWidth(messageBlock, width) {
-    if (messageBlock && document.documentElement.clientWidth < width) {
-        messageBlock.classList.add("_active");
-    }
 }
 
 // * CAPITALISATION PERCENT OUTPUT
 
 if (INPUTS.cap.all && INPUTS.cap.amount && INPUTS.cap.yearRate && INPUTS.cap.period) {
     let inpArr = [...INPUTS.cap.all];
-    checkScreenWidth(OUTPUTS.cap.screenTip, screenTipNum);
+    OUTPUT_FUNC.checkScreenWidth(OUTPUTS.cap.screenTip, screenTipNum);
 
     // * ADD CHANGE EVENT FOR INPUTS
     for (inpItem of inpArr) {

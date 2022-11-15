@@ -315,13 +315,13 @@ if (allFormInp) {
                 expencesStruct.totalCost = calcStructurePercent(expencesResult.totalCost, expencesResult.totalCost);
 
                 // * PROFIT
-                profitResult.totalProfit = +(calcPercentValue(expencesResult.totalCost, profitLevelPercent.value)).toFixed(2);
+                profitResult.total= +(calcPercentValue(expencesResult.totalCost, profitLevelPercent.value)).toFixed(2);
                 profitResult.wholeSalePrice = +(expencesResult.totalCost + profitResult.totalProfit).toFixed(2);
                 profitResult.pdvTaxAmount = +(calcPercentValue(profitResult.wholeSalePrice, percentValues.pdvTax)).toFixed(2);
                 profitResult.totalSalePrice = +(profitResult.wholeSalePrice + profitResult.pdvTaxAmount).toFixed(2);
 
                 // * STRUCTURE PROFIT
-                profitStruct.totalProfit = calcStructurePercent(profitResult.totalProfit, profitResult.totalSalePrice);
+                profitStruct.total= calcStructurePercent(profitResult.totalProfit, profitResult.totalSalePrice);
                 profitStruct.wholeSalePrice = calcStructurePercent(profitResult.wholeSalePrice, profitResult.totalSalePrice);
                 profitStruct.pdvTaxAmount = calcStructurePercent(profitResult.pdvTaxAmount, profitResult.totalSalePrice);
                 profitStruct.totalSalePrice = calcStructurePercent(profitResult.totalSalePrice, profitResult.totalSalePrice);

@@ -12,6 +12,7 @@ const annTotalPaymentOutput = document.getElementById("ann-total-payment-output"
 const annOverpaymentOutput = document.getElementById("ann-overpayment-output");
 const annMonthlyPaymentOutput = document.getElementById("ann-monthly-payment-output");
 const annMessageOutput = document.getElementById("ann-message-output");
+const messageTip = document.querySelector(".message-tip");
 
 let annMessage = "Умови кредиту невигідні для банку, так як позичальник віддає менше чим позичає. Таку пропозицію неможливо знайти.";
 let delay = 1000;
