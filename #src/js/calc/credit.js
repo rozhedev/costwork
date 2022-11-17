@@ -1,6 +1,7 @@
 import { COMMON_VALUES, TABLE_LABELS } from "../common/values";
-import { outputResult, checkScreenWidth } from "../functions/output";
-import { createPaymentTable } from "../functions/table-gen";
+import { COMMON_COND } from "../common/conditions";
+import { outputResult, checkScreenWidth } from "../common/output";
+import { createPaymentTable } from "../common/table-gen";
 
 // * ann - Annuity credit, diff - Differential credit 
 
@@ -54,18 +55,14 @@ function calcAnnOverpayment(amount, period, rate, monthlyFee) {
 
 // * ANNUITY OUTPUT
 
-if (
-    CRED_INPUTS.ann.amount && CRED_INPUTS.ann.yearRate && CRED_INPUTS.ann.period && CRED_INPUTS.ann.oneTimeFee && CRED_INPUTS.ann.monthlyFee
-) {
+if (COMMON_COND.formElemCheck(CRED_INPUTS.ann.all)) {
     let inpArr = [...CRED_INPUTS.ann.all];
 
     // * ADD CHANGE EVENT FOR INPUTS
     for (const inpItem of inpArr) {
         inpItem.addEventListener("change", function () {
-            // * Condition which check _success class in all form controllers
-            let formControllerCond = inpArr.every((item) => item.parentElement.classList.contains("_success"));
 
-            if (formControllerCond) {
+            if (COMMON_COND.controllerClassCheck(inpArr)) {
                 let values = {
                     amount: +CRED_INPUTS.ann.amount.value,
                     yearRate: +CRED_INPUTS.ann.yearRate.value,
@@ -144,19 +141,15 @@ function calcDiffTotalSum(arr1, arr2, oneTimeFee) {
 
 // * DIFFERENTIAL EVENT
 
-if (
-    CRED_INPUTS.diff.amount && CRED_INPUTS.diff.yearRate && CRED_INPUTS.diff.period && CRED_INPUTS.diff.oneTimeFee && CRED_INPUTS.diff.monthlyFee
-) {
-    checkScreenWidth(CRED_OUTPUTS.diff.screenTip, COMMON_VALUES.screenTipNum);
+if (COMMON_COND.formElemCheck(CRED_INPUTS.diff.all)) {
     let inpArr = [...CRED_INPUTS.diff.all];
+    checkScreenWidth(CRED_OUTPUTS.diff.screenTip, COMMON_VALUES.screenTipNum);
 
     // * ADD CHANGE EVENT FOR INPUTS
     for (const inpItem of inpArr) {
         inpItem.addEventListener("change", function () {
-            // * Condition which check _success class in all form controllers
-            let formControllerCond = inpArr.every((item) => item.parentElement.classList.contains("_success"));
 
-            if (formControllerCond) {
+            if (COMMON_COND.controllerClassCheck(inpArr)) {
                 let values = {
                     amount: +CRED_INPUTS.diff.amount.value,
                     yearRate: +CRED_INPUTS.diff.yearRate.value,

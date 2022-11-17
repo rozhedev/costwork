@@ -2,8 +2,8 @@
 
 // * LIBS
 
-// * FUNCTIONS
-import "./functions/validation";
+// * COMMON
+import "./common/validation";
 
 // * COMPONENTS
 import "./components/preloader";

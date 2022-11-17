@@ -1,6 +1,7 @@
 import { COMMON_VALUES, TABLE_LABELS } from "../common/values";
-import { outputResult, checkScreenWidth } from "../functions/output";
-import { createPaymentTable } from "../functions/table-gen";
+import { COMMON_COND } from "../common/conditions";
+import { outputResult, checkScreenWidth } from "../common/output";
+import { createPaymentTable } from "../common/table-gen";
 
 // * sim (simple) - Deposit without capitalisation, cap - Deposit with capitalisation
 
@@ -42,16 +43,14 @@ function calcSimProfit(amount, rate, period) {
 
 // * SIMPLE PERCENT OUTPUT
 
-if (DEP_INPUTS.sim.amount && DEP_INPUTS.sim.yearRate && DEP_INPUTS.sim.period) {
+if (COMMON_COND.formElemCheck(DEP_INPUTS.sim.all)) {
     let inpArr = [...DEP_INPUTS.sim.all];
 
     // * ADD CHANGE EVENT FOR DEP_INPUTS
     for (const inpItem of inpArr) {
         inpItem.addEventListener("change", function () {
-            // * Condition which check _success class in all form controllers
-            let formControllerCond = inpArr.every((item) => item.parentElement.classList.contains("_success"));
-
-            if (formControllerCond) {
+            
+            if (COMMON_COND.controllerClassCheck(inpArr)) {
                 let values = {
                     amount: +DEP_INPUTS.sim.amount.value,
                     yearRate: +DEP_INPUTS.sim.yearRate.value,
@@ -134,17 +133,15 @@ function calcCapProfitSum(arr1, arr2, amount, pdv) {
 
 // * CAPITALISATION PERCENT OUTPUT
 
-if (DEP_INPUTS.cap.amount && DEP_INPUTS.cap.yearRate && DEP_INPUTS.cap.period) {
+if (COMMON_COND.formElemCheck(DEP_INPUTS.cap.all)) {
     let inpArr = [...DEP_INPUTS.cap.all];
     checkScreenWidth(DEP_OUTPUTS.cap.screenTip, COMMON_VALUES.screenTipNum);
 
     // * ADD CHANGE EVENT FOR DEP_INPUTS
     for (const inpItem of inpArr) {
         inpItem.addEventListener("change", function () {
-            // * Condition which check _success class in all form controllers
-            let formControllerCond = inpArr.every((item) => item.parentElement.classList.contains("_success"));
 
-            if (formControllerCond) {
+            if (COMMON_COND.controllerClassCheck(inpArr)) {
                 let values = {
                     amount: +DEP_INPUTS.cap.amount.value,
                     yearRate: +DEP_INPUTS.cap.yearRate.value,
@@ -154,7 +151,6 @@ if (DEP_INPUTS.cap.amount && DEP_INPUTS.cap.yearRate && DEP_INPUTS.cap.period) {
                 let monthlyProfitObj = calcCapProfit(values.amount, values.yearRate, values.period);
                 let totalProfitObj = calcCapProfitSum(monthlyProfitObj.amount, monthlyProfitObj.profit, values.amount, COMMON_VALUES.pdvFee);
                 let totalProfitArr = Object.entries(totalProfitObj);
-                console.log(totalProfitArr);
 
                 setTimeout(function () {
                     DEP_OUTPUTS.cap.table.innerHTML = "";
