@@ -1,3 +1,5 @@
+// * Write "monthly" everywhere to avoid confusion
+
 // * STEP 1
 let allFormInp = document.querySelectorAll(".inp");
 let firstStepInputs = document.querySelectorAll(".step1");
@@ -15,8 +17,8 @@ const flashDrivePrice = document.getElementById("flash-drive-price");
 
 const domainYearPrice = document.getElementById("domain-year-price");
 const domainYearCount = document.getElementById("domain-year-count");
-const hostingMonthPrice = document.getElementById("hosting-month-price");
-const hostingMounthCount = document.getElementById("hosting-mounth-count");
+const hostingMonthlyPrice = document.getElementById("hosting-monthly-price");
+const hostingMonthlyCount = document.getElementById("hosting-monthly-count");
 
 
 // * STEP 4
@@ -83,7 +85,7 @@ const profitStructOutput = {
 
 const percentValues = {
     workDayDuration: 8,
-    workMonthDuration: 22,
+    workMonthlyDuration: 22,
     additionalSalary: 12,
     socialPayment: 22,
     equipmentCost: 15,
@@ -170,7 +172,7 @@ for (let i = 0; i < secondStepInputs.length; i++) {
         let salaryFundValue = +salaryFund.value;
 
         if (inpItemController.classList.contains("_success")) {
-            tempResult.hourlyPay = +(salaryFundValue / percentValues.workMonthDuration / percentValues.workDayDuration).toFixed(2);
+            tempResult.hourlyPay = +(salaryFundValue / percentValues.workMonthlyDuration / percentValues.workDayDuration).toFixed(2);
             expencesResult.basicSalary = +(tempResult.labourCost * tempResult.hourlyPay).toFixed(2);
             expencesResult.additionalSalary = +(calcPercentValue(expencesResult.basicSalary, percentValues.additionalSalary)).toFixed(2);
 
@@ -185,17 +187,17 @@ for (let i = 0; i < secondStepInputs.length; i++) {
 
 // * CALC STEP 3
 
-function calcMaterialExpences(paperCountValue, onePaperPriceValue, domainYearPriceValue, domainYearCountValue, hostingMonthPriceValue, hostingMounthCountValue) {
+function calcMaterialExpences(paperCountValue, onePaperPriceValue, domainYearPriceValue, domainYearCountValue, hostingMonthlyPriceValue, hostingMonthlyCountValue) {
 
     paperCountValue = +paperCountValue.value;
     onePaperPriceValue = +onePaperPriceValue.value;
     flashDrivePriceValue = +flashDrivePrice.value;
     domainYearPriceValue = +domainYearPriceValue.value
     domainYearCountValue = +domainYearCountValue.value;
-    hostingMonthPriceValue = +hostingMonthPriceValue.value;
-    hostingMounthCountValue = +hostingMounthCountValue.value;
+    hostingMonthlyPriceValue = +hostingMonthlyPriceValue.value;
+    hostingMonthlyCountValue = +hostingMonthlyCountValue.value;
 
-    return materialExpences = +((paperCountValue * onePaperPriceValue) + (domainYearPriceValue * domainYearCountValue) + (hostingMonthPriceValue * hostingMounthCountValue) + flashDrivePriceValue).toFixed(2);
+    return materialExpences = +((paperCountValue * onePaperPriceValue) + (domainYearPriceValue * domainYearCountValue) + (hostingMonthlyPriceValue * hostingMonthlyCountValue) + flashDrivePriceValue).toFixed(2);
 }
 
 // TODO Rewrite in function
@@ -205,7 +207,7 @@ for (let i = 0; i < thirtyStepInputs.length; i++) {
 
     inpItem.addEventListener("change", function () {
         if (inpItemController.classList.contains("_success")) {
-            expencesResult.materialExpences = calcMaterialExpences(paperCount, onePaperPrice, domainYearPrice, domainYearCount, hostingMonthPrice, hostingMounthCount);
+            expencesResult.materialExpences = calcMaterialExpences(paperCount, onePaperPrice, domainYearPrice, domainYearCount, hostingMonthlyPrice, hostingMonthlyCount);
         }
     });
 }

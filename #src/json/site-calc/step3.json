@@ -47,7 +47,7 @@
     {
         "label": "Місячна варт. оренди хостингу",
         "type": "number",
-        "id": "hosting-month-price",
+        "id": "hosting-monthly-price",
         "class": "site-calc-inp step3",
         "measure": "UAH",
         "isDisabled": "",
@@ -56,7 +56,7 @@
     {
         "label": "Тривалість оренди хостингу",
         "type": "number",
-        "id": "hosting-mounth-count",
+        "id": "hosting-monthly-count",
         "class": "site-calc-inp step3",
         "measure": "міс.",
         "isDisabled": "",

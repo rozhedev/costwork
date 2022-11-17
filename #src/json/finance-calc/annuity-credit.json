@@ -12,7 +12,7 @@
         "label": "Термін кредиту",
         "type": "number",
         "id": "ann-credit-period",
-        "class": "period-month-inp ann-credit-inp",
+        "class": "period-monthly-inp ann-credit-inp",
         "measure": "міс.",
         "isDisabled": "",
         "isCurrency": ""
@@ -20,7 +20,7 @@
     {
         "label": "Процентна ставка, % річних",
         "type": "number",
-        "id": "ann-percent-rate",
+        "id": "ann-year-rate",
         "class": "percent-inp ann-credit-inp",
         "measure": "%",
         "isDisabled": "",

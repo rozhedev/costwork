@@ -12,7 +12,7 @@
         "label": "Термін вкладу",
         "type": "number",
         "id": "sim-deposit-period",
-        "class": "period-month-inp sim-deposit-inp",
+        "class": "period-monthly-inp sim-deposit-inp",
         "measure": "міс.",
         "isDisabled": "",
         "isCurrency": ""

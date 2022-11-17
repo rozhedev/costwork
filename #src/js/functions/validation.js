@@ -3,7 +3,7 @@ const INPUTS = {
     siteCalc: document.querySelectorAll(".site-calc-inp"),
     deposit: document.querySelectorAll(".deposit-inp"),
     credit: document.querySelectorAll(".credit-inp"),
-    periodMonth: document.querySelectorAll(".period-month-inp"),
+    periodMonthly: document.querySelectorAll(".period-monthly-inp"),
     percent: document.querySelectorAll(".percent-inp"),
     fee: document.querySelectorAll(".fee-inp"),
 }
@@ -21,7 +21,7 @@ const VALID_INTERVALS = {
         min: 10000,
         max: 99999999,
     },
-    periodMonth: {
+    periodMonthly: {
         min: 1,
         max: 120,
     },
@@ -111,9 +111,9 @@ for (let item of INPUTS.credit) {
         checkInp(item, VALID_INTERVALS.credit.min, VALID_INTERVALS.credit.max);
     });
 }
-for (let item of INPUTS.periodMonth) {
+for (let item of INPUTS.periodMonthly) {
     item.addEventListener("change", function () {
-        checkInp(item, VALID_INTERVALS.periodMonth.min, VALID_INTERVALS.periodMonth.max);
+        checkInp(item, VALID_INTERVALS.periodMonthly.min, VALID_INTERVALS.periodMonthly.max);
     });
 }
 for (let item of INPUTS.percent) {

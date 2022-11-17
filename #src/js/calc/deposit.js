@@ -1,6 +1,6 @@
-
-import {outputResult, checkScreenWidth} from "../functions/output";
-import {createPaymentTable} from "../functions/table-gen";
+import { COMMON_VALUES, TABLE_LABELS } from "../common/values";
+import { outputResult, checkScreenWidth } from "../functions/output";
+import { createPaymentTable } from "../functions/table-gen";
 
 // * sim (simple) - Deposit without capitalisation, cap - Deposit with capitalisation
 
@@ -23,7 +23,7 @@ const DEP_OUTPUTS = {
     sim: {
         total: document.getElementById("deposit-total-output"),
         profit: document.getElementById("deposit-profit-output"),
-        monthProfit: document.getElementById("deposit-month-profit-output"),
+        monthlyProfit: document.getElementById("deposit-monthly-profit-output"),
         fee: document.getElementById("deposit-pdv-profit-output"),
     },
     cap: {
@@ -31,16 +31,6 @@ const DEP_OUTPUTS = {
         screenTip: document.querySelector(".message-tip"),
     }
 }
-
-let delay = 1000;
-let pdvFee = 19.5;
-let screenTipNum = 536;
-
-const DEP_TABLE_LABELS = {
-    month: "місяць:",
-    totalProfit: "Загальний дохід:",
-    feeProfit: `З урах. податків (${pdvFee}%):`,
-};
 
 
 // * CALC SIMPLE PERCENT
@@ -52,7 +42,7 @@ function calcSimProfit(amount, rate, period) {
 
 // * SIMPLE PERCENT OUTPUT
 
-if (DEP_INPUTS.sim.all && DEP_INPUTS.sim.amount && DEP_INPUTS.sim.yearRate && DEP_INPUTS.sim.period) {
+if (DEP_INPUTS.sim.amount && DEP_INPUTS.sim.yearRate && DEP_INPUTS.sim.period) {
     let inpArr = [...DEP_INPUTS.sim.all];
 
     // * ADD CHANGE EVENT FOR DEP_INPUTS
@@ -62,7 +52,7 @@ if (DEP_INPUTS.sim.all && DEP_INPUTS.sim.amount && DEP_INPUTS.sim.yearRate && DE
             let formControllerCond = inpArr.every((item) => item.parentElement.classList.contains("_success"));
 
             if (formControllerCond) {
-                const values = {
+                let values = {
                     amount: +DEP_INPUTS.sim.amount.value,
                     yearRate: +DEP_INPUTS.sim.yearRate.value,
                     period: +DEP_INPUTS.sim.period.value,
@@ -73,17 +63,17 @@ if (DEP_INPUTS.sim.all && DEP_INPUTS.sim.amount && DEP_INPUTS.sim.yearRate && DE
                     get totalProfit() {
                         return +(this.netProfit + values.amount).toFixed(2);
                     },
-                    get monthProfit() {
+                    get monthlyProfit() {
                         return +(this.netProfit / values.period).toFixed(2);
                     },
                     get pdvProfit() {
-                        return `(податок = ${pdvFee}%) ${+(this.netProfit - (this.netProfit * (pdvFee / 100))).toFixed(2)}`;
+                        return `(податок = ${COMMON_VALUES.pdvFee}%) ${+(this.netProfit - (this.netProfit * (COMMON_VALUES.pdvFee / 100))).toFixed(2)}`;
                     },
                 }
 
                 setTimeout(function () {
                     outputResult(resultObj, DEP_OUTPUTS.sim);
-                }, delay);
+                }, COMMON_VALUES.delay);
             }
         });
     }
@@ -144,9 +134,9 @@ function calcCapProfitSum(arr1, arr2, amount, pdv) {
 
 // * CAPITALISATION PERCENT OUTPUT
 
-if (DEP_INPUTS.cap.all && DEP_INPUTS.cap.amount && DEP_INPUTS.cap.yearRate && DEP_INPUTS.cap.period) {
+if (DEP_INPUTS.cap.amount && DEP_INPUTS.cap.yearRate && DEP_INPUTS.cap.period) {
     let inpArr = [...DEP_INPUTS.cap.all];
-    checkScreenWidth(DEP_OUTPUTS.cap.screenTip, screenTipNum);
+    checkScreenWidth(DEP_OUTPUTS.cap.screenTip, COMMON_VALUES.screenTipNum);
 
     // * ADD CHANGE EVENT FOR DEP_INPUTS
     for (const inpItem of inpArr) {
@@ -155,23 +145,27 @@ if (DEP_INPUTS.cap.all && DEP_INPUTS.cap.amount && DEP_INPUTS.cap.yearRate && DE
             let formControllerCond = inpArr.every((item) => item.parentElement.classList.contains("_success"));
 
             if (formControllerCond) {
-                const values = {
+                let values = {
                     amount: +DEP_INPUTS.cap.amount.value,
                     yearRate: +DEP_INPUTS.cap.yearRate.value,
                     period: +DEP_INPUTS.cap.period.value,
                 }
                 // * RESULT OBJECTS
                 let monthlyProfitObj = calcCapProfit(values.amount, values.yearRate, values.period);
-                let totalProfitObj = calcCapProfitSum(monthlyProfitObj.amount, monthlyProfitObj.profit, values.amount, pdvFee);
+                let totalProfitObj = calcCapProfitSum(monthlyProfitObj.amount, monthlyProfitObj.profit, values.amount, COMMON_VALUES.pdvFee);
                 let totalProfitArr = Object.entries(totalProfitObj);
+                console.log(totalProfitArr);
 
                 setTimeout(function () {
                     DEP_OUTPUTS.cap.table.innerHTML = "";
 
-                    createPaymentTable(DEP_OUTPUTS.cap.table, DEP_TABLE_LABELS.month, monthlyProfitObj.amount, monthlyProfitObj.profit);
-                    createPaymentTable(DEP_OUTPUTS.cap.table, DEP_TABLE_LABELS.totalProfit, totalProfitArr[2], totalProfitArr[0]);
-                    createPaymentTable(DEP_OUTPUTS.cap.table, DEP_TABLE_LABELS.feeProfit, totalProfitArr[3], totalProfitArr[1]);
-                }, delay);
+                    createPaymentTable(DEP_OUTPUTS.cap.table, TABLE_LABELS.monthly, monthlyProfitObj.amount, monthlyProfitObj.profit);
+
+                    // * We don't specify the second index because we need an array, not a value. 
+                    // * And the loop starts as i = 1, the text value will ignored
+                    createPaymentTable(DEP_OUTPUTS.cap.table, TABLE_LABELS.totalProfit, totalProfitArr[2], totalProfitArr[0]);
+                    createPaymentTable(DEP_OUTPUTS.cap.table, TABLE_LABELS.feeProfit, totalProfitArr[3], totalProfitArr[1]);
+                }, COMMON_VALUES.delay);
             }
         });
     }

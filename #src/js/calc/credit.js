@@ -1,23 +1,45 @@
+import { COMMON_VALUES, TABLE_LABELS } from "../common/values";
+import { outputResult, checkScreenWidth } from "../functions/output";
+import { createPaymentTable } from "../functions/table-gen";
+
 // * ann - Annuity credit, diff - Differential credit 
 
-const allFormInp = document.querySelectorAll(".inp");
-const annFormInputs = document.querySelectorAll(".ann-credit-inp");
-const annCreditAmount = document.getElementById("ann-credit-amount");
-const annYearRate = document.getElementById("ann-percent-rate");
-const annCreditPeriod = document.getElementById("ann-credit-period");
-const annOneTimeFee = document.getElementById("ann-one-time-fee");
-const annMonthlyFee = document.getElementById("ann-monthly-fee");
+const CRED_INPUTS = {
+    ann: {
+        all: document.querySelectorAll(".ann-credit-inp"),
+        amount: document.getElementById("ann-credit-amount"),
+        yearRate: document.getElementById("ann-year-rate"),
+        period: document.getElementById("ann-credit-period"),
+        oneTimeFee: document.getElementById("ann-one-time-fee"),
+        monthlyFee: document.getElementById("ann-monthly-fee"),
+    },
+    diff: {
+        all: document.querySelectorAll(".diff-credit-inp"),
+        amount: document.getElementById("diff-credit-amount"),
+        yearRate: document.getElementById("diff-year-rate"),
+        period: document.getElementById("diff-credit-period"),
+        oneTimeFee: document.getElementById("diff-one-time-fee"),
+        monthlyFee: document.getElementById("diff-monthly-fee"),
+    }
+}
 
-const annTotalPaymentOutput = document.getElementById("ann-total-payment-output");
-const annOverpaymentOutput = document.getElementById("ann-overpayment-output");
-const annMonthlyPaymentOutput = document.getElementById("ann-monthly-payment-output");
-const annMessageOutput = document.getElementById("ann-message-output");
-const messageTip = document.querySelector(".message-tip");
+const CRED_OUTPUTS = {
+    ann: {
+        overpayment: document.getElementById("ann-overpayment-output"),
+        monthlyPayment: document.getElementById("ann-monthly-payment-output"),
+        total: document.getElementById("ann-total-payment-output"),
+        message: document.getElementById("ann-message-output"),
+    },
+    diff: {
+        table: document.querySelector("#diff-table-output tbody"),
+        messageTip: document.querySelector(".message-tip"),
+    }
+}
 
-let annMessage = "Умови кредиту невигідні для банку, так як позичальник віддає менше чим позичає. Таку пропозицію неможливо знайти.";
-let delay = 1000;
-let warningColor = "#0075c4";
-let darkColor = "#0d090a";
+const TEXT_CONTENT = {
+    annMessage: "Умови кредиту невигідні для банку, так як позичальник віддає менше чим позичає. Таку пропозицію неможливо знайти.",
+}
+
 
 // * ANNUITY CREDIT
 
@@ -32,47 +54,51 @@ function calcAnnOverpayment(amount, period, rate, monthlyFee) {
 
 // * ANNUITY OUTPUT
 
-if (annFormInputs && annCreditAmount && annYearRate && annCreditPeriod) {
-    let annFormInputsArr = [...annFormInputs];
+if (
+    CRED_INPUTS.ann.amount && CRED_INPUTS.ann.yearRate && CRED_INPUTS.ann.period && CRED_INPUTS.ann.oneTimeFee && CRED_INPUTS.ann.monthlyFee
+) {
+    let inpArr = [...CRED_INPUTS.ann.all];
 
     // * ADD CHANGE EVENT FOR INPUTS
-    for (const inpItem of annFormInputsArr) {
+    for (const inpItem of inpArr) {
         inpItem.addEventListener("change", function () {
             // * Condition which check _success class in all form controllers
-            let formControllerCond = annFormInputsArr.every((item) => item.parentElement.classList.contains("_success"));
+            let formControllerCond = inpArr.every((item) => item.parentElement.classList.contains("_success"));
 
             if (formControllerCond) {
-                let annCreditAmountValue = +annCreditAmount.value;
-                let annYearRateValue = +annYearRate.value;
-                let annCreditPeriodValue = +annCreditPeriod.value;
-                let annOneTimeFeeValue = +annOneTimeFee.value;
-                let annMonthlyFeeValue = +annMonthlyFee.value;
+                let values = {
+                    amount: +CRED_INPUTS.ann.amount.value,
+                    yearRate: +CRED_INPUTS.ann.yearRate.value,
+                    period: +CRED_INPUTS.ann.period.value,
+                    oneTimeFee: +CRED_INPUTS.ann.oneTimeFee.value,
+                    monthlyFee: +CRED_INPUTS.ann.monthlyFee.value,
+                }
+                let resultObj = {
+                    overpayment: calcAnnOverpayment(values.amount, values.period, values.yearRate, values.monthlyFee) + values.oneTimeFee,
+                    monthlyPayment: calcAnnMonthlyPayment(values.amount, values.period, values.yearRate) + values.monthlyFee,
+                    get totalPayment() {
+                        return +(this.monthlyPayment * values.period + values.oneTimeFee).toFixed(2);
+                    },
+                }
 
                 setTimeout(function () {
-                    let annMonthlyPayment = (calcAnnMonthlyPayment(annCreditAmountValue, annCreditPeriodValue, annYearRateValue) + annMonthlyFeeValue).toFixed(2);
-                    annMonthlyPaymentOutput.textContent = annMonthlyPayment;
-
-                    let annTotalPayment = (annMonthlyPayment * annCreditPeriodValue + annOneTimeFeeValue).toFixed(2);
-                    annTotalPaymentOutput.textContent = annTotalPayment;
-
-                    let annOverpayment = (calcAnnOverpayment(annCreditAmountValue, annCreditPeriodValue, annYearRateValue, annMonthlyFeeValue) + annOneTimeFeeValue).toFixed(2);
+                    outputResult(resultObj, CRED_OUTPUTS.ann);
 
                     // * OVERPAYMENT CHECK
-                    if (annOverpayment > 0) {
-                        annOverpaymentOutput.textContent = Math.abs(annOverpayment);
-                        annTotalPaymentOutput.style.color = darkColor;
-                        annOverpaymentOutput.style.color = darkColor;
-                        annMessageOutput.classList.remove("_active");
-                        annMessageOutput.textContent = "";
+                    if (resultObj.overpayment > 0) {
+                        CRED_OUTPUTS.ann.overpayment.textContent = Math.abs(resultObj.overpayment);
+                        CRED_OUTPUTS.ann.overpayment.style.color = CRED_OUTPUTS.ann.total.style.color = COMMON_VALUES.colors.dark;
 
+                        CRED_OUTPUTS.ann.message.classList.remove("_active");
+                        CRED_OUTPUTS.ann.message.textContent = "";
                     } else {
-                        annOverpaymentOutput.textContent = annOverpayment;
-                        annTotalPaymentOutput.style.color = warningColor;
-                        annOverpaymentOutput.style.color = warningColor;
-                        annMessageOutput.classList.add("_active");
-                        annMessageOutput.textContent = annMessage;
+                        CRED_OUTPUTS.ann.overpayment.textContent = resultObj.overpayment;
+                        CRED_OUTPUTS.ann.overpayment.style.color = CRED_OUTPUTS.ann.total.style.color = COMMON_VALUES.colors.warning;
+
+                        CRED_OUTPUTS.ann.message.classList.add("_active");
+                        CRED_OUTPUTS.ann.message.textContent = TEXT_CONTENT.annMessage;
                     }
-                }, delay);
+                }, COMMON_VALUES.delay);
             }
         });
     }
@@ -80,14 +106,6 @@ if (annFormInputs && annCreditAmount && annYearRate && annCreditPeriod) {
 
 
 // * DIFFERENTIAL CREDIT
-
-const diffFormInputs = document.querySelectorAll(".diff-credit-inp");
-const diffCreditAmount = document.getElementById("diff-credit-amount");
-const diffYearRate = document.getElementById("diff-percent-rate");
-const diffCreditPeriod = document.getElementById("diff-credit-period");
-const diffOneTimeFee = document.getElementById("diff-one-time-fee");
-const diffMonthlyFee = document.getElementById("diff-monthly-fee");
-const diffTableOutput = document.querySelector("#diff-table-output tbody");
 
 function calcDiffPayment(amount, rate, period, monthlyFee) {
     let primaryPayment = amount / period;
@@ -109,92 +127,58 @@ function calcDiffPayment(amount, rate, period, monthlyFee) {
 // * DIFF TOTAL SUMMA
 
 function calcDiffTotalSum(arr1, arr2, oneTimeFee) {
-    let paymentSumObj = {
-        monthlyPaymentSum: 0,
-        monthlyOverpaymentSum: 0,
+    let totalSumObj = {
+        totalPayment: 0,
+        totalOverpayment: 0,
     }
 
     for (let i = 1; i < arr1.length; i++) {
-        paymentSumObj.monthlyPaymentSum += arr1[i];
-        paymentSumObj.monthlyOverpaymentSum += arr2[i];
+        totalSumObj.totalPayment += arr1[i];
+        totalSumObj.totalOverpayment += arr2[i];
     }
-    paymentSumObj.monthlyPaymentSum = +(paymentSumObj.monthlyPaymentSum + oneTimeFee).toFixed(2);
-    paymentSumObj.monthlyOverpaymentSum = +(paymentSumObj.monthlyOverpaymentSum + oneTimeFee).toFixed(2);
+    totalSumObj.totalPayment = +(totalSumObj.totalPayment + oneTimeFee).toFixed(2);
+    totalSumObj.totalOverpayment = +(totalSumObj.totalOverpayment + oneTimeFee).toFixed(2);
 
-    return paymentSumObj;
-}
-
-// * OUTPUT FUNCTION
-
-function createPaymentTable(table, arr1, arr2, totalSum1, totalSum2) {
-    for (let i = 1; i <= arr1.length - 1; i++) {
-        let tableItem = document.createElement("tr");
-        tableItem.classList.add("payment-table__item");
-
-        tableItem.innerHTML += `
-        <td class="payment-table__item-label navlink">
-            ${i} платіж:
-        </td>
-        <td class="payment-table__item-value">
-            <span class="navlink">${arr1[i]}</span>
-            <span class="navlink currency">UAH</span>
-        </td>
-        <td class="payment-table__item-value">
-            <span class="navlink">${arr2[i]}</span>
-            <span class="navlink currency">UAH</span>
-        </td>
-              `;
-
-        table.appendChild(tableItem);
-    }
-
-    let tableItemSum = document.createElement("tr");
-    tableItemSum.classList.add("payment-table__item");
-    tableItemSum.innerHTML += `
-        <td class="payment-table__item-label navlink">
-            Сумма:
-        </td>
-        <td class="payment-table__item-value">
-            <span class="navlink">${totalSum1}</span>
-            <span class="navlink currency">UAH</span>
-        </td>
-        <td class="payment-table__item-value">
-            <span class="navlink">${totalSum2}</span>
-            <span class="navlink currency">UAH</span>
-        </td>
-              `;
-    table.appendChild(tableItemSum);
+    return totalSumObj;
 }
 
 // * DIFFERENTIAL EVENT
 
-if (diffFormInputs && diffCreditAmount && diffYearRate && diffCreditPeriod) {
-    // * SCREEN WIDTH CHECK
-    if (document.documentElement.clientWidth < 536) {
-        messageTip.classList.add("_active");
-    }
-    let diffFormInputsArr = [...diffFormInputs];
+if (
+    CRED_INPUTS.diff.amount && CRED_INPUTS.diff.yearRate && CRED_INPUTS.diff.period && CRED_INPUTS.diff.oneTimeFee && CRED_INPUTS.diff.monthlyFee
+) {
+    checkScreenWidth(CRED_OUTPUTS.diff.screenTip, COMMON_VALUES.screenTipNum);
+    let inpArr = [...CRED_INPUTS.diff.all];
 
     // * ADD CHANGE EVENT FOR INPUTS
-    for (const inpItem of diffFormInputsArr) {
+    for (const inpItem of inpArr) {
         inpItem.addEventListener("change", function () {
             // * Condition which check _success class in all form controllers
-            let formControllerCond = diffFormInputsArr.every((item) => item.parentElement.classList.contains("_success"));
+            let formControllerCond = inpArr.every((item) => item.parentElement.classList.contains("_success"));
 
             if (formControllerCond) {
-                let diffCreditAmountValue = +diffCreditAmount.value;
-                let diffYearRateValue = +diffYearRate.value;
-                let diffCreditPeriodValue = +diffCreditPeriod.value;
-                let diffOneTimeFeeValue = +diffOneTimeFee.value;
-                let diffMonthlyFeeValue = +diffMonthlyFee.value;
+                let values = {
+                    amount: +CRED_INPUTS.diff.amount.value,
+                    yearRate: +CRED_INPUTS.diff.yearRate.value,
+                    period: +CRED_INPUTS.diff.period.value,
+                    oneTimeFee: +CRED_INPUTS.diff.oneTimeFee.value,
+                    monthlyFee: +CRED_INPUTS.diff.monthlyFee.value,
+                }
 
                 setTimeout(function () {
-                    let paymentObj = calcDiffPayment(diffCreditAmountValue, diffYearRateValue, diffCreditPeriodValue, diffMonthlyFeeValue);
-                    let totalSumObj = calcDiffTotalSum(paymentObj.monthlyPayment, paymentObj.monthlyOverpayment, diffOneTimeFeeValue);
-                    diffTableOutput.innerHTML = "";
+                    let paymentObj = calcDiffPayment(values.amount, values.yearRate, values.period, values.monthlyFee);
+                    let totalPaymentObj = calcDiffTotalSum(paymentObj.monthlyPayment, paymentObj.monthlyOverpayment, values.oneTimeFee);
+                    let totalPaymentArr = Object.entries(totalPaymentObj);
+                    console.log(totalPaymentArr);
+                    CRED_OUTPUTS.diff.table.innerHTML = "";
 
-                    createPaymentTable(diffTableOutput, paymentObj.monthlyPayment, paymentObj.monthlyOverpayment, totalSumObj.monthlyPaymentSum, totalSumObj.monthlyOverpaymentSum);
-                }, delay);
+                    createPaymentTable(CRED_OUTPUTS.diff.table, TABLE_LABELS.monthly, paymentObj.monthlyPayment, paymentObj.monthlyOverpayment);
+
+                    // * We don't specify the second index because we need an array, not a value. 
+                    // * And the loop starts as i = 1, the text value will ignored
+                    createPaymentTable(CRED_OUTPUTS.diff.table, TABLE_LABELS.totalPayment, totalPaymentArr[0], totalPaymentArr[1]);
+                    
+                }, COMMON_VALUES.delay);
             }
         });
     }

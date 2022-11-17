@@ -12,7 +12,7 @@
         "label": "Термін вкладу",
         "type": "number",
         "id": "cap-deposit-period",
-        "class": "period-month-inp cap-deposit-inp",
+        "class": "period-monthly-inp cap-deposit-inp",
         "measure": "міс.",
         "isDisabled": "",
         "isCurrency": ""
