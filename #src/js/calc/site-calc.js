@@ -1,7 +1,17 @@
 // * Write "monthly" everywhere to avoid confusion
 
+import { COMMON_COND } from "../common/conditions";
+import { outputResult } from "../common/output";
+
+// const SITE_INPUTS = {
+//     all: document.querySelectorAll(".inp"),
+//     firstStep: {
+//         all: document.querySelectorAll(".step1"),
+//     },
+// }
+
 // * STEP 1
-let allFormInp = document.querySelectorAll(".inp");
+let allFormInp = document.querySelectorAll(".site-calc-inp");
 let firstStepInputs = document.querySelectorAll(".step1");
 
 // * STEP 2
@@ -140,22 +150,17 @@ const profitStruct = {
     totalSalePrice: 0,
 };
 
-let delay = 1000;
 
-// TODO Rewrite in function
 // * CALC STEP 1
 
-for (let i = 0; i < firstStepInputs.length; i++) {
-    let inpItem = firstStepInputs[i];
-    let inpItemController = inpItem.parentElement;
-
-    inpItem.addEventListener("change", function () {
-        if (inpItemController.classList.contains("_success")) {
-            tempResult.labourCost += +inpItem.value;
-        }
-    });
+function calcLabourCost(inpList) {
+    let inpArr = [...inpList];
+    let result = 0;
+    for (let inpItem of inpArr) {
+        result += +inpItem.value;
+    }
+    return result;
 }
-
 
 // * CALC STEP 2
 
@@ -163,53 +168,35 @@ function calcPercentValue(num, percentValue) {
     return +(num * (percentValue / 100)).toFixed(2);
 }
 
-// TODO Rewrite in function
-for (let i = 0; i < secondStepInputs.length; i++) {
-    let inpItem = secondStepInputs[i];
-    let inpItemController = inpItem.parentElement;
+function calcSalary() {
+    let salaryFundValue = +salaryFund.value;
 
-    inpItem.addEventListener("change", function () {
-        let salaryFundValue = +salaryFund.value;
+    tempResult.hourlyPay = +(salaryFundValue / percentValues.workMonthlyDuration / percentValues.workDayDuration).toFixed(2);
+    expencesResult.basicSalary = +(tempResult.labourCost * tempResult.hourlyPay).toFixed(2);
+    expencesResult.additionalSalary = +(calcPercentValue(expencesResult.basicSalary, percentValues.additionalSalary)).toFixed(2);
 
-        if (inpItemController.classList.contains("_success")) {
-            tempResult.hourlyPay = +(salaryFundValue / percentValues.workMonthlyDuration / percentValues.workDayDuration).toFixed(2);
-            expencesResult.basicSalary = +(tempResult.labourCost * tempResult.hourlyPay).toFixed(2);
-            expencesResult.additionalSalary = +(calcPercentValue(expencesResult.basicSalary, percentValues.additionalSalary)).toFixed(2);
-
-            expencesResult.sumSalary = expencesResult.basicSalary + expencesResult.additionalSalary;
-            expencesResult.socialPayment = +(calcPercentValue(expencesResult.sumSalary, percentValues.socialPayment)).toFixed(2);
-            expencesResult.equipmentCost = +(calcPercentValue(expencesResult.basicSalary, percentValues.equipmentCost)).toFixed(2);
-            expencesResult.productionCost = +(calcPercentValue(expencesResult.basicSalary, percentValues.productionCost)).toFixed(2);
-        }
-    });
+    expencesResult.sumSalary = expencesResult.basicSalary + expencesResult.additionalSalary;
+    expencesResult.socialPayment = +(calcPercentValue(expencesResult.sumSalary, percentValues.socialPayment)).toFixed(2);
+    expencesResult.equipmentCost = +(calcPercentValue(expencesResult.basicSalary, percentValues.equipmentCost)).toFixed(2);
+    expencesResult.productionCost = +(calcPercentValue(expencesResult.basicSalary, percentValues.productionCost)).toFixed(2);
 }
-
 
 // * CALC STEP 3
 
-function calcMaterialExpences(paperCountValue, onePaperPriceValue, domainYearPriceValue, domainYearCountValue, hostingMonthlyPriceValue, hostingMonthlyCountValue) {
+function calcMaterialExpences(
+    paperCountValue, onePaperPriceValue, flashDrivePriceValue, domainYearPriceValue, domainYearCountValue, hostingMonthlyPriceValue, hostingMonthlyCountValue
+) {
 
     paperCountValue = +paperCountValue.value;
     onePaperPriceValue = +onePaperPriceValue.value;
-    flashDrivePriceValue = +flashDrivePrice.value;
+    flashDrivePriceValue = +flashDrivePriceValue.value;
     domainYearPriceValue = +domainYearPriceValue.value
     domainYearCountValue = +domainYearCountValue.value;
     hostingMonthlyPriceValue = +hostingMonthlyPriceValue.value;
     hostingMonthlyCountValue = +hostingMonthlyCountValue.value;
 
-    return materialExpences = +((paperCountValue * onePaperPriceValue) + (domainYearPriceValue * domainYearCountValue) + (hostingMonthlyPriceValue * hostingMonthlyCountValue) + flashDrivePriceValue).toFixed(2);
-}
-
-// TODO Rewrite in function
-for (let i = 0; i < thirtyStepInputs.length; i++) {
-    let inpItem = thirtyStepInputs[i];
-    let inpItemController = inpItem.parentElement;
-
-    inpItem.addEventListener("change", function () {
-        if (inpItemController.classList.contains("_success")) {
-            expencesResult.materialExpences = calcMaterialExpences(paperCount, onePaperPrice, domainYearPrice, domainYearCount, hostingMonthlyPrice, hostingMonthlyCount);
-        }
-    });
+    let materialExpences = +((paperCountValue * onePaperPriceValue) + (domainYearPriceValue * domainYearCountValue) + (hostingMonthlyPriceValue * hostingMonthlyCountValue) + flashDrivePriceValue).toFixed(2);
+    return materialExpences;
 }
 
 // * CALC STEP 4
@@ -220,20 +207,10 @@ function calcElectricityExpences(pcСountValue, pcWorkDurationValue, pcPowerValu
     pcPowerValue = +pcPowerValue.value;
     oneWattPriceValue = +oneWattPriceValue.value;
 
-    return electricityExpences = +(pcСountValue * pcWorkDurationValue * pcPowerValue * oneWattPriceValue).toFixed(2);
+    let electricityExpences = +(pcСountValue * pcWorkDurationValue * pcPowerValue * oneWattPriceValue).toFixed(2);
+    return electricityExpences;
 }
 
-// TODO Rewrite in function
-for (let i = 0; i < fourtyStepInputs.length; i++) {
-    let inpItem = fourtyStepInputs[i];
-    let inpItemController = inpItem.parentElement;
-
-    inpItem.addEventListener("change", function () {
-        if (inpItemController.classList.contains("_success")) {
-            expencesResult.electricityExpences = calcElectricityExpences(pcСount, pcWorkDuration, pcPower, oneWattPrice);
-        }
-    });
-}
 
 // * OUTPUT EXPENCES & PROFIT
 
@@ -293,14 +270,22 @@ if (allFormInp) {
     // * ADD CHANGE EVENT FOR INPUTS
     for (const inpItem of allFormInpArr) {
         inpItem.addEventListener("change", function () {
-            // * Condition which check _success class in all form controllers
-            let formControllerCond = allFormInpArr.every((item) => item.parentElement.classList.contains("_success"));
 
-            if (formControllerCond) {
+            if (COMMON_COND.controllerClassCheck(allFormInpArr)) {
+                tempResult.labourCost = calcLabourCost(firstStepInputs);
+                calcSalary();
+
+                expencesResult.materialExpences = calcMaterialExpences(paperCount, onePaperPrice, flashDrivePrice, domainYearPrice, domainYearCount, hostingMonthlyPrice, hostingMonthlyCount);
+
+                expencesResult.electricityExpences = calcElectricityExpences(pcСount, pcWorkDuration, pcPower, oneWattPrice);
+
                 expencesResult.productionCostSale = +(expencesResult.sumSalary + expencesResult.socialPayment + expencesResult.equipmentCost + expencesResult.productionCost + expencesResult.materialExpences + expencesResult.electricityExpences).toFixed(2);
 
                 expencesResult.nonProductionCost = +(calcPercentValue(expencesResult.productionCostSale, percentValues.nonProductionCost)).toFixed(2);
                 expencesResult.totalCost = +(expencesResult.productionCostSale + expencesResult.nonProductionCost).toFixed(2);
+                console.log(tempResult);
+                console.log(expencesResult);
+
 
                 // * STRUCTURE EXPENCES
                 expencesStruct.basicSalary = calcStructurePercent(expencesResult.basicSalary, expencesResult.totalCost);
