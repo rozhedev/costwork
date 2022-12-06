@@ -1,323 +1,325 @@
-// * Write "monthly" everywhere to avoid confusion
+// * Write "monthly" everywhere to avoid confusion, struct - structure
+// * Don't change order of properties in objects! For avoid errors in output cycles.
 
+import { COMMON_VALUES } from "../common/values";
 import { COMMON_COND } from "../common/conditions";
 import { outputResult } from "../common/output";
 
-// const SITE_INPUTS = {
-//     all: document.querySelectorAll(".inp"),
-//     firstStep: {
-//         all: document.querySelectorAll(".step1"),
-//     },
-// }
 
-// * STEP 1
-let allFormInp = document.querySelectorAll(".site-calc-inp");
-let firstStepInputs = document.querySelectorAll(".step1");
-
-// * STEP 2
-let secondStepInputs = document.querySelectorAll(".step2");
-const salaryFund = document.getElementById("salary-fund");
-const profitLevelPercent = document.getElementById("profit-level-percent");
-
-// * STEP 3
-let thirtyStepInputs = document.querySelectorAll(".step3");
-const paperCount = document.getElementById("paper-count");
-const onePaperPrice = document.getElementById("one-paper-price");
-const flashDrivePrice = document.getElementById("flash-drive-price");
-
-const domainYearPrice = document.getElementById("domain-year-price");
-const domainYearCount = document.getElementById("domain-year-count");
-const hostingMonthlyPrice = document.getElementById("hosting-monthly-price");
-const hostingMonthlyCount = document.getElementById("hosting-monthly-count");
-
-
-// * STEP 4
-let fourtyStepInputs = document.querySelectorAll(".step4");
-const pcСount = document.getElementById("pc-count");
-const pcWorkDuration = document.getElementById("pc-work-duration");
-const pcPower = document.getElementById("pc-power");
-const oneWattPrice = document.getElementById("one-watt-price");
-
-
-// * EXPENCES OUTPUT
-const expencesOutput = {
-    basicSalary: document.getElementById("basic-salary-output"),
-    additionalSalary: document.getElementById("additional-salary-output"),
-    socialPayment: document.getElementById("social-payment-output"),
-
-    materialExpences: document.getElementById("material-cost-output"),
-    electricityExpences: document.getElementById("electricity-cost-output"),
-    equipmentCost: document.getElementById("equipment-cost-output"),
-
-    productionCost: document.getElementById("production-cost-output"),
-    productionCostSale: document.getElementById("production-cost-sale-output"),
-    nonProductionCost: document.getElementById("non-production-cost-output"),
-    totalCost: document.getElementById("total-cost-output"),
-};
-
-
-// * EXPENCES STRUCTURE
-const expencesStructOutput = {
-    basicSalary: document.getElementById("basic-salary-struct"),
-    additionalSalary: document.getElementById("additional-salary-struct"),
-    socialPayment: document.getElementById("social-payment-struct"),
-
-    materialExpences: document.getElementById("material-cost-struct"),
-    electricityExpences: document.getElementById("electricity-cost-struct"),
-    equipmentCost: document.getElementById("equipment-cost-struct"),
-
-    productionCost: document.getElementById("production-cost-struct"),
-    productionCostSale: document.getElementById("production-cost-sale-struct"),
-    nonProductionCost: document.getElementById("non-production-cost-struct"),
-    totalCost: document.getElementById("total-cost-struct"),
-};
-
-
-// * PROFIT EXPENCES
-const profitOutput = {
-    total: document.getElementById("profit-output"),
-    wholeSalePrice: document.getElementById("wholesale-price-output"),
-    pdvTax: document.getElementById("pdv-tax-output"),
-    totalSalePrice: document.getElementById("sale-price-output"),
+// * SITE INPUTS with all costs
+const SITE_INPUTS = {
+    all: document.querySelectorAll(".inp"),
+    labour: {
+        all: document.querySelectorAll(".step1"),
+    },
+    salary: {
+        fund: document.getElementById("salary-fund"),
+        profitPercent: document.getElementById("profit-level-percent"),
+    },
+    material: {
+        paperCount: document.getElementById("paper-count"),
+        onePaperPrice: document.getElementById("one-paper-price"),
+        domainYearPrice: document.getElementById("domain-year-price"),
+        domainYearCount: document.getElementById("domain-year-count"),
+        hostingMonthlyPrice: document.getElementById("hosting-monthly-price"),
+        hostingMonthlyCount: document.getElementById("hosting-monthly-count"),
+        flashDrivePrice: document.getElementById("flash-drive-price"),
+    },
+    electricity: {
+        pcСount: document.getElementById("pc-count"),
+        pcWorkDuration: document.getElementById("pc-work-duration"),
+        pcPower: document.getElementById("pc-power"),
+        oneWattPrice: document.getElementById("one-watt-price"),
+    },
 }
 
+// * COST OUTPUTS with outputs for result and costs
+const SITE_OUTPUTS = {
+    cost: {
+        basicSalary: document.getElementById("basic-salary-output"),
+        additionalSalary: document.getElementById("additional-salary-output"),
+        socialPayment: document.getElementById("social-payment-output"),
 
-// * PROFIT STRUCTURE
-const profitStructOutput = {
-    total: document.getElementById("profit-struct"),
-    wholeSalePrice: document.getElementById("wholesale-price-struct"),
-    pdvTax: document.getElementById("pdv-tax-struct"),
-    totalSalePrice: document.getElementById("sale-price-struct"),
+        material: document.getElementById("material-cost-output"),
+        electricity: document.getElementById("electricity-cost-output"),
+        equipment: document.getElementById("equipment-cost-output"),
+
+        production: document.getElementById("production-cost-output"),
+        productionSale: document.getElementById("production-cost-sale-output"),
+        nonProduction: document.getElementById("non-production-cost-output"),
+        total: document.getElementById("total-cost-output"),
+    },
+    fullCost: {
+        productionSale: document.getElementById("production-cost-sale-output"),
+        nonProduction: document.getElementById("non-production-cost-output"),
+        total: document.getElementById("total-cost-output"),
+    },
+    costStruct: {
+        basicSalary: document.getElementById("basic-salary-struct"),
+        additionalSalary: document.getElementById("additional-salary-struct"),
+        socialPayment: document.getElementById("social-payment-struct"),
+
+        production: document.getElementById("production-cost-struct"),
+        material: document.getElementById("material-cost-struct"),
+        electricity: document.getElementById("electricity-cost-struct"),
+        equipment: document.getElementById("equipment-cost-struct"),
+    },
+    fullCostStruct: {
+        productionSale: document.getElementById("production-cost-sale-struct"),
+        nonProduction: document.getElementById("non-production-cost-struct"),
+        total: document.getElementById("total-cost-struct"),     
+    },
+    profit: {
+        total: document.getElementById("profit-output"),
+        wholeSalePrice: document.getElementById("wholesale-price-output"),
+        pdvTax: document.getElementById("pdv-tax-output"),
+        totalSalePrice: document.getElementById("sale-price-output"),
+    },
+    profitStruct: {
+        total: document.getElementById("profit-struct"),
+        wholeSalePrice: document.getElementById("wholesale-price-struct"),
+        pdvTax: document.getElementById("pdv-tax-struct"),
+        totalSalePrice: document.getElementById("sale-price-struct"),
+    },
 }
 
-
-// * RESULT OBJECTS
-
-const percentValues = {
-    workDayDuration: 8,
-    workMonthlyDuration: 22,
+const PERCENT_VALUES = {
+    dayDuration: 8,
+    monthlyDuration: 22,
     additionalSalary: 12,
     socialPayment: 22,
-    equipmentCost: 15,
-    productionCost: 18,
-    nonProductionCost: 0.5,
+    equipment: 15,
+    production: 18,
+    nonProduction: 0.5,
     pdvTax: 20,
 };
 
-const tempResult = {
-    labourCost: 0,
-    hourlyPay: 0,
-};
+// * RESULT OBJECT
 
-const expencesResult = {
-    basicSalary: 0,
-    additionalSalary: 0,
-    sumSalary: 0,
-    socialPayment: 0,
-    equipmentCost: 0,
-    productionCost: 0,
-    materialExpences: 0,
-    electricityExpences: 0,
-    productionCostSale: 0,
-    nonProductionCost: 0,
-    totalCost: 0,
-};
-
-const expencesStruct = {
-    basicSalary: 0,
-    additionalSalary: 0,
-    socialPayment: 0,
-    equipmentCost: 0,
-    productionCost: 0,
-    materialExpences: 0,
-    electricityExpences: 0,
-    productionCostSale: 0,
-    nonProductionCost: 0,
-    totalCost: 0,
-};
-
-const profitResult = {
-    total: 0,
-    wholeSalePrice: 0,
-    pdvTaxAmount: 0,
-    totalSalePrice: 0,
-};
-
-const profitStruct = {
-    total: 0,
-    wholeSalePrice: 0,
-    pdvTaxAmount: 0,
-    totalSalePrice: 0,
+const SITE_RESULTS = {
+    temp: {
+        labour: 0,
+        hourlyPay: 0,
+    },
+    cost: {
+        basicSalary: 0,
+        additionalSalary: 0,
+        sumSalary: 0,
+        socialPayment: 0,
+        equipment: 0,
+        production: 0,
+        material: 0,
+        electricity: 0,
+    },
+    fullCost: {
+        productionSale: 0,
+        nonProduction: 0,
+        total: 0,
+    },
+    costStruct: {
+        basicSalary: 0,
+        additionalSalary: 0,
+        socialPayment: 0,
+        equipment: 0,
+        production: 0,
+        material: 0,
+        electricity: 0,
+    },
+    fullCostStruct: {
+        productionSale: 0,
+        nonProduction: 0,
+        total: 0,
+    },
+    profit: {
+        total: 0,
+        wholeSalePrice: 0,
+        pdvTaxAmount: 0,
+        totalSalePrice: 0,
+    },
+    profitStruct: {
+        total: 0,
+        wholeSalePrice: 0,
+        pdvTaxAmount: 0,
+        totalSalePrice: 0,
+    },
 };
 
 
 // * CALC STEP 1
 
-function calcLabourCost(inpList) {
+function calcLabour(inpList) {
     let inpArr = [...inpList];
     let result = 0;
     for (let inpItem of inpArr) {
         result += +inpItem.value;
     }
+    result = +result.toFixed(2);
     return result;
 }
 
 // * CALC STEP 2
 
-function calcPercentValue(num, percentValue) {
-    return +(num * (percentValue / 100)).toFixed(2);
+function multPercent(num, percent) {
+    return +(num * (percent / 100)).toFixed(2);
 }
 
 function calcSalary() {
-    let salaryFundValue = +salaryFund.value;
+    let salaryFund = +SITE_INPUTS.salary.fund.value;
 
-    tempResult.hourlyPay = +(salaryFundValue / percentValues.workMonthlyDuration / percentValues.workDayDuration).toFixed(2);
-    expencesResult.basicSalary = +(tempResult.labourCost * tempResult.hourlyPay).toFixed(2);
-    expencesResult.additionalSalary = +(calcPercentValue(expencesResult.basicSalary, percentValues.additionalSalary)).toFixed(2);
+    SITE_RESULTS.temp.hourlyPay = +(salaryFund / PERCENT_VALUES.monthlyDuration / PERCENT_VALUES.dayDuration).toFixed(2);
+    SITE_RESULTS.cost.basicSalary = +(SITE_RESULTS.temp.labour * SITE_RESULTS.temp.hourlyPay).toFixed(2);
+    SITE_RESULTS.cost.additionalSalary = multPercent(SITE_RESULTS.cost.basicSalary, PERCENT_VALUES.additionalSalary);
+    SITE_RESULTS.cost.sumSalary = +(SITE_RESULTS.cost.basicSalary + SITE_RESULTS.cost.additionalSalary).toFixed(2);
 
-    expencesResult.sumSalary = expencesResult.basicSalary + expencesResult.additionalSalary;
-    expencesResult.socialPayment = +(calcPercentValue(expencesResult.sumSalary, percentValues.socialPayment)).toFixed(2);
-    expencesResult.equipmentCost = +(calcPercentValue(expencesResult.basicSalary, percentValues.equipmentCost)).toFixed(2);
-    expencesResult.productionCost = +(calcPercentValue(expencesResult.basicSalary, percentValues.productionCost)).toFixed(2);
+    SITE_RESULTS.cost.socialPayment = multPercent(SITE_RESULTS.cost.sumSalary, PERCENT_VALUES.socialPayment);
+    SITE_RESULTS.cost.equipment = multPercent(SITE_RESULTS.cost.basicSalary, PERCENT_VALUES.equipment);
+    SITE_RESULTS.cost.production = multPercent(SITE_RESULTS.cost.basicSalary, PERCENT_VALUES.production);
 }
 
-// * CALC STEP 3
+// * CALC STEP 3. Calc uses formules & input values from step 3
 
-function calcMaterialExpences(
-    paperCountValue, onePaperPriceValue, flashDrivePriceValue, domainYearPriceValue, domainYearCountValue, hostingMonthlyPriceValue, hostingMonthlyCountValue
+function calcMaterial(
+    paperCount, onePaperPrice, domainYearPrice, domainYearCount, hostingMonthlyPrice, hostingMonthlyCount, flashDrivePrice
 ) {
+    let inpValues = [];
+    for (let i = 0; i < arguments.length; i++) {
+        inpValues[i] = +arguments[i].value;
+    }
 
-    paperCountValue = +paperCountValue.value;
-    onePaperPriceValue = +onePaperPriceValue.value;
-    flashDrivePriceValue = +flashDrivePriceValue.value;
-    domainYearPriceValue = +domainYearPriceValue.value
-    domainYearCountValue = +domainYearCountValue.value;
-    hostingMonthlyPriceValue = +hostingMonthlyPriceValue.value;
-    hostingMonthlyCountValue = +hostingMonthlyCountValue.value;
-
-    let materialExpences = +((paperCountValue * onePaperPriceValue) + (domainYearPriceValue * domainYearCountValue) + (hostingMonthlyPriceValue * hostingMonthlyCountValue) + flashDrivePriceValue).toFixed(2);
-    return materialExpences;
+    let result = +((inpValues[0] * inpValues[1]) + (inpValues[2] * inpValues[3]) + (inpValues[4] * inpValues[5]) + inpValues[6]).toFixed(2);
+    return result;
 }
 
-// * CALC STEP 4
+// * CALC STEP 4. Multiple of input values from step 4
 
-function calcElectricityExpences(pcСountValue, pcWorkDurationValue, pcPowerValue, oneWattPriceValue) {
-    pcСountValue = +pcСountValue.value;
-    pcWorkDurationValue = +pcWorkDurationValue.value;
-    pcPowerValue = +pcPowerValue.value;
-    oneWattPriceValue = +oneWattPriceValue.value;
+function calcElectricity(pcСount, pcWorkDuration, pcPower, oneWattPrice) {
 
-    let electricityExpences = +(pcСountValue * pcWorkDurationValue * pcPowerValue * oneWattPriceValue).toFixed(2);
-    return electricityExpences;
+    let result = 1;
+    let inpValue;
+    for (let i = 0; i < arguments.length; i++) {
+        inpValue = +arguments[i].value;
+        result *= inpValue;
+        
+    }
+    return +result.toFixed(2);
 }
 
-
-// * OUTPUT EXPENCES & PROFIT
-
-function calcStructurePercent(num, totalNum) {
+function calcStructPercent(num, totalNum) {
     return +((num / totalNum) * 100).toFixed(2);
 }
 
-function outputAllExpences() {
-    expencesOutput.basicSalary.textContent = expencesResult.basicSalary;
-    expencesOutput.additionalSalary.textContent = expencesResult.additionalSalary;
-    expencesOutput.socialPayment.textContent = expencesResult.socialPayment;
+// * Sum of previous values from SITE_RESULTS.cost
 
-    expencesOutput.equipmentCost.textContent = expencesResult.equipmentCost;
-    expencesOutput.productionCost.textContent = expencesResult.productionCost;
-    expencesOutput.materialExpences.textContent = expencesResult.materialExpences;
-    expencesOutput.electricityExpences.textContent = expencesResult.electricityExpences;
+function calcProductionSale(resultObj) {
+    let resultArr = Object.values(resultObj);
+    let result = 0;
 
-    expencesOutput.productionCostSale.textContent = expencesResult.productionCostSale;
-    expencesOutput.nonProductionCost.textContent = expencesResult.nonProductionCost;
-    expencesOutput.totalCost.textContent = expencesResult.totalCost;
+    for (let i = 0; i < resultArr.length; i++) { 
+        result += +resultArr[i];
+    }
+    return +result.toFixed(2);
 }
 
-function outputAllExpencesStruct() {
-    expencesStructOutput.basicSalary.textContent = expencesStruct.basicSalary;
-    expencesStructOutput.additionalSalary.textContent = expencesStruct.additionalSalary;
-    expencesStructOutput.socialPayment.textContent = expencesStruct.socialPayment;
+// * OUTPUT EXPENCES & PROFIT
 
-    expencesStructOutput.equipmentCost.textContent = expencesStruct.equipmentCost;
-    expencesStructOutput.productionCost.textContent = expencesStruct.productionCost;
-    expencesStructOutput.materialExpences.textContent = expencesStruct.materialExpences;
-    expencesStructOutput.electricityExpences.textContent = expencesStruct.electricityExpences;
+function outputCost() {
+    SITE_OUTPUTS.cost.basicSalary.textContent = SITE_RESULTS.cost.basicSalary;
+    SITE_OUTPUTS.cost.additionalSalary.textContent = SITE_RESULTS.cost.additionalSalary;
+    SITE_OUTPUTS.cost.socialPayment.textContent = SITE_RESULTS.cost.socialPayment;
 
-    expencesStructOutput.productionCostSale.textContent = expencesStruct.productionCostSale;
-    expencesStructOutput.nonProductionCost.textContent = expencesStruct.nonProductionCost;
-    expencesStructOutput.totalCost.textContent = expencesStruct.totalCost;
+    SITE_OUTPUTS.cost.equipment.textContent = SITE_RESULTS.cost.equipment;
+    SITE_OUTPUTS.cost.production.textContent = SITE_RESULTS.cost.production;
+    SITE_OUTPUTS.cost.material.textContent = SITE_RESULTS.cost.material;
+    SITE_OUTPUTS.cost.electricity.textContent = SITE_RESULTS.cost.electricity;
+
+    SITE_OUTPUTS.fullCost.productionSale.textContent = SITE_RESULTS.fullCost.productionSale;
+    SITE_OUTPUTS.fullCost.nonProduction.textContent = SITE_RESULTS.fullCost.nonProduction;
+    SITE_OUTPUTS.fullCost.total.textContent = SITE_RESULTS.fullCost.total;
 }
 
-function outputAllProfit() {
-    profitOutput.total.textContent = profitResult.total;
-    profitOutput.wholeSalePrice.textContent = profitResult.wholeSalePrice;
-    profitOutput.pdvTax.textContent = profitResult.pdvTaxAmount;
-    profitOutput.totalSalePrice.textContent = profitResult.totalSalePrice;
+function outputCostStruct() {
+    SITE_OUTPUTS.costStruct.basicSalary.textContent = SITE_RESULTS.costStruct.basicSalary;
+    SITE_OUTPUTS.costStruct.additionalSalary.textContent = SITE_RESULTS.costStruct.additionalSalary;
+    SITE_OUTPUTS.costStruct.socialPayment.textContent = SITE_RESULTS.costStruct.socialPayment;
+
+    SITE_OUTPUTS.costStruct.equipment.textContent = SITE_RESULTS.costStruct.equipment;
+    SITE_OUTPUTS.costStruct.production.textContent = SITE_RESULTS.costStruct.production;
+    SITE_OUTPUTS.costStruct.material.textContent = SITE_RESULTS.costStruct.material;
+    SITE_OUTPUTS.costStruct.electricity.textContent = SITE_RESULTS.costStruct.electricity;
+
+    SITE_OUTPUTS.fullCostStruct.productionSale.textContent = SITE_RESULTS.fullCostStruct.productionSale;
+    SITE_OUTPUTS.fullCostStruct.nonProduction.textContent = SITE_RESULTS.fullCostStruct.nonProduction;
+    SITE_OUTPUTS.fullCostStruct.total.textContent = SITE_RESULTS.fullCostStruct.total;
 }
 
-function outputAllProfitStruct() {
-    profitStructOutput.total.textContent = profitStruct.total;
-    profitStructOutput.wholeSalePrice.textContent = profitStruct.wholeSalePrice;
-    profitStructOutput.pdvTax.textContent = profitStruct.pdvTaxAmount;
-    profitStructOutput.totalSalePrice.textContent = profitStruct.totalSalePrice;
+function outputProfit() {
+    SITE_OUTPUTS.profit.total.textContent = SITE_RESULTS.profit.total;
+    SITE_OUTPUTS.profit.wholeSalePrice.textContent = SITE_RESULTS.profit.wholeSalePrice;
+    SITE_OUTPUTS.profit.pdvTax.textContent = SITE_RESULTS.profit.pdvTaxAmount;
+    SITE_OUTPUTS.profit.totalSalePrice.textContent = SITE_RESULTS.profit.totalSalePrice;
+}
+
+function outputProfitStruct() {
+    SITE_OUTPUTS.profitStruct.total.textContent = SITE_RESULTS.profitStruct.total;
+    SITE_OUTPUTS.profitStruct.wholeSalePrice.textContent = SITE_RESULTS.profitStruct.wholeSalePrice;
+    SITE_OUTPUTS.profitStruct.pdvTax.textContent = SITE_RESULTS.profitStruct.pdvTaxAmount;
+    SITE_OUTPUTS.profitStruct.totalSalePrice.textContent = SITE_RESULTS.profitStruct.totalSalePrice;
 }
 
 // * CALL FUNCTIONS
 
-if (allFormInp) {
-    let allFormInpArr = [...allFormInp];
+if (SITE_INPUTS.all) {
+    let allFormInpArr = [...SITE_INPUTS.all];
 
     // * ADD CHANGE EVENT FOR INPUTS
     for (const inpItem of allFormInpArr) {
         inpItem.addEventListener("change", function () {
 
             if (COMMON_COND.controllerClassCheck(allFormInpArr)) {
-                tempResult.labourCost = calcLabourCost(firstStepInputs);
+                SITE_RESULTS.temp.labour = calcLabour(SITE_INPUTS.labour.all);
                 calcSalary();
 
-                expencesResult.materialExpences = calcMaterialExpences(paperCount, onePaperPrice, flashDrivePrice, domainYearPrice, domainYearCount, hostingMonthlyPrice, hostingMonthlyCount);
+                SITE_RESULTS.cost.material = calcMaterial(SITE_INPUTS.material.paperCount, SITE_INPUTS.material.onePaperPrice, SITE_INPUTS.material.domainYearPrice, SITE_INPUTS.material.domainYearCount, SITE_INPUTS.material.hostingMonthlyPrice, SITE_INPUTS.material.hostingMonthlyCount, SITE_INPUTS.material.flashDrivePrice);
 
-                expencesResult.electricityExpences = calcElectricityExpences(pcСount, pcWorkDuration, pcPower, oneWattPrice);
+                SITE_RESULTS.cost.electricity = calcElectricity(SITE_INPUTS.electricity.pcСount, SITE_INPUTS.electricity.pcWorkDuration, SITE_INPUTS.electricity.pcPower, SITE_INPUTS.electricity.oneWattPrice);
 
-                expencesResult.productionCostSale = +(expencesResult.sumSalary + expencesResult.socialPayment + expencesResult.equipmentCost + expencesResult.productionCost + expencesResult.materialExpences + expencesResult.electricityExpences).toFixed(2);
+                SITE_RESULTS.fullCost.productionSale = calcProductionSale(SITE_RESULTS.cost);
 
-                expencesResult.nonProductionCost = +(calcPercentValue(expencesResult.productionCostSale, percentValues.nonProductionCost)).toFixed(2);
-                expencesResult.totalCost = +(expencesResult.productionCostSale + expencesResult.nonProductionCost).toFixed(2);
-                console.log(tempResult);
-                console.log(expencesResult);
-
+                SITE_RESULTS.fullCost.nonProduction = multPercent(SITE_RESULTS.fullCost.productionSale, PERCENT_VALUES.nonProduction);
+                SITE_RESULTS.fullCost.total = +(SITE_RESULTS.fullCost.productionSale + SITE_RESULTS.fullCost.nonProduction).toFixed(2);
 
                 // * STRUCTURE EXPENCES
-                expencesStruct.basicSalary = calcStructurePercent(expencesResult.basicSalary, expencesResult.totalCost);
-                expencesStruct.additionalSalary = calcStructurePercent(expencesResult.additionalSalary, expencesResult.totalCost);
-                expencesStruct.socialPayment = calcStructurePercent(expencesResult.socialPayment, expencesResult.totalCost);
+                SITE_RESULTS.costStruct.basicSalary = calcStructPercent(SITE_RESULTS.cost.basicSalary, SITE_RESULTS.fullCost.total);
+                SITE_RESULTS.costStruct.additionalSalary = calcStructPercent(SITE_RESULTS.cost.additionalSalary, SITE_RESULTS.fullCost.total);
+                SITE_RESULTS.costStruct.socialPayment = calcStructPercent(SITE_RESULTS.cost.socialPayment, SITE_RESULTS.fullCost.total);
 
-                expencesStruct.equipmentCost = calcStructurePercent(expencesResult.equipmentCost, expencesResult.totalCost);
-                expencesStruct.productionCost = calcStructurePercent(expencesResult.productionCost, expencesResult.totalCost);
-                expencesStruct.materialExpences = calcStructurePercent(expencesResult.materialExpences, expencesResult.totalCost);
-                expencesStruct.electricityExpences = calcStructurePercent(expencesResult.electricityExpences, expencesResult.totalCost);
+                SITE_RESULTS.costStruct.equipment = calcStructPercent(SITE_RESULTS.cost.equipment, SITE_RESULTS.fullCost.total);
+                SITE_RESULTS.costStruct.production = calcStructPercent(SITE_RESULTS.cost.production, SITE_RESULTS.fullCost.total);
+                SITE_RESULTS.costStruct.material = calcStructPercent(SITE_RESULTS.cost.material, SITE_RESULTS.fullCost.total);
+                SITE_RESULTS.costStruct.electricity = calcStructPercent(SITE_RESULTS.cost.electricity, SITE_RESULTS.fullCost.total);
 
-                expencesStruct.productionCostSale = calcStructurePercent(expencesResult.productionCostSale, expencesResult.totalCost);
-                expencesStruct.nonProductionCost = calcStructurePercent(expencesResult.nonProductionCost, expencesResult.totalCost);
-                expencesStruct.totalCost = calcStructurePercent(expencesResult.totalCost, expencesResult.totalCost);
+                SITE_RESULTS.fullCostStruct.productionSale = calcStructPercent(SITE_RESULTS.fullCost.productionSale, SITE_RESULTS.fullCost.total);
+                SITE_RESULTS.fullCostStruct.nonProduction = calcStructPercent(SITE_RESULTS.fullCost.nonProduction, SITE_RESULTS.fullCost.total);
+                SITE_RESULTS.fullCostStruct.total = calcStructPercent(SITE_RESULTS.fullCost.total, SITE_RESULTS.fullCost.total);
 
                 // * PROFIT
-                profitResult.total = +(calcPercentValue(expencesResult.totalCost, profitLevelPercent.value)).toFixed(2);
-                profitResult.wholeSalePrice = +(expencesResult.totalCost + profitResult.total).toFixed(2);
-                profitResult.pdvTaxAmount = +(calcPercentValue(profitResult.wholeSalePrice, percentValues.pdvTax)).toFixed(2);
-                profitResult.totalSalePrice = +(profitResult.wholeSalePrice + profitResult.pdvTaxAmount).toFixed(2);
+                SITE_RESULTS.profit.total = multPercent(SITE_RESULTS.fullCost.total, SITE_INPUTS.salary.profitPercent.value);
+                SITE_RESULTS.profit.wholeSalePrice = +(SITE_RESULTS.fullCost.total + SITE_RESULTS.profit.total).toFixed(2);
+                SITE_RESULTS.profit.pdvTaxAmount = multPercent(SITE_RESULTS.profit.wholeSalePrice, PERCENT_VALUES.pdvTax);
+                SITE_RESULTS.profit.totalSalePrice = +(SITE_RESULTS.profit.wholeSalePrice + SITE_RESULTS.profit.pdvTaxAmount).toFixed(2);
 
                 // * STRUCTURE PROFIT
-                profitStruct.total = calcStructurePercent(profitResult.total, profitResult.totalSalePrice);
-                profitStruct.wholeSalePrice = calcStructurePercent(profitResult.wholeSalePrice, profitResult.totalSalePrice);
-                profitStruct.pdvTaxAmount = calcStructurePercent(profitResult.pdvTaxAmount, profitResult.totalSalePrice);
-                profitStruct.totalSalePrice = calcStructurePercent(profitResult.totalSalePrice, profitResult.totalSalePrice);
+                SITE_RESULTS.profitStruct.total = calcStructPercent(SITE_RESULTS.profit.total, SITE_RESULTS.profit.totalSalePrice);
+                SITE_RESULTS.profitStruct.wholeSalePrice = calcStructPercent(SITE_RESULTS.profit.wholeSalePrice, SITE_RESULTS.profit.totalSalePrice);
+                SITE_RESULTS.profitStruct.pdvTaxAmount = calcStructPercent(SITE_RESULTS.profit.pdvTaxAmount, SITE_RESULTS.profit.totalSalePrice);
+                SITE_RESULTS.profitStruct.totalSalePrice = calcStructPercent(SITE_RESULTS.profit.totalSalePrice, SITE_RESULTS.profit.totalSalePrice);
 
+                console.log(SITE_RESULTS);
                 // * OUTPUT FUNC
-                outputAllExpences();
-                outputAllExpencesStruct();
-                outputAllProfit();
-                outputAllProfitStruct();
+                outputCost();
+                outputCostStruct();
+                outputProfit();
+                outputProfitStruct();
             }
         });
     }
