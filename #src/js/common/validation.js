@@ -1,11 +1,15 @@
+const CLASS_LIST = {
+    all: "inp",
+    siteCalc: "site-calc-inp",
+    deposit: "deposit-inp",
+    credit: "credit-inp",
+    periodMonthly: "period-monthly-inp",
+    percent: "percent-inp",
+    fee: "fee-inp",
+}
+
 const INPUTS = {
-    all: document.querySelectorAll(".inp"),
-    siteCalc: document.querySelectorAll(".site-calc-inp"),
-    deposit: document.querySelectorAll(".deposit-inp"),
-    credit: document.querySelectorAll(".credit-inp"),
-    periodMonthly: document.querySelectorAll(".period-monthly-inp"),
-    percent: document.querySelectorAll(".percent-inp"),
-    fee: document.querySelectorAll(".fee-inp"),
+    all: document.querySelectorAll(`.${CLASS_LIST.all}`),
 }
 
 const VALID_INTERVALS = {
@@ -31,7 +35,7 @@ const VALID_INTERVALS = {
     },
     fee: {
         min: 0,
-        max: 5000,
+        max: 1000,
     },
 };
 
@@ -95,34 +99,25 @@ for (let item of INPUTS.all) {
     item.addEventListener("input", function () {
         setDecimalNumber(item);
     });
-}
-for (let item of INPUTS.siteCalc) {
-    item.addEventListener("change", function () {
-        checkInp(item, VALID_INTERVALS.siteCalc.min, VALID_INTERVALS.siteCalc.max);
-    });
-}
-for (let item of INPUTS.deposit) {
-    item.addEventListener("change", function () {
-        checkInp(item, VALID_INTERVALS.deposit.min, VALID_INTERVALS.deposit.max);
-    });
-}
-for (let item of INPUTS.credit) {
-    item.addEventListener("change", function () {
-        checkInp(item, VALID_INTERVALS.credit.min, VALID_INTERVALS.credit.max);
-    });
-}
-for (let item of INPUTS.periodMonthly) {
-    item.addEventListener("change", function () {
-        checkInp(item, VALID_INTERVALS.periodMonthly.min, VALID_INTERVALS.periodMonthly.max);
-    });
-}
-for (let item of INPUTS.percent) {
-    item.addEventListener("change", function () {
-        checkInp(item, VALID_INTERVALS.percent.min, VALID_INTERVALS.percent.max);
-    });
-}
-for (let item of INPUTS.fee) {
-    item.addEventListener("change", function () {
-        checkInp(item, VALID_INTERVALS.fee.min, VALID_INTERVALS.fee.max);
+    item.addEventListener("change", function(e) {
+        let target = e.target;
+        if (target.classList.contains(CLASS_LIST.siteCalc)) {
+            checkInp(item, VALID_INTERVALS.siteCalc.min, VALID_INTERVALS.siteCalc.max);
+
+        } else if (target.classList.contains(CLASS_LIST.deposit)) {
+            checkInp(item, VALID_INTERVALS.deposit.min, VALID_INTERVALS.deposit.max);
+
+        } else if (target.classList.contains(CLASS_LIST.credit)) {
+            checkInp(item, VALID_INTERVALS.credit.min, VALID_INTERVALS.credit.max);
+
+        } else if (target.classList.contains(CLASS_LIST.periodMonthly)) {
+            checkInp(item, VALID_INTERVALS.periodMonthly.min, VALID_INTERVALS.periodMonthly.max);
+
+        } else if (target.classList.contains(CLASS_LIST.percent)) {
+            checkInp(item, VALID_INTERVALS.percent.min, VALID_INTERVALS.percent.max);
+
+        } else if (target.classList.contains(CLASS_LIST.fee)) {
+            checkInp(item, VALID_INTERVALS.fee.min, VALID_INTERVALS.fee.max);
+        }
     });
 }

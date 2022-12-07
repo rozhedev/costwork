@@ -23,7 +23,7 @@ function checkCurrency(currencyObj, select, table) {
 if (curSelectOptions && curOutputs) {
     for (let i = 0; i < curSelectOptions.length; i++) {
         curSelectOptions[i].addEventListener("click", function () {
-
+            
             if (curSelectOptions[i].getAttribute("data-value") == CURRENCY_OBJ.ukrainianHryvnya) {
                 for (let item of curOutputs) {
                     item.textContent = CURRENCY_OBJ.ukrainianHryvnya;
