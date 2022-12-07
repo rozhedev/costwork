@@ -5,7 +5,6 @@ import { COMMON_VALUES } from "../common/values";
 import { COMMON_COND } from "../common/conditions";
 import { outputResult } from "../common/output";
 
-
 // * SITE INPUTS with all costs
 const SITE_INPUTS = {
     all: document.querySelectorAll(".inp"),
@@ -34,6 +33,11 @@ const SITE_INPUTS = {
 }
 
 // * COST OUTPUTS with outputs for result and costs
+// * productionsExp - productionExpences (Загальновиробничі витрати)
+// * nonproduction - (Позавиробничі витрати)
+// * productionSale - (Виробнича собівартість)
+// * total - (Повна собівартість)
+
 const SITE_OUTPUTS = {
     cost: {
         basicSalary: document.getElementById("basic-salary-output"),
@@ -43,11 +47,7 @@ const SITE_OUTPUTS = {
         material: document.getElementById("material-cost-output"),
         electricity: document.getElementById("electricity-cost-output"),
         equipment: document.getElementById("equipment-cost-output"),
-
-        production: document.getElementById("production-cost-output"),
-        productionSale: document.getElementById("production-cost-sale-output"),
-        nonProduction: document.getElementById("non-production-cost-output"),
-        total: document.getElementById("total-cost-output"),
+        productionExp: document.getElementById("production-cost-output"),
     },
     fullCost: {
         productionSale: document.getElementById("production-cost-sale-output"),
@@ -59,15 +59,15 @@ const SITE_OUTPUTS = {
         additionalSalary: document.getElementById("additional-salary-struct"),
         socialPayment: document.getElementById("social-payment-struct"),
 
-        production: document.getElementById("production-cost-struct"),
         material: document.getElementById("material-cost-struct"),
         electricity: document.getElementById("electricity-cost-struct"),
         equipment: document.getElementById("equipment-cost-struct"),
+        productionExp: document.getElementById("production-cost-struct"),
     },
     fullCostStruct: {
         productionSale: document.getElementById("production-cost-sale-struct"),
         nonProduction: document.getElementById("non-production-cost-struct"),
-        total: document.getElementById("total-cost-struct"),     
+        total: document.getElementById("total-cost-struct"),
     },
     profit: {
         total: document.getElementById("profit-output"),
@@ -89,7 +89,7 @@ const PERCENT_VALUES = {
     additionalSalary: 12,
     socialPayment: 22,
     equipment: 15,
-    production: 18,
+    productionExp: 18,
     nonProduction: 0.5,
     pdvTax: 20,
 };
@@ -104,44 +104,29 @@ const SITE_RESULTS = {
     cost: {
         basicSalary: 0,
         additionalSalary: 0,
-        sumSalary: 0,
         socialPayment: 0,
-        equipment: 0,
-        production: 0,
         material: 0,
         electricity: 0,
+        equipment: 0,
+        productionExp: 0,
+    },
+    get getSumSalary() {
+        return +(this.cost.basicSalary + this.cost.additionalSalary).toFixed(2);
     },
     fullCost: {
         productionSale: 0,
         nonProduction: 0,
-        total: 0,
-    },
-    costStruct: {
-        basicSalary: 0,
-        additionalSalary: 0,
-        socialPayment: 0,
-        equipment: 0,
-        production: 0,
-        material: 0,
-        electricity: 0,
-    },
-    fullCostStruct: {
-        productionSale: 0,
-        nonProduction: 0,
-        total: 0,
+        // total: 0,
     },
     profit: {
         total: 0,
         wholeSalePrice: 0,
-        pdvTaxAmount: 0,
+        pdvTax: 0,
         totalSalePrice: 0,
     },
-    profitStruct: {
-        total: 0,
-        wholeSalePrice: 0,
-        pdvTaxAmount: 0,
-        totalSalePrice: 0,
-    },
+    costStruct: [],
+    fullCostStruct: [],
+    profitStruct: [],
 };
 
 
@@ -169,11 +154,9 @@ function calcSalary() {
     SITE_RESULTS.temp.hourlyPay = +(salaryFund / PERCENT_VALUES.monthlyDuration / PERCENT_VALUES.dayDuration).toFixed(2);
     SITE_RESULTS.cost.basicSalary = +(SITE_RESULTS.temp.labour * SITE_RESULTS.temp.hourlyPay).toFixed(2);
     SITE_RESULTS.cost.additionalSalary = multPercent(SITE_RESULTS.cost.basicSalary, PERCENT_VALUES.additionalSalary);
-    SITE_RESULTS.cost.sumSalary = +(SITE_RESULTS.cost.basicSalary + SITE_RESULTS.cost.additionalSalary).toFixed(2);
-
-    SITE_RESULTS.cost.socialPayment = multPercent(SITE_RESULTS.cost.sumSalary, PERCENT_VALUES.socialPayment);
+    SITE_RESULTS.cost.socialPayment = multPercent(SITE_RESULTS.getSumSalary, PERCENT_VALUES.socialPayment);
     SITE_RESULTS.cost.equipment = multPercent(SITE_RESULTS.cost.basicSalary, PERCENT_VALUES.equipment);
-    SITE_RESULTS.cost.production = multPercent(SITE_RESULTS.cost.basicSalary, PERCENT_VALUES.production);
+    SITE_RESULTS.cost.productionExp = multPercent(SITE_RESULTS.cost.basicSalary, PERCENT_VALUES.productionExp);
 }
 
 // * CALC STEP 3. Calc uses formules & input values from step 3
@@ -193,80 +176,40 @@ function calcMaterial(
 // * CALC STEP 4. Multiple of input values from step 4
 
 function calcElectricity(pcСount, pcWorkDuration, pcPower, oneWattPrice) {
-
     let result = 1;
     let inpValue;
     for (let i = 0; i < arguments.length; i++) {
         inpValue = +arguments[i].value;
         result *= inpValue;
-        
     }
     return +result.toFixed(2);
 }
 
-function calcStructPercent(num, totalNum) {
-    return +((num / totalNum) * 100).toFixed(2);
-}
-
 // * Sum of previous values from SITE_RESULTS.cost
-
 function calcProductionSale(resultObj) {
     let resultArr = Object.values(resultObj);
     let result = 0;
 
-    for (let i = 0; i < resultArr.length; i++) { 
+    for (let i = 0; i < resultArr.length; i++) {
         result += +resultArr[i];
     }
     return +result.toFixed(2);
 }
 
-// * OUTPUT EXPENCES & PROFIT
+// * Calc & output structure values in empty array
+function calcStructPercent(resultObj, totalNum, outputArr) {
+    let resultArr = Object.values(resultObj);
+    let temp = 0;
 
-function outputCost() {
-    SITE_OUTPUTS.cost.basicSalary.textContent = SITE_RESULTS.cost.basicSalary;
-    SITE_OUTPUTS.cost.additionalSalary.textContent = SITE_RESULTS.cost.additionalSalary;
-    SITE_OUTPUTS.cost.socialPayment.textContent = SITE_RESULTS.cost.socialPayment;
-
-    SITE_OUTPUTS.cost.equipment.textContent = SITE_RESULTS.cost.equipment;
-    SITE_OUTPUTS.cost.production.textContent = SITE_RESULTS.cost.production;
-    SITE_OUTPUTS.cost.material.textContent = SITE_RESULTS.cost.material;
-    SITE_OUTPUTS.cost.electricity.textContent = SITE_RESULTS.cost.electricity;
-
-    SITE_OUTPUTS.fullCost.productionSale.textContent = SITE_RESULTS.fullCost.productionSale;
-    SITE_OUTPUTS.fullCost.nonProduction.textContent = SITE_RESULTS.fullCost.nonProduction;
-    SITE_OUTPUTS.fullCost.total.textContent = SITE_RESULTS.fullCost.total;
+    for (let i = 0; i < resultArr.length; i++) {
+        temp = +((resultArr[i] / totalNum) * 100).toFixed(2);
+        outputArr[i] = temp;
+    }
+    return outputArr;
 }
 
-function outputCostStruct() {
-    SITE_OUTPUTS.costStruct.basicSalary.textContent = SITE_RESULTS.costStruct.basicSalary;
-    SITE_OUTPUTS.costStruct.additionalSalary.textContent = SITE_RESULTS.costStruct.additionalSalary;
-    SITE_OUTPUTS.costStruct.socialPayment.textContent = SITE_RESULTS.costStruct.socialPayment;
 
-    SITE_OUTPUTS.costStruct.equipment.textContent = SITE_RESULTS.costStruct.equipment;
-    SITE_OUTPUTS.costStruct.production.textContent = SITE_RESULTS.costStruct.production;
-    SITE_OUTPUTS.costStruct.material.textContent = SITE_RESULTS.costStruct.material;
-    SITE_OUTPUTS.costStruct.electricity.textContent = SITE_RESULTS.costStruct.electricity;
-
-    SITE_OUTPUTS.fullCostStruct.productionSale.textContent = SITE_RESULTS.fullCostStruct.productionSale;
-    SITE_OUTPUTS.fullCostStruct.nonProduction.textContent = SITE_RESULTS.fullCostStruct.nonProduction;
-    SITE_OUTPUTS.fullCostStruct.total.textContent = SITE_RESULTS.fullCostStruct.total;
-}
-
-function outputProfit() {
-    SITE_OUTPUTS.profit.total.textContent = SITE_RESULTS.profit.total;
-    SITE_OUTPUTS.profit.wholeSalePrice.textContent = SITE_RESULTS.profit.wholeSalePrice;
-    SITE_OUTPUTS.profit.pdvTax.textContent = SITE_RESULTS.profit.pdvTaxAmount;
-    SITE_OUTPUTS.profit.totalSalePrice.textContent = SITE_RESULTS.profit.totalSalePrice;
-}
-
-function outputProfitStruct() {
-    SITE_OUTPUTS.profitStruct.total.textContent = SITE_RESULTS.profitStruct.total;
-    SITE_OUTPUTS.profitStruct.wholeSalePrice.textContent = SITE_RESULTS.profitStruct.wholeSalePrice;
-    SITE_OUTPUTS.profitStruct.pdvTax.textContent = SITE_RESULTS.profitStruct.pdvTaxAmount;
-    SITE_OUTPUTS.profitStruct.totalSalePrice.textContent = SITE_RESULTS.profitStruct.totalSalePrice;
-}
-
-// * CALL FUNCTIONS
+// * OUTPUT
 
 if (SITE_INPUTS.all) {
     let allFormInpArr = [...SITE_INPUTS.all];
@@ -288,38 +231,24 @@ if (SITE_INPUTS.all) {
                 SITE_RESULTS.fullCost.nonProduction = multPercent(SITE_RESULTS.fullCost.productionSale, PERCENT_VALUES.nonProduction);
                 SITE_RESULTS.fullCost.total = +(SITE_RESULTS.fullCost.productionSale + SITE_RESULTS.fullCost.nonProduction).toFixed(2);
 
-                // * STRUCTURE EXPENCES
-                SITE_RESULTS.costStruct.basicSalary = calcStructPercent(SITE_RESULTS.cost.basicSalary, SITE_RESULTS.fullCost.total);
-                SITE_RESULTS.costStruct.additionalSalary = calcStructPercent(SITE_RESULTS.cost.additionalSalary, SITE_RESULTS.fullCost.total);
-                SITE_RESULTS.costStruct.socialPayment = calcStructPercent(SITE_RESULTS.cost.socialPayment, SITE_RESULTS.fullCost.total);
-
-                SITE_RESULTS.costStruct.equipment = calcStructPercent(SITE_RESULTS.cost.equipment, SITE_RESULTS.fullCost.total);
-                SITE_RESULTS.costStruct.production = calcStructPercent(SITE_RESULTS.cost.production, SITE_RESULTS.fullCost.total);
-                SITE_RESULTS.costStruct.material = calcStructPercent(SITE_RESULTS.cost.material, SITE_RESULTS.fullCost.total);
-                SITE_RESULTS.costStruct.electricity = calcStructPercent(SITE_RESULTS.cost.electricity, SITE_RESULTS.fullCost.total);
-
-                SITE_RESULTS.fullCostStruct.productionSale = calcStructPercent(SITE_RESULTS.fullCost.productionSale, SITE_RESULTS.fullCost.total);
-                SITE_RESULTS.fullCostStruct.nonProduction = calcStructPercent(SITE_RESULTS.fullCost.nonProduction, SITE_RESULTS.fullCost.total);
-                SITE_RESULTS.fullCostStruct.total = calcStructPercent(SITE_RESULTS.fullCost.total, SITE_RESULTS.fullCost.total);
-
-                // * PROFIT
+                // * PROFIT 
                 SITE_RESULTS.profit.total = multPercent(SITE_RESULTS.fullCost.total, SITE_INPUTS.salary.profitPercent.value);
                 SITE_RESULTS.profit.wholeSalePrice = +(SITE_RESULTS.fullCost.total + SITE_RESULTS.profit.total).toFixed(2);
-                SITE_RESULTS.profit.pdvTaxAmount = multPercent(SITE_RESULTS.profit.wholeSalePrice, PERCENT_VALUES.pdvTax);
-                SITE_RESULTS.profit.totalSalePrice = +(SITE_RESULTS.profit.wholeSalePrice + SITE_RESULTS.profit.pdvTaxAmount).toFixed(2);
+                SITE_RESULTS.profit.pdvTax = multPercent(SITE_RESULTS.profit.wholeSalePrice, PERCENT_VALUES.pdvTax);
+                SITE_RESULTS.profit.totalSalePrice = +(SITE_RESULTS.profit.wholeSalePrice + SITE_RESULTS.profit.pdvTax).toFixed(2);
 
-                // * STRUCTURE PROFIT
-                SITE_RESULTS.profitStruct.total = calcStructPercent(SITE_RESULTS.profit.total, SITE_RESULTS.profit.totalSalePrice);
-                SITE_RESULTS.profitStruct.wholeSalePrice = calcStructPercent(SITE_RESULTS.profit.wholeSalePrice, SITE_RESULTS.profit.totalSalePrice);
-                SITE_RESULTS.profitStruct.pdvTaxAmount = calcStructPercent(SITE_RESULTS.profit.pdvTaxAmount, SITE_RESULTS.profit.totalSalePrice);
-                SITE_RESULTS.profitStruct.totalSalePrice = calcStructPercent(SITE_RESULTS.profit.totalSalePrice, SITE_RESULTS.profit.totalSalePrice);
+                // * STRUCTURE EXPENCES
+                let costStructResult = calcStructPercent(SITE_RESULTS.cost, SITE_RESULTS.fullCost.total, SITE_RESULTS.costStruct);
+                let fullCostStructResult = calcStructPercent(SITE_RESULTS.fullCost, SITE_RESULTS.fullCost.total, SITE_RESULTS.fullCostStruct);
+                let profitStructResult = calcStructPercent(SITE_RESULTS.profit, SITE_RESULTS.profit.totalSalePrice, SITE_RESULTS.profitStruct);
 
-                console.log(SITE_RESULTS);
-                // * OUTPUT FUNC
-                outputCost();
-                outputCostStruct();
-                outputProfit();
-                outputProfitStruct();
+                // * OUTPUT
+                outputResult(SITE_RESULTS.cost, SITE_OUTPUTS.cost);
+                outputResult(SITE_RESULTS.fullCost, SITE_OUTPUTS.fullCost);
+                outputResult(SITE_RESULTS.profit, SITE_OUTPUTS.profit);
+                outputResult(costStructResult, SITE_OUTPUTS.costStruct);
+                outputResult(fullCostStructResult, SITE_OUTPUTS.fullCostStruct);
+                outputResult(profitStructResult, SITE_OUTPUTS.profitStruct)
             }
         });
     }

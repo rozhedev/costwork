@@ -1,14 +1,11 @@
 
 export function outputResult(resultObj, outputObj) {
-    let outputArr = Object.values(outputObj);
-    let resultArr = Object.values(resultObj);
-
+    let resultArr, outputArr;
+    Array.isArray(resultObj) ? resultArr = resultObj : resultArr = Object.values(resultObj);
+    Array.isArray(outputObj) ? outputArr = outputObj : outputArr = Object.values(outputObj);
+    
     for (let i = 0; i < outputArr.length; i++) {
-        for (let k = 0; k < resultArr.length; k++) {
-            if (i == k) {
-                outputArr[i].textContent = resultArr[i];
-            }
-        }
+        outputArr[i].textContent = resultArr[i];
     }
 }
 
