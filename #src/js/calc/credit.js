@@ -1,6 +1,6 @@
 import { COMMON_VALUES, TABLE_LABELS } from "../common/values";
 import { COMMON_COND } from "../common/conditions";
-import { outputResult, checkScreenWidth } from "../common/output";
+import { outputResult, checkScreenWidth } from "../common/func";
 import { createPaymentTable } from "../common/table-gen";
 
 // * ann - Annuity credit, diff - Differential credit 

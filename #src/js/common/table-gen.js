@@ -27,7 +27,7 @@ export function createPaymentTable(table, title, profitValuesArr, feeValuesArr) 
             <span class="navlink">
                 ${feeValuesArr[i]}
             </span>
-            <span class="navlink currency">
+            <span class="navlink currency currency-selected">
                 ${selectedCur.textContent}
             </span>
         </td>

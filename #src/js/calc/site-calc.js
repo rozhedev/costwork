@@ -1,9 +1,8 @@
 // * Write "monthly" everywhere to avoid confusion, struct - structure
-// * Don't change order of properties in objects! For avoid errors in output cycles.
 
 import { COMMON_VALUES } from "../common/values";
 import { COMMON_COND } from "../common/conditions";
-import { outputResult } from "../common/output";
+import { multNumPercent, sumNodeListValues, multNodeListValues, outputResult } from "../common/func";
 
 // * SITE INPUTS with all costs
 const SITE_INPUTS = {
@@ -25,10 +24,7 @@ const SITE_INPUTS = {
         flashDrivePrice: document.getElementById("flash-drive-price"),
     },
     electricity: {
-        pcСount: document.getElementById("pc-count"),
-        pcWorkDuration: document.getElementById("pc-work-duration"),
-        pcPower: document.getElementById("pc-power"),
-        oneWattPrice: document.getElementById("one-watt-price"),
+        all: document.querySelectorAll(".step4"),
     },
 }
 
@@ -95,6 +91,7 @@ const PERCENT_VALUES = {
 };
 
 // * RESULT OBJECT
+// * Don't change order of properties! For avoid errors in output cycles.
 
 const SITE_RESULTS = {
     temp: {
@@ -116,7 +113,7 @@ const SITE_RESULTS = {
     fullCost: {
         productionSale: 0,
         nonProduction: 0,
-        // total: 0,
+        total: 0,
     },
     profit: {
         total: 0,
@@ -130,37 +127,22 @@ const SITE_RESULTS = {
 };
 
 
-// * CALC STEP 1
-
-function calcLabour(inpList) {
-    let inpArr = [...inpList];
-    let result = 0;
-    for (let inpItem of inpArr) {
-        result += +inpItem.value;
-    }
-    result = +result.toFixed(2);
-    return result;
-}
+// * CALC STEP 1. Uses sumNodeListValues from func.js
 
 // * CALC STEP 2
-
-function multPercent(num, percent) {
-    return +(num * (percent / 100)).toFixed(2);
-}
-
 function calcSalary() {
     let salaryFund = +SITE_INPUTS.salary.fund.value;
 
     SITE_RESULTS.temp.hourlyPay = +(salaryFund / PERCENT_VALUES.monthlyDuration / PERCENT_VALUES.dayDuration).toFixed(2);
     SITE_RESULTS.cost.basicSalary = +(SITE_RESULTS.temp.labour * SITE_RESULTS.temp.hourlyPay).toFixed(2);
-    SITE_RESULTS.cost.additionalSalary = multPercent(SITE_RESULTS.cost.basicSalary, PERCENT_VALUES.additionalSalary);
-    SITE_RESULTS.cost.socialPayment = multPercent(SITE_RESULTS.getSumSalary, PERCENT_VALUES.socialPayment);
-    SITE_RESULTS.cost.equipment = multPercent(SITE_RESULTS.cost.basicSalary, PERCENT_VALUES.equipment);
-    SITE_RESULTS.cost.productionExp = multPercent(SITE_RESULTS.cost.basicSalary, PERCENT_VALUES.productionExp);
+    SITE_RESULTS.cost.additionalSalary = multNumPercent(SITE_RESULTS.cost.basicSalary, PERCENT_VALUES.additionalSalary);
+
+    SITE_RESULTS.cost.socialPayment = multNumPercent(SITE_RESULTS.getSumSalary, PERCENT_VALUES.socialPayment);
+    SITE_RESULTS.cost.equipment = multNumPercent(SITE_RESULTS.cost.basicSalary, PERCENT_VALUES.equipment);
+    SITE_RESULTS.cost.productionExp = multNumPercent(SITE_RESULTS.cost.basicSalary, PERCENT_VALUES.productionExp);
 }
 
 // * CALC STEP 3. Calc uses formules & input values from step 3
-
 function calcMaterial(
     paperCount, onePaperPrice, domainYearPrice, domainYearCount, hostingMonthlyPrice, hostingMonthlyCount, flashDrivePrice
 ) {
@@ -173,19 +155,9 @@ function calcMaterial(
     return result;
 }
 
-// * CALC STEP 4. Multiple of input values from step 4
+// * CALC STEP 4. Uses multNodeListValues from func.js
 
-function calcElectricity(pcСount, pcWorkDuration, pcPower, oneWattPrice) {
-    let result = 1;
-    let inpValue;
-    for (let i = 0; i < arguments.length; i++) {
-        inpValue = +arguments[i].value;
-        result *= inpValue;
-    }
-    return +result.toFixed(2);
-}
-
-// * Sum of previous values from SITE_RESULTS.cost
+// * Sum values from SITE_RESULTS.cost
 function calcProductionSale(resultObj) {
     let resultArr = Object.values(resultObj);
     let result = 0;
@@ -219,28 +191,46 @@ if (SITE_INPUTS.all) {
         inpItem.addEventListener("change", function () {
 
             if (COMMON_COND.controllerClassCheck(allFormInpArr)) {
-                SITE_RESULTS.temp.labour = calcLabour(SITE_INPUTS.labour.all);
+                SITE_RESULTS.temp.labour = sumNodeListValues(SITE_INPUTS.labour.all);
                 calcSalary();
 
-                SITE_RESULTS.cost.material = calcMaterial(SITE_INPUTS.material.paperCount, SITE_INPUTS.material.onePaperPrice, SITE_INPUTS.material.domainYearPrice, SITE_INPUTS.material.domainYearCount, SITE_INPUTS.material.hostingMonthlyPrice, SITE_INPUTS.material.hostingMonthlyCount, SITE_INPUTS.material.flashDrivePrice);
-
-                SITE_RESULTS.cost.electricity = calcElectricity(SITE_INPUTS.electricity.pcСount, SITE_INPUTS.electricity.pcWorkDuration, SITE_INPUTS.electricity.pcPower, SITE_INPUTS.electricity.oneWattPrice);
+                SITE_RESULTS.cost.material = calcMaterial(
+                    SITE_INPUTS.material.paperCount,
+                    SITE_INPUTS.material.onePaperPrice,
+                    SITE_INPUTS.material.domainYearPrice,
+                    SITE_INPUTS.material.domainYearCount,
+                    SITE_INPUTS.material.hostingMonthlyPrice,
+                    SITE_INPUTS.material.hostingMonthlyCount,
+                    SITE_INPUTS.material.flashDrivePrice
+                );
+                SITE_RESULTS.cost.electricity = multNodeListValues(SITE_INPUTS.electricity.all);
 
                 SITE_RESULTS.fullCost.productionSale = calcProductionSale(SITE_RESULTS.cost);
-
-                SITE_RESULTS.fullCost.nonProduction = multPercent(SITE_RESULTS.fullCost.productionSale, PERCENT_VALUES.nonProduction);
+                SITE_RESULTS.fullCost.nonProduction = multNumPercent(SITE_RESULTS.fullCost.productionSale, PERCENT_VALUES.nonProduction);
                 SITE_RESULTS.fullCost.total = +(SITE_RESULTS.fullCost.productionSale + SITE_RESULTS.fullCost.nonProduction).toFixed(2);
 
                 // * PROFIT 
-                SITE_RESULTS.profit.total = multPercent(SITE_RESULTS.fullCost.total, SITE_INPUTS.salary.profitPercent.value);
+                SITE_RESULTS.profit.total = multNumPercent(SITE_RESULTS.fullCost.total, SITE_INPUTS.salary.profitPercent.value);
                 SITE_RESULTS.profit.wholeSalePrice = +(SITE_RESULTS.fullCost.total + SITE_RESULTS.profit.total).toFixed(2);
-                SITE_RESULTS.profit.pdvTax = multPercent(SITE_RESULTS.profit.wholeSalePrice, PERCENT_VALUES.pdvTax);
+                SITE_RESULTS.profit.pdvTax = multNumPercent(SITE_RESULTS.profit.wholeSalePrice, PERCENT_VALUES.pdvTax);
                 SITE_RESULTS.profit.totalSalePrice = +(SITE_RESULTS.profit.wholeSalePrice + SITE_RESULTS.profit.pdvTax).toFixed(2);
 
                 // * STRUCTURE EXPENCES
-                let costStructResult = calcStructPercent(SITE_RESULTS.cost, SITE_RESULTS.fullCost.total, SITE_RESULTS.costStruct);
-                let fullCostStructResult = calcStructPercent(SITE_RESULTS.fullCost, SITE_RESULTS.fullCost.total, SITE_RESULTS.fullCostStruct);
-                let profitStructResult = calcStructPercent(SITE_RESULTS.profit, SITE_RESULTS.profit.totalSalePrice, SITE_RESULTS.profitStruct);
+                let costStructResult = calcStructPercent(
+                    SITE_RESULTS.cost,
+                    SITE_RESULTS.fullCost.total,
+                    SITE_RESULTS.costStruct
+                );
+                let fullCostStructResult = calcStructPercent(
+                    SITE_RESULTS.fullCost,
+                    SITE_RESULTS.fullCost.total,
+                    SITE_RESULTS.fullCostStruct
+                );
+                let profitStructResult = calcStructPercent(
+                    SITE_RESULTS.profit,
+                    SITE_RESULTS.profit.totalSalePrice,
+                    SITE_RESULTS.profitStruct
+                );
 
                 // * OUTPUT
                 outputResult(SITE_RESULTS.cost, SITE_OUTPUTS.cost);

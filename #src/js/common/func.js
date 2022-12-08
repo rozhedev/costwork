@@ -1,4 +1,26 @@
 
+export function multNumPercent(num, percent) {
+    return +(num * (percent / 100)).toFixed(2);
+}
+
+export function sumNodeListValues(inpList) {
+    let inpArr = [...inpList];
+    let result = 0;
+    for (let inpItem of inpArr) {
+        result += +inpItem.value;
+    }
+    return +result.toFixed(2);
+}
+
+export function multNodeListValues(inpList) {
+    let inpArr = [...inpList];
+    let result = 1;
+    for (let inpItem of inpArr) {
+        result *= +inpItem.value;
+    }
+    return +result.toFixed(2);
+}
+
 export function outputResult(resultObj, outputObj) {
     let resultArr, outputArr;
     Array.isArray(resultObj) ? resultArr = resultObj : resultArr = Object.values(resultObj);
