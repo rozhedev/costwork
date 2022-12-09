@@ -1,10 +1,9 @@
 // * Write "monthly" everywhere to avoid confusion, struct - structure
 
-import { COMMON_VALUES } from "../common/values";
 import { COMMON_COND } from "../common/conditions";
 import { multNumPercent, sumNodeListValues, multNodeListValues, outputResult } from "../common/func";
 
-// * SITE INPUTS with all costs
+// * SITE INPUTS. All inputs are required for calculation.
 const SITE_INPUTS = {
     all: document.querySelectorAll(".inp"),
     labour: {
@@ -142,7 +141,7 @@ function calcSalary() {
     SITE_RESULTS.cost.productionExp = multNumPercent(SITE_RESULTS.cost.basicSalary, PERCENT_VALUES.productionExp);
 }
 
-// * CALC STEP 3. Calc uses formules & input values from step 3
+// * CALC STEP 3. Calc uses input values from step 3
 function calcMaterial(
     paperCount, onePaperPrice, domainYearPrice, domainYearCount, hostingMonthlyPrice, hostingMonthlyCount, flashDrivePrice
 ) {

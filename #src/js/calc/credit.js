@@ -162,7 +162,6 @@ if (COMMON_COND.formElemCheck(CRED_INPUTS.diff.all)) {
                     let paymentObj = calcDiffPayment(values.amount, values.yearRate, values.period, values.monthlyFee);
                     let totalPaymentObj = calcDiffTotalSum(paymentObj.monthlyPayment, paymentObj.monthlyOverpayment, values.oneTimeFee);
                     let totalPaymentArr = Object.entries(totalPaymentObj);
-                    console.log(totalPaymentArr);
                     CRED_OUTPUTS.diff.table.innerHTML = "";
 
                     createPaymentTable(CRED_OUTPUTS.diff.table, TABLE_LABELS.monthly, paymentObj.monthlyPayment, paymentObj.monthlyOverpayment);

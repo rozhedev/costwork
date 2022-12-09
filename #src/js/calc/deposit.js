@@ -22,10 +22,10 @@ const DEP_INPUTS = {
 
 const DEP_OUTPUTS = {
     sim: {
-        total: document.getElementById("deposit-total-output"),
         profit: document.getElementById("deposit-profit-output"),
+        taxProfit: document.getElementById("deposit-tax-profit-output"),
         monthlyProfit: document.getElementById("deposit-monthly-profit-output"),
-        fee: document.getElementById("deposit-pdv-profit-output"),
+        total: document.getElementById("deposit-total-output"),
     },
     cap: {
         table: document.querySelector("#deposit-table-output tbody"),
@@ -38,7 +38,7 @@ const DEP_OUTPUTS = {
 
 function calcSimProfit(amount, rate, period) {
     let dayPeriod = period * 30;
-    return +((amount * rate * dayPeriod / 365) / 100).toFixed(2);
+    return amount * (rate / 100) * dayPeriod / 365;
 }
 
 // * SIMPLE PERCENT OUTPUT
@@ -49,7 +49,7 @@ if (COMMON_COND.formElemCheck(DEP_INPUTS.sim.all)) {
     // * ADD CHANGE EVENT FOR DEP_INPUTS
     for (const inpItem of inpArr) {
         inpItem.addEventListener("change", function () {
-            
+
             if (COMMON_COND.controllerClassCheck(inpArr)) {
                 let values = {
                     amount: +DEP_INPUTS.sim.amount.value,
@@ -58,19 +58,24 @@ if (COMMON_COND.formElemCheck(DEP_INPUTS.sim.all)) {
                 }
                 let resultObj = {
                     // * Net profit - чистый доход
-                    netProfit: calcSimProfit(values.amount, values.yearRate, values.period),
-                    get totalProfit() {
-                        return +(this.netProfit + values.amount).toFixed(2);
+                    profit: +(calcSimProfit(
+                        values.amount,
+                        values.yearRate,
+                        values.period
+                    )).toFixed(2),
+                    get netProfit() {
+                        return +(this.profit - (this.profit * (COMMON_VALUES.taxPercent / 100))).toFixed(2);
                     },
                     get monthlyProfit() {
                         return +(this.netProfit / values.period).toFixed(2);
                     },
-                    get pdvProfit() {
-                        return `(податок = ${COMMON_VALUES.pdvFee}%) ${+(this.netProfit - (this.netProfit * (COMMON_VALUES.pdvFee / 100))).toFixed(2)}`;
+                    get totalProfit() {
+                        return +(this.netProfit + values.amount).toFixed(2);
                     },
                 }
 
                 setTimeout(function () {
+                    console.log(resultObj);
                     outputResult(resultObj, DEP_OUTPUTS.sim);
                 }, COMMON_VALUES.delay);
             }
@@ -112,21 +117,21 @@ function calcCapProfit(amount, rate, period) {
 
 // * CAPITALISATION TOTAL SUMMA
 
-function calcCapProfitSum(arr1, arr2, amount, pdv) {
+function calcCapProfitSum(arr1, arr2, amount, tax) {
     let profitSumObj = {
-        monthlyProfit: 0,
-        monthlyProfitPdv: 0,
+        monthly: 0,
+        monthlyTax: 0,
         monthlyAmount: 0,
-        monthlyAmountPdv: 0,
+        monthlyAmountTax: 0,
     }
     for (let i = 1; i < arr2.length; i++) {
-        profitSumObj.monthlyProfit += arr2[i];
+        profitSumObj.monthly += arr2[i];
     }
-    profitSumObj.monthlyProfit = +(profitSumObj.monthlyProfit).toFixed(2);
-    profitSumObj.monthlyProfitPdv = +(profitSumObj.monthlyProfit - profitSumObj.monthlyProfit * (pdv / 100)).toFixed(2);
+    profitSumObj.monthly = +(profitSumObj.monthly).toFixed(2);
+    profitSumObj.monthlyTax = +(profitSumObj.monthly - profitSumObj.monthly * (tax / 100)).toFixed(2);
 
     profitSumObj.monthlyAmount = arr1.at(-1);
-    profitSumObj.monthlyAmountPdv = amount + profitSumObj.monthlyProfitPdv;
+    profitSumObj.monthlyAmountTax = amount + profitSumObj.monthlyTax;
 
     return profitSumObj;
 }
@@ -148,19 +153,27 @@ if (COMMON_COND.formElemCheck(DEP_INPUTS.cap.all)) {
                     period: +DEP_INPUTS.cap.period.value,
                 }
                 // * RESULT OBJECTS
-                let monthlyProfitObj = calcCapProfit(values.amount, values.yearRate, values.period);
-                let totalProfitObj = calcCapProfitSum(monthlyProfitObj.amount, monthlyProfitObj.profit, values.amount, COMMON_VALUES.pdvFee);
+                let monthlyProfitObj = calcCapProfit(
+                    values.amount,
+                    values.yearRate,
+                    values.period
+                );
+                let totalProfitObj = calcCapProfitSum(
+                    monthlyProfitObj.amount,
+                    monthlyProfitObj.profit,
+                    values.amount,
+                    COMMON_VALUES.taxPercent
+                );
                 let totalProfitArr = Object.entries(totalProfitObj);
 
                 setTimeout(function () {
                     DEP_OUTPUTS.cap.table.innerHTML = "";
 
                     createPaymentTable(DEP_OUTPUTS.cap.table, TABLE_LABELS.monthly, monthlyProfitObj.amount, monthlyProfitObj.profit);
-
                     // * We don't specify the second index because we need an array, not a value. 
                     // * And the loop starts as i = 1, the text value will ignored
                     createPaymentTable(DEP_OUTPUTS.cap.table, TABLE_LABELS.totalProfit, totalProfitArr[2], totalProfitArr[0]);
-                    createPaymentTable(DEP_OUTPUTS.cap.table, TABLE_LABELS.feeProfit, totalProfitArr[3], totalProfitArr[1]);
+                    createPaymentTable(DEP_OUTPUTS.cap.table, TABLE_LABELS.taxProfit, totalProfitArr[3], totalProfitArr[1]);
                 }, COMMON_VALUES.delay);
             }
         });

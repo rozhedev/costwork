@@ -11,6 +11,8 @@ export function createPaymentTable(table, title, profitValuesArr, feeValuesArr) 
             title = ``;
             title = `${i} ${tempTitle}`;
         }
+        let curIsUnderfined = selectedCur != "underfined" ? selectedCur.textContent : CURRENCIES_DEF.ukrainianHryvnya;
+
         tableItem.innerHTML += `
         <td class="payment-table__item-label navlink">
             ${title}
@@ -20,15 +22,15 @@ export function createPaymentTable(table, title, profitValuesArr, feeValuesArr) 
                 ${profitValuesArr[i]}
             </span>
             <span class="navlink currency">
-                ${selectedCur.textContent}
+                ${curIsUnderfined}
             </span>
         </td>
         <td class="payment-table__item-value">
             <span class="navlink">
                 ${feeValuesArr[i]}
             </span>
-            <span class="navlink currency currency-selected">
-                ${selectedCur.textContent}
+            <span class="navlink currency">
+                ${curIsUnderfined}
             </span>
         </td>
               `;

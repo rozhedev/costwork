@@ -9,7 +9,7 @@
         "isCurrency": "currency"
     },
     {
-        "label": "Термін кредиту",
+        "label": "Термін кредиту (1 міс. = 30 дн.)",
         "type": "number",
         "id": "diff-credit-period",
         "class": "period-monthly-inp diff-credit-inp",

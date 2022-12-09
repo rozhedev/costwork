@@ -9,7 +9,7 @@
         "isCurrency": "currency"
     },
     {
-        "label": "Термін вкладу",
+        "label": "Термін вкладу (1 міс. = 30 дн.)",
         "type": "number",
         "id": "cap-deposit-period",
         "class": "period-monthly-inp cap-deposit-inp",
