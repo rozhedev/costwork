@@ -2,8 +2,22 @@ import { COMMON_VALUES, TABLE_LABELS } from "../common/values";
 import { COMMON_COND } from "../common/conditions";
 import { outputResult, checkScreenWidth } from "../common/func";
 import { createPaymentTable } from "../common/table-gen";
+import { getTableSlice, hideTableItems, showTableItems } from "../common/table-control";
 
 // * sim (simple) - Deposit without capitalisation, cap - Deposit with capitalisation
+
+const ID_LIST = {
+    table: "dep-table-output",
+    hideBtn: "dep-table-hide-btn",
+    showBtn: "dep-table-show-btn",
+}
+const CLASS_LIST = {
+    btns: "social-btn",
+    state: {
+        show: "_show",
+        hide: "_hide",
+    }
+}
 
 const DEP_INPUTS = {
     sim: {
@@ -28,8 +42,9 @@ const DEP_OUTPUTS = {
         total: document.getElementById("deposit-total-output"),
     },
     cap: {
-        table: document.querySelector("#deposit-table-output tbody"),
+        table: document.querySelector(`#${ID_LIST.table} tbody`),
         screenTip: document.querySelector(".message-tip"),
+        btns: document.querySelectorAll(`.${CLASS_LIST.btns}`),
     }
 }
 
@@ -45,18 +60,19 @@ function calcSimProfit(amount, rate, period) {
 
 if (COMMON_COND.formElemCheck(DEP_INPUTS.sim.all)) {
     let inpArr = [...DEP_INPUTS.sim.all];
+    let values, resultObj;
 
     // * ADD CHANGE EVENT FOR DEP_INPUTS
     for (const inpItem of inpArr) {
         inpItem.addEventListener("change", function () {
 
             if (COMMON_COND.controllerClassCheck(inpArr)) {
-                let values = {
+                values = {
                     amount: +DEP_INPUTS.sim.amount.value,
                     yearRate: +DEP_INPUTS.sim.yearRate.value,
                     period: +DEP_INPUTS.sim.period.value,
                 }
-                let resultObj = {
+                resultObj = {
                     // * Net profit - чистый доход
                     profit: +(calcSimProfit(
                         values.amount,
@@ -121,6 +137,7 @@ function calcCapProfit(amount, rate, period, tax) {
 
 if (COMMON_COND.formElemCheck(DEP_INPUTS.cap.all)) {
     let inpArr = [...DEP_INPUTS.cap.all];
+    let values, payObj, totalPayObj, totalPayArr;
     checkScreenWidth(DEP_OUTPUTS.cap.screenTip, COMMON_VALUES.screenTipNum);
 
     // * ADD CHANGE EVENT FOR DEP_INPUTS
@@ -128,26 +145,26 @@ if (COMMON_COND.formElemCheck(DEP_INPUTS.cap.all)) {
         inpItem.addEventListener("change", function () {
 
             if (COMMON_COND.controllerClassCheck(inpArr)) {
-                let values = {
+                values = {
                     amount: +DEP_INPUTS.cap.amount.value,
                     yearRate: +DEP_INPUTS.cap.yearRate.value,
                     period: +DEP_INPUTS.cap.period.value,
                 }
                 // * RESULT OBJECTS
-                let payObj = calcCapProfit(
+                payObj = calcCapProfit(
                     values.amount,
                     values.yearRate,
                     values.period,
                     COMMON_VALUES.taxPercent,
                 );
-                let totalPayObj = {
+                totalPayObj = {
                     netAmount: payObj.netAmount.at(-1),
                     netProfit: payObj.netProfit.at(-1),
                     tax: payObj.tax.at(-1),
                     amount: payObj.amount.at(-1),
                     profit: payObj.profit.at(-1),
                 }
-                let totalPayArr = Object.entries(totalPayObj);
+                totalPayArr = Object.entries(totalPayObj);
 
                 setTimeout(function () {
                     DEP_OUTPUTS.cap.table.innerHTML = "";
@@ -164,7 +181,7 @@ if (COMMON_COND.formElemCheck(DEP_INPUTS.cap.all)) {
                         DEP_OUTPUTS.cap.table,
                         TABLE_LABELS.profit,
                         totalPayArr[3],
-                        totalPayArr[4]                    
+                        totalPayArr[4]
                     );
                     createPaymentTable(
                         DEP_OUTPUTS.cap.table,
@@ -178,6 +195,28 @@ if (COMMON_COND.formElemCheck(DEP_INPUTS.cap.all)) {
                         totalPayArr[0],
                         totalPayArr[1]
                     );
+                    let tableSlice = getTableSlice(ID_LIST.table, CLASS_LIST.btns);
+
+                    for (const btn of DEP_OUTPUTS.cap.btns) {
+                        // * Sailing events incorrectly work, because social-btn component inside form tag
+                        btn.addEventListener("click", function (e) {
+                            e.preventDefault();
+
+                            if (btn.id == ID_LIST.showBtn) {
+                                showTableItems(
+                                    tableSlice,
+                                    CLASS_LIST.state.show,
+                                    CLASS_LIST.state.hide,
+                                );
+                            } else if (btn.id == ID_LIST.hideBtn) {
+                                hideTableItems(
+                                    tableSlice,
+                                    CLASS_LIST.state.show,
+                                    CLASS_LIST.state.hide,
+                                );
+                            }
+                        });
+                    }
                 }, COMMON_VALUES.delay);
             }
         });

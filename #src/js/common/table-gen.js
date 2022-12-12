@@ -5,7 +5,7 @@ export function createPaymentTable(table, title, profitValuesArr, feeValuesArr) 
 
     for (let i = 1; i < profitValuesArr.length; i++) {
         let tableItem = document.createElement("tr");
-        tableItem.classList.add("payment-table__item");
+        tableItem.className = "payment-table__item _show";
 
         if (typeof profitValuesArr[0] !== "string") {
             title = ``;

@@ -2,8 +2,22 @@ import { COMMON_VALUES, TABLE_LABELS } from "../common/values";
 import { COMMON_COND } from "../common/conditions";
 import { outputResult, checkScreenWidth } from "../common/func";
 import { createPaymentTable } from "../common/table-gen";
+import { getTableSlice, hideTableItems, showTableItems } from "../common/table-control";
 
 // * ann - Annuity credit, diff - Differential credit 
+
+const ID_LIST = {
+    table: "cred-table-output",
+    hideBtn: "cred-table-hide-btn",
+    showBtn: "cred-table-show-btn",
+}
+const CLASS_LIST = {
+    btns: "social-btn",
+    state: {
+        show: "_show",
+        hide: "_hide",
+    }
+}
 
 const CRED_INPUTS = {
     ann: {
@@ -32,8 +46,9 @@ const CRED_OUTPUTS = {
         message: document.getElementById("ann-message-output"),
     },
     diff: {
-        table: document.querySelector("#diff-table-output tbody"),
+        table: document.querySelector(`#${ID_LIST.table} tbody`),
         messageTip: document.querySelector(".message-tip"),
+        btns: document.querySelectorAll(`.${CLASS_LIST.btns}`),
     }
 }
 
@@ -57,20 +72,21 @@ function calcAnnOverpayment(amount, period, rate, monthlyFee) {
 
 if (COMMON_COND.formElemCheck(CRED_INPUTS.ann.all)) {
     let inpArr = [...CRED_INPUTS.ann.all];
+    let values, resultObj;
 
     // * ADD CHANGE EVENT FOR INPUTS
     for (const inpItem of inpArr) {
         inpItem.addEventListener("change", function () {
 
             if (COMMON_COND.controllerClassCheck(inpArr)) {
-                let values = {
+                values = {
                     amount: +CRED_INPUTS.ann.amount.value,
                     yearRate: +CRED_INPUTS.ann.yearRate.value,
                     period: +CRED_INPUTS.ann.period.value,
                     oneTimeFee: +CRED_INPUTS.ann.oneTimeFee.value,
                     monthlyFee: +CRED_INPUTS.ann.monthlyFee.value,
                 }
-                let resultObj = {
+                resultObj = {
                     overpayment: calcAnnOverpayment(values.amount, values.period, values.yearRate, values.monthlyFee) + values.oneTimeFee,
                     monthlyPayment: calcAnnMonthlyPayment(values.amount, values.period, values.yearRate) + values.monthlyFee,
                     get totalPayment() {
@@ -111,9 +127,10 @@ function calcDiffPayment(amount, rate, period, monthlyFee) {
         monthlyPayment: [],
         monthlyOverpayment: [],
     };
+    let monthlyPercent;
 
     for (let i = 1; i <= period; i++) {
-        let monthlyPercent = (amount - primaryPayment * i) * monthlyRate;
+        monthlyPercent = (amount - primaryPayment * i) * monthlyRate;
         payObj.monthlyPayment[i] = +(primaryPayment + monthlyPercent + monthlyFee).toFixed(2);
         payObj.monthlyOverpayment[i] = +(monthlyPercent + monthlyFee).toFixed(2);
     }
@@ -143,6 +160,7 @@ function calcDiffTotalSum(arr1, arr2, oneTimeFee) {
 
 if (COMMON_COND.formElemCheck(CRED_INPUTS.diff.all)) {
     let inpArr = [...CRED_INPUTS.diff.all];
+    let values, paymentObj, totalPaymentObj, totalPaymentArr;
     checkScreenWidth(CRED_OUTPUTS.diff.screenTip, COMMON_VALUES.screenTipNum);
 
     // * ADD CHANGE EVENT FOR INPUTS
@@ -150,27 +168,27 @@ if (COMMON_COND.formElemCheck(CRED_INPUTS.diff.all)) {
         inpItem.addEventListener("change", function () {
 
             if (COMMON_COND.controllerClassCheck(inpArr)) {
-                let values = {
+                values = {
                     amount: +CRED_INPUTS.diff.amount.value,
                     yearRate: +CRED_INPUTS.diff.yearRate.value,
                     period: +CRED_INPUTS.diff.period.value,
                     oneTimeFee: +CRED_INPUTS.diff.oneTimeFee.value,
                     monthlyFee: +CRED_INPUTS.diff.monthlyFee.value,
                 }
+                paymentObj = calcDiffPayment(
+                    values.amount,
+                    values.yearRate,
+                    values.period,
+                    values.monthlyFee
+                );
+                totalPaymentObj = calcDiffTotalSum(
+                    paymentObj.monthlyPayment,
+                    paymentObj.monthlyOverpayment,
+                    values.oneTimeFee
+                );
+                totalPaymentArr = Object.entries(totalPaymentObj);
 
                 setTimeout(function () {
-                    let paymentObj = calcDiffPayment(
-                        values.amount,
-                        values.yearRate,
-                        values.period,
-                        values.monthlyFee
-                    );
-                    let totalPaymentObj = calcDiffTotalSum(
-                        paymentObj.monthlyPayment,
-                        paymentObj.monthlyOverpayment,
-                        values.oneTimeFee
-                    );
-                    let totalPaymentArr = Object.entries(totalPaymentObj);
                     CRED_OUTPUTS.diff.table.innerHTML = "";
 
                     createPaymentTable(
@@ -179,7 +197,6 @@ if (COMMON_COND.formElemCheck(CRED_INPUTS.diff.all)) {
                         paymentObj.monthlyPayment,
                         paymentObj.monthlyOverpayment
                     );
-
                     // * We don't specify the second index because we need an array, not a value. 
                     // * And the loop starts as i = 1, the text value will ignored
                     createPaymentTable(
@@ -189,6 +206,28 @@ if (COMMON_COND.formElemCheck(CRED_INPUTS.diff.all)) {
                         totalPaymentArr[1]
                     );
 
+                    let tableSlice = getTableSlice(ID_LIST.table, CLASS_LIST.btns);
+
+                    for (const btn of CRED_OUTPUTS.diff.btns) {
+                        // * Sailing events incorrectly work, because social-btn component inside form tag
+                        btn.addEventListener("click", function (e) {
+                            e.preventDefault();
+
+                            if (btn.id == ID_LIST.showBtn) {
+                                showTableItems(
+                                    tableSlice,
+                                    CLASS_LIST.state.show,
+                                    CLASS_LIST.state.hide,
+                                );
+                            } else if (btn.id == ID_LIST.hideBtn) {
+                                hideTableItems(
+                                    tableSlice,
+                                    CLASS_LIST.state.show,
+                                    CLASS_LIST.state.hide,
+                                );
+                            }
+                        });
+                    }
                 }, COMMON_VALUES.delay);
             }
         });

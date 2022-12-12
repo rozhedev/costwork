@@ -18,9 +18,10 @@ let curAttrName = "data-value";
 
 function changeCurrency(className, curItem, attrName, curName) {
     const outputs = document.querySelectorAll(`.${className}`);
-    
+    // * Add convertation
     if (curItem.getAttribute(attrName) == curName) {
         for (let curItem of outputs) {
+
             curItem.textContent = curName;
         }
     }

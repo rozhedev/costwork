@@ -47,7 +47,7 @@
                             <div class="message message-tip">
                                 Щоб корректно відобразити таблицю, переверніть Ваш пристрій або проведіть по таблиці справа наліво щоб побачити іншу частину вмісту.
                             </div>
-                            <table class="payment-table" id="deposit-table-output">
+                            <table class="payment-table" id="dep-table-output">
                                 <thead>
                                     <tr>
                                         <th class="navlink">№ місяця</th>
@@ -57,6 +57,30 @@
                                 </thead>
                                 <tbody>
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td>
+                                            @@include('components/_social-btn.html', {
+                                            "isDisabled": "disabled",
+                                            "id": "dep-table-hide-btn",
+                                            "class": "facebook",
+                                            "url": "",
+                                            "iconPath": "../../img/icons/icons.svg#chevron",
+                                            "label": "Приховати"
+                                            })
+                                        </td>
+                                        <td>
+                                            @@include('components/_social-btn.html', {
+                                            "isDisabled": "disabled",
+                                            "id": "dep-table-show-btn",
+                                            "class": "facebook",
+                                            "url": "",
+                                            "iconPath": "../../img/icons/icons.svg#chevron",
+                                            "label": "Відобразити"
+                                            })
+                                        </td>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
