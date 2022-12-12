@@ -9,20 +9,20 @@
         "isCurrency": "currency"
     },
     {
-        "label": "Термін вкладу (1 міс. = 30 дн.)",
-        "type": "number",
-        "id": "cap-deposit-period",
-        "class": "period-monthly-inp cap-deposit-inp",
-        "measure": "міс.",
-        "isDisabled": "",
-        "isCurrency": ""
-    },
-    {
         "label": "Процентна ставка, % річних",
         "type": "number",
         "id": "cap-year-rate",
         "class": "percent-inp cap-deposit-inp",
         "measure": "%",
+        "isDisabled": "",
+        "isCurrency": ""
+    },
+    {
+        "label": "Термін вкладу (1 міс. = 30 дн.)",
+        "type": "number",
+        "id": "cap-deposit-period",
+        "class": "period-monthly-inp cap-deposit-inp",
+        "measure": "міс.",
         "isDisabled": "",
         "isCurrency": ""
     }

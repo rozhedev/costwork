@@ -107,18 +107,18 @@ if (COMMON_COND.formElemCheck(CRED_INPUTS.ann.all)) {
 function calcDiffPayment(amount, rate, period, monthlyFee) {
     let primaryPayment = amount / period;
     let monthlyRate = rate / 100 / 12;
-    let monthlyPayobj = {
+    let payObj = {
         monthlyPayment: [],
         monthlyOverpayment: [],
     };
 
     for (let i = 1; i <= period; i++) {
         let monthlyPercent = (amount - primaryPayment * i) * monthlyRate;
-        monthlyPayobj.monthlyPayment[i] = +(primaryPayment + monthlyPercent + monthlyFee).toFixed(2);
-        monthlyPayobj.monthlyOverpayment[i] = +(monthlyPercent + monthlyFee).toFixed(2);
+        payObj.monthlyPayment[i] = +(primaryPayment + monthlyPercent + monthlyFee).toFixed(2);
+        payObj.monthlyOverpayment[i] = +(monthlyPercent + monthlyFee).toFixed(2);
     }
 
-    return monthlyPayobj;
+    return payObj;
 }
 
 // * DIFF TOTAL SUMMA
@@ -159,17 +159,36 @@ if (COMMON_COND.formElemCheck(CRED_INPUTS.diff.all)) {
                 }
 
                 setTimeout(function () {
-                    let paymentObj = calcDiffPayment(values.amount, values.yearRate, values.period, values.monthlyFee);
-                    let totalPaymentObj = calcDiffTotalSum(paymentObj.monthlyPayment, paymentObj.monthlyOverpayment, values.oneTimeFee);
+                    let paymentObj = calcDiffPayment(
+                        values.amount,
+                        values.yearRate,
+                        values.period,
+                        values.monthlyFee
+                    );
+                    let totalPaymentObj = calcDiffTotalSum(
+                        paymentObj.monthlyPayment,
+                        paymentObj.monthlyOverpayment,
+                        values.oneTimeFee
+                    );
                     let totalPaymentArr = Object.entries(totalPaymentObj);
                     CRED_OUTPUTS.diff.table.innerHTML = "";
 
-                    createPaymentTable(CRED_OUTPUTS.diff.table, TABLE_LABELS.monthly, paymentObj.monthlyPayment, paymentObj.monthlyOverpayment);
+                    createPaymentTable(
+                        CRED_OUTPUTS.diff.table,
+                        TABLE_LABELS.monthly,
+                        paymentObj.monthlyPayment,
+                        paymentObj.monthlyOverpayment
+                    );
 
                     // * We don't specify the second index because we need an array, not a value. 
                     // * And the loop starts as i = 1, the text value will ignored
-                    createPaymentTable(CRED_OUTPUTS.diff.table, TABLE_LABELS.totalPayment, totalPaymentArr[0], totalPaymentArr[1]);
-                    
+                    createPaymentTable(
+                        CRED_OUTPUTS.diff.table,
+                        TABLE_LABELS.totalPayment,
+                        totalPaymentArr[0],
+                        totalPaymentArr[1]
+                    );
+
                 }, COMMON_VALUES.delay);
             }
         });

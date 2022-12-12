@@ -1,11 +1,12 @@
 // * Write "monthly" everywhere to avoid confusion, struct - structure
 
+import { COMMON_VALUES } from "../common/values";
 import { COMMON_COND } from "../common/conditions";
 import { multNumPercent, sumNodeListValues, multNodeListValues, outputResult } from "../common/func";
 
 // * SITE INPUTS. All inputs are required for calculation.
 const SITE_INPUTS = {
-    all: document.querySelectorAll(".inp"),
+    all: document.querySelectorAll(".site-calc-inp"),
     labour: {
         all: document.querySelectorAll(".step1"),
     },
@@ -145,13 +146,13 @@ function calcSalary() {
 function calcMaterial(
     paperCount, onePaperPrice, domainYearPrice, domainYearCount, hostingMonthlyPrice, hostingMonthlyCount, flashDrivePrice
 ) {
-    let inpValues = [];
-    for (let i = 0; i < arguments.length; i++) {
-        inpValues[i] = +arguments[i].value;
-    }
+        let inpValues = [];
+        for (let i = 0; i < arguments.length; i++) {
+            inpValues[i] = +arguments[i].value;
+        }
 
-    let result = +((inpValues[0] * inpValues[1]) + (inpValues[2] * inpValues[3]) + (inpValues[4] * inpValues[5]) + inpValues[6]).toFixed(2);
-    return result;
+        let result = +((inpValues[0] * inpValues[1]) + (inpValues[2] * inpValues[3]) + (inpValues[4] * inpValues[5]) + inpValues[6]).toFixed(2);
+        return result;
 }
 
 // * CALC STEP 4. Uses multNodeListValues from func.js
@@ -232,12 +233,15 @@ if (SITE_INPUTS.all) {
                 );
 
                 // * OUTPUT
-                outputResult(SITE_RESULTS.cost, SITE_OUTPUTS.cost);
-                outputResult(SITE_RESULTS.fullCost, SITE_OUTPUTS.fullCost);
-                outputResult(SITE_RESULTS.profit, SITE_OUTPUTS.profit);
-                outputResult(costStructResult, SITE_OUTPUTS.costStruct);
-                outputResult(fullCostStructResult, SITE_OUTPUTS.fullCostStruct);
-                outputResult(profitStructResult, SITE_OUTPUTS.profitStruct)
+
+                setTimeout(function() {
+                    outputResult(SITE_RESULTS.cost, SITE_OUTPUTS.cost);
+                    outputResult(SITE_RESULTS.fullCost, SITE_OUTPUTS.fullCost);
+                    outputResult(SITE_RESULTS.profit, SITE_OUTPUTS.profit);
+                    outputResult(costStructResult, SITE_OUTPUTS.costStruct);
+                    outputResult(fullCostStructResult, SITE_OUTPUTS.fullCostStruct);
+                    outputResult(profitStructResult, SITE_OUTPUTS.profitStruct)
+                }, COMMON_VALUES.delay);
             }
         });
     }

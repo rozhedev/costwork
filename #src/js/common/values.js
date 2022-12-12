@@ -10,9 +10,10 @@ export const COMMON_VALUES = {
 
 export const TABLE_LABELS = {
     monthly: "місяць:",
-    totalProfit: "Загальний дохід:",
     totalPayment: "Сума кредиту:",
-    taxProfit: `З урах. податків (${COMMON_VALUES.taxPercent}%):`,
+    profit: "Дохід без податку:",
+    netProfit: "Кінцевий дохід:",
+    taxAmount: `Податок (${COMMON_VALUES.taxPercent}%):`    
 };
 
 export const CUR_RATE = {

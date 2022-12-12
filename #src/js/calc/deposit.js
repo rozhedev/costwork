@@ -64,7 +64,7 @@ if (COMMON_COND.formElemCheck(DEP_INPUTS.sim.all)) {
                         values.period
                     )).toFixed(2),
                     get netProfit() {
-                        return +(this.profit - (this.profit * (COMMON_VALUES.taxPercent / 100))).toFixed(2);
+                        return +(this.profit - this.profit * (COMMON_VALUES.taxPercent / 100)).toFixed(2);
                     },
                     get monthlyProfit() {
                         return +(this.netProfit / values.period).toFixed(2);
@@ -75,7 +75,6 @@ if (COMMON_COND.formElemCheck(DEP_INPUTS.sim.all)) {
                 }
 
                 setTimeout(function () {
-                    console.log(resultObj);
                     outputResult(resultObj, DEP_OUTPUTS.sim);
                 }, COMMON_VALUES.delay);
             }
@@ -86,54 +85,36 @@ if (COMMON_COND.formElemCheck(DEP_INPUTS.sim.all)) {
 
 // * CALC CAPITALISATION PERCENT
 
-function calcCapProfit(amount, rate, period) {
-    let monthlyProfitObj = {
-        amount: [],
+function calcCapProfit(amount, rate, period, tax) {
+    let payObj = {
         profit: [],
+        netProfit: [],
+        tax: [],
+        amount: [],
+        netAmount: [],
     };
-    let dayPeriod = period * 30;
-    let startAmount = amount;
+    let startAmount, fullAmount, capPeriod, monthlyPercent, monthlyProfit, monthlyNetProfit;
+    startAmount = fullAmount = amount;
+    capPeriod = 30;
 
     for (let i = 1; i <= period; i++) {
-        let yearRate = rate / 100;
-        let monthlyPercent = amount * ((1 + yearRate / 365) ** dayPeriod);
-        amount += (monthlyPercent - amount);
+        monthlyPercent = (rate / 100) * capPeriod / 365;
+        monthlyProfit = (amount * ((1 + monthlyPercent) ** i)) - amount;
+        monthlyNetProfit = monthlyProfit - monthlyProfit * (tax / 100);
 
-        monthlyProfitObj.profit[i] = +(monthlyPercent / dayPeriod).toFixed(2);
+        startAmount += monthlyNetProfit;
+        fullAmount += monthlyProfit;
+
+        payObj.profit[i] = +monthlyProfit.toFixed(2);
+        payObj.netProfit[i] = +monthlyNetProfit.toFixed(2);
+        payObj.amount[i] = +fullAmount.toFixed(2);
+        payObj.netAmount[i] = +startAmount.toFixed(2);
+        payObj.tax[i] = +(monthlyProfit - monthlyNetProfit).toFixed(2);
+        startAmount = amount;
+        fullAmount = amount;
     }
 
-    for (let i = 1; i <= period; i++) {
-        let temp = monthlyProfitObj.profit[i];
-        if (i == 1) {
-            monthlyProfitObj.amount[i] = +(temp + startAmount).toFixed(2);
-        } else {
-            monthlyProfitObj.amount[i] = temp + monthlyProfitObj.amount[i - 1];
-            monthlyProfitObj.amount[i] = +(monthlyProfitObj.amount[i]).toFixed(2);
-        }
-    }
-
-    return monthlyProfitObj;
-}
-
-// * CAPITALISATION TOTAL SUMMA
-
-function calcCapProfitSum(arr1, arr2, amount, tax) {
-    let profitSumObj = {
-        monthly: 0,
-        monthlyTax: 0,
-        monthlyAmount: 0,
-        monthlyAmountTax: 0,
-    }
-    for (let i = 1; i < arr2.length; i++) {
-        profitSumObj.monthly += arr2[i];
-    }
-    profitSumObj.monthly = +(profitSumObj.monthly).toFixed(2);
-    profitSumObj.monthlyTax = +(profitSumObj.monthly - profitSumObj.monthly * (tax / 100)).toFixed(2);
-
-    profitSumObj.monthlyAmount = arr1.at(-1);
-    profitSumObj.monthlyAmountTax = amount + profitSumObj.monthlyTax;
-
-    return profitSumObj;
+    return payObj;
 }
 
 // * CAPITALISATION PERCENT OUTPUT
@@ -153,27 +134,50 @@ if (COMMON_COND.formElemCheck(DEP_INPUTS.cap.all)) {
                     period: +DEP_INPUTS.cap.period.value,
                 }
                 // * RESULT OBJECTS
-                let monthlyProfitObj = calcCapProfit(
+                let payObj = calcCapProfit(
                     values.amount,
                     values.yearRate,
-                    values.period
+                    values.period,
+                    COMMON_VALUES.taxPercent,
                 );
-                let totalProfitObj = calcCapProfitSum(
-                    monthlyProfitObj.amount,
-                    monthlyProfitObj.profit,
-                    values.amount,
-                    COMMON_VALUES.taxPercent
-                );
-                let totalProfitArr = Object.entries(totalProfitObj);
+                let totalPayObj = {
+                    netAmount: payObj.netAmount.at(-1),
+                    netProfit: payObj.netProfit.at(-1),
+                    tax: payObj.tax.at(-1),
+                    amount: payObj.amount.at(-1),
+                    profit: payObj.profit.at(-1),
+                }
+                let totalPayArr = Object.entries(totalPayObj);
 
                 setTimeout(function () {
                     DEP_OUTPUTS.cap.table.innerHTML = "";
 
-                    createPaymentTable(DEP_OUTPUTS.cap.table, TABLE_LABELS.monthly, monthlyProfitObj.amount, monthlyProfitObj.profit);
+                    createPaymentTable(
+                        DEP_OUTPUTS.cap.table,
+                        TABLE_LABELS.monthly,
+                        payObj.netAmount,
+                        payObj.netProfit
+                    );
                     // * We don't specify the second index because we need an array, not a value. 
                     // * And the loop starts as i = 1, the text value will ignored
-                    createPaymentTable(DEP_OUTPUTS.cap.table, TABLE_LABELS.totalProfit, totalProfitArr[2], totalProfitArr[0]);
-                    createPaymentTable(DEP_OUTPUTS.cap.table, TABLE_LABELS.taxProfit, totalProfitArr[3], totalProfitArr[1]);
+                    createPaymentTable(
+                        DEP_OUTPUTS.cap.table,
+                        TABLE_LABELS.profit,
+                        totalPayArr[3],
+                        totalPayArr[4]                    
+                    );
+                    createPaymentTable(
+                        DEP_OUTPUTS.cap.table,
+                        TABLE_LABELS.taxAmount,
+                        totalPayArr[2],
+                        totalPayArr[2]
+                    );
+                    createPaymentTable(
+                        DEP_OUTPUTS.cap.table,
+                        TABLE_LABELS.netProfit,
+                        totalPayArr[0],
+                        totalPayArr[1]
+                    );
                 }, COMMON_VALUES.delay);
             }
         });

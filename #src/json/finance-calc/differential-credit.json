@@ -9,20 +9,20 @@
         "isCurrency": "currency"
     },
     {
-        "label": "Термін кредиту (1 міс. = 30 дн.)",
-        "type": "number",
-        "id": "diff-credit-period",
-        "class": "period-monthly-inp diff-credit-inp",
-        "measure": "міс.",
-        "isDisabled": "",
-        "isCurrency": ""
-    },
-    {
         "label": "Процентна ставка, % річних",
         "type": "number",
         "id": "diff-year-rate",
         "class": "percent-inp diff-credit-inp",
         "measure": "%",
+        "isDisabled": "",
+        "isCurrency": ""
+    },
+    {
+        "label": "Термін кредиту (1 міс. = 30 дн.)",
+        "type": "number",
+        "id": "diff-credit-period",
+        "class": "period-monthly-inp diff-credit-inp",
+        "measure": "міс.",
         "isDisabled": "",
         "isCurrency": ""
     },
