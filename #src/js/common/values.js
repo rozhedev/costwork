@@ -1,3 +1,14 @@
+
+export const STATE_LIST = {
+    show: "_show",
+    hide: "_hide",
+    active: "_active",
+    touch: "_touch",
+    lock: "_lock",
+    pc: "_pc",
+    loaded: "_loaded"
+}
+
 export const COMMON_VALUES = {
     delay: 1000,
     screenTipNum: 536,
@@ -13,7 +24,7 @@ export const TABLE_LABELS = {
     totalPayment: "Сума кредиту:",
     profit: "Дохід без податку:",
     netProfit: "Кінцевий дохід:",
-    taxAmount: `Податок (${COMMON_VALUES.taxPercent}%):`    
+    taxAmount: `Податок (${COMMON_VALUES.taxPercent}%):`
 };
 
 export const CUR_RATE = {

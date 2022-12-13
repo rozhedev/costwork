@@ -66,14 +66,14 @@
         // }
             
     }
-    &-active &__trigger {
+    &._active &__trigger {
         background-color: $active-blue-color;
         cursor: default;
         svg {
             transform: rotate(45deg);
         }
     }
-    &-active &__content {
+    &._active &__content {
         opacity: 1;
         overflow: visible;
         height: auto;

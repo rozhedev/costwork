@@ -1,4 +1,4 @@
-import { COMMON_VALUES, TABLE_LABELS } from "../common/values";
+import { COMMON_VALUES, STATE_LIST, TABLE_LABELS } from "../common/values";
 import { COMMON_COND } from "../common/conditions";
 import { outputResult, checkScreenWidth } from "../common/func";
 import { createPaymentTable } from "../common/table-gen";
@@ -13,10 +13,6 @@ const ID_LIST = {
 }
 const CLASS_LIST = {
     btns: "social-btn",
-    state: {
-        show: "_show",
-        hide: "_hide",
-    }
 }
 
 const CRED_INPUTS = {
@@ -216,14 +212,14 @@ if (COMMON_COND.formElemCheck(CRED_INPUTS.diff.all)) {
                             if (btn.id == ID_LIST.showBtn) {
                                 showTableItems(
                                     tableSlice,
-                                    CLASS_LIST.state.show,
-                                    CLASS_LIST.state.hide,
+                                    STATE_LIST.show,
+                                    STATE_LIST.hide,
                                 );
                             } else if (btn.id == ID_LIST.hideBtn) {
                                 hideTableItems(
                                     tableSlice,
-                                    CLASS_LIST.state.show,
-                                    CLASS_LIST.state.hide,
+                                    STATE_LIST.show,
+                                    STATE_LIST.hide,
                                 );
                             }
                         });

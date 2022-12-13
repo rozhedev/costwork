@@ -1,17 +1,19 @@
+import { STATE_LIST } from "../common/values";
+
 const accordTriggers = document.querySelectorAll(".accordion__trigger"),
     accordItems = document.querySelectorAll(".accordion");
 
 function openAccordion(activeItem, items) {
     const parent = activeItem.parentNode;
 
-    if (parent.classList.contains("accordion-active")) {
-        parent.classList.remove("accordion-active");
+    if (parent.classList.contains(STATE_LIST.active)) {
+        parent.classList.remove(STATE_LIST.active);
     } else {
         items.forEach((child) => {
-            child.classList.remove("accordion-active");
+            child.classList.remove(STATE_LIST.active);
         });
 
-        parent.classList.add("accordion-active");
+        parent.classList.add(STATE_LIST.active);
     }
 }
 

@@ -1,5 +1,7 @@
 // * DEVICE CHECK
 
+import { STATE_LIST } from "../common/values";
+
 const isMobile = {
     Android: function () {
         return navigator.userAgent.match(/Android/i);
@@ -22,19 +24,17 @@ const isMobile = {
 // * SUBMENU
 
 if (isMobile.any()) {
-    document.body.classList.add("_touch");
-
     let menuArrows = document.querySelectorAll(".menu__arrow");
     if (menuArrows.length > 0) {
         for (let index = 0; index < menuArrows.length; index++) {
             const menuArrow = menuArrows[index];
             menuArrow.addEventListener("click", function (e) {
-                menuArrow.parentElement.classList.toggle("_active");
+                menuArrow.parentElement.classList.toggle(STATE_LIST.active);
             });
         }
     }
 } else {
-    document.body.classList.add("_pc");
+    document.body.classList.add(STATE_LIST.pc);
 }
 
 // * BURGER
@@ -43,8 +43,8 @@ const iconMenu = document.querySelector(".menu__icon");
 const menuBody = document.querySelector(".menu__body");
 if (iconMenu) {
     iconMenu.addEventListener("click", function (e) {
-        document.body.classList.toggle("_lock");
-        iconMenu.classList.toggle("_active");
-        menuBody.classList.toggle("_active");
+        document.body.classList.toggle(STATE_LIST.lock);
+        iconMenu.classList.toggle(STATE_LIST.active);
+        menuBody.classList.toggle(STATE_LIST.active);
     });
 }

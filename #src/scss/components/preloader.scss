@@ -73,11 +73,11 @@
     }
 }
 
-.loaded-hiding .preloader {
+._hide .preloader {
     transition: $transition;
     opacity: 0;
 }
 
-.loaded .preloader {
+._loaded .preloader {
     display: none;
 }

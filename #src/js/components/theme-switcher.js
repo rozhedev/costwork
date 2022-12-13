@@ -1,51 +1,77 @@
-const themeSwitcher = document.querySelector(".theme-switcher");
-const themeSwitcherIcon = document.querySelector(".theme-switcher svg use");
+import { STATE_LIST } from "../common/values";
 
-const logo = document.querySelectorAll(".logo img");
-const logoWebp = document.querySelectorAll('source[srcset="img/vector_img/logo.svg"]');
-const mainImg = document.querySelector(".main__img");
-const mainImgWebp = document.querySelector('source[srcset="../img/vector_img/main-img.svg"]');
-const aboutImg = document.querySelector(".about__img");
-const aboutImgWebp = document.querySelector('source[srcset="../img/photos/light-mockup.webp"]');
+const ATTR_LIST = {
+    src: "src",
+    srcset: "srcset"
+}
+
+const IMG_PATHS = {
+    light: {
+        switch: "img/icons/icons.svg#lune",
+        logo: "img/vector_img/logo.svg",
+        hero: "../img/vector_img/main-img.svg",
+        mockup: "../img/photos/light-mockup.png",
+        mockupWebp: "../img/photos/light-mockup.webp",
+    },
+    dark: {
+        switch: "img/icons/icons.svg#sun",
+        logo: "img/vector_img/dark-logo.svg",
+        hero: "../img/vector_img/dark-main-img.svg",
+        mockup: "../img/photos/dark-mockup.png",
+        mockupWebp: "../img/photos/dark-mockup.webp",
+    },
+}
+
+const IMG_ELEM = {
+    hero: document.querySelector(".main__img"),
+    heroWebp: document.querySelector('source[srcset="../img/vector_img/main-img.svg"]'),
+    mockup: document.querySelector(".about__img"),
+    mockupWebp: document.querySelector('source[srcset="../img/photos/light-mockup.webp"]'),
+    themeSwitcher: document.querySelector(".theme-switcher svg use"),
+    nodes: {
+        logo: document.querySelectorAll(".logo img"),
+        logoWebp: document.querySelectorAll('source[srcset="img/vector_img/logo.svg"]'),
+    },
+}
+const themeSwitcher = document.querySelector(".theme-switcher");
+
+
+function replaceImages(nodeList, attr, attrValue) {
+    for (let item of nodeList) {
+        item.setAttribute(attr, attrValue);
+    }
+}
+
+function replaceImg(img, attr, attrValue) {
+    if (img) {
+        img.setAttribute(attr, attrValue);
+    }
+}
 
 if (themeSwitcher) {
-    themeSwitcher.addEventListener("click", function (e) {
+    themeSwitcher.addEventListener("click", function () {
         this.classList.toggle("_dark");
         document.body.classList.toggle("_dark");
+        IMG_ELEM.themeSwitcher.setAttribute("href", "img/icons/icons.svg#sun");
 
-        // * IMAGE REPLACE
-        themeSwitcherIcon.setAttribute("href", "img/icons/icons.svg#sun");
-        for (logoItem of logo) {
-            logoItem.setAttribute("src", "img/vector_img/dark-logo.svg");
-        }
-        for (logoWebpItem of logoWebp) {
-            logoWebpItem.setAttribute("srcset", "img/vector_img/dark-logo.svg");
-        }
-        if (mainImg && mainImgWebp) {
-            mainImg.setAttribute("src", "../img/vector_img/dark-main-img.svg");
-            mainImgWebp.setAttribute("srcset", "../img/vector_img/dark-main-img.svg");
-        }
-        if (aboutImg && aboutImgWebp) {
-            aboutImg.setAttribute("src", "../img/photos/dark-mockup.png");
-            aboutImgWebp.setAttribute("srcset", "../img/photos/dark-mockup.webp");
+        replaceImages(IMG_ELEM.nodes.logo, ATTR_LIST.src, IMG_PATHS.dark.logo);
+        replaceImages(IMG_ELEM.nodes.logoWebp, ATTR_LIST.srcset, IMG_PATHS.dark.logo);
 
-        }
+        replaceImg(IMG_ELEM.hero, ATTR_LIST.src, IMG_PATHS.dark.hero);
+        replaceImg(IMG_ELEM.heroWebp, ATTR_LIST.srcset, IMG_PATHS.dark.hero);
+        replaceImg(IMG_ELEM.mockup, ATTR_LIST.src, IMG_PATHS.dark.mockup);
+        replaceImg(IMG_ELEM.mockupWebp, ATTR_LIST.srcset, IMG_PATHS.dark.mockupWebp);
+
         if (!themeSwitcher.classList.contains("_dark")) {
-            themeSwitcherIcon.setAttribute("href", "img/icons/icons.svg#lune");
-            for (logoItem of logo) {
-                logoItem.setAttribute("src", "img/vector_img/logo.svg");
-            }
-            for (logoWebpItem of logoWebp) {
-                logoWebpItem.setAttribute("srcset", "img/vector_img/logo.svg");
-            }
-            if (mainImg && mainImgWebp) {
-                mainImg.setAttribute("src", "../img/vector_img/main-img.svg");
-                mainImgWebp.setAttribute("srcset", "../img/vector_img/main-img.svg");
-            }
-            if (aboutImg && aboutImgWebp) {
-                aboutImg.setAttribute("src", "../img/photos/light-mockup.png");
-                aboutImgWebp.setAttribute("srcset", "../img/photos/light-mockup.webp");
-            }
+            IMG_ELEM.themeSwitcher.setAttribute("href", "img/icons/icons.svg#lune");
+
+            replaceImages(IMG_ELEM.nodes.logo, ATTR_LIST.src, IMG_PATHS.light.logo);
+            replaceImages(IMG_ELEM.nodes.logoWebp, ATTR_LIST.srcset, IMG_PATHS.light.logo);
+
+            replaceImg(IMG_ELEM.hero, ATTR_LIST.src, IMG_PATHS.light.hero);
+            replaceImg(IMG_ELEM.heroWebp, ATTR_LIST.srcset, IMG_PATHS.light.hero);
+            replaceImg(IMG_ELEM.mockup, ATTR_LIST.src, IMG_PATHS.light.mockup);
+            replaceImg(IMG_ELEM.mockupWebp, ATTR_LIST.srcset, IMG_PATHS.light.mockupWebp);
         }
     });
 }
