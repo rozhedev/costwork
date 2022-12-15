@@ -1,19 +1,10 @@
-import { COMMON_VALUES, STATE_LIST, TABLE_LABELS } from "../common/values";
+import { COMMON_VALUES, STATE_LIST, ID_LIST, TABLE_LABELS } from "../common/values";
 import { COMMON_COND } from "../common/conditions";
 import { outputResult, checkScreenWidth } from "../common/func";
 import { createPaymentTable } from "../common/table-gen";
-import { getTableSlice, hideTableItems, showTableItems } from "../common/table-control";
+import { getTableSlice, toggleTableItems } from "../common/table-control";
 
 // * sim (simple) - Deposit without capitalisation, cap - Deposit with capitalisation
-
-const ID_LIST = {
-    table: "dep-table-output",
-    hideBtn: "dep-table-hide-btn",
-    showBtn: "dep-table-show-btn",
-}
-const CLASS_LIST = {
-    btns: "social-btn",
-}
 
 const DEP_INPUTS = {
     sim: {
@@ -38,9 +29,11 @@ const DEP_OUTPUTS = {
         total: document.getElementById("deposit-total-output"),
     },
     cap: {
-        table: document.querySelector(`#${ID_LIST.table} tbody`),
+        table: document.querySelector(`#${ID_LIST.dep.table} tbody`),
         screenTip: document.querySelector(".message-tip"),
-        btns: document.querySelectorAll(`.${CLASS_LIST.btns}`),
+        btns: document.querySelectorAll(`.${COMMON_VALUES.socialBtns}`),
+        showBtn: document.getElementById(`${ID_LIST.dep.showBtn}`),
+        hideBtn: document.getElementById(`${ID_LIST.dep.hideBtn}`),
     }
 }
 
@@ -191,24 +184,32 @@ if (COMMON_COND.formElemCheck(DEP_INPUTS.cap.all)) {
                         totalPayArr[0],
                         totalPayArr[1]
                     );
-                    let tableSlice = getTableSlice(ID_LIST.table, CLASS_LIST.btns);
+                    let tableSlice = getTableSlice(
+                        ID_LIST.dep.table,
+                        DEP_OUTPUTS.cap.showBtn,
+                        DEP_OUTPUTS.cap.hideBtn,
+                    );
 
                     for (const btn of DEP_OUTPUTS.cap.btns) {
                         // * Sailing events incorrectly work, because social-btn component inside form tag
                         btn.addEventListener("click", function (e) {
                             e.preventDefault();
 
-                            if (btn.id == ID_LIST.showBtn) {
-                                showTableItems(
+                            if (btn.id == ID_LIST.dep.showBtn) {
+                                toggleTableItems(
                                     tableSlice,
                                     STATE_LIST.show,
                                     STATE_LIST.hide,
+                                    DEP_OUTPUTS.cap.showBtn,
+                                    DEP_OUTPUTS.cap.hideBtn,
                                 );
-                            } else if (btn.id == ID_LIST.hideBtn) {
-                                hideTableItems(
+                            } else if (btn.id == ID_LIST.dep.hideBtn) {
+                                toggleTableItems(
                                     tableSlice,
-                                    STATE_LIST.show,
                                     STATE_LIST.hide,
+                                    STATE_LIST.show,
+                                    DEP_OUTPUTS.cap.hideBtn,
+                                    DEP_OUTPUTS.cap.showBtn,
                                 );
                             }
                         });

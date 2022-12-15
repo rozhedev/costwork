@@ -21,7 +21,6 @@ function changeCurrency(className, curItem, attrName, curName) {
     // * Add convertation
     if (curItem.getAttribute(attrName) == curName) {
         for (let curItem of outputs) {
-            console.log(1);
             curItem.textContent = curName;
         }
     }

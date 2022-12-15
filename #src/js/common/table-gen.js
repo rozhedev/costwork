@@ -1,13 +1,13 @@
 
-export function createPaymentTable(table, title, profitValuesArr, feeValuesArr) {
+export function createPaymentTable(table, title, totalValuesArr, monthlyValuesArr) {
     const selectedCur = document.querySelector(".select_header-select .select__title span");
     let tempTitle = title;
 
-    for (let i = 1; i < profitValuesArr.length; i++) {
+    for (let i = 1; i < totalValuesArr.length; i++) {
         let tableItem = document.createElement("tr");
-        tableItem.className = "payment-table__item _show";
+        tableItem.className = "payment-table__item _show"
 
-        if (typeof profitValuesArr[0] !== "string") {
+        if (typeof totalValuesArr[0] !== "string") {
             title = ``;
             title = `${i} ${tempTitle}`;
         }
@@ -19,7 +19,7 @@ export function createPaymentTable(table, title, profitValuesArr, feeValuesArr) 
         </td>
         <td class="payment-table__item-value">
             <span class="navlink">
-                ${profitValuesArr[i]}
+                ${totalValuesArr[i]}
             </span>
             <span class="navlink currency">
                 ${curIsUnderfined}
@@ -27,7 +27,7 @@ export function createPaymentTable(table, title, profitValuesArr, feeValuesArr) 
         </td>
         <td class="payment-table__item-value">
             <span class="navlink">
-                ${feeValuesArr[i]}
+                ${monthlyValuesArr[i]}
             </span>
             <span class="navlink currency">
                 ${curIsUnderfined}

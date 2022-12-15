@@ -1,19 +1,10 @@
-import { COMMON_VALUES, STATE_LIST, TABLE_LABELS } from "../common/values";
+import { COMMON_VALUES, STATE_LIST, ID_LIST, TABLE_LABELS } from "../common/values";
 import { COMMON_COND } from "../common/conditions";
 import { outputResult, checkScreenWidth } from "../common/func";
 import { createPaymentTable } from "../common/table-gen";
-import { getTableSlice, hideTableItems, showTableItems } from "../common/table-control";
+import { getTableSlice, toggleTableItems } from "../common/table-control";
 
 // * ann - Annuity credit, diff - Differential credit 
-
-const ID_LIST = {
-    table: "cred-table-output",
-    hideBtn: "cred-table-hide-btn",
-    showBtn: "cred-table-show-btn",
-}
-const CLASS_LIST = {
-    btns: "social-btn",
-}
 
 const CRED_INPUTS = {
     ann: {
@@ -42,9 +33,11 @@ const CRED_OUTPUTS = {
         message: document.getElementById("ann-message-output"),
     },
     diff: {
-        table: document.querySelector(`#${ID_LIST.table} tbody`),
+        table: document.querySelector(`#${ID_LIST.cred.table} tbody`),
         messageTip: document.querySelector(".message-tip"),
-        btns: document.querySelectorAll(`.${CLASS_LIST.btns}`),
+        btns: document.querySelectorAll(`.${COMMON_VALUES.socialBtns}`),
+        showBtn: document.getElementById(`${ID_LIST.cred.showBtn}`),
+        hideBtn: document.getElementById(`${ID_LIST.cred.hideBtn}`),
     }
 }
 
@@ -201,25 +194,32 @@ if (COMMON_COND.formElemCheck(CRED_INPUTS.diff.all)) {
                         totalPaymentArr[0],
                         totalPaymentArr[1]
                     );
-
-                    let tableSlice = getTableSlice(ID_LIST.table, CLASS_LIST.btns);
+                    let tableSlice = getTableSlice(
+                        ID_LIST.cred.table, 
+                        CRED_OUTPUTS.diff.showBtn,
+                        CRED_OUTPUTS.diff.hideBtn,
+                        );
 
                     for (const btn of CRED_OUTPUTS.diff.btns) {
                         // * Sailing events incorrectly work, because social-btn component inside form tag
                         btn.addEventListener("click", function (e) {
                             e.preventDefault();
 
-                            if (btn.id == ID_LIST.showBtn) {
-                                showTableItems(
+                            if (btn.id == ID_LIST.cred.showBtn) {
+                                toggleTableItems(
                                     tableSlice,
                                     STATE_LIST.show,
                                     STATE_LIST.hide,
+                                    CRED_OUTPUTS.diff.showBtn,
+                                    CRED_OUTPUTS.diff.hideBtn,
                                 );
-                            } else if (btn.id == ID_LIST.hideBtn) {
-                                hideTableItems(
+                            } else if (btn.id == ID_LIST.cred.hideBtn) {
+                                toggleTableItems(
                                     tableSlice,
-                                    STATE_LIST.show,
                                     STATE_LIST.hide,
+                                    STATE_LIST.show,
+                                    CRED_OUTPUTS.diff.hideBtn,
+                                    CRED_OUTPUTS.diff.showBtn,
                                 );
                             }
                         });

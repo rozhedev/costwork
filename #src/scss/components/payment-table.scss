@@ -25,6 +25,7 @@
         display: table-row;
     }
     tbody td {
+        text-align: center;
         border-bottom: 2px solid $dark-color-80;
     }
     tfoot tr, tfoot td {

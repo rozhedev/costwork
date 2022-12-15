@@ -6,7 +6,21 @@ export const STATE_LIST = {
     touch: "_touch",
     lock: "_lock",
     pc: "_pc",
-    loaded: "_loaded"
+    loaded: "_loaded",
+    setTheme: "_dark",
+}
+
+export const ID_LIST = {
+    dep: {
+        table: "dep-table-output",
+        hideBtn: "dep-table-hide-btn",
+        showBtn: "dep-table-show-btn",
+    },
+    cred: {
+        table: "cred-table-output",
+        hideBtn: "cred-table-hide-btn",
+        showBtn: "cred-table-show-btn",
+    },
 }
 
 export const COMMON_VALUES = {
@@ -16,7 +30,8 @@ export const COMMON_VALUES = {
     colors: {
         warning: "#0075c4",
         dark: "#0d090a",
-    }
+    },
+    socialBtns: "social-btn",
 }
 
 export const TABLE_LABELS = {
@@ -24,7 +39,7 @@ export const TABLE_LABELS = {
     totalPayment: "Сума кредиту:",
     profit: "Дохід без податку:",
     netProfit: "Кінцевий дохід:",
-    taxAmount: `Податок (${COMMON_VALUES.taxPercent}%):`
+    taxAmount: `Податок (${COMMON_VALUES.taxPercent}%):`,
 };
 
 export const CUR_RATE = {

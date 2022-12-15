@@ -1,37 +1,32 @@
 
-export function getTableSlice(tableId, btnsClass) {
+export function getTableSlice(tableId, showBtn, hideBtn) {
     const tableItems = document.querySelectorAll(`#${tableId} .payment-table__item`);
-    const tableBtns = document.querySelectorAll(`.${btnsClass}`)
     let tableItemsArr, tableSlice;
     let maxItemsNum = 10;
 
-    if (tableItems.length > maxItemsNum) {
-        for (let btn of tableBtns) {
-            btn.removeAttribute("disabled");
-        }
+    if (tableItems.length > maxItemsNum) {     
         tableItemsArr = [...tableItems];
         tableSlice = tableItemsArr.slice(maxItemsNum);
-    } else if (
-        tableItems.length < maxItemsNum ||
-        tableItems.length == maxItemsNum
-    ) {
-        for (let btn of tableBtns) {
-            btn.setAttribute("disabled", "");
+
+        for (let i = maxItemsNum; i < tableItems.length; i++) {
+            // * Don't work via classList.add()
+            tableItems[i].className = "payment-table__item _hide";
         }
-    }
+        showBtn.removeAttribute("disabled");
+        hideBtn.setAttribute("disabled", "");
+
+    } else if (tableItems.length <= maxItemsNum) {
+        showBtn.setAttribute("disabled", "");
+        hideBtn.setAttribute("disabled", "");
+    }   
     return tableSlice;
 }
 
-export function hideTableItems(tableSlice, stateShow, stateHide) {
-    for (let i = 0; i < tableSlice.length; i++) {
-        tableSlice[i].classList.add(stateHide);
-        tableSlice[i].classList.remove(stateShow);
-    }
-}
-
-export function showTableItems(tableSlice, stateShow, stateHide) {
+export function toggleTableItems(tableSlice, stateShow, stateHide, showBtn, hideBtn) {
     for (let i = 0; i < tableSlice.length; i++) {
         tableSlice[i].classList.add(stateShow);
         tableSlice[i].classList.remove(stateHide);
     }
+    showBtn.setAttribute("disabled", "");
+    hideBtn.removeAttribute("disabled");
 }
