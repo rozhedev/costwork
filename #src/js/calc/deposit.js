@@ -186,6 +186,8 @@ if (COMMON_COND.formElemCheck(DEP_INPUTS.cap.all)) {
                     );
                     let tableSlice = getTableSlice(
                         ID_LIST.dep.table,
+                        STATE_LIST.show,
+                        STATE_LIST.hide,
                         DEP_OUTPUTS.cap.showBtn,
                         DEP_OUTPUTS.cap.hideBtn,
                     );

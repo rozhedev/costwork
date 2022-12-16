@@ -64,7 +64,7 @@ if (themeSwitcher) {
         replaceImg(IMG_ELEM.mockupWebp, ATTR_LIST.srcset, IMG_PATHS.dark.mockupWebp);
 
         if (!themeSwitcher.classList.contains(STATE_LIST.setTheme)) {
-            IMG_ELEM.themeSwitcher.setAttribute(ATTR_LIST.href, IMG_PATHS.dark.switch);
+            IMG_ELEM.themeSwitcher.setAttribute(ATTR_LIST.href, IMG_PATHS.light.switch);
 
             replaceImages(IMG_ELEM.nodes.logo, ATTR_LIST.src, IMG_PATHS.light.logo);
             replaceImages(IMG_ELEM.nodes.logoWebp, ATTR_LIST.srcset, IMG_PATHS.light.logo);

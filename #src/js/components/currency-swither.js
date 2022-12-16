@@ -13,26 +13,55 @@ const CUR_DEF = {
     ukrainianHryvnya: "UAH",
 }
 
-const curSelectOptions = document.querySelectorAll(`.${CLASS_LIST.curSelectOptions}`);
-let curAttrName = "data-value";
+// TODO Добавь предзагрузку значения UAH
 
-function changeCurrency(className, curItem, attrName, curName) {
+const curSelectOptions = document.querySelectorAll(`.${CLASS_LIST.curSelectOptions}`);
+const curInputs = document.querySelectorAll(`.${CLASS_LIST.curOutputs}`);
+const resultOutputs = document.querySelectorAll(".result-item__value");
+const curRateNames = Object.keys(CUR_RATE);
+
+let selectedCur = document.querySelector(".select__value").textContent;
+let curAttrName = "data-value";
+let resultMask = "0000.00";
+
+function changeCurrency(className, curOption, attrName, curName) {
     const outputs = document.querySelectorAll(`.${className}`);
-    // * Add convertation
-    if (curItem.getAttribute(attrName) == curName) {
-        for (let curItem of outputs) {
-            curItem.textContent = curName;
+
+    if (curOption.getAttribute(attrName) === curName) {
+        for (let curOption of outputs) {
+            curOption.textContent = curName;
         }
     }
+
+    let curOptionValue = curOption.getAttribute(attrName);
+    let rateName = `${selectedCur}_${curOptionValue}`;
+    selectedCur = curOptionValue;
+
+    for (const inp of curInputs) {
+        if (+inp.value !== 0 && !Number.isNaN(+inp.value)) {
+            inp.value = (+inp.value * CUR_RATE[rateName]).toFixed(2);
+            selectedCur = curOptionValue;
+        }
+    }
+    for (const resultItem of resultOutputs) {
+        if (resultItem.textContent !== resultMask) {
+            resultItem.textContent = (+resultItem.textContent * CUR_RATE[rateName]).toFixed(2);
+        }
+    }
+
 }
 
 if (curSelectOptions) {
-    for (let curItem of curSelectOptions) {
-        curItem.addEventListener("click", function () {
-
-            changeCurrency(CLASS_LIST.curOutputs, curItem, curAttrName, CUR_DEF.ukrainianHryvnya);
-            changeCurrency(CLASS_LIST.curOutputs, curItem, curAttrName, CUR_DEF.dollarUSA);
-            changeCurrency(CLASS_LIST.curOutputs, curItem, curAttrName, CUR_DEF.euro);     
+    for (let curOption of curSelectOptions) {
+        curOption.addEventListener("click", (e) => {
+            let target = e.target;
+            if (target.getAttribute("data-value") == CUR_DEF.ukrainianHryvnya) {
+                changeCurrency(CLASS_LIST.curOutputs, curOption, curAttrName, CUR_DEF.ukrainianHryvnya);
+            } else if (target.getAttribute("data-value") == CUR_DEF.dollarUSA) {
+                changeCurrency(CLASS_LIST.curOutputs, curOption, curAttrName, CUR_DEF.dollarUSA);
+            } else if (target.getAttribute("data-value") == CUR_DEF.euro) {
+                changeCurrency(CLASS_LIST.curOutputs, curOption, curAttrName, CUR_DEF.euro);
+            }
         });
     }
 }

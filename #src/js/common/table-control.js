@@ -1,5 +1,5 @@
 
-export function getTableSlice(tableId, showBtn, hideBtn) {
+export function getTableSlice(tableId, stateShow, stateHide, showBtn, hideBtn) {
     const tableItems = document.querySelectorAll(`#${tableId} .payment-table__item`);
     let tableItemsArr, tableSlice;
     let maxItemsNum = 10;
@@ -9,8 +9,8 @@ export function getTableSlice(tableId, showBtn, hideBtn) {
         tableSlice = tableItemsArr.slice(maxItemsNum);
 
         for (let i = maxItemsNum; i < tableItems.length; i++) {
-            // * Don't work via classList.add()
-            tableItems[i].className = "payment-table__item _hide";
+            tableItems[i].classList.add(stateHide);
+            tableItems[i].classList.remove(stateShow);
         }
         showBtn.removeAttribute("disabled");
         hideBtn.setAttribute("disabled", "");

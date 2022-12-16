@@ -196,6 +196,8 @@ if (COMMON_COND.formElemCheck(CRED_INPUTS.diff.all)) {
                     );
                     let tableSlice = getTableSlice(
                         ID_LIST.cred.table, 
+                        STATE_LIST.show,
+                        STATE_LIST.hide,
                         CRED_OUTPUTS.diff.showBtn,
                         CRED_OUTPUTS.diff.hideBtn,
                         );

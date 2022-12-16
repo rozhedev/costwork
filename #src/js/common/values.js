@@ -43,10 +43,10 @@ export const TABLE_LABELS = {
 };
 
 export const CUR_RATE = {
-    uah_usd: 40.10,
-    uah_eur: 39.80,
-    usd_uah: 39.50,
-    usd_eur: 1.15,
-    eur_uah: 39.20,
-    eur_usd: 0.92,
+    "UAH_USD": 0.027,
+    "UAH_EUR": 0.026,
+    "USD_UAH": 36.93,
+    "USD_EUR": 0.94,
+    "EUR_UAH": 39.10,
+    "EUR_USD": 1.06,
 }
