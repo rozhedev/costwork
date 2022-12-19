@@ -8,7 +8,7 @@ import "./common/validation";
 // * COMPONENTS
 import "./components/preloader";
 import "./components/select";
-import "./components/currency-swither";
+import "./components/currency-switcher";
 import "./components/theme-switcher";
 import "./components/burger";
 import "./components/tabs";

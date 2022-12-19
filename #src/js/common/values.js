@@ -8,7 +8,7 @@ export const STATE_LIST = {
     pc: "_pc",
     loaded: "_loaded",
     setTheme: "_dark",
-}
+};
 
 export const ID_LIST = {
     dep: {
@@ -21,7 +21,7 @@ export const ID_LIST = {
         hideBtn: "cred-table-hide-btn",
         showBtn: "cred-table-show-btn",
     },
-}
+};
 
 export const COMMON_VALUES = {
     delay: 1000,
@@ -32,7 +32,7 @@ export const COMMON_VALUES = {
         dark: "#0d090a",
     },
     socialBtns: "social-btn",
-}
+};
 
 export const TABLE_LABELS = {
     monthly: "місяць:",
@@ -49,4 +49,4 @@ export const CUR_RATE = {
     "USD_EUR": 0.94,
     "EUR_UAH": 39.10,
     "EUR_USD": 1.06,
-}
+};
