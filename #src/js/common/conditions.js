@@ -1,7 +1,7 @@
 
 export const COMMON_COND = {
     // * Check _success class in all form controllers
-    controllerClassCheck: function (nodeList) {
+    controllerClassCheck: (nodeList) => {
         let nodeArr, bool;
         Array.isArray(nodeList) ? nodeArr = nodeList : nodeArr = Array.from(nodeList);
 
@@ -9,7 +9,7 @@ export const COMMON_COND = {
         return bool;
     },
     // * Check the existence of form elements
-    formElemCheck: function (nodeList) {
+    formElemCheck: (nodeList) => {
         let nodeArr, bool;
         Array.isArray(nodeList) ? nodeArr = nodeList : nodeArr = Array.from(nodeList);
 
@@ -17,5 +17,26 @@ export const COMMON_COND = {
             item != "undefined" || item != "null" ? bool = true : bool = false;
             return bool;
         }
-    }
+    },
+}
+
+export const CHECK_LIST_VAL = {
+    // * Checkers for currencies values (before convertation in currency-swither.js)
+    checkCurInp: (nodeList) => {
+        let bool;
+        for (const item of nodeList) {
+            item.value != "" && !Number.isNaN(+item.value) ? bool = true : bool = false;
+            return bool;
+        }
+    },
+    checkCurResult: (nodeList, mask) => {
+        let bool;
+        for (const item of nodeList) {
+            item.textContent != mask ? bool = true : bool = false;
+        }
+        return bool;
+    },
+    checkCurTr: () => {
+        return true;
+    },
 }

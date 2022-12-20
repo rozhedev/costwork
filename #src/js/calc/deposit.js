@@ -1,4 +1,4 @@
-import { COMMON_VALUES, STATE_LIST, ID_LIST, TABLE_LABELS } from "../common/values";
+import { COMMON_VALUES, STATE_LIST, TABLE_ID_LIST, TABLE_LABELS } from "../data/values";
 import { COMMON_COND } from "../common/conditions";
 import { outputResult, checkScreenWidth } from "../common/func";
 import { createPaymentTable } from "../common/table-gen";
@@ -29,11 +29,11 @@ const DEP_OUTPUTS = {
         total: document.getElementById("deposit-total-output"),
     },
     cap: {
-        table: document.querySelector(`#${ID_LIST.dep.table} tbody`),
+        table: document.querySelector(`#${TABLE_ID_LIST.dep.table} tbody`),
         screenTip: document.querySelector(".message-tip"),
         btns: document.querySelectorAll(`.${COMMON_VALUES.socialBtns}`),
-        showBtn: document.getElementById(`${ID_LIST.dep.showBtn}`),
-        hideBtn: document.getElementById(`${ID_LIST.dep.hideBtn}`),
+        showBtn: document.getElementById(`${TABLE_ID_LIST.dep.showBtn}`),
+        hideBtn: document.getElementById(`${TABLE_ID_LIST.dep.hideBtn}`),
     }
 }
 
@@ -185,7 +185,7 @@ if (COMMON_COND.formElemCheck(DEP_INPUTS.cap.all)) {
                         totalPayArr[1]
                     );
                     let tableSlice = getTableSlice(
-                        ID_LIST.dep.table,
+                        TABLE_ID_LIST.dep.table,
                         STATE_LIST.show,
                         STATE_LIST.hide,
                         DEP_OUTPUTS.cap.showBtn,
@@ -197,7 +197,7 @@ if (COMMON_COND.formElemCheck(DEP_INPUTS.cap.all)) {
                         btn.addEventListener("click", function (e) {
                             e.preventDefault();
 
-                            if (btn.id == ID_LIST.dep.showBtn) {
+                            if (btn.id == TABLE_ID_LIST.dep.showBtn) {
                                 toggleTableItems(
                                     tableSlice,
                                     STATE_LIST.show,
@@ -205,7 +205,7 @@ if (COMMON_COND.formElemCheck(DEP_INPUTS.cap.all)) {
                                     DEP_OUTPUTS.cap.showBtn,
                                     DEP_OUTPUTS.cap.hideBtn,
                                 );
-                            } else if (btn.id == ID_LIST.dep.hideBtn) {
+                            } else if (btn.id == TABLE_ID_LIST.dep.hideBtn) {
                                 toggleTableItems(
                                     tableSlice,
                                     STATE_LIST.hide,

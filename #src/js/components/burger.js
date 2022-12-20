@@ -1,6 +1,6 @@
 // * DEVICE CHECK
 
-import { STATE_LIST } from "../common/values";
+import { STATE_LIST } from "../data/values";
 
 const isMobile = {
     Android: function () {

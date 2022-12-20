@@ -1,23 +1,17 @@
 
-import { CUR_RATE } from "../common/values";
+import { CUR_RATE, CUR_DEF } from "../data/values";
+import { API_KEY } from "../data/config";
+import { CHECK_LIST_VAL } from "../common/conditions";
 
 const CLASS_LIST = {
     curSelectOptions: "select_header-select .select__option",
     curOutputs: "currency",
 }
 
-// * Currencies definition
-const CUR_DEF = {
-    dollarUSA: "USD",
-    euro: "EUR",
-    ukrainianHryvnya: "UAH",
-}
-
 const curSelectOptions = document.querySelectorAll(`.${CLASS_LIST.curSelectOptions}`);
-const curInputs = document.querySelectorAll(`.${CLASS_LIST.curOutputs}`);
+const curInputs = document.querySelectorAll(`input.${CLASS_LIST.curOutputs}`);
 const resultOutputs = document.querySelectorAll(".result-item__value");
 const curAttrName = "data-value";
-
 let selectedCurDef = document.querySelector(".select__value").textContent;
 let resultMask = "0000.00";
 
@@ -31,53 +25,64 @@ function changeCurrency(className, curOption, attrName, curName) {
     }
 }
 
-function convertValues(curOption, inpList, resultList, mask) {
-    const tableOutputList = document.querySelectorAll(".payment-table__item-value span:first-of-type");
-    let curOptionValue = curOption.getAttribute(curAttrName);
-    let apiKey = "7d03b057637241539a972b22";
+function convertListValues(nodeList, cond, rate) {
+    if (nodeList.length > 0) {
+        for (const item of nodeList) {
+            if (item.value !== undefined) {
+                item.value = (+item.value * rate).toFixed(2);
+            } else if (cond) {
+                item.textContent = item.textContent.trim();
+                item.textContent = (+item.textContent * rate).toFixed(2);
+            }
+        }
+    }
+}
+
+function getExchangeRate(curOption, attrName, apiKey, inpList, resultList) {
+    const trOutputList = document.querySelectorAll(".payment-table__item-value span:first-of-type");
+    let curOptionValue = curOption.getAttribute(attrName);
     let url = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${selectedCurDef}`;
+
+    // * Rate name is name of prop CUR_RATE object
+    let rateName = `${selectedCurDef}_${curOptionValue}`;
 
     fetch(url).then((res) => res.json()).then((result) => {
         selectedCurDef = curOptionValue;
         let selectedRate = result.conversion_rates[curOptionValue];
 
-        for (const inp of inpList) {
-            if (inp.value != "" && !Number.isNaN(+inp.value)) {
-                inp.value = (+inp.value * selectedRate).toFixed(2);
-            }
-        }
-        if (resultList.length > 0) {
-            for (const resultItem of resultList) {
-                if (resultItem.textContent != mask) {
-                    resultItem.textContent = (+resultItem.textContent * selectedRate).toFixed(2);
-                }
-            }
-        }
-        if (tableOutputList.length > 0) {
-            for (const tableItem of tableOutputList) {
-                tableItem.textContent = (+tableItem.textContent * selectedRate).toFixed(2);
-            }
-        }
+        convertListValues(
+            inpList,
+            CHECK_LIST_VAL.checkCurInp(inpList),
+            selectedRate
+        );
+        convertListValues(
+            resultList,
+            CHECK_LIST_VAL.checkCurResult(resultList, resultMask),
+            selectedRate
+        );
+        convertListValues(
+            trOutputList,
+            CHECK_LIST_VAL.checkCurTr(),
+            selectedRate
+        );
     }).catch(() => {
-        let rateName = `${selectedCurDef}_${curOptionValue}`;
         selectedCurDef = curOptionValue;
-
-        for (const inp of inpList) {
-            if (inp.value != "" && !Number.isNaN(+inp.value)) {
-                inp.value = (+inp.value * CUR_RATE[rateName]).toFixed(2);
-            }
-        }
-        for (const resultItem of resultList) {
-            if (resultItem.textContent != mask) {
-                resultItem.textContent = (+resultItem.textContent * CUR_RATE[rateName]).toFixed(2);
-            }
-        }
-        if (tableOutputList.length > 0) {
-            for (const tableItem of tableOutputList) {
-                tableItem.textContent = (+tableItem.textContent * CUR_RATE[rateName]).toFixed(2);
-            }
-        }
-        console.log("Exchange rate isn't downloaded");
+        convertListValues(
+            inpList,
+            CHECK_LIST_VAL.checkCurInp(inpList),
+            CUR_RATE[rateName]
+        );
+        convertListValues(
+            resultList,
+            CHECK_LIST_VAL.checkCurResult(resultList, resultMask),
+            CUR_RATE[rateName]
+        );
+        convertListValues(
+            trOutputList,
+            CHECK_LIST_VAL.checkCurTr(),
+            CUR_RATE[rateName]
+        );
+        console.error("Exchange rate isn't downloaded");
     })
 }
 
@@ -85,18 +90,47 @@ if (curSelectOptions) {
     for (let curOption of curSelectOptions) {
         curOption.addEventListener("click", (e) => {
             let target = e.target;
-
-            if (target.getAttribute("data-value") == CUR_DEF.ukrainianHryvnya) {
-                changeCurrency(CLASS_LIST.curOutputs, curOption, curAttrName, CUR_DEF.ukrainianHryvnya);
-                convertValues(curOption, curInputs, resultOutputs, resultMask);
-
-            } else if (target.getAttribute("data-value") == CUR_DEF.dollarUSA) {
-                changeCurrency(CLASS_LIST.curOutputs, curOption, curAttrName, CUR_DEF.dollarUSA);
-                convertValues(curOption, curInputs, resultOutputs, resultMask);
-
-            } else if (target.getAttribute("data-value") == CUR_DEF.euro) {
-                changeCurrency(CLASS_LIST.curOutputs, curOption, curAttrName, CUR_DEF.euro);
-                convertValues(curOption, curInputs, resultOutputs, resultMask);
+            if (target.getAttribute(curAttrName) == CUR_DEF.ukrainianHryvnya) {
+                changeCurrency(
+                    CLASS_LIST.curOutputs,
+                    curOption,
+                    curAttrName,
+                    CUR_DEF.ukrainianHryvnya
+                );
+                getExchangeRate(
+                    curOption,
+                    curAttrName,
+                    API_KEY,
+                    curInputs,
+                    resultOutputs
+                );
+            } else if (target.getAttribute(curAttrName) == CUR_DEF.dollarUSA) {
+                changeCurrency(CLASS_LIST.curOutputs,
+                    curOption,
+                    curAttrName,
+                    CUR_DEF.dollarUSA
+                );
+                getExchangeRate(
+                    curOption,
+                    curAttrName,
+                    API_KEY,
+                    curInputs,
+                    resultOutputs
+                );
+            } else if (target.getAttribute(curAttrName) == CUR_DEF.euro) {
+                changeCurrency(
+                    CLASS_LIST.curOutputs,
+                    curOption,
+                    curAttrName,
+                    CUR_DEF.euro
+                );
+                getExchangeRate(
+                    curOption,
+                    curAttrName,
+                    API_KEY,
+                    curInputs,
+                    resultOutputs
+                );
             }
         });
     }

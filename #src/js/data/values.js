@@ -10,7 +10,7 @@ export const STATE_LIST = {
     setTheme: "_dark",
 };
 
-export const ID_LIST = {
+export const TABLE_ID_LIST = {
     dep: {
         table: "dep-table-output",
         hideBtn: "dep-table-hide-btn",
@@ -50,3 +50,9 @@ export const CUR_RATE = {
     "EUR_UAH": 39.10,
     "EUR_USD": 1.06,
 };
+
+export const CUR_DEF = {
+    dollarUSA: "USD",
+    euro: "EUR",
+    ukrainianHryvnya: "UAH",
+}

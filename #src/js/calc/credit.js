@@ -1,4 +1,4 @@
-import { COMMON_VALUES, STATE_LIST, ID_LIST, TABLE_LABELS } from "../common/values";
+import { COMMON_VALUES, STATE_LIST, TABLE_ID_LIST, TABLE_LABELS } from "../data/values";
 import { COMMON_COND } from "../common/conditions";
 import { outputResult, checkScreenWidth } from "../common/func";
 import { createPaymentTable } from "../common/table-gen";
@@ -33,11 +33,11 @@ const CRED_OUTPUTS = {
         message: document.getElementById("ann-message-output"),
     },
     diff: {
-        table: document.querySelector(`#${ID_LIST.cred.table} tbody`),
+        table: document.querySelector(`#${TABLE_ID_LIST.cred.table} tbody`),
         messageTip: document.querySelector(".message-tip"),
         btns: document.querySelectorAll(`.${COMMON_VALUES.socialBtns}`),
-        showBtn: document.getElementById(`${ID_LIST.cred.showBtn}`),
-        hideBtn: document.getElementById(`${ID_LIST.cred.hideBtn}`),
+        showBtn: document.getElementById(`${TABLE_ID_LIST.cred.showBtn}`),
+        hideBtn: document.getElementById(`${TABLE_ID_LIST.cred.hideBtn}`),
     }
 }
 
@@ -195,7 +195,7 @@ if (COMMON_COND.formElemCheck(CRED_INPUTS.diff.all)) {
                         totalPaymentArr[1]
                     );
                     let tableSlice = getTableSlice(
-                        ID_LIST.cred.table, 
+                        TABLE_ID_LIST.cred.table, 
                         STATE_LIST.show,
                         STATE_LIST.hide,
                         CRED_OUTPUTS.diff.showBtn,
@@ -207,7 +207,7 @@ if (COMMON_COND.formElemCheck(CRED_INPUTS.diff.all)) {
                         btn.addEventListener("click", function (e) {
                             e.preventDefault();
 
-                            if (btn.id == ID_LIST.cred.showBtn) {
+                            if (btn.id == TABLE_ID_LIST.cred.showBtn) {
                                 toggleTableItems(
                                     tableSlice,
                                     STATE_LIST.show,
@@ -215,7 +215,7 @@ if (COMMON_COND.formElemCheck(CRED_INPUTS.diff.all)) {
                                     CRED_OUTPUTS.diff.showBtn,
                                     CRED_OUTPUTS.diff.hideBtn,
                                 );
-                            } else if (btn.id == ID_LIST.cred.hideBtn) {
+                            } else if (btn.id == TABLE_ID_LIST.cred.hideBtn) {
                                 toggleTableItems(
                                     tableSlice,
                                     STATE_LIST.hide,

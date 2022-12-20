@@ -2,7 +2,7 @@
   "name": "newtemplate",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "script.js",
   "scripts": {
     "dev": "gulp",
     "prod": "gulp --production"

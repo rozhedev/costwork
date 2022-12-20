@@ -1,4 +1,4 @@
-import { STATE_LIST } from "../common/values";
+import { STATE_LIST } from "../data/values";
 
 const ATTR_LIST = {
     src: "src",

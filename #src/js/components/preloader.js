@@ -1,4 +1,4 @@
-import { STATE_LIST } from "../common/values";
+import { STATE_LIST } from "../data/values";
 
 window.onload = function () {
     document.body.classList.add(STATE_LIST.hide);

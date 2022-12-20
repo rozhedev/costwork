@@ -1,6 +1,6 @@
 // * Write "monthly" everywhere to avoid confusion, struct - structure
 
-import { COMMON_VALUES } from "../common/values";
+import { COMMON_VALUES } from "../data/values";
 import { COMMON_COND } from "../common/conditions";
 import { multNumPercent, sumNodeListValues, multNodeListValues, outputResult } from "../common/func";
 

@@ -1,4 +1,4 @@
-import { STATE_LIST } from "../common/values";
+import { STATE_LIST } from "../data/values";
 
 const accordTriggers = document.querySelectorAll(".accordion__trigger"),
     accordItems = document.querySelectorAll(".accordion");
