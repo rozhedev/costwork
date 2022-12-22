@@ -3,16 +3,16 @@
 import { STATE_LIST } from "../data/values";
 
 const isMobile = {
-    Android: function () {
+    Android: () => {
         return navigator.userAgent.match(/Android/i);
     },
-    iOS: function () {
+    iOS: () => {
         return navigator.userAgent.match(/iPhone|iPad/i);
     },
-    Opera: function () {
+    Opera: () => {
         return navigator.userAgent.match(/Opera Mini/i);
     },
-    any: function () {
+    any: () => {
         return (
             isMobile.Android() ||
             isMobile.iOS() ||
@@ -29,7 +29,7 @@ if (isMobile.any()) {
         for (let index = 0; index < menuArrows.length; index++) {
             const menuArrow = menuArrows[index];
             menuArrow.addEventListener("click", function (e) {
-                menuArrow.parentElement.classList.toggle(STATE_LIST.active);
+                this.parentElement.classList.toggle(STATE_LIST.active);
             });
         }
     }
@@ -44,7 +44,7 @@ const menuBody = document.querySelector(".menu__body");
 if (iconMenu) {
     iconMenu.addEventListener("click", function (e) {
         document.body.classList.toggle(STATE_LIST.lock);
-        iconMenu.classList.toggle(STATE_LIST.active);
+        this.classList.toggle(STATE_LIST.active);
         menuBody.classList.toggle(STATE_LIST.active);
     });
 }

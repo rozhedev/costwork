@@ -2,21 +2,25 @@
     {
         "title": "Прибуток:",
         "id": "profit-output",
-        "idStructure": "profit-struct"
+        "idStructure": "profit-struct",
+        "hasStruct": true
     },
     {
         "title": "Оптова ціна:",
         "id": "wholesale-price-output",
-        "idStructure": "wholesale-price-struct"
+        "idStructure": "wholesale-price-struct",
+        "hasStruct": true
     },
     {
         "title": "ПДВ:",
         "id": "pdv-tax-output",
-        "idStructure": "pdv-tax-struct"
+        "idStructure": "pdv-tax-struct",
+        "hasStruct": true
     },
     {
         "title": "Відпускна ціна:",
         "id": "sale-price-output",
-        "idStructure": "sale-price-struct"
+        "idStructure": "sale-price-struct",
+        "hasStruct": true
     }
 ]

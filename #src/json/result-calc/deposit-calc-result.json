@@ -1,18 +1,22 @@
 [
     {
         "title": "Прибуток:",
-        "id": "deposit-profit-output"
+        "id": "deposit-profit-output",
+        "hasStruct": false
     },
     {
         "title": "Прибуток з урах. податків:",
-        "id": "deposit-tax-profit-output"
+        "id": "deposit-tax-profit-output",
+        "hasStruct": false
     },
     {
         "title": "Середній дохід за місяць:",
-        "id": "deposit-monthly-profit-output"
+        "id": "deposit-monthly-profit-output",
+        "hasStruct": false
     },
     {
         "title": "Сума в кінці строку:",
-        "id": "deposit-total-output"
+        "id": "deposit-total-output",
+        "hasStruct": false
     }
 ]

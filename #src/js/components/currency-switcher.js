@@ -38,7 +38,7 @@ function convertListValues(nodeList, cond, rate) {
     }
 }
 
-function getExchangeRate(curOption, attrName, apiKey, inpList, resultList) {
+function getExchangeRate(attrName, curOption, apiKey, inpList, resultList) {
     const trOutputList = document.querySelectorAll(".payment-table__item-value span:first-of-type");
     let curOptionValue = curOption.getAttribute(attrName);
     let url = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${selectedCurDef}`;
@@ -88,31 +88,32 @@ function getExchangeRate(curOption, attrName, apiKey, inpList, resultList) {
 
 if (curSelectOptions) {
     for (let curOption of curSelectOptions) {
-        curOption.addEventListener("click", (e) => {
+        curOption.addEventListener("click", function (e) {
             let target = e.target;
             if (target.getAttribute(curAttrName) == CUR_DEF.ukrainianHryvnya) {
                 changeCurrency(
                     CLASS_LIST.curOutputs,
-                    curOption,
+                    this,
                     curAttrName,
                     CUR_DEF.ukrainianHryvnya
                 );
                 getExchangeRate(
-                    curOption,
                     curAttrName,
+                    this,
                     API_KEY,
                     curInputs,
                     resultOutputs
                 );
             } else if (target.getAttribute(curAttrName) == CUR_DEF.dollarUSA) {
-                changeCurrency(CLASS_LIST.curOutputs,
-                    curOption,
+                changeCurrency(
+                    CLASS_LIST.curOutputs,
+                    this,
                     curAttrName,
                     CUR_DEF.dollarUSA
                 );
                 getExchangeRate(
-                    curOption,
                     curAttrName,
+                    this,
                     API_KEY,
                     curInputs,
                     resultOutputs
@@ -120,13 +121,13 @@ if (curSelectOptions) {
             } else if (target.getAttribute(curAttrName) == CUR_DEF.euro) {
                 changeCurrency(
                     CLASS_LIST.curOutputs,
-                    curOption,
+                    this,
                     curAttrName,
                     CUR_DEF.euro
                 );
                 getExchangeRate(
-                    curOption,
                     curAttrName,
+                    this,
                     API_KEY,
                     curInputs,
                     resultOutputs

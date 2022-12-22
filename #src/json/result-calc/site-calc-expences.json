@@ -2,51 +2,61 @@
     {
         "title": "Основна зарплата:",
         "id": "basic-salary-output",
-        "idStructure": "basic-salary-struct"
+        "idStructure": "basic-salary-struct",
+        "hasStruct": true
     },
     {
         "title": "Додаткова зарплата:",
         "id": "additional-salary-output",
-        "idStructure": "additional-salary-struct"
+        "idStructure": "additional-salary-struct",
+        "hasStruct": true
     },
     {
         "title": "Єдиний соціальний внесок:",
         "id": "social-payment-output",
-        "idStructure": "social-payment-struct"
+        "idStructure": "social-payment-struct",
+        "hasStruct": true
     },
     {
         "title": "Витрати на утрим. обладнання:",
         "id": "equipment-cost-output",
-        "idStructure": "equipment-cost-struct"
+        "idStructure": "equipment-cost-struct",
+        "hasStruct": true
     },
     {
         "title": "Загальновиробничі витрати:",
         "id": "production-cost-output",
-        "idStructure": "production-cost-struct"
+        "idStructure": "production-cost-struct",
+        "hasStruct": true
     },
     {
         "title": "Виробнича собівартість:",
         "id": "production-cost-sale-output",
-        "idStructure": "production-cost-sale-struct"
+        "idStructure": "production-cost-sale-struct",
+        "hasStruct": true
     },
     {
         "title": "Матеріальні витрати:",
         "id": "material-cost-output",
-        "idStructure": "material-cost-struct"
+        "idStructure": "material-cost-struct",
+        "hasStruct": true
     },
     {
         "title": "Витрати на електроенергію:",
         "id": "electricity-cost-output",
-        "idStructure": "electricity-cost-struct"
+        "idStructure": "electricity-cost-struct",
+        "hasStruct": true
     },
     {
         "title": "Позавиробничі витрати:",
         "id": "non-production-cost-output",
-        "idStructure": "non-production-cost-struct"
+        "idStructure": "non-production-cost-struct",
+        "hasStruct": true
     },
     {
         "title": "Повна собівартість:",
         "id": "total-cost-output",
-        "idStructure": "total-cost-struct"
+        "idStructure": "total-cost-struct",
+        "hasStruct": true
     }
 ]

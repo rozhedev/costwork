@@ -40,13 +40,13 @@ const VALID_INTERVALS = {
 };
 
 const TEXT_ERRORS = {
-    emptyInp: function () {
+    emptyInp: () => {
         return "Поле не може бути пустим";
     },
-    minValue: function (num) {
+    minValue: (num) => {
         return `Мінімальне значення: ${num}`;
     },
-    maxValue: function (num) {
+    maxValue: (num) => {
         return `Максимальне значення: ${num}`;
     },
 }
@@ -95,29 +95,29 @@ function setSuccessFor(inp) {
 
 // * CALL FUNCTIONS
 
-for (let item of INPUTS.all) {
-    item.addEventListener("input", function () {
-        setDecimalNumber(item);
+for (const inp of INPUTS.all) {
+    inp.addEventListener("input", function () {
+        setDecimalNumber(this);
     });
-    item.addEventListener("change", function(e) {
+    inp.addEventListener("change", function(e) {
         let target = e.target;
         if (target.classList.contains(CLASS_LIST.siteCalc)) {
-            checkInp(item, VALID_INTERVALS.siteCalc.min, VALID_INTERVALS.siteCalc.max);
+            checkInp(this, VALID_INTERVALS.siteCalc.min, VALID_INTERVALS.siteCalc.max);
 
         } else if (target.classList.contains(CLASS_LIST.deposit)) {
-            checkInp(item, VALID_INTERVALS.deposit.min, VALID_INTERVALS.deposit.max);
+            checkInp(this, VALID_INTERVALS.deposit.min, VALID_INTERVALS.deposit.max);
 
         } else if (target.classList.contains(CLASS_LIST.credit)) {
-            checkInp(item, VALID_INTERVALS.credit.min, VALID_INTERVALS.credit.max);
+            checkInp(this, VALID_INTERVALS.credit.min, VALID_INTERVALS.credit.max);
 
         } else if (target.classList.contains(CLASS_LIST.periodMonthly)) {
-            checkInp(item, VALID_INTERVALS.periodMonthly.min, VALID_INTERVALS.periodMonthly.max);
+            checkInp(this, VALID_INTERVALS.periodMonthly.min, VALID_INTERVALS.periodMonthly.max);
 
         } else if (target.classList.contains(CLASS_LIST.percent)) {
-            checkInp(item, VALID_INTERVALS.percent.min, VALID_INTERVALS.percent.max);
+            checkInp(this, VALID_INTERVALS.percent.min, VALID_INTERVALS.percent.max);
 
         } else if (target.classList.contains(CLASS_LIST.fee)) {
-            checkInp(item, VALID_INTERVALS.fee.min, VALID_INTERVALS.fee.max);
+            checkInp(this, VALID_INTERVALS.fee.min, VALID_INTERVALS.fee.max);
         }
     });
 }

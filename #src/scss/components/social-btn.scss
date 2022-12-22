@@ -1,6 +1,9 @@
+.author .social-btn {
+    width: 112px;
+}
+
 .social-btn {
     @include centering;
-    width: 112px;
     flex-direction: row;
     padding: 8px;
     border-radius: 8px;

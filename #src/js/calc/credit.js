@@ -83,7 +83,7 @@ if (COMMON_COND.formElemCheck(CRED_INPUTS.ann.all)) {
                     },
                 }
 
-                setTimeout(function () {
+                setTimeout(() => {
                     outputResult(resultObj, CRED_OUTPUTS.ann);
 
                     // * OVERPAYMENT CHECK
@@ -177,7 +177,7 @@ if (COMMON_COND.formElemCheck(CRED_INPUTS.diff.all)) {
                 );
                 totalPaymentArr = Object.entries(totalPaymentObj);
 
-                setTimeout(function () {
+                setTimeout(() => {
                     CRED_OUTPUTS.diff.table.innerHTML = "";
 
                     createPaymentTable(
@@ -207,7 +207,7 @@ if (COMMON_COND.formElemCheck(CRED_INPUTS.diff.all)) {
                         btn.addEventListener("click", function (e) {
                             e.preventDefault();
 
-                            if (btn.id == TABLE_ID_LIST.cred.showBtn) {
+                            if (this.id == TABLE_ID_LIST.cred.showBtn) {
                                 toggleTableItems(
                                     tableSlice,
                                     STATE_LIST.show,
@@ -215,7 +215,7 @@ if (COMMON_COND.formElemCheck(CRED_INPUTS.diff.all)) {
                                     CRED_OUTPUTS.diff.showBtn,
                                     CRED_OUTPUTS.diff.hideBtn,
                                 );
-                            } else if (btn.id == TABLE_ID_LIST.cred.hideBtn) {
+                            } else if (this.id == TABLE_ID_LIST.cred.hideBtn) {
                                 toggleTableItems(
                                     tableSlice,
                                     STATE_LIST.hide,

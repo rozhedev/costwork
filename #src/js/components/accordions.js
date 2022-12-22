@@ -18,7 +18,7 @@ function openAccordion(activeItem, items) {
 }
 
 accordTriggers.forEach((item) => {
-    item.addEventListener("click", () => {
-        openAccordion(item, accordItems);
+    item.addEventListener("click", function() {
+        openAccordion(this, accordItems);
     });
 });

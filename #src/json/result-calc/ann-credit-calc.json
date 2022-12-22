@@ -1,14 +1,17 @@
 [
     {
         "title": "Переплата:",
-        "id": "ann-overpayment-output"
+        "id": "ann-overpayment-output",
+        "hasStruct": false
     },
     {
         "title": "Щомісячний платіж:",
-        "id": "ann-monthly-payment-output"
+        "id": "ann-monthly-payment-output",
+        "hasStruct": false  
     },
     {
         "title": "Всього виплат на суму:",
-        "id": "ann-total-payment-output"
+        "id": "ann-total-payment-output",
+        "hasStruct": false
     }
 ]

@@ -234,7 +234,7 @@ if (SITE_INPUTS.all) {
 
                 // * OUTPUT
 
-                setTimeout(function() {
+                setTimeout(() => {
                     outputResult(SITE_RESULTS.cost, SITE_OUTPUTS.cost);
                     outputResult(SITE_RESULTS.fullCost, SITE_OUTPUTS.fullCost);
                     outputResult(SITE_RESULTS.profit, SITE_OUTPUTS.profit);

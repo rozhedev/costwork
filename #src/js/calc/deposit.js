@@ -79,7 +79,7 @@ if (COMMON_COND.formElemCheck(DEP_INPUTS.sim.all)) {
                     },
                 }
 
-                setTimeout(function () {
+                setTimeout(() => {
                     outputResult(resultObj, DEP_OUTPUTS.sim);
                 }, COMMON_VALUES.delay);
             }
@@ -155,7 +155,7 @@ if (COMMON_COND.formElemCheck(DEP_INPUTS.cap.all)) {
                 }
                 totalPayArr = Object.entries(totalPayObj);
 
-                setTimeout(function () {
+                setTimeout(() => {
                     DEP_OUTPUTS.cap.table.innerHTML = "";
 
                     createPaymentTable(
@@ -197,7 +197,7 @@ if (COMMON_COND.formElemCheck(DEP_INPUTS.cap.all)) {
                         btn.addEventListener("click", function (e) {
                             e.preventDefault();
 
-                            if (btn.id == TABLE_ID_LIST.dep.showBtn) {
+                            if (this.id == TABLE_ID_LIST.dep.showBtn) {
                                 toggleTableItems(
                                     tableSlice,
                                     STATE_LIST.show,
@@ -205,7 +205,7 @@ if (COMMON_COND.formElemCheck(DEP_INPUTS.cap.all)) {
                                     DEP_OUTPUTS.cap.showBtn,
                                     DEP_OUTPUTS.cap.hideBtn,
                                 );
-                            } else if (btn.id == TABLE_ID_LIST.dep.hideBtn) {
+                            } else if (this.id == TABLE_ID_LIST.dep.hideBtn) {
                                 toggleTableItems(
                                     tableSlice,
                                     STATE_LIST.hide,

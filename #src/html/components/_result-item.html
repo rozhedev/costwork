@@ -7,12 +7,13 @@
         </span>
     </div>
 
-    <!-- TODO Add structure via @@if statement & ownStruct props in json -->
-    <div class="result-item__content result-item__struct">
-        <span class="result-item__label h3">Структура:</span>
-        <span>
-            <span class="result-item__value h3" id="@@idStructure">0.00</span>
-            <span class="result-item__currency h3">%</span>
-        </span>
-    </div>
+    @@if (hasStruct === true) {
+        <div class="result-item__content result-item__struct">
+            <span class="result-item__label h3">Структура:</span>
+            <span>
+                <span class="result-item__value h3" id="@@idStructure">0.00</span>
+                <span class="result-item__currency h3">%</span>
+            </span>
+        </div>
+    }
 </div>

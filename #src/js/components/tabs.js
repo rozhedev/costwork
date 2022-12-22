@@ -8,12 +8,12 @@ tabsWrappers.forEach((e) => {
 
     for (let i = 0; i < tabsNavItems.length; i++) {
         tabsNavItems[0].click();
-        tabsNavItems[i].onclick = () => {
+        tabsNavItems[i].addEventListener("click", function () {
+
             tabsNavItems.forEach((e) => { e.classList.remove(STATE_LIST.active) });
             tabsContentItems.forEach((e) => { e.classList.remove(STATE_LIST.active) });
-
-            tabsNavItems[i].classList.add(STATE_LIST.active);
+            this.classList.add(STATE_LIST.active);
             tabsContentItems[i].classList.add(STATE_LIST.active);
-        }
+        });
     }
 });
