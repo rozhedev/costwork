@@ -6,13 +6,15 @@ import { CHECK_LIST_VAL } from "../common/conditions";
 const CLASS_LIST = {
     curSelectOptions: "select_header-select .select__option",
     curOutputs: "currency",
+    resultOutputs: "result-item__value",
+    selectValue: "select__value"
 }
 
 const curSelectOptions = document.querySelectorAll(`.${CLASS_LIST.curSelectOptions}`);
-const curInputs = document.querySelectorAll(`input.${CLASS_LIST.curOutputs}`);
-const resultOutputs = document.querySelectorAll(".result-item__value");
+const curOutputs = document.querySelectorAll(`input.${CLASS_LIST.curOutputs}`);
+const resultOutputs = document.querySelectorAll(`.${CLASS_LIST.resultOutputs}`);
 const curAttrName = "data-value";
-let selectedCurDef = document.querySelector(".select__value").textContent;
+let selectedCurDef = document.querySelector(`.${CLASS_LIST.selectValue}`).textContent;
 let resultMask = "0000.00";
 
 function changeCurrency(className, curOption, attrName, curName) {
@@ -101,7 +103,7 @@ if (curSelectOptions) {
                     curAttrName,
                     this,
                     API_KEY,
-                    curInputs,
+                    curOutputs,
                     resultOutputs
                 );
             } else if (target.getAttribute(curAttrName) == CUR_DEF.dollarUSA) {
@@ -115,7 +117,7 @@ if (curSelectOptions) {
                     curAttrName,
                     this,
                     API_KEY,
-                    curInputs,
+                    curOutputs,
                     resultOutputs
                 );
             } else if (target.getAttribute(curAttrName) == CUR_DEF.euro) {
@@ -129,7 +131,7 @@ if (curSelectOptions) {
                     curAttrName,
                     this,
                     API_KEY,
-                    curInputs,
+                    curOutputs,
                     resultOutputs
                 );
             }

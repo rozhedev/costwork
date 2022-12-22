@@ -1,5 +1,7 @@
 
 export const STATE_LIST = {
+    success: "_success",
+    error: "_error",
     show: "_show",
     hide: "_hide",
     active: "_active",

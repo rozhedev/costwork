@@ -1,3 +1,5 @@
+import { STATE_LIST } from "./../data/values";
+
 const CLASS_LIST = {
     all: "inp",
     siteCalc: "site-calc-inp",
@@ -80,16 +82,16 @@ function setErrorFor(inp, message) {
     const formControl = inp.parentElement;
     const small = formControl.querySelector("small");
 
-    formControl.classList.add("_error")
-    formControl.classList.remove("_success");
+    formControl.classList.add(STATE_LIST.error)
+    formControl.classList.remove(STATE_LIST.success);
     small.textContent = message;
 }
 
 function setSuccessFor(inp) {
     const formControl = inp.parentElement;
 
-    formControl.classList.remove("_error")
-    formControl.classList.add("_success");
+    formControl.classList.remove(STATE_LIST.error)
+    formControl.classList.add(STATE_LIST.success);
 }
 
 
@@ -99,7 +101,7 @@ for (const inp of INPUTS.all) {
     inp.addEventListener("input", function () {
         setDecimalNumber(this);
     });
-    inp.addEventListener("change", function(e) {
+    inp.addEventListener("change", function (e) {
         let target = e.target;
         if (target.classList.contains(CLASS_LIST.siteCalc)) {
             checkInp(this, VALID_INTERVALS.siteCalc.min, VALID_INTERVALS.siteCalc.max);

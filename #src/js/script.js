@@ -16,5 +16,7 @@ import "./components/accordions";
 
 // * CALC
 import "./calc/site-calc";
-import "./calc/deposit";
-import "./calc/credit";
+import "./calc/sim-deposit";
+import "./calc/cap-deposit";
+import "./calc/ann-credit";
+import "./calc/diff-credit";
