@@ -11,10 +11,6 @@ body._dark {
     color: $light-color;
 }
 
-// body, body *, body *::before, body *::after {
-//     transition: $transition
-// }
-
 .faq,
 .site-calc,
 .deposit-calc,
@@ -244,6 +240,49 @@ body._dark {
             }
             &::after {
                 background: url("../img/icons/check-dark.svg");
+            }
+        }
+    }
+}
+
+// * UN- ORDERED LISTS
+
+.ordered-list {
+    counter-reset: myCounter;
+
+    li {
+        list-style: none;
+        margin: 0 0 0 16px;
+
+        &::before {
+            counter-increment: myCounter;
+            content: counter(myCounter);
+            color: $accent-color;
+            display: inline;
+            font-weight: 600;
+            margin: 0 10px 0 0;
+            ._dark & {
+                color: $dark-accent-color;
+            }
+        }
+    }
+}
+
+.unordered-list {
+    li {
+        margin: 6px 0;
+
+        &::before {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background-color: $accent-color;
+            margin: 0px 8px 1px 16px;
+
+            ._dark & {
+                background-color: $dark-accent-color;
             }
         }
     }
