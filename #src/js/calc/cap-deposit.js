@@ -1,10 +1,10 @@
+// * cap - Deposit with capitalisation
+
 import { COMMON_VALUES, STATE_LIST, TABLE_ID_LIST, TABLE_LABELS } from "../data/values";
 import { COMMON_COND } from "../common/conditions";
 import { checkScreenWidth } from "../common/func";
 import { createPaymentTable } from "../common/table-gen";
 import { getTableSlice, toggleTableItems } from "../common/table-control";
-
-// * cap - Deposit with capitalisation
 
 const CAP_DEP_INPUTS = {
         all: document.querySelectorAll(".cap-deposit-inp"),

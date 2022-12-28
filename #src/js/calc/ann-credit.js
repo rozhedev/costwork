@@ -56,8 +56,9 @@ if (COMMON_COND.formElemCheck(ANN_CRED_INPUTS.all)) {
                     monthlyFee: +ANN_CRED_INPUTS.monthlyFee.value,
                 }
                 resultObj = {
-                    overpayment: calcAnnOverpayment(values.amount, values.period, values.yearRate, values.monthlyFee) + values.oneTimeFee,
-                    monthlyPayment: calcAnnMonthlyPayment(values.amount, values.period, values.yearRate) + values.monthlyFee,
+                    // * Additional round for avoid numbers with large fractions, after convertation
+                    overpayment: +(calcAnnOverpayment(values.amount, values.period, values.yearRate, values.monthlyFee) + values.oneTimeFee).toFixed(2),
+                    monthlyPayment: +(calcAnnMonthlyPayment(values.amount, values.period, values.yearRate) + values.monthlyFee).toFixed(2),
                     get totalPayment() {
                         return +(this.monthlyPayment * values.period + values.oneTimeFee).toFixed(2);
                     },

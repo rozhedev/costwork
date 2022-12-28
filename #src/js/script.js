@@ -13,6 +13,7 @@ import "./components/theme-switcher";
 import "./components/burger";
 import "./components/tabs";
 import "./components/accordions";
+import "./components/exchange-rate";
 
 // * CALC
 import "./calc/site-calc";

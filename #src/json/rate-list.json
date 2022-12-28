@@ -1,0 +1,26 @@
+[
+    {
+        "curDef": "USD",
+        "curName": "Доллар США"
+    },
+    {
+        "curDef": "EUR",
+        "curName": "Євро"
+    },
+    {
+        "curDef": "CNY",
+        "curName": "Китайський Юань"
+    },
+    {
+        "curDef": "GBP",
+        "curName": "Англійський Фунт"
+    },
+    {
+        "curDef": "INR",
+        "curName": "Індійська Рупія"
+    },
+    {
+        "curDef": "JPY",
+        "curName": "Японська Ієна"
+    }
+]

@@ -1,8 +1,8 @@
+// * sim (simple) - Deposit without capitalisation
+
 import { COMMON_VALUES } from "../data/values";
 import { COMMON_COND } from "../common/conditions";
 import { outputResult } from "../common/func";
-
-// * sim (simple) - Deposit without capitalisation
 
 const SIM_DEP_INPUTS = {
     all: document.querySelectorAll(".sim-deposit-inp"),
@@ -23,7 +23,7 @@ const SIM_DEP_OUTPUTS = {
 
 function calcSimProfit(amount, rate, period) {
     let dayPeriod = period * 30;
-    return amount * (rate / 100) * dayPeriod / 365;
+    return +(amount * (rate / 100) * dayPeriod / 365).toFixed(2);
 }
 
 
@@ -45,11 +45,11 @@ if (COMMON_COND.formElemCheck(SIM_DEP_INPUTS.all)) {
                 }
                 resultObj = {
                     // * Net profit - чистый доход
-                    profit: +(calcSimProfit(
+                    profit: calcSimProfit(
                         values.amount,
                         values.yearRate,
                         values.period
-                    )).toFixed(2),
+                    ),
                     get netProfit() {
                         return +(this.profit - this.profit * (COMMON_VALUES.taxPercent / 100)).toFixed(2);
                     },

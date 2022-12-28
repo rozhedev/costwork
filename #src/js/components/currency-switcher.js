@@ -1,7 +1,8 @@
 
-import { CUR_RATE, CUR_DEF } from "../data/values";
+import { OFFLINE_RATE, CUR_LIST } from "../data/currencies";
 import { API_KEY } from "../data/config";
 import { CHECK_LIST_VAL } from "../common/conditions";
+import { ERR_CONTENT } from "../data/values";
 
 const CLASS_LIST = {
     curSelectOptions: "select_header-select .select__option",
@@ -45,7 +46,7 @@ function getExchangeRate(attrName, curOption, apiKey, inpList, resultList) {
     let curOptionValue = curOption.getAttribute(attrName);
     let url = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${selectedCurDef}`;
 
-    // * Rate name is name of prop CUR_RATE object
+    // * Rate name is name of prop OFFLINE_RATE object
     let rateName = `${selectedCurDef}_${curOptionValue}`;
 
     fetch(url).then((res) => res.json()).then((result) => {
@@ -67,24 +68,24 @@ function getExchangeRate(attrName, curOption, apiKey, inpList, resultList) {
             CHECK_LIST_VAL.checkCurTr(),
             selectedRate
         );
-    }).catch(() => {
+    }).catch((err) => {
         selectedCurDef = curOptionValue;
         convertListValues(
             inpList,
             CHECK_LIST_VAL.checkCurInp(inpList),
-            CUR_RATE[rateName]
+            OFFLINE_RATE[rateName]
         );
         convertListValues(
             resultList,
             CHECK_LIST_VAL.checkCurResult(resultList, resultMask),
-            CUR_RATE[rateName]
+            OFFLINE_RATE[rateName]
         );
         convertListValues(
             trOutputList,
             CHECK_LIST_VAL.checkCurTr(),
-            CUR_RATE[rateName]
+            OFFLINE_RATE[rateName]
         );
-        console.error("Exchange rate isn't downloaded");
+        console.error(ERR_CONTENT.connection);
     })
 }
 
@@ -92,12 +93,12 @@ if (curSelectOptions) {
     for (let curOption of curSelectOptions) {
         curOption.addEventListener("click", function (e) {
             let target = e.target;
-            if (target.getAttribute(curAttrName) == CUR_DEF.ukrainianHryvnya) {
+            if (target.getAttribute(curAttrName) == CUR_LIST.ukrainianHryvnya.def) {
                 changeCurrency(
                     CLASS_LIST.curOutputs,
                     this,
                     curAttrName,
-                    CUR_DEF.ukrainianHryvnya
+                    CUR_LIST.ukrainianHryvnya.def
                 );
                 getExchangeRate(
                     curAttrName,
@@ -106,12 +107,12 @@ if (curSelectOptions) {
                     curOutputs,
                     resultOutputs
                 );
-            } else if (target.getAttribute(curAttrName) == CUR_DEF.dollarUSA) {
+            } else if (target.getAttribute(curAttrName) == CUR_LIST.dollarUSA.def) {
                 changeCurrency(
                     CLASS_LIST.curOutputs,
                     this,
                     curAttrName,
-                    CUR_DEF.dollarUSA
+                    CUR_LIST.dollarUSA.def
                 );
                 getExchangeRate(
                     curAttrName,
@@ -120,12 +121,12 @@ if (curSelectOptions) {
                     curOutputs,
                     resultOutputs
                 );
-            } else if (target.getAttribute(curAttrName) == CUR_DEF.euro) {
+            } else if (target.getAttribute(curAttrName) == CUR_LIST.euro.def) {
                 changeCurrency(
                     CLASS_LIST.curOutputs,
                     this,
                     curAttrName,
-                    CUR_DEF.euro
+                    CUR_LIST.euro.def
                 );
                 getExchangeRate(
                     curAttrName,

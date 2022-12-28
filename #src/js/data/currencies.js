@@ -1,48 +1,99 @@
 import { API_KEY } from "../data/config";
+import { ERR_CONTENT } from "../data/values";
 
-const curAttrName = "data-value";
+async function getRatePromise(apiKey, selectedCurDef, basicCurDef) {
+    let url = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${selectedCurDef}`;
 
-async function getRate(apiKey, curDef) {
-    let url = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${curDef}`;
-
-    return fetch(url).then((res) => res.json()).then((result) => {
-        let selectedRate = result.conversion_rates[curDef];
-    });
+    let result = await fetch(url)
+    .then((res) => res.json())
+    .then((result) => result.conversion_rates[basicCurDef])
+    .catch((err) => console.error(ERR_CONTENT.connection));
+    return result;
 }
 
 // * CURRENCY LIST
-
-const CUR_LIST = {
-    "USD": {
+export const CUR_LIST = {
+    ukrainianHryvnya: {
+        def: "UAH",
+        get getRate() {
+            return getRatePromise(
+                API_KEY,
+                this.def,
+                this.def
+            );
+        },
+    },
+    dollarUSA: {
         def: "USD",
-        name: "Доллар США",
-        rate: getRate(API_KEY, "USD"),
+        get getRate() {
+            return getRatePromise(
+                API_KEY,
+                this.def,
+                CUR_LIST.ukrainianHryvnya.def
+            );
+        },
     },
-    "EUR": {
+    euro: {
         def: "EUR",
-        name: "Євро",
-        rate: getRate(API_KEY, "EUR"),
+        get getRate() {
+            return getRatePromise(
+                API_KEY,
+                this.def,
+                CUR_LIST.ukrainianHryvnya.def
+            );
+        },
     },
-    "CNY": {
+    chineseYuan: {
         def: "CNY",
-        name: "Китайський Юань",
-        rate: getRate(API_KEY, "CNY"),
+        get getRate() {
+            return getRatePromise(
+                API_KEY,
+                this.def,
+                CUR_LIST.ukrainianHryvnya.def
+            );
+        },
     },
-    "GBP": {
+    sterling: {
         def: "GBP",
-        name: "Англійський фунт",
-        rate: getRate(API_KEY, "GBP"),
+        get getRate() {
+            return getRatePromise(
+                API_KEY,
+                this.def,
+                CUR_LIST.ukrainianHryvnya.def
+            );
+        },
     },
-    "INR": {
+    indianRupee: {
         def: "INR",
-        name: "Індійська Рупія",
-        rate: getRate(API_KEY, "INR"),
+        get getRate() {
+            return getRatePromise(
+                API_KEY,
+                this.def,
+                CUR_LIST.ukrainianHryvnya.def
+            );
+        },
     },
-    "JPY": {
+    japaneseYen: {
         def: "JPY",
-        name: "Японська Ієна",
-        rate: getRate(API_KEY, "JPY"),
+        get getRate() {
+            return getRatePromise(
+                API_KEY,
+                this.def,
+                CUR_LIST.ukrainianHryvnya.def
+            );
+        },
     },
 }
 
-// console.log(CUR_LIST["USD"].getRate(API_KEY, "USD"));
+export const OFFLINE_RATE = {
+    "UAH_USD": 0.027,
+    "UAH_EUR": 0.026,
+    "USD_UAH": 36.98,
+    "USD_EUR": 0.94,
+    "EUR_UAH": 39.10,
+    "EUR_USD": 1.06,
+    "CNY_UAH": 5.31,
+    "GBP_UAH": 44.59,
+    "INR_UAH": 0.45,
+    "JPY_UAH": 0.28,
+};

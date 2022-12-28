@@ -44,17 +44,6 @@ export const TABLE_LABELS = {
     taxAmount: `Податок (${COMMON_VALUES.taxPercent}%):`,
 };
 
-export const CUR_RATE = {
-    "UAH_USD": 0.027,
-    "UAH_EUR": 0.026,
-    "USD_UAH": 36.93,
-    "USD_EUR": 0.94,
-    "EUR_UAH": 39.10,
-    "EUR_USD": 1.06,
-};
-
-export const CUR_DEF = {
-    dollarUSA: "USD",
-    euro: "EUR",
-    ukrainianHryvnya: "UAH",
+export const ERR_CONTENT = {
+    connection: "Connection error or incorrect API. Used offline rate",
 }
