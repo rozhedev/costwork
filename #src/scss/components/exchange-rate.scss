@@ -7,6 +7,9 @@
         margin-top: 1rem;
         font-size: 0.8rem;
     }
+    ._dark & {
+        color: $light-color;
+    }
 }
 
 .exchange-rate {
@@ -60,6 +63,9 @@
 
     &__title {
         font-weight: 400;
+        ._dark & {
+            color: $light-color;
+        }
     }
     &__subtitle {
         display: inline-block;
@@ -70,6 +76,10 @@
         color: $light-color;
         background-color: $inactive-blue-color;
         border-radius: 0.25rem;
+
+        ._dark & {
+            background-color: $dark-inactive-blue-color;
+        }
         @include media(map-get($grid-breakpoints, sm)) {
             padding: 0.25rem;
             font-size: 0.75rem;
@@ -77,5 +87,8 @@
     }
     &__output, &__cur {
         font-weight: 500;
+        ._dark & {
+            color: $light-color;
+        }
     }
 }
