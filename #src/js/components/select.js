@@ -1,4 +1,9 @@
-//Select
+// ? How to use
+// * 1. select tag must have wrapper. For expample div.select-container
+// * 2. select tag must not contains ".select" class
+// * 3. don't forget setting "value" attribute for all options
+// * 4. For styling uses ".select" class
+
 let selects = document.getElementsByTagName('select');
 let slideUpDuration = 400;
 if (selects.length > 0) {

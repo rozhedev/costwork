@@ -1,87 +1,154 @@
-Улутшенный шаблон CodeQuest https://youtu.be/qSZvGlIKGPg. Все что касается изм. этой сборки описано здесь
+# CostWork
 
-Пользуюсь VS Code https://code.visualstudio.com при установке лучше проставить все галки для удобства работы.
-Показывать буду используя его.
+Web app for calculating the cost of creating website, profit from deposit and amount of credit overpayment.
 
-Как запустить сборку?
+It's a colledge diploma project. Prototype, design and text content was made from scratch at Figma. [View template](https://www.figma.com/file/4knFPhLEZ0sUvWA3p18477/Economy?node-id=0%3A1&t=wt9kcK7fZ9LagRrM-1)
 
-1. Устанавливаем NodeJS https://nodejs.org/uk . Нам нужна LTS версия (кнопка слева). Все параметры ост. как есть.
+Consist of seven pages:
+* Main
+* About
+* Author
+* Faq
+* Site calc
+* Deposit calc (with two varieties - simple & capitalisation)
+* Credit-calc (with two varieties - annuity & differential)
 
-2. Устанавлмваем Git https://git-scm.com/ . Все параметры ост. как есть.
+All pages have 3 adaptive versions.
 
-3. Заходим в PowerShell от имени администратора и вводим команду: Set-ExecutionPolicy RemoteSigned после этого высветится
-подтверждение, нажимаем Y. Этот шаг нужен чтобы разрешить выполнение локальных скриптов в Powershell.
+## Features
 
-3. Открываем проект в редакторе. После этого нажимаем Ctrl + ~ чтобы открыть терминал.
+* Currency rate widget
+* Multi-currency support (сonversion all values and results when selecting a currency)
+* Dark theme support
+* Website cost calc
+* Simple deposit calc
+* Capitalisation deposit calc
+* Annuity credit calc
+* Differential credit calc
+* Table content toggles (tabs, accordions and etc.)
 
-4. Пишем команду npm i gulp -D . После этого вводим npm i | Вопреки большему к-ству ошибок сборка работает нормально.
-(большое к-ство ошибок - неотъемлимый атрибут любого open source :) ).
+## Demo
 
-5. Пишем gulp для запуска сборки в режиме разработки. 
-Если работа над проектом закончена пишем gulp --production для минификации кода и изображений.
-________________________________________________________________________
+**Main page**
 
-В случае проблем
+![main-page](blob/main-demo.png)
 
-npm rebuild - если после команды npm i установились не все пакеты.
-npm cache verify - если после сборка после перезапуска не ловит изменений на лету.
-Настрой запуск VS Code от имени администратора: 
-https://qastack.ru/programming/37700536/visual-studio-code-terminal-how-to-run-a-command-with-administrator-rights
-________________________________________________________________________
+**About page**
 
-Предназначение папок:
+![about-page](blob/about-demo.png)
 
-#src - папка с исхдниками.
+**Faq page**
 
-z_dist - папка с готовым проектом, на хостинг нужно отправлять её.
-_____________________
+![faq-page](blob/faq-demo.png)
 
-Эти папки / файлы лучше не трогать!
+**Deposit calc page**
 
-config - конфиг. сборки. У файле path - все пути ко всем видам файлов. У файле app.js - настройки плагинов.
-tasks - все задачи сборки по обработке файлов.
-node_modules - папка в которой хранятся все файлы плагинов и их зависимостей.
-package-lock.json - файл с опис. всех зависимостей сборки.
-package.json - файл с опис. всех уст. плагинов.
-_____________________
-.gitignore - добавляй сюда пути к папкам или файлам, если хочешь чтобы Git их игнорировал.
-gulpfile.js - главный файл сборки где билдятся все задачи и конфиг.
+![site-calc-page](blob/site-calc-demo.png)
 
-* Для удобного просмотра истории версий советую скачать Git History Diff. У верхнем правом углу появится его иконка.
-** Все библиотеки подключаю через npm. Никаких ссылок на внешние стили/скрипты!
-*** SVG иконки исп. только в спрайте в img/icons/sprite.svg. Для одноцветных и многоцветных иконок отдельные спрайты
+**Deposit calc page**
 
-________________________________________________________________________
-Структура папки #src:
+![deposit-page1](blob/deposit-calc-demo.png)
+![deposit-page2](blob/deposit-calc-demo2.png)
 
-|fonts
+**Credit page**
 
-|html
-|-components - разметка компонентов
-|-items - повт. комп. в других компоненах (эл. списков, ссылки, select и тд)
+![credit-page1](blob/credit-calc-demo.png)
+![credit-page2](blob/credit-calc-demo2.png)
 
-|img
-|-favicon
-|-icons
-|-logo
-|-photos
+## Usage
 
-|js
-|-components - скрипты компонентов
-|-libs - файли подключения и настройки библиотек
-|-modules - модули для использования в нескольких компонентах
+I use an improved Gulp-based build taken from this video: [Click](https://youtu.be/qSZvGlIKGPg)
 
-|json
-* Название папок зависит от инф. хранящийся в JSON
+First of all, open project in [VS Code](https://code.visualstudio.com). After that, open terminal.
 
-|scss
-|-base - базовые файлы стилей (переменные, обнуление, сетка, ui, миксины, шрифты)
-|-components - стили компонентов
-|-libs - файли подключения и настройки библиотек
-|-home - стили главной
-|-pages - стили страниц
-* У файле style.scss хранить только импорты других файлов!
+If you do not have Gulp installed, write the commands:
 
-** Запущений на сборке сайт можно посмотреть глобально. Для этого нужно перейти в gulpfile.js, найти настройку Browser Sync и у
-свойстве tunnel ввести предпочетаемый домен. Лучше вводить что-то уникальное (не test123). Домен будет иметь приставку loca.lt.
-В качестве хостинга исп. ПК. Виключил сборку - сайт недоступен.
+```bash
+  npm i gulp -D
+
+  npm i gulp-cli -D
+```
+
+After that, install dependencies:
+
+```bash
+  npm i
+```
+
+For start the project in development mode:
+
+```bash
+  gulp
+```
+
+If the project is finished, minify the code and images, use command:
+
+```bash
+  gulp --production
+```
+
+### Troubleshooting
+
+1. Set VS Code to run as an administrator [Click](https://qastack.ru/programming/37700536/visual-studio-code-terminal-how-to-run-a-command-with-administrator-rights)
+2. **Node JS v16** and **Gulp v4** is required to work correctly (NodeJS v16.16 and Gulp v4.0.2 is based version).
+3. **npm rebuild** - if not all packages are installed after **npm i** command.
+4. **npm cache verify** - If after restarting, build doesn't catch changes "on the fly".
+
+### Folder structure
+
+**#src** - source folder.
+
+**z_dist** - project bundle.
+
+```
+project
+│   readme.md
+│   package.json 
+|   package-lock.json
+|   gulpfile.js
+|   .gitignore
+|   .eslintrc.json
+│
+└───blob                          # Demo images
+|
+└───#src
+│   └───fonts                     # Fonts in .ttf, .otf format
+│   │
+│   └───html                      # All .html files
+│   |   └───components            # Components layout (e.g. _news-card.html)
+|   |
+│   └───img                       # All images
+|   |   └───...    
+|   |
+│   └───js                        # All .js files
+│   |   └───calc                  # Business logic
+│   |   └───common                # Reusable function and common functionality
+│   |   └───components            # Components logic
+│   |   └───data                  # For saving reusable data objects
+|   |       script.js             # For import files
+|   |
+|   └───json                      # All .json files
+|   |   └───...
+|   |
+|   └───scss                      # All .scss files
+|       └───base                  # Basic stylisation files (vars, null, fonts etc.)
+|       └───components            # Components styles
+|       └───pages                 # Pages styles
+|       |   style.scss            # For import all styles
+│   
+└───z_dist                        # Project bundle
+|   └───css
+|   └───fonts
+|   └───img
+|   └───js
+|   *.html
+|
+└───config                        # Config build files (path & plugin settings)
+|
+└───docs (optional)               # Informational files
+|
+└───tasks                         # Tasks for processing different file types
+|
+└───node_modules
+    └───...
+```

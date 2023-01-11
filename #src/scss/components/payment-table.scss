@@ -15,8 +15,11 @@
             color: $light-color;
         }
     }
-    th {
+    th, tbody td {
         border-bottom: 2px solid $dark-color-80;
+        ._dark & {
+            border-bottom: 2px solid $light-color-80;
+        }
     }
     tbody tr._hide {
         display: none;
@@ -26,7 +29,6 @@
     }
     tbody td {
         text-align: center;
-        border-bottom: 2px solid $dark-color-80;
     }
     tfoot tr, tfoot td {
         display: flex;
