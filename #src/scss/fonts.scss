@@ -1,0 +1,20 @@
+// For good display of fonts downloaded from Google Fonts, add params to end of the link:
+// &display=swap&subset=cyrillic-ext
+
+// * Font include
+@mixin font($font_name, $file_name, $weight, $style) {
+	@font-face {
+		font-family: $font_name;
+		font-display: swap;
+		src: url("../fonts/#{$file_name}.woff2") format("woff2"),
+			url("../fonts/#{$file_name}.woff") format("woff");
+		font-weight: #{$weight};
+		font-style: #{$style};
+	}
+}
+
+@include font("Commissioner", "Commissioner-Regular", "400", "normal");
+@include font("Commissioner", "Commissioner-Medium", "500", "normal");
+@include font("Commissioner", "Commissioner-SemiBold", "600", "normal");
+@include font("Commissioner", "Commissioner-Bold", "700", "normal");
+@include font("Commissioner", "Commissioner-Black", "900", "normal");

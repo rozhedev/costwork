@@ -1,31 +1,31 @@
 [
     {
-        "iconPath": "../img/card_img/auto-calculation.png",
+        "iconPath": "img/card_img/auto-calculation.png",
         "iconName": "auto-calculation",
         "title": "Автоматичний обрахунок"
     },
     {
-        "iconPath": "../img/card_img/knowledge-base.png",
+        "iconPath": "img/card_img/knowledge-base.png",
         "iconName": "knowledge-base",
         "title": "База знань"
     },
     {
-        "iconPath": "../img/card_img/exchange.png",
+        "iconPath": "img/card_img/exchange.png",
         "iconName": "exchange",
         "title": "Підтримка декількох валют"
     },
     {
-        "iconPath": "../img/card_img/data-validation.png",
+        "iconPath": "img/card_img/data-validation.png",
         "iconName": "data-validation",
         "title": "Різна валідація для різних даних"
     },
     {
-        "iconPath": "../img/card_img/dark-theme.png",
+        "iconPath": "img/card_img/dark-theme.png",
         "iconName": "dark-theme",
         "title": "Темна тема"
     },
     {
-        "iconPath": "../img/card_img/adaptive.png",
+        "iconPath": "img/card_img/adaptive.png",
         "iconName": "adaptive",
         "title": "Адаптивні версії"
     }

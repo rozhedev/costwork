@@ -10,24 +10,24 @@ const IMG_PATHS = {
     light: {
         switch: "img/icons/icons.svg#lune",
         logo: "img/vector_img/logo.svg",
-        hero: "../img/vector_img/main-img.svg",
-        mockup: "../img/photos/light-mockup.png",
-        mockupWebp: "../img/photos/light-mockup.webp",
+        hero: "img/vector_img/main-img.svg",
+        mockup: "img/photos/light-mockup.png",
+        mockupWebp: "img/photos/light-mockup.webp",
     },
     dark: {
         switch: "img/icons/icons.svg#sun",
         logo: "img/vector_img/dark-logo.svg",
-        hero: "../img/vector_img/dark-main-img.svg",
-        mockup: "../img/photos/dark-mockup.png",
-        mockupWebp: "../img/photos/dark-mockup.webp",
+        hero: "img/vector_img/dark-main-img.svg",
+        mockup: "img/photos/dark-mockup.png",
+        mockupWebp: "img/photos/dark-mockup.webp",
     },
 }
 
 const IMG_ELEM = {
     hero: document.querySelector(".main__img"),
-    heroWebp: document.querySelector('source[srcset="../img/vector_img/main-img.svg"]'),
+    heroWebp: document.querySelector('source[srcset="img/vector_img/main-img.svg"]'),
     mockup: document.querySelector(".about__img"),
-    mockupWebp: document.querySelector('source[srcset="../img/photos/light-mockup.webp"]'),
+    mockupWebp: document.querySelector('source[srcset="img/photos/light-mockup.webp"]'),
     themeSwitcher: document.querySelector(".theme-switcher svg use"),
     nodes: {
         logo: document.querySelectorAll(".logo img"),

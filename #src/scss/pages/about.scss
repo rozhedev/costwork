@@ -1,54 +1,54 @@
 .about {
-    background: url("../../img/bg/desktop/about-header-wave.svg") center top / contain no-repeat,
-        url("../../img/bg/desktop/about-footer-wave.svg") center 1600px / contain no-repeat,
-        url("../../img/bg/pattern-about.svg") center 600px / contain no-repeat;
+    background: url("../img/bg/desktop/about-header-wave.svg") center top / contain no-repeat,
+        url("../img/bg/desktop/about-footer-wave.svg") center 1600px / contain no-repeat,
+        url("../img/bg/pattern-about.svg") center 600px / contain no-repeat;
     ._dark & {
-        background: url("../../img/bg/desktop/dark-about-header-wave.svg") center top / contain no-repeat,
-            url("../../img/bg/desktop/dark-about-footer-wave.svg") center 1600px / contain no-repeat,
-            url("../../img/bg/dark-pattern-about.svg") center 600px / contain no-repeat;
+        background: url("../img/bg/desktop/dark-about-header-wave.svg") center top / contain no-repeat,
+            url("../img/bg/desktop/dark-about-footer-wave.svg") center 1600px / contain no-repeat,
+            url("../img/bg/dark-pattern-about.svg") center 600px / contain no-repeat;
     }
 
     @include media(map-get($grid-breakpoints, lg)) {
-        background: url("../../img/bg/bp1024/about-header-wave.svg") center top / contain no-repeat,
-            url("../../img/bg/bp1024/about-footer-wave.svg") center 1440px / contain no-repeat,
-            url("../../img/bg/pattern-about.svg") center 600px / contain no-repeat;
+        background: url("../img/bg/bp1024/about-header-wave.svg") center top / contain no-repeat,
+            url("../img/bg/bp1024/about-footer-wave.svg") center 1440px / contain no-repeat,
+            url("../img/bg/pattern-about.svg") center 600px / contain no-repeat;
         ._dark & {
-            background: url("../../img/bg/bp1024/dark-about-header-wave.svg") center top / contain no-repeat,
-                url("../../img/bg/bp1024/dark-about-footer-wave.svg") center 1440px / contain no-repeat,
-                url("../../img/bg/dark-pattern-about.svg") center 600px / contain no-repeat;
+            background: url("../img/bg/bp1024/dark-about-header-wave.svg") center top / contain no-repeat,
+                url("../img/bg/bp1024/dark-about-footer-wave.svg") center 1440px / contain no-repeat,
+                url("../img/bg/dark-pattern-about.svg") center 600px / contain no-repeat;
         }
     }
 
     @include media(map-get($grid-breakpoints, md)) {
-        background: url("../../img/bg/bp768/about-header-wave.svg") center top / contain no-repeat,
-            url("../../img/bg/bp768/about-footer-wave.svg") center 1980px / contain no-repeat,
-            url("../../img/bg/pattern-about.svg") center 440px / contain repeat-y;
+        background: url("../img/bg/bp768/about-header-wave.svg") center top / contain no-repeat,
+            url("../img/bg/bp768/about-footer-wave.svg") center 1980px / contain no-repeat,
+            url("../img/bg/pattern-about.svg") center 440px / contain repeat-y;
         ._dark & {
-            background: url("../../img/bg/bp768/dark-about-header-wave.svg") center top / contain no-repeat,
-                url("../../img/bg/bp768/dark-about-footer-wave.svg") center 1980px / contain no-repeat,
-                url("../../img/bg/dark-pattern-about.svg") center 440px / contain repeat-y;
+            background: url("../img/bg/bp768/dark-about-header-wave.svg") center top / contain no-repeat,
+                url("../img/bg/bp768/dark-about-footer-wave.svg") center 1980px / contain no-repeat,
+                url("../img/bg/dark-pattern-about.svg") center 440px / contain repeat-y;
         }
     }
 
     @include media(map-get($grid-breakpoints, sm)) {
-        background: url("../../img/bg/bp428/about-header-wave.svg") center top / contain no-repeat,
-            url("../../img/bg/bp428/about-footer-wave.svg") center 2790px / contain no-repeat,
-            url("../../img/bg/pattern-about.svg") center 1000px / contain repeat-y;
+        background: url("../img/bg/bp428/about-header-wave.svg") center top / contain no-repeat,
+            url("../img/bg/bp428/about-footer-wave.svg") center 2790px / contain no-repeat,
+            url("../img/bg/pattern-about.svg") center 1000px / contain repeat-y;
         ._dark & {
-            background: url("../../img/bg/bp428/dark-about-header-wave.svg") center top / contain no-repeat,
-                url("../../img/bg/bp428/dark-about-footer-wave.svg") center 2790px / contain no-repeat,
-                url("../../img/bg/dark-pattern-about.svg") center 1000px / contain repeat-y;
+            background: url("../img/bg/bp428/dark-about-header-wave.svg") center top / contain no-repeat,
+                url("../img/bg/bp428/dark-about-footer-wave.svg") center 2790px / contain no-repeat,
+                url("../img/bg/dark-pattern-about.svg") center 1000px / contain repeat-y;
         }
     }
 
     @media screen and (min-width: 336px) and (max-width: 385px) {
-        background: url("../../img/bg/bp390/about-header-wave.svg") center top / contain no-repeat,
-            url("../../img/bg/bp390/about-footer-wave.svg") center 2790px / contain no-repeat,
-            url("../../img/bg/pattern-about.svg") center 1000px / contain repeat-y;
+        background: url("../img/bg/bp390/about-header-wave.svg") center top / contain no-repeat,
+            url("../img/bg/bp390/about-footer-wave.svg") center 2790px / contain no-repeat,
+            url("../img/bg/pattern-about.svg") center 1000px / contain repeat-y;
         ._dark & {
-            background: url("../../img/bg/bp390/dark-about-header-wave.svg") center top / contain no-repeat,
-                url("../../img/bg/bp390/dark-about-footer-wave.svg") center 2790px / contain no-repeat,
-                url("../../img/bg/dark-pattern-about.svg") center 1000px / contain repeat-y;
+            background: url("../img/bg/bp390/dark-about-header-wave.svg") center top / contain no-repeat,
+                url("../img/bg/bp390/dark-about-footer-wave.svg") center 2790px / contain no-repeat,
+                url("../img/bg/dark-pattern-about.svg") center 1000px / contain repeat-y;
         }
     }
     
