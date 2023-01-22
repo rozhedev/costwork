@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="ua">
 
-@@include('_head.html',{
+@@include('chunks/_head.html',{
 "title":"Депозитний калькулятор"
 })
 
 <body>
-    @@include('components/_preloader.html',{})
+    @@include('chunks/_preloader.html',{})
 
     <div class="site-calc credit-calc wrapper" id="deposit-calc">
         <!-- * HEADER -->
-        @@include('components/_header.html',{})
+        @@include('chunks/_header.html',{})
 
         <section class="calc-steps container">
             <!-- Розрахунок прибутку від депозиту -->
@@ -75,7 +75,7 @@
                                             "id": "dep-table-show-btn",
                                             "class": "facebook",
                                             "url": "",
-                                            "iconPath": "icons/icons.svg#chevron",
+                                            "iconPath": "img/icons/icons.svg#chevron",
                                             "label": "Відобразити"
                                             })
                                         </td>
@@ -91,11 +91,11 @@
         </section>
 
         <!-- * FOOTER -->
-        @@include('components/_footer.html',{})
+        @@include('chunks/_footer.html',{})
     </div>
 
     <!-- * JS -->
-    @@include('_js.html',{})
+    @@include('chunks/_js.html',{})
 </body>
 
 </html>

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="ua">
 
-@@include('_head.html',{
+@@include('chunks/_head.html',{
 "title":"Довідка"
 })
 
 <body>
-    @@include('components/_preloader.html',{})
+    @@include('chunks/_preloader.html',{})
 
     <div class="faq wrapper" id="faq">
         <!-- * HEADER -->
-        @@include('components/_header.html',{})
+        @@include('chunks/_header.html',{})
 
         <section class="theory-question container">
             <h1 class="h1">Довідкова інфомація</h1>
@@ -64,11 +64,11 @@
         </section>
 
         <!-- * FOOTER -->
-        @@include('components/_footer.html',{})
+        @@include('chunks/_footer.html',{})
     </div>
 
     <!-- * JS -->
-    @@include('_js.html',{})
+    @@include('chunks/_js.html',{})
 </body>
 
 </html>

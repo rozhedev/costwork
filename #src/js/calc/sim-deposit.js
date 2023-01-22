@@ -1,8 +1,8 @@
 // * sim (simple) - Deposit without capitalisation
 
 import { COMMON_VALUES } from "../data/values";
-import { COMMON_COND } from "../common/conditions";
-import { outputResult } from "../common/func";
+import { COMMON_COND } from "../common/checkers";
+import { outputResult } from "../common/helpers";
 
 const SIM_DEP_INPUTS = {
     all: document.querySelectorAll(".sim-deposit-inp"),

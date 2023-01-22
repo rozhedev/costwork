@@ -1,7 +1,7 @@
 
 import { OFFLINE_RATE, CUR_LIST } from "../data/currencies";
 import { API_KEY } from "../data/config";
-import { CHECK_LIST_VAL } from "../common/conditions";
+import { CHECK_LIST_VAL } from "../common/checkers";
 import { ERR_CONTENT } from "../data/values";
 
 const CLASS_LIST = {

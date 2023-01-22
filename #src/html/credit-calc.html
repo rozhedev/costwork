@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="ua">
 
-@@include('_head.html',{
+@@include('chunks/_head.html',{
 "title":"Кредитний калькулятор"
 })
 
 <body>
-    @@include('components/_preloader.html',{})
+    @@include('chunks/_preloader.html',{})
 
     <div class="site-calc credit-calc wrapper" id="credit-calc">
         <!-- * HEADER -->
-        @@include('components/_header.html',{})
+        @@include('chunks/_header.html',{})
 
         <section class="calc-steps container">
             <!-- Розрахунок кредитної переплати -->
@@ -90,11 +90,11 @@
         </section>
 
         <!-- * FOOTER -->
-        @@include('components/_footer.html',{})
+        @@include('chunks/_footer.html',{})
     </div>
 
     <!-- * JS -->
-    @@include('_js.html',{})
+    @@include('chunks/_js.html',{})
 </body>
 
 </html>

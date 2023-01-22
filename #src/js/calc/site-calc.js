@@ -1,8 +1,8 @@
 // * Write "monthly" everywhere to avoid confusion, struct - structure
 
 import { COMMON_VALUES } from "../data/values";
-import { COMMON_COND } from "../common/conditions";
-import { multNumPercent, sumNodeListValues, multNodeListValues, outputResult } from "../common/func";
+import { COMMON_COND } from "../common/checkers";
+import { multNumPercent, sumNodeListValues, multNodeListValues, outputResult } from "../common/helpers";
 
 // * SITE INPUTS. All inputs are required for calculation.
 const SITE_INPUTS = {

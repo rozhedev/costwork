@@ -1,8 +1,8 @@
 // * diff - Differential credit 
 
 import { COMMON_VALUES, STATE_LIST, TABLE_ID_LIST, TABLE_LABELS } from "../data/values";
-import { COMMON_COND } from "../common/conditions";
-import { checkScreenWidth } from "../common/func";
+import { COMMON_COND } from "../common/checkers";
+import { checkScreenWidth } from "../common/helpers";
 import { createPaymentTable } from "../common/table-gen";
 import { getTableSlice, toggleTableItems } from "../common/table-control";
 

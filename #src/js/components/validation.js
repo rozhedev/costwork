@@ -1,4 +1,4 @@
-import { STATE_LIST } from "./../data/values";
+import { STATE_LIST } from "../data/values";
 
 const CLASS_LIST = {
     all: "inp",

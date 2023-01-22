@@ -1,8 +1,8 @@
 // * ann - Annuity credit
 
 import { COMMON_VALUES, STATE_LIST } from "../data/values";
-import { COMMON_COND } from "../common/conditions";
-import { outputResult } from "../common/func";
+import { COMMON_COND } from "../common/checkers";
+import { outputResult } from "../common/helpers";
 
 const ANN_CRED_INPUTS = {
     all: document.querySelectorAll(".ann-credit-inp"),

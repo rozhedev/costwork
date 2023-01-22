@@ -1,8 +1,7 @@
 @use "sass:math";
 
 // * FONTS
-// * fonts.scss must be situated on the one level with style.scss
-@import 'fonts.scss';
+@import 'base/fonts.scss';
 
 // * VARIABLES
 @import "base/vars.scss";

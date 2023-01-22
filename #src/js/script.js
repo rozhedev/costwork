@@ -2,8 +2,6 @@
 
 // * LIBS
 
-// * COMMON
-import "./common/validation";
 
 // * COMPONENTS
 import "./components/preloader";
@@ -11,6 +9,7 @@ import "./components/select";
 import "./components/currency-switcher";
 import "./components/theme-switcher";
 import "./components/burger";
+import "./components/validation";
 import "./components/tabs";
 import "./components/accordions";
 import "./components/exchange-rate";

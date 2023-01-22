@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="ua">
 
-@@include('_head.html',{
+@@include('chunks/_head.html',{
 "title":"Головна"
 })
 
 <body>
-    @@include('components/_preloader.html',{})
+    @@include('chunks/_preloader.html',{})
 
     <main class="main wrapper" id="main">
         <section class="home" id="home">
             <!-- * HEADER -->
-            @@include('components/_header.html',{})
+            @@include('chunks/_header.html',{})
 
             <div class="container">
                 <div class="home__container row">
@@ -41,11 +41,11 @@
         </section>
 
         <!-- * FOOTER -->
-        @@include('components/_footer.html',{})
+        @@include('chunks/_footer.html',{})
     </main>
 
     <!-- * JS -->
-    @@include('_js.html',{})
+    @@include('chunks/_js.html',{})
 </body>
 
 </html>
