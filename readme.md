@@ -25,6 +25,7 @@ All pages have 3 adaptive versions.
 * Capitalisation deposit calc
 * Annuity credit calc
 * Differential credit calc
+* Internet connection checker (also for catching error in promises)
 * Table content toggles (tabs, accordions and etc.)
 
 ## Demo
@@ -120,6 +121,7 @@ project
 │   └───fonts                     # Fonts in .ttf, .otf format
 │   │
 │   └───html                      # All .html files
+|   |   └───chunks                # Common parts of all pages (e.g. _header.html)
 │   |   └───components            # Components layout (e.g. _news-card.html)
 |   |
 │   └───img                       # All images
