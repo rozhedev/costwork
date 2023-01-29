@@ -158,23 +158,22 @@ body._dark {
         color: $light-color;
         background-color: $dark-color;
         border: 3px solid $dark-inactive-blue-color;
-
-        &._error, ._error &:focus {
-            border-color: $dark-error-red;
-            box-shadow: $dark-inp-error-shadow;
-        }
-        ._success &, ._success &:focus {
-            border-color: $dark-accent-color;
-            box-shadow: none;
-        }
         &._disabled {
-            border-color: $dark-color-60;
+            border: 3px solid $dark-color-60;
             color: $dark-color-60;
         }
         &:focus {
-            border-color: $dark-active-blue-color;
+            border: 3px solid $dark-active-blue-color;
             box-shadow: $dark-inp-focus-shadow;
         }
+    }
+    ._dark ._error &, ._error &:focus {
+        border-color: $dark-error-red;
+        box-shadow: $dark-inp-error-shadow;
+    }
+    ._dark ._success &, ._success &:focus {
+        border-color: $dark-accent-color;
+        box-shadow: none;
     }
 }
 

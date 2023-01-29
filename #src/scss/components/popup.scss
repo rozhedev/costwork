@@ -1,0 +1,40 @@
+.popup-network {
+    background-color: $error-red;
+    width: 100%;
+    ._dark & {
+        background-color: $dark-error-red;
+    }
+
+    .popup__body {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        height: 0;
+        font-size: 0.8rem;
+        color: $light-color;
+        transition: $transition;
+
+        @include breakpoint(xs) {
+            padding: 0.3rem 0;
+        }
+        svg {
+            width: 20px;
+            height: 20px;
+            stroke: $light-color;
+            @include breakpoint(xs) {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    }
+    .popup__text {
+        margin-left: 0.6rem;
+    }
+    &._active {
+        .popup__body {
+            display: flex;
+            min-height: 28px;
+            height: auto;
+        }
+    }
+}

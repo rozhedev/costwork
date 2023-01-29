@@ -12,6 +12,7 @@ import "./components/burger";
 import "./components/validation";
 import "./components/tabs";
 import "./components/accordions";
+import "./components/net-check"
 import "./components/exchange-rate";
 
 // * CALC

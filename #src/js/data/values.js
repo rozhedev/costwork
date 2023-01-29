@@ -27,6 +27,7 @@ export const TABLE_ID_LIST = {
 
 export const COMMON_VALUES = {
     delay: 1000,
+    checkConInterval: 5000,
     screenTipNum: 536,
     taxPercent: 19.5,
     colors: {
@@ -44,6 +45,4 @@ export const TABLE_LABELS = {
     taxAmount: `Податок (${COMMON_VALUES.taxPercent}%):`,
 };
 
-export const ERR_CONTENT = {
-    connection: "Connection error or incorrect API. Used offline rate",
-}
+export const popupNet = document.querySelector("#popup-network");

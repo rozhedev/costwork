@@ -1,7 +1,7 @@
 // * ann - Annuity credit
 
 import { COMMON_VALUES, STATE_LIST } from "../data/values";
-import { COMMON_COND } from "../common/checkers";
+import { controllerClassCheck, formElemCheck } from "../common/checkers";
 import { outputResult } from "../common/helpers";
 
 const ANN_CRED_INPUTS = {
@@ -39,7 +39,7 @@ function calcAnnOverpayment(amount, period, rate, monthlyFee) {
 
 // * OUTPUT
 
-if (COMMON_COND.formElemCheck(ANN_CRED_INPUTS.all)) {
+if (formElemCheck(ANN_CRED_INPUTS.all)) {
     let inpArr = [...ANN_CRED_INPUTS.all];
     let values, resultObj;
 
@@ -47,7 +47,7 @@ if (COMMON_COND.formElemCheck(ANN_CRED_INPUTS.all)) {
     for (const inpItem of inpArr) {
         inpItem.addEventListener("change", function () {
 
-            if (COMMON_COND.controllerClassCheck(inpArr)) {
+            if (controllerClassCheck(inpArr)) {
                 values = {
                     amount: +ANN_CRED_INPUTS.amount.value,
                     yearRate: +ANN_CRED_INPUTS.yearRate.value,
@@ -70,14 +70,11 @@ if (COMMON_COND.formElemCheck(ANN_CRED_INPUTS.all)) {
                     // * OVERPAYMENT CHECK
                     if (resultObj.overpayment > 0) {
                         ANN_CRED_OUTPUTS.overpayment.textContent = Math.abs(resultObj.overpayment);
-                        ANN_CRED_OUTPUTS.overpayment.style.color = ANN_CRED_OUTPUTS.total.style.color = COMMON_VALUES.colors.dark;
-
                         ANN_CRED_OUTPUTS.message.classList.remove(STATE_LIST.active);
                         ANN_CRED_OUTPUTS.message.textContent = "";
+
                     } else {
                         ANN_CRED_OUTPUTS.overpayment.textContent = resultObj.overpayment;
-                        ANN_CRED_OUTPUTS.overpayment.style.color = ANN_CRED_OUTPUTS.total.style.color = COMMON_VALUES.colors.warning;
-
                         ANN_CRED_OUTPUTS.message.classList.add(STATE_LIST.active);
                         ANN_CRED_OUTPUTS.message.textContent = TEXT_CONTENT.termErr;
                     }

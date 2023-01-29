@@ -1,7 +1,7 @@
 // * sim (simple) - Deposit without capitalisation
 
 import { COMMON_VALUES } from "../data/values";
-import { COMMON_COND } from "../common/checkers";
+import { controllerClassCheck, formElemCheck } from "../common/checkers";
 import { outputResult } from "../common/helpers";
 
 const SIM_DEP_INPUTS = {
@@ -29,7 +29,7 @@ function calcSimProfit(amount, rate, period) {
 
 // * OUTPUT
 
-if (COMMON_COND.formElemCheck(SIM_DEP_INPUTS.all)) {
+if (formElemCheck(SIM_DEP_INPUTS.all)) {
     let inpArr = [...SIM_DEP_INPUTS.all];
     let values, resultObj;
 
@@ -37,7 +37,7 @@ if (COMMON_COND.formElemCheck(SIM_DEP_INPUTS.all)) {
     for (const inpItem of inpArr) {
         inpItem.addEventListener("change", function () {
 
-            if (COMMON_COND.controllerClassCheck(inpArr)) {
+            if (controllerClassCheck(inpArr)) {
                 values = {
                     amount: +SIM_DEP_INPUTS.amount.value,
                     yearRate: +SIM_DEP_INPUTS.yearRate.value,

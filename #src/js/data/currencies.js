@@ -1,5 +1,6 @@
-import { API_KEY } from "../data/config";
-import { ERR_CONTENT } from "../data/values";
+import { checkConnect } from "../common/checkers";
+import { API_KEY, API_LINK } from "../data/config";
+import { popupNet } from "../data/values";
 
 async function getRatePromise(apiKey, selectedCurDef, basicCurDef) {
     let url = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${selectedCurDef}`;
@@ -7,7 +8,7 @@ async function getRatePromise(apiKey, selectedCurDef, basicCurDef) {
     let result = await fetch(url)
     .then((res) => res.json())
     .then((result) => result.conversion_rates[basicCurDef])
-    .catch((err) => console.error(ERR_CONTENT.connection));
+    .catch((err) => checkConnect(API_LINK, popupNet));
     return result;
 }
 

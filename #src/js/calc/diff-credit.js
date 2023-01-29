@@ -1,7 +1,7 @@
 // * diff - Differential credit 
 
 import { COMMON_VALUES, STATE_LIST, TABLE_ID_LIST, TABLE_LABELS } from "../data/values";
-import { COMMON_COND } from "../common/checkers";
+import { controllerClassCheck, formElemCheck } from "../common/checkers";
 import { checkScreenWidth } from "../common/helpers";
 import { createPaymentTable } from "../common/table-gen";
 import { getTableSlice, toggleTableItems } from "../common/table-control";
@@ -62,7 +62,7 @@ function calcDiffTotalSum(arr1, arr2, oneTimeFee) {
 
 // * OUTPUT
 
-if (COMMON_COND.formElemCheck(DIFF_CRED_INPUTS.all)) {
+if (formElemCheck(DIFF_CRED_INPUTS.all)) {
     let inpArr = [...DIFF_CRED_INPUTS.all];
     let values, paymentObj, totalPaymentObj, totalPaymentArr;
     checkScreenWidth(DIFF_CRED_OUTPUTS.screenTip, COMMON_VALUES.screenTipNum);
@@ -71,7 +71,7 @@ if (COMMON_COND.formElemCheck(DIFF_CRED_INPUTS.all)) {
     for (const inpItem of inpArr) {
         inpItem.addEventListener("change", function () {
 
-            if (COMMON_COND.controllerClassCheck(inpArr)) {
+            if (controllerClassCheck(inpArr)) {
                 values = {
                     amount: +DIFF_CRED_INPUTS.amount.value,
                     yearRate: +DIFF_CRED_INPUTS.yearRate.value,

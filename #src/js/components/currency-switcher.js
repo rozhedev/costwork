@@ -1,8 +1,7 @@
-
 import { OFFLINE_RATE, CUR_LIST } from "../data/currencies";
-import { API_KEY } from "../data/config";
-import { CHECK_LIST_VAL } from "../common/checkers";
-import { ERR_CONTENT } from "../data/values";
+import { checkConnect, CHECK_LIST_VAL } from "../common/checkers";
+import { API_KEY, API_LINK } from "../data/config";
+import { popupNet } from "../data/values";
 
 const CLASS_LIST = {
     curSelectOptions: "select_header-select .select__option",
@@ -14,6 +13,7 @@ const CLASS_LIST = {
 const curSelectOptions = document.querySelectorAll(`.${CLASS_LIST.curSelectOptions}`);
 const curOutputs = document.querySelectorAll(`input.${CLASS_LIST.curOutputs}`);
 const resultOutputs = document.querySelectorAll(`.${CLASS_LIST.resultOutputs}`);
+
 const curAttrName = "data-value";
 let selectedCurDef = document.querySelector(`.${CLASS_LIST.selectValue}`).textContent;
 let resultMask = "0000.00";
@@ -55,37 +55,41 @@ function getExchangeRate(attrName, curOption, apiKey, inpList, resultList) {
 
         convertListValues(
             inpList,
-            CHECK_LIST_VAL.checkCurInp(inpList),
+            CHECK_LIST_VAL.curInp(inpList),
             selectedRate
         );
         convertListValues(
             resultList,
-            CHECK_LIST_VAL.checkCurResult(resultList, resultMask),
+            CHECK_LIST_VAL.curResult(resultList, resultMask),
             selectedRate
         );
         convertListValues(
             trOutputList,
-            CHECK_LIST_VAL.checkCurTr(),
+            CHECK_LIST_VAL.curTr(),
             selectedRate
         );
+        
+        checkConnect(API_LINK, popupNet);
+
     }).catch((err) => {
         selectedCurDef = curOptionValue;
         convertListValues(
             inpList,
-            CHECK_LIST_VAL.checkCurInp(inpList),
+            CHECK_LIST_VAL.curInp(inpList),
             OFFLINE_RATE[rateName]
         );
         convertListValues(
             resultList,
-            CHECK_LIST_VAL.checkCurResult(resultList, resultMask),
+            CHECK_LIST_VAL.curResult(resultList, resultMask),
             OFFLINE_RATE[rateName]
         );
         convertListValues(
             trOutputList,
-            CHECK_LIST_VAL.checkCurTr(),
+            CHECK_LIST_VAL.curTr(),
             OFFLINE_RATE[rateName]
         );
-        console.error(ERR_CONTENT.connection);
+
+        checkConnect(API_LINK, popupNet);
     })
 }
 

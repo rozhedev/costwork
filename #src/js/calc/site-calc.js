@@ -1,7 +1,7 @@
 // * Write "monthly" everywhere to avoid confusion, struct - structure
 
 import { COMMON_VALUES } from "../data/values";
-import { COMMON_COND } from "../common/checkers";
+import { controllerClassCheck } from "../common/checkers";
 import { multNumPercent, sumNodeListValues, multNodeListValues, outputResult } from "../common/helpers";
 
 // * SITE INPUTS. All inputs are required for calculation.
@@ -190,7 +190,7 @@ if (SITE_INPUTS.all) {
     for (const inpItem of allFormInpArr) {
         inpItem.addEventListener("change", function () {
 
-            if (COMMON_COND.controllerClassCheck(allFormInpArr)) {
+            if (controllerClassCheck(allFormInpArr)) {
                 SITE_RESULTS.temp.labour = sumNodeListValues(SITE_INPUTS.labour.all);
                 calcSalary();
 
