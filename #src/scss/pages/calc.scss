@@ -52,8 +52,8 @@
     .tabs__content-item._active {
         display: block;
     }
-    .message {
-        @include message;
+    .message-tip {
+        @include message-tip;
     }
     @include media(map-get($grid-breakpoints, sm)) {
         overflow-x: auto;

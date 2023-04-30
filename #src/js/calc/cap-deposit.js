@@ -2,7 +2,6 @@
 
 import { COMMON_VALUES, STATE_LIST, TABLE_ID_LIST, TABLE_LABELS } from "../data/values";
 import { controllerClassCheck, formElemCheck } from "../common/checkers";
-import { checkScreenWidth } from "../common/helpers";
 import { createPaymentTable } from "../common/table-gen";
 import { getTableSlice, toggleTableItems } from "../common/table-control";
 
@@ -15,7 +14,6 @@ const CAP_DEP_INPUTS = {
 
 const CAP_DEP_OUTPUTS = {
         table: document.querySelector(`#${TABLE_ID_LIST.dep.table} tbody`),
-        screenTip: document.querySelector(".message-tip"),
         btns: document.querySelectorAll(`.${COMMON_VALUES.socialBtns}`),
         showBtn: document.getElementById(`${TABLE_ID_LIST.dep.showBtn}`),
         hideBtn: document.getElementById(`${TABLE_ID_LIST.dep.hideBtn}`),
@@ -62,7 +60,6 @@ function calcCapProfit(amount, rate, period, tax) {
 if (formElemCheck(CAP_DEP_INPUTS.all)) {
     let inpArr = [...CAP_DEP_INPUTS.all];
     let values, payObj, totalPayObj, totalPayArr;
-    checkScreenWidth(CAP_DEP_OUTPUTS.screenTip, COMMON_VALUES.screenTipNum);
 
     // * ADD CHANGE EVENT FOR DEP_INPUTS
     for (const inpItem of inpArr) {

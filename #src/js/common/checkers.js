@@ -47,12 +47,10 @@ export function checkConnect(apiLink, popup) {
     xhr.onload = () => {
         if (xhr.status == 200 && xhr.status < 300) {
             popup.classList.remove("_active");
-            return true;
         }
     }
     xhr.onerror = () => {
         popup.classList.add("_active");
-        return false;
     }
     xhr.send();
 }

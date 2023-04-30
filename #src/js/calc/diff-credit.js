@@ -2,7 +2,6 @@
 
 import { COMMON_VALUES, STATE_LIST, TABLE_ID_LIST, TABLE_LABELS } from "../data/values";
 import { controllerClassCheck, formElemCheck } from "../common/checkers";
-import { checkScreenWidth } from "../common/helpers";
 import { createPaymentTable } from "../common/table-gen";
 import { getTableSlice, toggleTableItems } from "../common/table-control";
 
@@ -17,7 +16,6 @@ const DIFF_CRED_INPUTS = {
 
 const DIFF_CRED_OUTPUTS = {
     table: document.querySelector(`#${TABLE_ID_LIST.cred.table} tbody`),
-    messageTip: document.querySelector(".message-tip"),
     btns: document.querySelectorAll(`.${COMMON_VALUES.socialBtns}`),
     showBtn: document.getElementById(`${TABLE_ID_LIST.cred.showBtn}`),
     hideBtn: document.getElementById(`${TABLE_ID_LIST.cred.hideBtn}`),
@@ -65,7 +63,6 @@ function calcDiffTotalSum(arr1, arr2, oneTimeFee) {
 if (formElemCheck(DIFF_CRED_INPUTS.all)) {
     let inpArr = [...DIFF_CRED_INPUTS.all];
     let values, paymentObj, totalPaymentObj, totalPaymentArr;
-    checkScreenWidth(DIFF_CRED_OUTPUTS.screenTip, COMMON_VALUES.screenTipNum);
 
     // * ADD CHANGE EVENT FOR INPUTS
     for (const inpItem of inpArr) {

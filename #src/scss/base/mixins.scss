@@ -67,16 +67,14 @@
     }
 }
 
-@mixin message {
+@mixin message-tip {
     @include col(6);
     margin: 2rem auto 0;
-    padding: 0.75rem 1rem;
     font-weight: 500;
     text-align: justify;
     background-color: $footer-grey;
     border-radius: 8px;
     transition: $transition;
-    border: 2px solid $active-blue-color;
     ._dark & {
         background-color: $dark-footer-grey;
         border: 2px solid $dark-active-blue-color;
